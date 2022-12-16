@@ -1,5 +1,8 @@
+= javascript_include_tag "sidenav_init"
+
 %ul#nav-mobile.sidenav.sidenav-fixed{style: "transform: translateX(0px);"}
   %li.logo.center-align
     = link_to root_path, id: "logo-container", class: "brand-logo" do
       = image_tag "pokeball.svg", height: 120, id: "front-page-logo"
-
+%a.sidenav-trigger{href: "#", "data-target": "slide-out"}
+  %i.material-icons menu
