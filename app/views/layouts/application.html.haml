@@ -1,0 +1,23 @@
+!!! 5
+
+%html
+  %head
+    %title PokéLog
+    = favicon_link_tag asset_path "favicon.ico"
+
+    %meta{name: "viewport", content: "width=device-width,initial-scale=1"}
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+
+  %body
+    %header
+      = render "layouts/sidebar"
+    %main
+      .container
+        .row
+          = yield
+    // Material UI JS
+    %script{src: "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"}
