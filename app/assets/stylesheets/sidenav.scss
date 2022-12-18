@@ -1,4 +1,4 @@
-$nav-mobile_width: 64px;
+$mnav_size: 64px;
 
 // Offset content from sidebar
 header, main, footer {
@@ -7,7 +7,7 @@ header, main, footer {
 // Offset when sidebar is collapsed
 @media only screen and (max-width : 992px) {
   header, main, footer {
-    padding-left: $nav-mobile_width;
+    padding-left: $mnav_size;
   }
 }
 #logo-container {
@@ -20,26 +20,26 @@ header, main, footer {
 }
 
 // Narrow sidenav on mobile
-#nav-mobile.sidenav {
+#mnav.sidenav {
   // Don't hide
   transform: translateX(0%) !important;
-  width: $nav-mobile_width;
+  width: $mnav_size;
 }
-// Patch to make li 64px high
-@mixin mobile-nav-height {
-  height: 64px;
-  line-height: 64px;
+// Patch to make li square with the bar
+@mixin mnav-height {
+  height: $mnav_size;
+  line-height: $mnav_size;
 }
-#nav-mobile.sidenav li>a {
+#mnav.sidenav li>a {
   padding: 0;
   text-align: center;
-  @include mobile-nav-height;
+  @include mnav-height;
 }
-#nav-mobile.sidenav li>a>i {
-  @include mobile-nav-height;
+#mnav.sidenav li>a>i {
+  @include mnav-height;
 }
 // Center the expand icon
 #sidenav-expand {
   margin: auto;
-  width: $nav-mobile_width;
+  width: $mnav_size;
 }
