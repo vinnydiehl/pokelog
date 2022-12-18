@@ -1,4 +1,14 @@
-// a#logo-container {
-//   margin-left: auto;
-//   margin-right: auto;
-// }
+// Offset content from sidebar
+header, main, footer {
+  padding-left: 300px;
+}
+// Offset when sidebar is collapsed
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+#logo-container {
+  text-align: center;
+  margin-top: 32px;
+}
