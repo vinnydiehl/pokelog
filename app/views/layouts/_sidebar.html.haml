@@ -1,8 +1,11 @@
 = javascript_include_tag "sidenav_init"
 
-%ul#nav-mobile.sidenav.sidenav-fixed{style: "transform: translateX(0px);"}
+%a.sidenav-trigger.top-nav.full.hide-on-large-only{href: "#", "data-target": "nav-full"}
+  %i.material-icons menu
+
+%ul#nav-mobile.sidenav.sidenav-fixed
+
+%ul#nav-full.sidenav.sidenav-fixed{style: "transform: translateX(0px);"}
   %li.logo
     = link_to root_path, id: "logo-container", class: "brand-logo" do
       = image_tag "pokeball.svg", height: 120, id: "front-page-logo"
-%a.sidenav-trigger.top-nav.full.hide-on-large-only{href: "#", "data-target": "slide-out"}
-  %i.material-icons menu
