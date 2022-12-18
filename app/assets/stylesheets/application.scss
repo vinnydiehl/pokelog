@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 // Recursively include all CSS/SCSS files in this directory.
-@import "/\*"
+@import "const/\*";
+@import "/\*";
 // Styles added below this line will take precedence over styles defined in any
 // other files in this directory.

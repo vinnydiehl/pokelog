@@ -1,9 +1,9 @@
 = javascript_include_tag "sidenav_init"
 
-%a.sidenav-trigger.top-nav.full.hide-on-large-only{href: "#", "data-target": "nav-full"}
-  %i.material-icons menu
-
 %ul#nav-mobile.sidenav.sidenav-fixed
+  %li.expand
+    %a.sidenav-trigger.hide-on-large-only{href: "#", "data-target": "nav-full"}
+      %i#sidenav-expand.material-icons menu
 
 %ul#nav-full.sidenav.sidenav-fixed{style: "transform: translateX(0px);"}
   %li.logo

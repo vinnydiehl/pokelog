@@ -1,3 +1,5 @@
+$nav-mobile_width: 64px;
+
 // Offset content from sidebar
 header, main, footer {
   padding-left: 300px;
@@ -5,7 +7,7 @@ header, main, footer {
 // Offset when sidebar is collapsed
 @media only screen and (max-width : 992px) {
   header, main, footer {
-    padding-left: 80px;
+    padding-left: $nav-mobile_width;
   }
 }
 #logo-container {
@@ -13,8 +15,31 @@ header, main, footer {
   margin-top: 32px;
 }
 
+.sidenav {
+  background-color: $dark_red;
+}
+
+// Narrow sidenav on mobile
 #nav-mobile.sidenav {
   // Don't hide
   transform: translateX(0%) !important;
-  width: 80px;
+  width: $nav-mobile_width;
+}
+// Patch to make li 64px high
+@mixin mobile-nav-height {
+  height: 64px;
+  line-height: 64px;
+}
+#nav-mobile.sidenav li>a {
+  padding: 0;
+  text-align: center;
+  @include mobile-nav-height;
+}
+#nav-mobile.sidenav li>a>i {
+  @include mobile-nav-height;
+}
+// Center the expand icon
+#sidenav-expand {
+  margin: auto;
+  width: $nav-mobile_width;
 }
