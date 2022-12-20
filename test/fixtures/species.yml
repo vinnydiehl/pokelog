@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dex_id: 1
+  types: MyText
+  base_stats: 
+  ev_yield: 
+
+two:
+  dex_id: 1
+  types: MyText
+  base_stats: 
+  ev_yield: 

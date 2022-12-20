@@ -51,4 +51,5 @@ group :test do
   gem "webdrivers"
 end
 
+gem "active_hash", "~> 3.1"
 gem "haml", "~> 6.1"

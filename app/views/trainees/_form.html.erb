@@ -1,0 +1,67 @@
+<%= form_with(model: trainee) do |form| %>
+  <% if trainee.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(trainee.errors.count, "error") %> prohibited this trainee from being saved:</h2>
+
+      <ul>
+        <% trainee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :team_id, style: "display: block" %>
+    <%= form.number_field :team_id %>
+  </div>
+
+  <div>
+    <%= form.label :species_id, style: "display: block" %>
+    <%= form.text_field :species_id %>
+  </div>
+
+  <div>
+    <%= form.label :level, style: "display: block" %>
+    <%= form.number_field :level %>
+  </div>
+
+  <div>
+    <%= form.label :pokerus, style: "display: block" %>
+    <%= form.check_box :pokerus %>
+  </div>
+
+  <div>
+    <%= form.label :start_stats, style: "display: block" %>
+    <%= form.text_field :start_stats %>
+  </div>
+
+  <div>
+    <%= form.label :trained_stats, style: "display: block" %>
+    <%= form.text_field :trained_stats %>
+  </div>
+
+  <div>
+    <%= form.label :kills, style: "display: block" %>
+    <%= form.text_field :kills %>
+  </div>
+
+  <div>
+    <%= form.label :nature, style: "display: block" %>
+    <%= form.text_field :nature %>
+  </div>
+
+  <div>
+    <%= form.label :evs, style: "display: block" %>
+    <%= form.text_field :evs %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

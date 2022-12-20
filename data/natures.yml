@@ -1,0 +1,66 @@
+---
+:hardy: {}
+:lonely:
+  :buff: :atk
+  :nerf: :def
+:brave:
+  :buff: :atk
+  :nerf: :spe
+:adamant:
+  :buff: :atk
+  :nerf: :spa
+:naughty:
+  :buff: :atk
+  :nerf: :spd
+:bold:
+  :buff: :def
+  :nerf: :atk
+:docile: {}
+:relaxed:
+  :buff: :def
+  :nerf: :spe
+:impish:
+  :buff: :def
+  :nerf: :spa
+:lax:
+  :buff: :def
+  :nerf: :spd
+:timid:
+  :buff: :spe
+  :nerf: :atk
+:hasty:
+  :buff: :spe
+  :nerf: :def
+:serious: {}
+:jolly:
+  :buff: :spe
+  :nerf: :spa
+:naive:
+  :buff: :spe
+  :nerf: :spd
+:modest:
+  :buff: :spa
+  :nerf: :atk
+:mild:
+  :buff: :spa
+  :nerf: :def
+:quiet:
+  :buff: :spa
+  :nerf: :spe
+:bashful: {}
+:rash:
+  :buff: :spa
+  :nerf: :spd
+:calm:
+  :buff: :spd
+  :nerf: :atk
+:gentle:
+  :buff: :spd
+  :nerf: :def
+:sassy:
+  :buff: :spd
+  :nerf: :spe
+:careful:
+  :buff: :spd
+  :nerf: :spa
+:quirky: {}
