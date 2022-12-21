@@ -37,11 +37,28 @@ module PokeLog
       self.merge!(subtrahend) { |_, old, new| old - new }
     end
 
-    def hp  self[:hp]  end
-    def atk self[:atk] end
-    def def self[:def] end
-    def spa self[:spa] end
-    def spd self[:spd] end
-    def spe self[:spe] end
+    def hp
+      self[:hp]
+    end
+
+    def atk
+      self[:atk]
+    end
+
+    def def
+      self[:def]
+    end
+
+    def spa
+      self[:spa]
+    end
+
+    def spd
+      self[:spd]
+    end
+
+    def spe
+      self[:spe]
+    end
   end
 end

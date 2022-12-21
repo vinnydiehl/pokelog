@@ -1,0 +1,40 @@
+---
+- :id: 050-a
+  :name: Diglett
+  :form: Alolan
+  :types:
+  - :ground
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+  :base_stats: !ruby/hash:PokeLog::Stats
+    :hp: 10
+    :atk: 55
+    :def: 25
+    :spa: 35
+    :spd: 45
+    :spe: 95
+- :id: '272'
+  :name: Ludicolo
+  :form:
+  :types:
+  - :grass
+  - :water
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+  :base_stats: !ruby/hash:PokeLog::Stats
+    :hp: 80
+    :atk: 70
+    :def: 70
+    :spa: 90
+    :spd: 100
+    :spe: 70
