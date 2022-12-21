@@ -1,9 +1,41 @@
 ---
-- :id: 050-a
-  :name: Diglett
-  :form: Alolan
-  :types:
-  - :ground
+- :id: '001'
+  :name: Bulbasaur
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '002'
+  :name: Ivysaur
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 1
+    :spe: 0
+- :id: '003'
+  :name: Venusaur
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 1
+    :spe: 0
+- :id: '004'
+  :name: Charmander
+  :form:
+  :form_desc:
   :ev_yield: !ruby/hash:PokeLog::Stats
     :hp: 0
     :atk: 0
@@ -11,19 +43,560 @@
     :spa: 0
     :spd: 0
     :spe: 1
-  :base_stats: !ruby/hash:PokeLog::Stats
-    :hp: 10
-    :atk: 55
-    :def: 25
-    :spa: 35
-    :spd: 45
-    :spe: 95
-- :id: '272'
-  :name: Ludicolo
+- :id: '005'
+  :name: Charmeleon
   :form:
-  :types:
-  - :grass
-  - :water
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: '006'
+  :name: Charizard
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '007'
+  :name: Squirtle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '008'
+  :name: Wartortle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '009'
+  :name: Blastoise
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '010'
+  :name: Caterpie
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '011'
+  :name: Metapod
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '012'
+  :name: Butterfree
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 1
+    :spe: 0
+- :id: '013'
+  :name: Weedle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '014'
+  :name: Kakuna
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '015'
+  :name: Beedrill
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '016'
+  :name: Pidgey
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '017'
+  :name: Pidgeotto
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '018'
+  :name: Pidgeot
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '019'
+  :name: Rattata
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '019-a'
+  :name: Rattata
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '020'
+  :name: Raticate
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: 020-a
+  :name: Raticate
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '021'
+  :name: Spearow
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '022'
+  :name: Fearow
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '023'
+  :name: Ekans
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '024'
+  :name: Arbok
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '025'
+  :name: Pikachu
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '026'
+  :name: Raichu
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: 026-a
+  :name: Raichu
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '027'
+  :name: Sandshrew
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 027-a
+  :name: Sandshrew
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '028'
+  :name: Sandslash
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '028-a'
+  :name: Nidoran♀
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '029'
+  :name: Sandslash
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '030'
+  :name: Nidorina
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '031'
+  :name: Nidoqueen
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '032'
+  :name: Nidoran♂
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '033'
+  :name: Nidorino
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '034'
+  :name: Nidoking
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '035'
+  :name: Clefairy
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '036'
+  :name: Clefable
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '037'
+  :name: Vulpix
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: 037-a
+  :name: Vulpix
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '038'
+  :name: Ninetales
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 1
+- :id: '038-a'
+  :name: Ninetales
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '039'
+  :name: Jigglypuff
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '040'
+  :name: Wigglytuff
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '041'
+  :name: Zubat
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '042'
+  :name: Golbat
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '043'
+  :name: Oddish
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '044'
+  :name: Gloom
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '045'
+  :name: Vileplume
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '046'
+  :name: Paras
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '047'
+  :name: Parasect
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '048'
+  :name: Venonat
+  :form:
+  :form_desc:
   :ev_yield: !ruby/hash:PokeLog::Stats
     :hp: 0
     :atk: 0
@@ -31,10 +604,10618 @@
     :spa: 0
     :spd: 1
     :spe: 0
-  :base_stats: !ruby/hash:PokeLog::Stats
-    :hp: 80
-    :atk: 70
-    :def: 70
-    :spa: 90
-    :spd: 100
-    :spe: 70
+- :id: '049'
+  :name: Venomoth
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: '050'
+  :name: Diglett
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: 050-a
+  :name: Diglett
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '051'
+  :name: Dugtrio
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: 051-a
+  :name: Dugtrio
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '052'
+  :name: Meowth
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: 052-a
+  :name: Meowth
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: 052-g
+  :name: Meowth
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '053'
+  :name: Persian
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: 053-a
+  :name: Persian
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '054'
+  :name: Psyduck
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '055'
+  :name: Golduck
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '056'
+  :name: Mankey
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '057'
+  :name: Primeape
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '058'
+  :name: Growlithe
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '058-h'
+  :name: Growlithe
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '059'
+  :name: Arcanine
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '059-h'
+  :name: Arcanine
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '060'
+  :name: Poliwag
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '061'
+  :name: Poliwhirl
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '062'
+  :name: Poliwrath
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '063'
+  :name: Abra
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '064'
+  :name: Kadabra
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '065'
+  :name: Alakazam
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '066'
+  :name: Machop
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '067'
+  :name: Machoke
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '068'
+  :name: Machamp
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '069'
+  :name: Bellsprout
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '070'
+  :name: Weepinbell
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '071'
+  :name: Victreebel
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '072'
+  :name: Tentacool
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '073'
+  :name: Tentacruel
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '074'
+  :name: Geodude
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 074-a
+  :name: Geodude
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '075'
+  :name: Graveler
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 075-a
+  :name: Graveler
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '076'
+  :name: Golem
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 076-a
+  :name: Golem
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '077'
+  :name: Ponyta
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: 077-g
+  :name: Ponyta
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '078'
+  :name: Rapidash
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '078-g'
+  :name: Rapidash
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '079'
+  :name: Slowpoke
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '079-g'
+  :name: Slowpoke
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '080'
+  :name: Slowbro
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '080-g'
+  :name: Slowbro
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '081'
+  :name: Magnemite
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '082'
+  :name: Magneton
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '083'
+  :name: Farfetchd
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '083-g'
+  :name: Farfetchd
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '084'
+  :name: Doduo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '085'
+  :name: Dodrio
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '086'
+  :name: Seel
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '087'
+  :name: Dewgong
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '088'
+  :name: Grimer
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '088-a'
+  :name: Grimer
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '089'
+  :name: Muk
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '089-a'
+  :name: Muk
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '090'
+  :name: Shellder
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '091'
+  :name: Cloyster
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '092'
+  :name: Gastly
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '093'
+  :name: Haunter
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '094'
+  :name: Gengar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '095'
+  :name: Onix
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '096'
+  :name: Drowzee
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '097'
+  :name: Hypno
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '098'
+  :name: Krabby
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '099'
+  :name: Kingler
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '100'
+  :name: Voltorb
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: 100-h
+  :name: Voltorb
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '101'
+  :name: Electrode
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: 101-h
+  :name: Electrode
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '102'
+  :name: Exeggcute
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '103'
+  :name: Exeggutor
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: 103-a
+  :name: Exeggutor
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '104'
+  :name: Cubone
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '105'
+  :name: Marowak
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 105-a
+  :name: Marowak
+  :form: Alolan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '106'
+  :name: Hitmonlee
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '107'
+  :name: Hitmonchan
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '108'
+  :name: Lickitung
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '109'
+  :name: Koffing
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '110'
+  :name: Weezing
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 110-g
+  :name: Weezing
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '111'
+  :name: Rhyhorn
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '112'
+  :name: Rhydon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '113'
+  :name: Chansey
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '114'
+  :name: Tangela
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '115'
+  :name: Kangaskhan
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '116'
+  :name: Horsea
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '117'
+  :name: Seadra
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '118'
+  :name: Goldeen
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '119'
+  :name: Seaking
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '120'
+  :name: Staryu
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '121'
+  :name: Starmie
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '122'
+  :name: Mr. Mime
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: 122-g
+  :name: Mr. Mime
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '123'
+  :name: Scyther
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '124'
+  :name: Jynx
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '125'
+  :name: Electabuzz
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '126'
+  :name: Magmar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '127'
+  :name: Pinsir
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '128'
+  :name: Tauros
+  :form: Normal
+  :form_desc: Breed
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: 128-p
+  :name: Tauros
+  :form: Combat
+  :form_desc: Breed
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 128-b
+  :name: Tauros
+  :form: Blaze
+  :form_desc: Breed
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 128-a
+  :name: Tauros
+  :form: Aqua
+  :form_desc: Breed
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '129'
+  :name: Magikarp
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '130'
+  :name: Gyarados
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '131'
+  :name: Lapras
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '132'
+  :name: Ditto
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '133'
+  :name: Eevee
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '134'
+  :name: Vaporeon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '135'
+  :name: Jolteon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '136'
+  :name: Flareon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '137'
+  :name: Porygon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '138'
+  :name: Omanyte
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '139'
+  :name: Omastar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '140'
+  :name: Kabuto
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '141'
+  :name: Kabutops
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '142'
+  :name: Aerodactyl
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '143'
+  :name: Snorlax
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '144'
+  :name: Articuno
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: 144-g
+  :name: Articuno
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '145'
+  :name: Zapdos
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: 145-g
+  :name: Zapdos
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '146'
+  :name: Moltres
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: 146-g
+  :name: Moltres
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '147'
+  :name: Dratini
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '148'
+  :name: Dragonair
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '149'
+  :name: Dragonite
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '150'
+  :name: Mewtwo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '151'
+  :name: Mew
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '152'
+  :name: Chikorita
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '153'
+  :name: Bayleef
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '154'
+  :name: Meganium
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '155'
+  :name: Cyndaquil
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '156'
+  :name: Quilava
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: '157'
+  :name: Typhlosion
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: 157-h
+  :name: Typhlosion
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '158'
+  :name: Totodile
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '159'
+  :name: Croconaw
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '160'
+  :name: Feraligatr
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '161'
+  :name: Sentret
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '162'
+  :name: Furret
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '163'
+  :name: Hoothoot
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '164'
+  :name: Noctowl
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '165'
+  :name: Ledyba
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '166'
+  :name: Ledian
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '167'
+  :name: Spinarak
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '168'
+  :name: Ariados
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '169'
+  :name: Crobat
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '170'
+  :name: Chinchou
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '171'
+  :name: Lanturn
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '172'
+  :name: Pichu
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '173'
+  :name: Cleffa
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '174'
+  :name: Igglybuff
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '175'
+  :name: Togepi
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '176'
+  :name: Togetic
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '177'
+  :name: Natu
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '178'
+  :name: Xatu
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: '179'
+  :name: Mareep
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '180'
+  :name: Flaaffy
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '181'
+  :name: Ampharos
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '182'
+  :name: Bellossom
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '183'
+  :name: Marill
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '184'
+  :name: Azumarill
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '185'
+  :name: Sudowoodo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '186'
+  :name: Politoed
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '187'
+  :name: Hoppip
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '188'
+  :name: Skiploom
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '189'
+  :name: Jumpluff
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '190'
+  :name: Aipom
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '191'
+  :name: Sunkern
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '192'
+  :name: Sunflora
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '193'
+  :name: Yanma
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '194'
+  :name: Wooper
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 194-p
+  :name: Wooper
+  :form: Paldean
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '195'
+  :name: Quagsire
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '196'
+  :name: Espeon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '197'
+  :name: Umbreon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '198'
+  :name: Murkrow
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '199'
+  :name: Slowking
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: 199-g
+  :name: Slowking
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '200'
+  :name: Misdreavus
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '201'
+  :name: Unown
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '202'
+  :name: Wobbuffet
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '203'
+  :name: Girafarig
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '204'
+  :name: Pineco
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '205'
+  :name: Forretress
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '206'
+  :name: Dunsparce
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '207'
+  :name: Gligar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '208'
+  :name: Steelix
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '209'
+  :name: Snubbull
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '210'
+  :name: Granbull
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '211'
+  :name: Qwilfish
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 211-h
+  :name: Qwilfish
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '212'
+  :name: Scizor
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '213'
+  :name: Shuckle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '214'
+  :name: Heracross
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '215'
+  :name: Sneasel
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: 215-h
+  :name: Sneasel
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '216'
+  :name: Teddiursa
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '217'
+  :name: Ursaring
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '218'
+  :name: Slugma
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '219'
+  :name: Magcargo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '220'
+  :name: Swinub
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '221'
+  :name: Piloswine
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '222'
+  :name: Corsola
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: 222-g
+  :name: Corsola
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '223'
+  :name: Remoraid
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '224'
+  :name: Octillery
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '225'
+  :name: Delibird
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '226'
+  :name: Mantine
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '227'
+  :name: Skarmory
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '228'
+  :name: Houndour
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '229'
+  :name: Houndoom
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '230'
+  :name: Kingdra
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 1
+    :spe: 0
+- :id: '231'
+  :name: Phanpy
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '232'
+  :name: Donphan
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '233'
+  :name: Porygon2
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '234'
+  :name: Stantler
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '235'
+  :name: Smeargle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '236'
+  :name: Tyrogue
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '237'
+  :name: Hitmontop
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '238'
+  :name: Smoochum
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '239'
+  :name: Elekid
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '240'
+  :name: Magby
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '241'
+  :name: Miltank
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '242'
+  :name: Blissey
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '243'
+  :name: Raikou
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 2
+- :id: '244'
+  :name: Entei
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '245'
+  :name: Suicune
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '246'
+  :name: Larvitar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '247'
+  :name: Pupitar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '248'
+  :name: Tyranitar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '249'
+  :name: Lugia
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '250'
+  :name: Ho-Oh
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '251'
+  :name: Celebi
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '252'
+  :name: Treecko
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '253'
+  :name: Grovyle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '254'
+  :name: Sceptile
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '255'
+  :name: Torchic
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '256'
+  :name: Combusken
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '257'
+  :name: Blaziken
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '258'
+  :name: Mudkip
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '259'
+  :name: Marshtomp
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '260'
+  :name: Swampert
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '261'
+  :name: Poochyena
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '262'
+  :name: Mightyena
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '263'
+  :name: Zigzagoon
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: 263-g
+  :name: Zigzagoon
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '264'
+  :name: Linoone
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: 264-g
+  :name: Linoone
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '265'
+  :name: Wurmple
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '266'
+  :name: Silcoon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '267'
+  :name: Beautifly
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '268'
+  :name: Cascoon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '269'
+  :name: Dustox
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '270'
+  :name: Lotad
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '271'
+  :name: Lombre
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '272'
+  :name: Ludicolo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '273'
+  :name: Seedot
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '274'
+  :name: Nuzleaf
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '275'
+  :name: Shiftry
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '276'
+  :name: Taillow
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '277'
+  :name: Swellow
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '278'
+  :name: Wingull
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '279'
+  :name: Pelipper
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '280'
+  :name: Ralts
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '281'
+  :name: Kirlia
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '282'
+  :name: Gardevoir
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '283'
+  :name: Surskit
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '284'
+  :name: Masquerain
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 1
+    :spe: 0
+- :id: '285'
+  :name: Shroomish
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '286'
+  :name: Breloom
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '287'
+  :name: Slakoth
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '288'
+  :name: Vigoroth
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '289'
+  :name: Slaking
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '290'
+  :name: Nincada
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '291'
+  :name: Ninjask
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '292'
+  :name: Shedinja
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '293'
+  :name: Whismur
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '294'
+  :name: Loudred
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '295'
+  :name: Exploud
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '296'
+  :name: Makuhita
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '297'
+  :name: Hariyama
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '298'
+  :name: Azurill
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '299'
+  :name: Nosepass
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '300'
+  :name: Skitty
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '301'
+  :name: Delcatty
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '302'
+  :name: Sableye
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '303'
+  :name: Mawile
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '304'
+  :name: Aron
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '305'
+  :name: Lairon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '306'
+  :name: Aggron
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '307'
+  :name: Meditite
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '308'
+  :name: Medicham
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '309'
+  :name: Electrike
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '310'
+  :name: Manectric
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '311'
+  :name: Plusle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '312'
+  :name: Minun
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '313'
+  :name: Volbeat
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '314'
+  :name: Illumise
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '315'
+  :name: Roselia
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '316'
+  :name: Gulpin
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '317'
+  :name: Swalot
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '318'
+  :name: Carvanha
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '319'
+  :name: Sharpedo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '320'
+  :name: Wailmer
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '321'
+  :name: Wailord
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '322'
+  :name: Numel
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '323'
+  :name: Camerupt
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '324'
+  :name: Torkoal
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '325'
+  :name: Spoink
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '326'
+  :name: Grumpig
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '327'
+  :name: Spinda
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '328'
+  :name: Trapinch
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '329'
+  :name: Vibrava
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '330'
+  :name: Flygon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '331'
+  :name: Cacnea
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '332'
+  :name: Cacturne
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '333'
+  :name: Swablu
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '334'
+  :name: Altaria
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '335'
+  :name: Zangoose
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '336'
+  :name: Seviper
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '337'
+  :name: Lunatone
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '338'
+  :name: Solrock
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '339'
+  :name: Barboach
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '340'
+  :name: Whiscash
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '341'
+  :name: Corphish
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '342'
+  :name: Crawdaunt
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '343'
+  :name: Baltoy
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '344'
+  :name: Claydol
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '345'
+  :name: Lileep
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '346'
+  :name: Cradily
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '347'
+  :name: Anorith
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '348'
+  :name: Armaldo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '349'
+  :name: Feebas
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '350'
+  :name: Milotic
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '351'
+  :name: Castform
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 351-sun
+  :name: Castform
+  :form: Sunny
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 351-r
+  :name: Castform
+  :form: Rainy
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 351-sn
+  :name: Castform
+  :form: Snowy
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '352'
+  :name: Kecleon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '353'
+  :name: Shuppet
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '354'
+  :name: Banette
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '355'
+  :name: Duskull
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '356'
+  :name: Dusclops
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '357'
+  :name: Tropius
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '358'
+  :name: Chimecho
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 1
+    :spe: 0
+- :id: '359'
+  :name: Absol
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '360'
+  :name: Wynaut
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '361'
+  :name: Snorunt
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '362'
+  :name: Glalie
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '363'
+  :name: Spheal
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '364'
+  :name: Sealeo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '365'
+  :name: Walrein
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '366'
+  :name: Clamperl
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '367'
+  :name: Huntail
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '368'
+  :name: Gorebyss
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '369'
+  :name: Relicanth
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '370'
+  :name: Luvdisc
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '371'
+  :name: Bagon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '372'
+  :name: Shelgon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '373'
+  :name: Salamence
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '374'
+  :name: Beldum
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '375'
+  :name: Metang
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '376'
+  :name: Metagross
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '377'
+  :name: Regirock
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '378'
+  :name: Regice
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '379'
+  :name: Registeel
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '380'
+  :name: Latias
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '381'
+  :name: Latios
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '382'
+  :name: Kyogre
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '383'
+  :name: Groudon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '384'
+  :name: Rayquaza
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '385'
+  :name: Jirachi
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '386'
+  :name: Deoxys
+  :form: Normal
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: 386-atk
+  :name: Deoxys
+  :form: Attack
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: 386-def
+  :name: Deoxys
+  :form: Defense
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: 386-spe
+  :name: Deoxys
+  :form: Speed
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '387'
+  :name: Turtwig
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '388'
+  :name: Grotle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '389'
+  :name: Torterra
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '390'
+  :name: Chimchar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '391'
+  :name: Monferno
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: '392'
+  :name: Infernape
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: '393'
+  :name: Piplup
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '394'
+  :name: Prinplup
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '395'
+  :name: Empoleon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '396'
+  :name: Starly
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '397'
+  :name: Staravia
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '398'
+  :name: Staraptor
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '399'
+  :name: Bidoof
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '400'
+  :name: Bibarel
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '401'
+  :name: Kricketot
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '402'
+  :name: Kricketune
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '403'
+  :name: Shinx
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '404'
+  :name: Luxio
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '405'
+  :name: Luxray
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '406'
+  :name: Budew
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '407'
+  :name: Roserade
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '408'
+  :name: Cranidos
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '409'
+  :name: Rampardos
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '410'
+  :name: Shieldon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '411'
+  :name: Bastiodon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 412-p
+  :name: Burmy
+  :form: Plant
+  :form_desc: Cloak
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: 412-s
+  :name: Burmy
+  :form: Sandy
+  :form_desc: Cloak
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: 412-t
+  :name: Burmy
+  :form: Trash
+  :form_desc: Cloak
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: 413-p
+  :name: Wormadam
+  :form: Plant
+  :form_desc: Cloak
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: 413-s
+  :name: Wormadam
+  :form: Sandy
+  :form_desc: Cloak
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 413-t
+  :name: Wormadam
+  :form: Trash
+  :form_desc: Cloak
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '414'
+  :name: Mothim
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '415'
+  :name: Combee
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '416'
+  :name: Vespiquen
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '417'
+  :name: Pachirisu
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '418'
+  :name: Buizel
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '419'
+  :name: Floatzel
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '420'
+  :name: Cherubi
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '421'
+  :name: Cherrim
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '422'
+  :name: Shellos
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '423'
+  :name: Gastrodon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '424'
+  :name: Ambipom
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '425'
+  :name: Drifloon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '426'
+  :name: Drifblim
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '427'
+  :name: Buneary
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '428'
+  :name: Lopunny
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '429'
+  :name: Mismagius
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 1
+    :spe: 0
+- :id: '430'
+  :name: Honchkrow
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '431'
+  :name: Glameow
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '432'
+  :name: Purugly
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '433'
+  :name: Chingling
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '434'
+  :name: Stunky
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '435'
+  :name: Skuntank
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '436'
+  :name: Bronzor
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '437'
+  :name: Bronzong
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '438'
+  :name: Bonsly
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '439'
+  :name: Mime Jr.
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '440'
+  :name: Happiny
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '441'
+  :name: Chatot
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '442'
+  :name: Spiritomb
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '443'
+  :name: Gible
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '444'
+  :name: Gabite
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '445'
+  :name: Garchomp
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '446'
+  :name: Munchlax
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '447'
+  :name: Riolu
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '448'
+  :name: Lucario
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '449'
+  :name: Hippopotas
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '450'
+  :name: Hippowdon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '451'
+  :name: Skorupi
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '452'
+  :name: Drapion
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '453'
+  :name: Croagunk
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '454'
+  :name: Toxicroak
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '455'
+  :name: Carnivine
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '456'
+  :name: Finneon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '457'
+  :name: Lumineon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '458'
+  :name: Mantyke
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '459'
+  :name: Snover
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '460'
+  :name: Abomasnow
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '461'
+  :name: Weavile
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '462'
+  :name: Magnezone
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '463'
+  :name: Lickilicky
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '464'
+  :name: Rhyperior
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '465'
+  :name: Tangrowth
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '466'
+  :name: Electivire
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '467'
+  :name: Magmortar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '468'
+  :name: Togekiss
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 1
+    :spe: 0
+- :id: '469'
+  :name: Yanmega
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '470'
+  :name: Leafeon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '471'
+  :name: Glaceon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '472'
+  :name: Gliscor
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '473'
+  :name: Mamoswine
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 474-z
+  :name: Porygon-Z
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '475'
+  :name: Gallade
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '476'
+  :name: Probopass
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '477'
+  :name: Dusknoir
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '478'
+  :name: Froslass
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '479'
+  :name: Rotom
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: 479-h
+  :name: Rotom
+  :form: Heat
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: 479-w
+  :name: Rotom
+  :form: Wash
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: 479-fr
+  :name: Rotom
+  :form: Frost
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: 479-fan
+  :name: Rotom
+  :form: Fan
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: 479-m
+  :name: Rotom
+  :form: Mow
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: '480'
+  :name: Uxie
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '481'
+  :name: Mesprit
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 1
+    :spe: 0
+- :id: '482'
+  :name: Azelf
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '483'
+  :name: Dialga
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '484'
+  :name: Palkia
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '485'
+  :name: Heatran
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '486'
+  :name: Regigigas
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '487'
+  :name: Giratina
+  :form: Altered
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '488'
+  :name: Cresselia
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '489'
+  :name: Phione
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '490'
+  :name: Manaphy
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '491'
+  :name: Darkrai
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 1
+- :id: 492-l
+  :name: Shaymin
+  :form: Land
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 492-s
+  :name: Shaymin
+  :form: Sky
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '493'
+  :name: Arceus
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '494'
+  :name: Victini
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '495'
+  :name: Snivy
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '496'
+  :name: Servine
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '497'
+  :name: Serperior
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '498'
+  :name: Tepig
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '499'
+  :name: Pignite
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '500'
+  :name: Emboar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '501'
+  :name: Oshawott
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '502'
+  :name: Dewott
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '503'
+  :name: Samurott
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: 503-h
+  :name: Samurott
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '504'
+  :name: Patrat
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '505'
+  :name: Watchog
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '506'
+  :name: Lillipup
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '507'
+  :name: Herdier
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '508'
+  :name: Stoutland
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '509'
+  :name: Purrloin
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '510'
+  :name: Liepard
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '511'
+  :name: Pansage
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '512'
+  :name: Simisage
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '513'
+  :name: Pansear
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '514'
+  :name: Simisear
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '515'
+  :name: Panpour
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '516'
+  :name: Simipour
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '517'
+  :name: Munna
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '518'
+  :name: Musharna
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '519'
+  :name: Pidove
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '520'
+  :name: Tranquill
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '521'
+  :name: Unfezant
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '522'
+  :name: Blitzle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '523'
+  :name: Zebstrika
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '524'
+  :name: Roggenrola
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '525'
+  :name: Boldore
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '526'
+  :name: Gigalith
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '527'
+  :name: Woobat
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '528'
+  :name: Swoobat
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '529'
+  :name: Drilbur
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '530'
+  :name: Excadrill
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '531'
+  :name: Audino
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '532'
+  :name: Timburr
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '533'
+  :name: Gurdurr
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '534'
+  :name: Conkeldurr
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '535'
+  :name: Tympole
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '536'
+  :name: Palpitoad
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '537'
+  :name: Seismitoad
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '538'
+  :name: Throh
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '539'
+  :name: Sawk
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '540'
+  :name: Sewaddle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '541'
+  :name: Swadloon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '542'
+  :name: Leavanny
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '543'
+  :name: Venipede
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '544'
+  :name: Whirlipede
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '545'
+  :name: Scolipede
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '546'
+  :name: Cottonee
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '547'
+  :name: Whimsicott
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '548'
+  :name: Petilil
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '549'
+  :name: Lilligant
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: 549-h
+  :name: Lilligant
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: 550-r
+  :name: Basculin
+  :form: Red-Striped
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: 550-b
+  :name: Basculin
+  :form: Blue-Striped
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: 550-w
+  :name: Basculin
+  :form: White-Striped
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '551'
+  :name: Sandile
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '552'
+  :name: Krokorok
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '553'
+  :name: Krookodile
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '554'
+  :name: Darumaka
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 554-g
+  :name: Darumaka
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '555'
+  :name: Darmanitan
+  :form: Standard
+  :form_desc: Mode
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 555-zen
+  :name: Darmanitan
+  :form: Zen
+  :form_desc: Mode
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: 555-g
+  :name: Darmanitan
+  :form: Galarian Standard
+  :form_desc: Mode
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 555-gz
+  :name: Darmanitan
+  :form: Galarian Zen
+  :form_desc: Mode
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '556'
+  :name: Maractus
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '557'
+  :name: Dwebble
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '558'
+  :name: Crustle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '559'
+  :name: Scraggy
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '560'
+  :name: Scrafty
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '561'
+  :name: Sigilyph
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '562'
+  :name: Yamask
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 562-g
+  :name: Yamask
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '563'
+  :name: Cofagrigus
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '564'
+  :name: Tirtouga
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '565'
+  :name: Carracosta
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '566'
+  :name: Archen
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '567'
+  :name: Archeops
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '568'
+  :name: Trubbish
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '569'
+  :name: Garbodor
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '570'
+  :name: Zorua
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: 570-h
+  :name: Zorua
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '571'
+  :name: Zoroark
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: 571-h
+  :name: Zoroark
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '572'
+  :name: Minccino
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '573'
+  :name: Cinccino
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '574'
+  :name: Gothita
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '575'
+  :name: Gothorita
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '576'
+  :name: Gothitelle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '577'
+  :name: Solosis
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '578'
+  :name: Duosion
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '579'
+  :name: Reuniclus
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '580'
+  :name: Ducklett
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '581'
+  :name: Swanna
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '582'
+  :name: Vanillite
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '583'
+  :name: Vanillish
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '584'
+  :name: Vanilluxe
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '585'
+  :name: Deerling
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '586'
+  :name: Sawsbuck
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '587'
+  :name: Emolga
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '588'
+  :name: Karrablast
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '589'
+  :name: Escavalier
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '590'
+  :name: Foongus
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '591'
+  :name: Amoonguss
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '592'
+  :name: Frillish
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '593'
+  :name: Jellicent
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '594'
+  :name: Alomomola
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '595'
+  :name: Joltik
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '596'
+  :name: Galvantula
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '597'
+  :name: Ferroseed
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '598'
+  :name: Ferrothorn
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '599'
+  :name: Klink
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '600'
+  :name: Klang
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '601'
+  :name: Klinklang
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '602'
+  :name: Tynamo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '603'
+  :name: Eelektrik
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '604'
+  :name: Eelektross
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '605'
+  :name: Elgyem
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '606'
+  :name: Beheeyem
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '607'
+  :name: Litwick
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '608'
+  :name: Lampent
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '609'
+  :name: Chandelure
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '610'
+  :name: Axew
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '611'
+  :name: Fraxure
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '612'
+  :name: Haxorus
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '613'
+  :name: Cubchoo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '614'
+  :name: Beartic
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '615'
+  :name: Cryogonal
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '616'
+  :name: Shelmet
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '617'
+  :name: Accelgor
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '618'
+  :name: Stunfisk
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 618-g
+  :name: Stunfisk
+  :form: Galarian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '619'
+  :name: Mienfoo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '620'
+  :name: Mienshao
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '621'
+  :name: Druddigon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '622'
+  :name: Golett
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '623'
+  :name: Golurk
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '624'
+  :name: Pawniard
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '625'
+  :name: Bisharp
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '626'
+  :name: Bouffalant
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '627'
+  :name: Rufflet
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '628'
+  :name: Braviary
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 628-h
+  :name: Braviary
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '629'
+  :name: Vullaby
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '630'
+  :name: Mandibuzz
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '631'
+  :name: Heatmor
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '632'
+  :name: Durant
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '633'
+  :name: Deino
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '634'
+  :name: Zweilous
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '635'
+  :name: Hydreigon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '636'
+  :name: Larvesta
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '637'
+  :name: Volcarona
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '638'
+  :name: Cobalion
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '639'
+  :name: Terrakion
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '640'
+  :name: Virizion
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '641'
+  :name: Tornadus
+  :form: Incarnate
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 641-t
+  :name: Tornadus
+  :form: Therian
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '642'
+  :name: Thundurus
+  :form: Incarnate
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 642-t
+  :name: Thundurus
+  :form: Therian
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '643'
+  :name: Reshiram
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '644'
+  :name: Zekrom
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '645'
+  :name: Landorus
+  :form: Incarnate
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: 645-t
+  :name: Landorus
+  :form: Therian
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '646'
+  :name: Kyurem
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: 646-w
+  :name: Kyurem
+  :form: White
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: 646-b
+  :name: Kyurem
+  :form: Black
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '647'
+  :name: Keldeo
+  :form: Resolute
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: 648-a
+  :name: Meloetta
+  :form: Aria
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 1
+    :spe: 1
+- :id: 648-p
+  :name: Meloetta
+  :form: Pirouette
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '649'
+  :name: Genesect
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: '650'
+  :name: Chespin
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '651'
+  :name: Quilladin
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '652'
+  :name: Chesnaught
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '653'
+  :name: Fennekin
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '654'
+  :name: Braixen
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '655'
+  :name: Delphox
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '656'
+  :name: Froakie
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '657'
+  :name: Frogadier
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '658'
+  :name: Greninja
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '659'
+  :name: Bunnelby
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '660'
+  :name: Diggersby
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '661'
+  :name: Fletchling
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '662'
+  :name: Fletchinder
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '663'
+  :name: Talonflame
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '664'
+  :name: Scatterbug
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '665'
+  :name: Spewpa
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '666'
+  :name: Vivillon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: '667'
+  :name: Litleo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '668'
+  :name: Pyroar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '669'
+  :name: Flabebe
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '670'
+  :name: Floette
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '671'
+  :name: Florges
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '672'
+  :name: Skiddo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '673'
+  :name: Gogoat
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '674'
+  :name: Pancham
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '675'
+  :name: Pangoro
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '676'
+  :name: Furfrou
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '677'
+  :name: Espurr
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: 678-m
+  :name: Meowstic
+  :form: Male
+  :form_desc: Gender
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: 678-f
+  :name: Meowstic
+  :form: Female
+  :form_desc: Gender
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '679'
+  :name: Honedge
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '680'
+  :name: Doublade
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 681-s
+  :name: Aegislash
+  :form: Shield
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: 681-b
+  :name: Aegislash
+  :form: Blade
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '682'
+  :name: Spritzee
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '683'
+  :name: Aromatisse
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '684'
+  :name: Swirlix
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '685'
+  :name: Slurpuff
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '686'
+  :name: Inkay
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '687'
+  :name: Malamar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '688'
+  :name: Binacle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '689'
+  :name: Barbaracle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '690'
+  :name: Skrelp
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '691'
+  :name: Dragalge
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '692'
+  :name: Clauncher
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '693'
+  :name: Clawitzer
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '694'
+  :name: Helioptile
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '695'
+  :name: Heliolisk
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: '696'
+  :name: Tyrunt
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '697'
+  :name: Tyrantrum
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '698'
+  :name: Amaura
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '699'
+  :name: Aurorus
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '700'
+  :name: Sylveon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '701'
+  :name: Hawlucha
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '702'
+  :name: Dedenne
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '703'
+  :name: Carbink
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '704'
+  :name: Goomy
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '705'
+  :name: Sliggoo
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: 705-h
+  :name: Sliggoo
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '706'
+  :name: Goodra
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: 706-h
+  :name: Goodra
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '707'
+  :name: Klefki
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '708'
+  :name: Phantump
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '709'
+  :name: Trevenant
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 710-a
+  :name: Pumpkaboo
+  :form: Average
+  :form_desc: Size
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 710-sm
+  :name: Pumpkaboo
+  :form: Small
+  :form_desc: Size
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 710-l
+  :name: Pumpkaboo
+  :form: Large
+  :form_desc: Size
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 710-su
+  :name: Pumpkaboo
+  :form: Super
+  :form_desc: Size
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 711-a
+  :name: Gourgeist
+  :form: Average
+  :form_desc: Size
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 711-sm
+  :name: Gourgeist
+  :form: Small
+  :form_desc: Size
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 711-l
+  :name: Gourgeist
+  :form: Large
+  :form_desc: Size
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 711-su
+  :name: Gourgeist
+  :form: Super
+  :form_desc: Size
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '712'
+  :name: Bergmite
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '713'
+  :name: Avalugg
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 713-h
+  :name: Avalugg
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '714'
+  :name: Noibat
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '715'
+  :name: Noivern
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '716'
+  :name: Xerneas
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '717'
+  :name: Yveltal
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 718-50
+  :name: Zygarde
+  :form: 50%
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 718-10
+  :name: Zygarde
+  :form: 10%
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '718'
+  :name: Zygarde
+  :form: Complete
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '719'
+  :name: Diancie
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: 720-c
+  :name: Hoopa
+  :form: Confined
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: 720-u
+  :name: Hoopa
+  :form: Unbound
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '721'
+  :name: Volcanion
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '722'
+  :name: Rowlet
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '723'
+  :name: Dartrix
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '724'
+  :name: Decidueye
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 724-h
+  :name: Decidueye
+  :form: Hisuian
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '725'
+  :name: Litten
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '726'
+  :name: Torracat
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '727'
+  :name: Incineroar
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '728'
+  :name: Popplio
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '729'
+  :name: Brionne
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '730'
+  :name: Primarina
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '731'
+  :name: Pikipek
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '732'
+  :name: Trumbeak
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '733'
+  :name: Toucannon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '734'
+  :name: Yungoos
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '735'
+  :name: Gumshoos
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '736'
+  :name: Grubbin
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '737'
+  :name: Charjabug
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '738'
+  :name: Vikavolt
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '739'
+  :name: Crabrawler
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '740'
+  :name: Crabominable
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 741-b
+  :name: Oricorio
+  :form: Baile
+  :form_desc: Style
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: 741-po
+  :name: Oricorio
+  :form: Pom-Pom
+  :form_desc: Style
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: 741-pau
+  :name: Oricorio
+  :form: Pau
+  :form_desc: Style
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: 741-s
+  :name: Oricorio
+  :form: Sensu
+  :form_desc: Style
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '742'
+  :name: Cutiefly
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '743'
+  :name: Ribombee
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '744'
+  :name: Rockruff
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 745-md
+  :name: Lycanroc
+  :form: Midday
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 745-mn
+  :name: Lycanroc
+  :form: Midnight
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 745-d
+  :name: Lycanroc
+  :form: Dusk
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '746'
+  :name: Wishiwashi
+  :form: Solo
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 746-sch
+  :name: Wishiwashi
+  :form: School
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '747'
+  :name: Mareanie
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '748'
+  :name: Toxapex
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '749'
+  :name: Mudbray
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '750'
+  :name: Mudsdale
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '751'
+  :name: Dewpider
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '752'
+  :name: Araquanid
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '753'
+  :name: Fomantis
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '754'
+  :name: Lurantis
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '755'
+  :name: Morelull
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '756'
+  :name: Shiinotic
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '757'
+  :name: Salandit
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '758'
+  :name: Salazzle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '759'
+  :name: Stufful
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '760'
+  :name: Bewear
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '761'
+  :name: Bounsweet
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '762'
+  :name: Steenee
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '763'
+  :name: Tsareena
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '764'
+  :name: Comfey
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '765'
+  :name: Oranguru
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '766'
+  :name: Passimian
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '767'
+  :name: Wimpod
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '768'
+  :name: Golisopod
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '769'
+  :name: Sandygast
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '770'
+  :name: Palossand
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '771'
+  :name: Pyukumuku
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '772'
+  :name: 'Type: Null'
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '773'
+  :name: Silvally
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '774'
+  :name: Minior
+  :form: Meteor
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: 774-c
+  :name: Minior
+  :form: Core
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '775'
+  :name: Komala
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '776'
+  :name: Turtonator
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '777'
+  :name: Togedemaru
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '778'
+  :name: Mimikyu
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '779'
+  :name: Bruxish
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '780'
+  :name: Drampa
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '781'
+  :name: Dhelmise
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '782'
+  :name: Jangmo-o
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '783'
+  :name: Hakamo-o
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '784'
+  :name: Kommo-o
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '785'
+  :name: Tapu Koko
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '786'
+  :name: Tapu Lele
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '787'
+  :name: Tapu Bulu
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '788'
+  :name: Tapu Fini
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '789'
+  :name: Cosmog
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '790'
+  :name: Cosmoem
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '791'
+  :name: Solgaleo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '792'
+  :name: Lunala
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '793'
+  :name: Nihilego
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '794'
+  :name: Buzzwole
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '795'
+  :name: Pheromosa
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '796'
+  :name: Xurkitree
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '797'
+  :name: Celesteela
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 1
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '798'
+  :name: Kartana
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '799'
+  :name: Guzzlord
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '800'
+  :name: Necrozma
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: 800-dm
+  :name: Necrozma
+  :form: Dusk Mane
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 800-dw
+  :name: Necrozma
+  :form: Dawn Wings
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: 800-u
+  :name: Necrozma
+  :form: Ultra
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 1
+- :id: '801'
+  :name: Magearna
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '802'
+  :name: Marshadow
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '803'
+  :name: Poipole
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '804'
+  :name: Naganadel
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '805'
+  :name: Stakataka
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '806'
+  :name: Blacephalon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '807'
+  :name: Zeraora
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '808'
+  :name: Meltan
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '809'
+  :name: Melmetal
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '810'
+  :name: Grookey
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '811'
+  :name: Thwackey
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '812'
+  :name: Rillaboom
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '813'
+  :name: Scorbunny
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '814'
+  :name: Raboot
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '815'
+  :name: Cinderace
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '816'
+  :name: Sobble
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 1
+- :id: '817'
+  :name: Drizzile
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '818'
+  :name: Inteleon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '819'
+  :name: Skwovet
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '820'
+  :name: Greedent
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '821'
+  :name: Rookidee
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '822'
+  :name: Corvisquire
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '823'
+  :name: Corviknight
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '824'
+  :name: Blipbug
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '825'
+  :name: Dottler
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '826'
+  :name: Orbeetle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 3
+    :spe: 0
+- :id: '827'
+  :name: Nickit
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '828'
+  :name: Thievul
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '829'
+  :name: Gossifleur
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '830'
+  :name: Eldegoss
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '831'
+  :name: Wooloo
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '832'
+  :name: Dubwool
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '833'
+  :name: Chewtle
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '834'
+  :name: Drednaw
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '835'
+  :name: Yamper
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 1
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '836'
+  :name: Boltund
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '837'
+  :name: Rolycoly
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '838'
+  :name: Carkol
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '839'
+  :name: Coalossal
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '840'
+  :name: Applin
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '841'
+  :name: Flapple
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '842'
+  :name: Appletun
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 2
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '843'
+  :name: Silicobra
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 1
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '844'
+  :name: Sandaconda
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '845'
+  :name: Cramorant
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '846'
+  :name: Arrokuda
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '847'
+  :name: Barraskewda
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '848'
+  :name: Toxel
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: 849-a
+  :name: Toxtricity
+  :form: Amped
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: 849-l
+  :name: Toxtricity
+  :form: Low Key
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '850'
+  :name: Sizzlipede
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '851'
+  :name: Centiskorch
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '852'
+  :name: Clobbopus
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '853'
+  :name: Grapploct
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '854'
+  :name: Sinistea
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '855'
+  :name: Polteageist
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '856'
+  :name: Hatenna
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '857'
+  :name: Hattrem
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '858'
+  :name: Hatterene
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '859'
+  :name: Impidimp
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '860'
+  :name: Morgrem
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '861'
+  :name: Grimmsnarl
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '862'
+  :name: Obstagoon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 3
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '863'
+  :name: Perrserker
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '864'
+  :name: Cursola
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '865'
+  :name: Sirfetchd
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '866'
+  :name: Mr. Rime
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '867'
+  :name: Runerigus
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '868'
+  :name: Milcery
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '869'
+  :name: Alcremie
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: '870'
+  :name: Falinks
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 1
+    :spe: 0
+- :id: '871'
+  :name: Pincurchin
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '872'
+  :name: Snom
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '873'
+  :name: Frosmoth
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '874'
+  :name: Stonjourner
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 875-i
+  :name: Eiscue
+  :form: Ice
+  :form_desc: Face
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 875-n
+  :name: Eiscue
+  :form: Noice
+  :form_desc: Face
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 876-m
+  :name: Indeedee
+  :form: Male
+  :form_desc: Gender
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: 876-f
+  :name: Indeedee
+  :form: Female
+  :form_desc: Gender
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 2
+    :spe: 0
+- :id: 877-f
+  :name: Morpeko
+  :form: Full Belly
+  :form_desc: Mode
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: 877-h
+  :name: Morpeko
+  :form: Hangry
+  :form_desc: Mode
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '878'
+  :name: Cufant
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '879'
+  :name: Copperajah
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '880'
+  :name: Dracozolt
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '881'
+  :name: Arctozolt
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '882'
+  :name: Dracovish
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '883'
+  :name: Arctovish
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 2
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '884'
+  :name: Duraludon
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 2
+    :spd: 0
+    :spe: 0
+- :id: '885'
+  :name: Dreepy
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 1
+- :id: '886'
+  :name: Drakloak
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 2
+- :id: '887'
+  :name: Dragapult
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '888'
+  :name: Zacian
+  :form: Hero of Many Battles
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: 888-c
+  :name: Zacian
+  :form: Crowned Sword
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '889'
+  :name: Zamazenta
+  :form: Hero of Many Battles
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: 889-c
+  :name: Zamazenta
+  :form: Crowned Shield
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '890'
+  :name: Eternatus
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '891'
+  :name: Kubfu
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 892-s
+  :name: Urshifu
+  :form: Single Strike
+  :form_desc: Style
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 892-r
+  :name: Urshifu
+  :form: Rapid Strike
+  :form_desc: Style
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '893'
+  :name: Zarude
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '894'
+  :name: Regieleki
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 3
+- :id: '895'
+  :name: Regidrago
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '896'
+  :name: Glastrier
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '897'
+  :name: Spectrier
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '898'
+  :name: Calyrex
+  :form: Normal
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 898-i
+  :name: Calyrex
+  :form: Ice Rider
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 898-s
+  :name: Calyrex
+  :form: Shadow Rider
+  :form_desc: Form
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: '899'
+  :name: Wyrdeer
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 1
+    :def: 0
+    :spa: 1
+    :spd: 0
+    :spe: 0
+- :id: '900'
+  :name: Kleavor
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '901'
+  :name: Ursaluna
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 902-m
+  :name: Basculegion
+  :form: Male
+  :form_desc: Gender
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 902-f
+  :name: Basculegion
+  :form: Female
+  :form_desc: Gender
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 3
+    :atk: 0
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '903'
+  :name: Sneasler
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: '904'
+  :name: Overqwil
+  :form:
+  :form_desc:
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 2
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+- :id: 905-i
+  :name: Enamorus
+  :form: Incarnate
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+- :id: 905-t
+  :name: Enamorus
+  :form: Therian
+  :form_desc: Forme
+  :ev_yield: !ruby/hash:PokeLog::Stats
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0

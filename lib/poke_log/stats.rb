@@ -7,6 +7,7 @@ module PokeLog
     def self.verify(hash, strict=true)
       if (strict && hash.keys.sort != Stats.stats.sort) ||
          !hash.keys.all? { |s| Stats.stats.include? s }
+        p hash.keys
         raise ArgumentError.new, "invalid stats keys"
       end
 
@@ -15,6 +16,7 @@ module PokeLog
       end
 
       unless hash.values.all? { |n| n.is_a? Integer }
+        p hash.values
         raise ArgumentError.new, "invalid stats values"
       end
     end

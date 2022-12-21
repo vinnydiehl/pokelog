@@ -7,11 +7,11 @@
       %th
       %th ID
       %th Name
-      %th Atk
-      %th Def
-      %th Sp.A
-      %th Sp.D
-      %th Spe
+      %th.center Atk
+      %th.center Def
+      %th.center Sp.A
+      %th.center Sp.D
+      %th.center Spe
   %tbody
     - Species.all.each do |pkmn|
       - ev_yield = pkmn.ev_yield
@@ -19,8 +19,8 @@
         %td.center= image_tag "sprites/#{pkmn.id}.png"
         %td= pkmn.id
         %td= pkmn.name
-        %td= ev_yield.atk
-        %td= ev_yield.def
-        %td= ev_yield.spa
-        %td= ev_yield.spd
-        %td= ev_yield.spe
+        %td.center= ev_yield.atk
+        %td.center= ev_yield.def
+        %td.center= ev_yield.spa
+        %td.center= ev_yield.spd
+        %td.center= ev_yield.spe
