@@ -43,6 +43,7 @@ end
 
 group :development do
   gem "web-console"
+  gem "poke-api-v2"
 end
 
 group :test do
