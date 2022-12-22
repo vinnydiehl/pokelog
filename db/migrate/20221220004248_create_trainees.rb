@@ -11,7 +11,6 @@ class CreateTrainees < ActiveRecord::Migration[7.0]
       t.boolean :pokerus
       t.hstore :start_stats
       t.hstore :trained_stats
-      t.json :kills
       t.enum :nature, enum_type: "nature"
       t.hstore :evs
 
