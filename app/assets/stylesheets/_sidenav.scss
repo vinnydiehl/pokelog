@@ -12,10 +12,6 @@ header, main, footer {
     padding-left: $mnav_size;
   }
 }
-#logo-container {
-  text-align: center;
-  margin-top: 32px;
-}
 
 .sidenav {
   background-color: $dark_red;
@@ -44,4 +40,19 @@ header, main, footer {
 #sidenav-expand {
   margin: auto;
   width: $mnav_size;
+}
+
+// Elements
+
+#logo-container {
+  text-align: center;
+  vertical-align: center;
+  height: fit-content;
+  padding-top: 32px;
+}
+.sidenav li>a.sign-in {
+  text-align: center;
+  width: fit-content;
+  padding: initial;
+  margin: auto;
 }

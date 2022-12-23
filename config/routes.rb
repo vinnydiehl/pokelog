@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :teams
   resources :trainees
   resources :users
+
+  post "/login/submit", to: "users#login"
 end

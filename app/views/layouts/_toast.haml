@@ -1,0 +1,4 @@
+- if notice.present?
+  :javascript
+    var notice = "#{escape_javascript notice}";
+    M.toast({html: notice});

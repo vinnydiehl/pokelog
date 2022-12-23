@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  skip_forgery_protection # Using Google API token verification
 
   # GET /users or /users.json
   def index
@@ -19,19 +20,23 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # POST /users or /users.json
-  def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+  # POST /login/submit
+  def login
+    begin
+      token = GoogleSignIn::Identity.new(params["credential"])
+    rescue GoogleSignIn::Identity::ValidationError
+      redirect_to root_url, notice: "Authentication failed."
+      puts "User authentication failed. POST params:"
+      p params # TODO: Log this
+      return
     end
+
+    if (user = User.find_by(google_id: token.user_id)).blank?
+      # Take user to registration page to fill in their username
+    end
+
+    # Log in
+    cookies.encrypted[:google_id] = token.user_id
   end
 
   # PATCH/PUT /users/1 or /users/1.json
