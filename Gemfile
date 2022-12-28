@@ -55,3 +55,4 @@ end
 gem "active_hash", "~> 3.1"
 gem "google_sign_in", "~> 1.2"
 gem "haml", "~> 6.1"
+gem "repost", "~> 0.4"

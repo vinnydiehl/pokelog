@@ -194,6 +194,7 @@ GEM
     regexp_parser (2.6.1)
     reline (0.3.2)
       io-console (~> 0.5)
+    repost (0.4.1)
     rexml (3.2.5)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -266,6 +267,7 @@ DEPENDENCIES
   poke-api-v2
   puma (~> 5.0)
   rails (~> 7.0.4)
+  repost (~> 0.4)
   sassc-rails
   selenium-webdriver
   sprockets-rails

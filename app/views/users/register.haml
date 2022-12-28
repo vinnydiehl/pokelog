@@ -1,9 +1,9 @@
 - provide :title, "New User"
 
--# %p Pick a username to continue!
+%p Pick a username to continue!
 
-= form_with(model: @user) do |form|
-  = form.hidden_field google_id: @token.user_id
+= form_with(model: @user, url: "/register/submit", data: {turbo: false}) do |form|
+  = form.hidden_field :credential, value: params["credential"]
   .input-field
     %label{for: "username"} Username
     = form.text_field :username
