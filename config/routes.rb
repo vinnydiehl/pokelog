@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :users
 
   post "/login/submit", to: "users#login"
+  get "/register", to: "users#register"
 end
