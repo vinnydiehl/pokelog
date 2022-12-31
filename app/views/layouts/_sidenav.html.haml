@@ -9,6 +9,10 @@
   %li.logo
     = link_to root_path, id: "logo-container", class: "brand-logo" do
       = image_tag "pokeball.svg", height: 120, id: "front-page-logo"
-  %li.sign-in
-    %a.sign-in{style: "padding: none;"}
-      = render "layouts/google_sign_in_button"
+  - if logged_in?
+    %li.profile-widget
+      %a= @current_user.username
+  - else
+    %li.sign-in
+      %a.sign-in
+        = render "layouts/google_sign_in_button"

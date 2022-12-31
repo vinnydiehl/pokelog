@@ -16,6 +16,9 @@ header, main, footer {
 .sidenav {
   background-color: $dark_red;
 }
+.sidenav li>a {
+  color: white;
+}
 
 // Narrow sidenav on mobile
 #mnav.sidenav {

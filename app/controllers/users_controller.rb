@@ -12,10 +12,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # POST /register
-  def register
-  end
-
   # POST /register/submit
   def create
     @user = User.new(
@@ -25,15 +21,13 @@ class UsersController < ApplicationController
     )
 
     if @user.save
-      puts "SUCCESS"
+      log_in
     else
-      puts "PHAIL"
+      redirect_to root_url, notice: "Registration failed."
     end
-
-    log_in
   end
 
-private
+  private
 
   # Parse Google JWT using google_sign_in gem
   #
@@ -53,6 +47,7 @@ private
     end
   end
 
+  # Log in the user from @token (must be loaded from params w/ parse_token)
   def log_in
     cookies.encrypted[:google_id] = @token.user_id
     redirect_to root_url, notice: "Login successful."
