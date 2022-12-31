@@ -11,7 +11,9 @@
       = image_tag "pokeball.svg", height: 120, id: "front-page-logo"
   - if logged_in?
     %li.profile-widget
-      %a= @current_user.username
+      = link_to logout_path, float: "right" do
+        %span{style: "float: left;"}= @current_user.username
+        %span{style: "float: right;"} (click to logout)
   - else
     %li.sign-in
       %a.sign-in

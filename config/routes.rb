@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   post "/login/submit", to: "users#login"
   post "/register", to: "users#register"
   post "/register/submit", to: "users#create"
+  get "/logout", to: "users#logout"
 end

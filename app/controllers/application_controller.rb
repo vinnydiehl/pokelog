@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_current_user
-    @current_user = User.find_by(google_id: cookies.encrypted[:google_id])
+    @current_user = User.find_by_google_id cookies.encrypted[:google_id]
   end
 end
