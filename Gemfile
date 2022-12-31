@@ -42,12 +42,14 @@ group :development, :test do
 end
 
 group :development do
-  gem "web-console"
   gem "poke-api-v2"
+  gem "web-console"
 end
 
 group :test do
   gem "capybara"
+  gem "rspec"
+  gem "rspec-rails"
   gem "selenium-webdriver"
   gem "webdrivers"
 end
