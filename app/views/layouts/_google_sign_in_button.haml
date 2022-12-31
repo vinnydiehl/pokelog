@@ -1,0 +1,15 @@
+%script{src: "https://accounts.google.com/gsi/client", async: true, defer: true}
+#g_id_onload{
+  "data-client_id": "#{ENV["GOOGLE_OAUTH2_ID"]}",
+  "data-login_uri": "http://localhost:3000/login/submit",
+  "data-auto_prompt": "false"
+}
+.g_id_signin{
+  "data-type": "standard",
+  "data-size": "large",
+  "data-theme": "outline",
+  "data-text": "sign_in_with",
+  "data-shape": "pill",
+  "data-width": 250,
+  "data-logo_alignment": "left"
+}

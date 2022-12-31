@@ -6,5 +6,9 @@ Rails.application.routes.draw do
 
   resources :teams
   resources :trainees
-  resources :users
+
+  post "/login/submit", to: "users#login"
+  post "/register", to: "users#register"
+  post "/register/submit", to: "users#create"
+  get "/logout", to: "users#logout"
 end

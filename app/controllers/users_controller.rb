@@ -1,70 +1,62 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
+  skip_forgery_protection # Using Google API token verification
+  before_action :parse_token, only: %i[login create register]
 
-  # GET /users or /users.json
-  def index
-    @users = User.all
+  # POST /login/submit
+  def login
+    if @found_user.blank?
+      # Take user to registration page to fill in their username
+      redirect_post register_url(credential: params["credential"])
+    else
+      log_in
+    end
   end
 
-  # GET /users/1 or /users/1.json
-  def show
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
-
-  # POST /users or /users.json
+  # POST /register/submit
   def create
-    @user = User.new(user_params)
+    @user = User.new(
+      username: params["username"],
+      email: params["email"],
+      google_id: @token.user_id
+    )
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      @found_user = @user
+      log_in
+    else
+      redirect_to root_url, notice: "Registration failed."
     end
   end
 
-  # PATCH/PUT /users/1 or /users/1.json
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /users/1 or /users/1.json
-  def destroy
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
+  # GET /logout
+  def logout
+    cookies.delete :google_id
+    redirect_to root_url, notice: "Logged out."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
+
+  # Parse Google JWT using google_sign_in gem
+  #
+  # We need to do this everywhere because we can't trust the user to pass
+  # around the raw user_id. Uses POST params to set @token and, if the
+  # user exists in the database, @found_user.
+  def parse_token
+    begin
+      @token = GoogleSignIn::Identity.new(params["credential"])
+    rescue GoogleSignIn::Identity::ValidationError
+      redirect_to root_url, notice: "Authentication failed."
+      puts "User authentication failed. POST params:"
+      p params # TODO: Log this
+      return
     end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:email, :username, :password_digest)
-    end
+    @found_user = User.find_by_google_id @token.user_id
+  end
+
+  # Log in the user from @token (must be loaded from params w/ parse_token)
+  def log_in
+    cookies.encrypted[:google_id] = @token.user_id
+    redirect_to root_url, notice: "Logged in as #{@found_user.username}."
+  end
 end
