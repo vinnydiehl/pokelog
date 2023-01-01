@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "pages#index"
 
-  %w[home index].each { |r| get "/#{r}", to: redirect("/") }
+  %w[home index register].each { |r| get "/#{r}", to: redirect("/") }
   %w[dex pokedex species].each { |r| get "/#{r}", to: "species#index" }
 
   resources :teams
@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   post "/register", to: "users#register"
   post "/register/submit", to: "users#create"
   get "/logout", to: "users#logout"
+
+  if Rails.env.test?
+    get "/login/submit", to: "users#login"
+  end
 end
