@@ -16,8 +16,18 @@ header, main, footer {
 .sidenav {
   background-color: $dark_red;
 }
+// Icon/text colors
 .sidenav li>a {
   color: white;
+}
+.sidenav li>a>i.material-icons {
+  color: grey;
+}
+
+// Line beneath login button/profile widget
+.sidenav hr {
+  border-color: darkred;
+  margin: 0 15px 0 15px;
 }
 
 // Narrow sidenav on mobile
@@ -58,4 +68,5 @@ header, main, footer {
   width: fit-content;
   padding: initial;
   margin: auto;
+  margin-bottom: 5px;
 }

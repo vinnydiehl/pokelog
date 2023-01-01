@@ -7,7 +7,7 @@
 
 %ul#nav-full.sidenav.sidenav-fixed{style: "transform: translateX(0px);"}
   %li.logo
-    = link_to root_path, id: "logo-container", class: "brand-logo" do
+    = link_to root_path, id: "logo-container", class: "waves-effect" do
       = image_tag "pokeball.svg", height: 120, id: "front-page-logo"
   - if logged_in?
     %li#profile-widget
@@ -16,5 +16,9 @@
         %span{style: "float: right;"} (click to logout)
   - else
     %li#sign-in
-      %a.sign-in
-        = render "layouts/google_sign_in_button"
+      %a.sign-in= render "layouts/google_sign_in_button"
+  %hr
+  %li.bold
+    = link_to species_path, class: "waves-effect" do
+      %i.material-icons fitness_center
+      EV Yields
