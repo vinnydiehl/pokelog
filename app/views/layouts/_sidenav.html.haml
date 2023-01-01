@@ -10,11 +10,11 @@
     = link_to root_path, id: "logo-container", class: "brand-logo" do
       = image_tag "pokeball.svg", height: 120, id: "front-page-logo"
   - if logged_in?
-    %li.profile-widget
+    %li#profile-widget
       = link_to logout_path, float: "right" do
         %span{style: "float: left;"}= @current_user.username
         %span{style: "float: right;"} (click to logout)
   - else
-    %li.sign-in
+    %li#sign-in
       %a.sign-in
         = render "layouts/google_sign_in_button"

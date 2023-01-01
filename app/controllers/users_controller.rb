@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def login
     if @found_user.blank?
       # Take user to registration page to fill in their username
-      redirect_post register_url(credential: params["credential"])
+      redirect_post register_path(credential: params["credential"])
     else
       log_in
     end
