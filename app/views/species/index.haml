@@ -18,8 +18,8 @@
       - ev_yield = pkmn.ev_yield
       %tr
         %td.center= image_tag "sprites/#{pkmn.id}.png"
-        %td= pkmn.id
-        %td= pkmn.name
+        %td.id= pkmn.id
+        %td.name= pkmn.name
         %div
           %td.stats= ev_yield.atk
           %td.stats= ev_yield.def
