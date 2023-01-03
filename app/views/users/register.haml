@@ -5,10 +5,10 @@
 = form_with(model: @user, url: "/register/submit", data: {turbo: false}) do |form|
   = form.hidden_field :credential, value: params["credential"]
   .input-field
-    %label{for: "username"} Username
+    = form.label :username, "Username"
     = form.text_field :username
   .input-field
-    %label{for: "email"} Email Address
+    = form.label :email, "Email Address"
     = form.text_field :email, value: @token.email_address
   %button.btn.waves-effect.waves-light{type: "submit", name: "commit"}
     Register
