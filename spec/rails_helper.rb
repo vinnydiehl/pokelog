@@ -9,6 +9,8 @@ end
 
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
+
+# Internal
 require "gsi_patch"
 
 # Check for pending migrations and applies them before tests are run.
@@ -18,13 +20,12 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 
-Capybara.register_driver :poltergeist do |app|
-  options = { js_errors: true, inspector: true }
-  Capybara::Poltergeist::Driver.new(app, options)
+Capybara.register_driver :chrome_1080 do |app|
+  Capybara::Selenium::Driver.new app, browser: :chrome,
+    options: Selenium::WebDriver::Chrome::Options.new(args: %w[headless disable-gpu window-size=1920x1080])
 end
 
-Capybara.default_driver = :poltergeist
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :chrome_1080
 Capybara.server = :puma, { Silent: true }
 
 RSpec.configure do |config|

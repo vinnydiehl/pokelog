@@ -1,0 +1,9 @@
+.data-entry[species]
+  .id= species.id
+  .main-content
+    .top
+      .sprite= image_tag "sprites/#{species.id}.png"
+      .name= species.name
+    .yields
+      - species.yields.each do |stat, amt|
+        .stat{class: stat} #{amt} #{format_stat stat}

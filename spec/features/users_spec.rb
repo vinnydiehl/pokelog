@@ -5,18 +5,32 @@ ENDPOINT = "/login/submit"
 TEST_USERNAME = "testname"
 CHANGED_EMAIL = "t@test.com"
 
-RSpec.feature "Users", type: :feature do
+def logged_in?
+  !page.has_selector?("#sign-in") && page.has_selector?("#profile-widget")
+end
+
+RSpec.feature "users:", type: :feature do
+  describe "a brand new user" do
+    before :each do
+      visit root_path
+    end
+
+    it "is not logged in" do
+      expect(logged_in?).to be false
+    end
+  end
+
   describe ENDPOINT do
-    context "new user" do
+    context "with a new user" do
       before :each do
         visit ENDPOINT
       end
 
-      it "redirects to /register if user does not exist" do
+      it "redirects to /register if user does not exist", js: true do
         expect(page).to have_current_path register_path, ignore_query: true
       end
 
-      describe "redirect page" do
+      describe "redirect page", js: true do
         it "has the email pre-filled" do
           expect(page).to have_field "email", with: TEST_EMAIL
         end
@@ -52,7 +66,7 @@ RSpec.feature "Users", type: :feature do
           end
 
           it "logs the user in" do
-            expect(page).to have_selector "#profile-widget"
+            expect(logged_in?).to be true
           end
         end
       end
@@ -73,12 +87,12 @@ RSpec.feature "Users", type: :feature do
       end
 
       it "logs the user in" do
-        expect(page).to have_selector "#profile-widget"
+        expect(logged_in?).to be true
       end
 
       it "remains logged in while browsing" do
         visit species_path
-        expect(page).to have_selector "#profile-widget"
+        expect(logged_in?).to be true
       end
     end
   end
@@ -99,7 +113,7 @@ RSpec.feature "Users", type: :feature do
     end
 
     it "logs the user out" do
-      expect(page).not_to have_selector "#profile-widget"
+      expect(logged_in?).to be false
     end
   end
 

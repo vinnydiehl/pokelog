@@ -26,15 +26,10 @@ export GOOGLE_OAUTH2_SECRET='client secret here'
 
 # Testing
 
-PokéLog uses RSpec and Capybara with the Poltergeist driver for PhantomJS.
-PhantomJS is a headless web browser that allows for fast integration testing-
-to install it, get the binary from [here](https://phantomjs.org/download.html)
-and put it somewhere on your `PATH`, then add the following to your `.bashrc`
-and source it:
-
-```bash
-export OPENSSL_CONF=/etc/ssl
-```
+PokéLog uses RSpec and Capybara with the Selenium Chrome driver. You will need
+the appropriate version of Chrome installed for the driver version you are
+running; for the purposes of active development of this project, that will be
+the latest version of Chrome.
 
 You will need to create a PostgreSQL database named `pokelog_test`, then run
 `bin/rake db:migrate RAILS_ENV=test` to set it up for the first time.

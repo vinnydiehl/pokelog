@@ -15,19 +15,36 @@ header, main, footer {
 
 .sidenav {
   background-color: $dark_red;
-}
-// Icon/text colors
-.sidenav li>a {
-  color: white;
-}
-.sidenav li>a>i.material-icons {
-  color: grey;
+
+  // Icon/text colors
+  li>a {
+    color: white;
+
+    >i.material-icons {
+      color: grey;
+    }
+  }
+
+  // Sign in button
+  li>a.sign-in {
+    text-align: center;
+    width: fit-content;
+    padding: initial;
+    margin: auto;
+    margin-bottom: 5px;
+  }
+
+  // Line beneath login button/profile widget
+  hr {
+    border-color: darkred;
+    margin: 0 15px 0 15px;
+  }
 }
 
-// Line beneath login button/profile widget
-.sidenav hr {
-  border-color: darkred;
-  margin: 0 15px 0 15px;
+// Patch to make li square with the bar
+@mixin mnav-height {
+  height: $mnav_size;
+  line-height: $mnav_size;
 }
 
 // Narrow sidenav on mobile
@@ -35,19 +52,16 @@ header, main, footer {
   // Don't hide
   transform: translateX(0%) !important;
   width: $mnav_size;
-}
-// Patch to make li square with the bar
-@mixin mnav-height {
-  height: $mnav_size;
-  line-height: $mnav_size;
-}
-#mnav.sidenav li>a {
-  padding: 0;
-  text-align: center;
-  @include mnav-height;
-}
-#mnav.sidenav li>a>i {
-  @include mnav-height;
+
+  li>a {
+    padding: 0;
+    text-align: center;
+    @include mnav-height;
+
+    >i {
+      @include mnav-height;
+    }
+  }
 }
 // Center the expand icon
 #sidenav-expand {
@@ -62,11 +76,4 @@ header, main, footer {
   vertical-align: center;
   height: fit-content;
   padding-top: 32px;
-}
-.sidenav li>a.sign-in {
-  text-align: center;
-  width: fit-content;
-  padding: initial;
-  margin: auto;
-  margin-bottom: 5px;
 }

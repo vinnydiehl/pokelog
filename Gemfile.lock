@@ -83,7 +83,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    cliver (0.3.2)
+    capybara-selenium (0.0.6)
+      capybara
+      selenium-webdriver
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     date (3.3.2)
@@ -158,10 +160,6 @@ GEM
       version_gem (~> 1.1)
     pg (1.4.5)
     poke-api-v2 (0.1.1)
-    poltergeist (1.18.1)
-      capybara (>= 2.1, < 4)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -200,6 +198,7 @@ GEM
     reline (0.3.2)
       io-console (~> 0.5)
     repost (0.4.1)
+    rexml (3.2.5)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -222,6 +221,7 @@ GEM
       rspec-support (~> 3.11)
     rspec-support (3.12.0)
     ruby2_keywords (0.0.5)
+    rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -230,6 +230,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    selenium-webdriver (4.7.1)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -258,6 +262,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -272,6 +277,7 @@ DEPENDENCIES
   active_hash (~> 3.1)
   bootsnap
   capybara (~> 3.38)
+  capybara-selenium (~> 0.0.6)
   debug
   google_sign_in (~> 1.2)
   haml (~> 6.1)
@@ -279,13 +285,13 @@ DEPENDENCIES
   jbuilder
   pg (~> 1.4.5)
   poke-api-v2
-  poltergeist (~> 1.18)
   puma (~> 5.0)
   rails (~> 7.0.4)
   repost (~> 0.4)
   rspec (~> 3.12)
   rspec-rails (~> 6.0)
   sassc-rails
+  selenium-webdriver (~> 4.1)
   sprockets-rails
   stimulus-rails
   turbo-rails

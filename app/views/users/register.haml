@@ -2,7 +2,7 @@
 
 %p Pick a username to continue!
 
-= form_with(model: @user, url: "/register/submit", data: {turbo: false}) do |form|
+= form_with model: @user, url: "/register/submit", data: {turbo: false} do |form|
   = form.hidden_field :credential, value: params["credential"]
   .input-field
     = form.label :username, "Username"

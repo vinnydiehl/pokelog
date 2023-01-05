@@ -45,9 +45,10 @@ end
 
 group :test do
   gem "capybara", "~> 3.38"
-  gem "poltergeist", "~> 1.18"
+  gem "capybara-selenium", "~> 0.0.6"
   gem "rspec", "~> 3.12"
   gem "rspec-rails", "~> 6.0"
+  gem "selenium-webdriver", "~> 4.1"
 end
 
 gem "active_hash", "~> 3.1"

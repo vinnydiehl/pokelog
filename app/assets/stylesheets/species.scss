@@ -1,0 +1,64 @@
+$padding: 10px;
+$margin: 5px;
+$border: 3px solid black;
+
+.results {
+  margin-top: $margin;
+
+  .data-entry {
+    margin: $margin;
+
+    border-radius: 25px;
+    border: $border;
+
+    padding-inline: $padding;
+
+    display: inline-flex;
+
+    width: auto;
+
+    .id {
+      display: flex;
+      align-items: center;
+    }
+
+    .main-content {
+      border-left: $border;
+      margin-left: $padding;
+
+      justify-content: space-between;
+
+      .top {
+        display: flex;
+        align-items: center;
+
+        .sprite {
+        }
+
+        .name {
+        }
+      }
+
+      .yields, .base-stats {
+        display: flex;
+        justify-content: space-evenly;
+
+        .stat {
+        }
+
+        .hp {
+        }
+        .atk {
+        }
+        .def {
+        }
+        .spa {
+        }
+        .spd {
+        }
+        .spe {
+        }
+      }
+    }
+  }
+}

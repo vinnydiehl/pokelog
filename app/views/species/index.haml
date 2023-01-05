@@ -1,28 +1,14 @@
 - provide :title, "EV Yields"
 -# TODO: - provide :title, "Pokédex"
 
-%table.striped
-  %thead
-    %tr
-      %th
-      %th ID
-      %th Name
-      %div
-        %th.stats Atk
-        %th.stats Def
-        %th.stats Sp.A
-        %th.stats Sp.D
-        %th.stats Spe
-  %tbody
-    - Species.all.each do |pkmn|
-      - ev_yield = pkmn.ev_yield
-      %tr
-        %td.center= image_tag "sprites/#{pkmn.id}.png"
-        %td.id= pkmn.id
-        %td.name= pkmn.name
-        %div
-          %td.stats= ev_yield.atk
-          %td.stats= ev_yield.def
-          %td.stats= ev_yield.spa
-          %td.stats= ev_yield.spd
-          %td.stats= ev_yield.spe
+= form_with url: request.path, method: :get,
+            data: { controller: "form-submission",
+                    turbo_frame: "results",
+                    turbo_action: "advance" } do |f|
+  .input-field
+    = f.label :q, "Search"
+    = f.text_field :q, value: params[:q],
+                   data: { action: "input->form-submission#search" }
+
+.results
+  = render "results", results: @search_results
