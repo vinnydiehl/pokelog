@@ -4,6 +4,8 @@
   %li.expand
     %a.sidenav-trigger.hide-on-large-only{href: "#", "data-target": "nav-full"}
       %i#sidenav-expand.material-icons menu
+  - @nav_links.each do |icon, path|
+    = nav_link icon, path
 
 %ul#nav-full.sidenav.sidenav-fixed{style: "transform: translateX(0px);"}
   %li.logo
@@ -18,7 +20,5 @@
     %li#sign-in
       %a.sign-in= render "layouts/google_sign_in_button"
   %hr
-  %li.bold
-    = link_to species_path, class: "waves-effect" do
-      %i.material-icons fitness_center
-      EV Yields
+  - @nav_links.each do |icon, path, text|
+    = nav_link icon, path, text

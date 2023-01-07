@@ -60,13 +60,12 @@ header, main, footer {
 
     >i {
       @include mnav-height;
+
+      // Center mobile icons
+      margin: auto;
+      width: $mnav_size;
     }
   }
-}
-// Center the expand icon
-#sidenav-expand {
-  margin: auto;
-  width: $mnav_size;
 }
 
 // Elements
