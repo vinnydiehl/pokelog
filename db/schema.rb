@@ -20,19 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_21_190321) do
   create_enum "nature", ["hardy", "lonely", "brave", "adamant", "naughty", "bold", "docile", "relaxed", "impish", "lax", "timid", "hasty", "serious", "jolly", "naive", "modest", "mild", "quiet", "bashful", "rash", "calm", "gentle", "sassy", "careful", "quirky"]
 
   create_table "kills", id: false, force: :cascade do |t|
-    t.integer "trainee_id"
+    t.bigint "trainees_id"
     t.string "species_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "name"
+    t.index ["trainees_id"], name: "index_kills_on_trainees_id"
   end
 
   create_table "trainees", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "team_id"
     t.string "species_id"
     t.integer "level"
@@ -43,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_21_190321) do
     t.hstore "evs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_trainees_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

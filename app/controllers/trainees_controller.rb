@@ -3,7 +3,7 @@ class TraineesController < ApplicationController
 
   # GET /trainees or /trainees.json
   def index
-    @trainees = Trainee.all
+    @trainees = Trainee.where user: @current_user
   end
 
   # GET /trainees/1 or /trainees/1.json

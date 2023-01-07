@@ -4,7 +4,8 @@ class CreateTrainees < ActiveRecord::Migration[7.0]
       YAML.load_file("data/natures.yml").keys.map(&:to_s)
 
     create_table :trainees do |t|
-      t.integer :user_id
+      t.belongs_to :user
+
       t.integer :team_id, null: true
       t.string :species_id
       t.integer :level
