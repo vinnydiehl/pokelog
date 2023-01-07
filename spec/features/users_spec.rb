@@ -1,10 +1,5 @@
 require "rails_helper"
 
-ENDPOINT = "/login/submit"
-
-TEST_USERNAME = "testname"
-CHANGED_EMAIL = "t@test.com"
-
 def logged_in?
   !page.has_selector?("#sign-in") && page.has_selector?("#profile-widget")
 end
@@ -32,14 +27,14 @@ RSpec.feature "users:", type: :feature do
 
       describe "redirect page", js: true do
         it "has the email pre-filled" do
-          expect(page).to have_field "email", with: TEST_EMAIL
+          expect(page).to have_field "email", with: TOKEN_EMAIL
         end
 
         context "on submission" do
           before :each do
             expect(page).to have_field("username")
             fill_in "username", with: TEST_USERNAME
-            fill_in "email", with: CHANGED_EMAIL
+            fill_in "email", with: TEST_EMAIL
             click_button "Register"
 
             @user = User.find_by_google_id TEST_G_ID
@@ -54,7 +49,7 @@ RSpec.feature "users:", type: :feature do
           end
 
           it "sets the email" do
-            expect(@user.email).to eq CHANGED_EMAIL
+            expect(@user.email).to eq TEST_EMAIL
           end
 
           it "sets the Google ID" do
@@ -74,12 +69,7 @@ RSpec.feature "users:", type: :feature do
 
     context "existing user" do
       before :each do
-        User.new(
-          google_id: TEST_G_ID,
-          username: TEST_USERNAME,
-          email: CHANGED_EMAIL
-        ).save
-        visit ENDPOINT
+        log_in
       end
 
       it "redirects to /" do
@@ -99,11 +89,7 @@ RSpec.feature "users:", type: :feature do
 
   describe "/logout" do
     before :each do
-      User.new(
-        google_id: TEST_G_ID,
-        username: TEST_USERNAME,
-        email: CHANGED_EMAIL
-      ).save
+      log_in
       visit ENDPOINT
       visit logout_path
     end

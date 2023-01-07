@@ -1,37 +1,29 @@
 class TraineesController < ApplicationController
   before_action :set_trainee, only: %i[show edit update destroy]
 
-  # GET /trainees or /trainees.json
+  NO_USER_NOTICE = "Not logged in."
+
+  # GET /trainees
   def index
+    return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
     @trainees = Trainee.where user: @current_user
   end
 
-  # GET /trainees/1 or /trainees/1.json
+  # GET /trainees/1
   def show
+    @trainee = Trainee.find(params[:id])
   end
 
   # GET /trainees/new
   def new
-    @trainee = Trainee.new
+    return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
+    @trainee = Trainee.new(user: @current_user)
+    @trainee.save
+    redirect_to trainee_path(@trainee)
   end
 
   # GET /trainees/1/edit
   def edit
-  end
-
-  # POST /trainees or /trainees.json
-  def create
-    @trainee = Trainee.new(trainee_params)
-
-    respond_to do |format|
-      if @trainee.save
-        format.html { redirect_to trainee_url(@trainee), notice: "Trainee was successfully created." }
-        format.json { render :show, status: :created, location: @trainee }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @trainee.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /trainees/1 or /trainees/1.json

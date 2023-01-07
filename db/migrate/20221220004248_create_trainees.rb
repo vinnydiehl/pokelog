@@ -7,13 +7,17 @@ class CreateTrainees < ActiveRecord::Migration[7.0]
       t.belongs_to :user
 
       t.integer :team_id, null: true
-      t.string :species_id
-      t.integer :level
-      t.boolean :pokerus
-      t.hstore :start_stats
-      t.hstore :trained_stats
-      t.enum :nature, enum_type: "nature"
-      t.hstore :evs
+      t.string :species_id, null: true
+      t.string :nickname, null: true
+      t.integer :level, null: true
+      t.boolean :pokerus, default: false
+      t.enum :nature, enum_type: "nature", null: true
+      t.integer :hp_ev, default: 0
+      t.integer :atk_ev, default: 0
+      t.integer :def_ev, default: 0
+      t.integer :spa_ev, default: 0
+      t.integer :spd_ev, default: 0
+      t.integer :spe_ev, default: 0
 
       t.timestamps
     end

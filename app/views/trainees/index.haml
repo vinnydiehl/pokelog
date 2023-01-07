@@ -1,1 +1,10 @@
 - provide :title, "Trainees"
+
+- if @trainees.blank?
+  %p.grey-text Nothing to show here. Click the + below to get started!
+- else
+  // Main page
+
+// + button
+= link_to new_trainee_path, id: "new-trainee", class: "btn-floating btn-large waves-effect waves-light red right" do
+  %i.material-icons add
