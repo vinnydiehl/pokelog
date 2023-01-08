@@ -7,6 +7,6 @@ def log_in
     google_id: TEST_G_ID,
     username: TEST_USERNAME,
     email: TEST_EMAIL
-  ).save
+  ).save!
   visit ENDPOINT
 end

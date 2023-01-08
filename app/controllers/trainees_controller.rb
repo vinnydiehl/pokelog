@@ -18,7 +18,7 @@ class TraineesController < ApplicationController
   def new
     return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
     @trainee = Trainee.new(user: @current_user)
-    @trainee.save
+    @trainee.save!
     redirect_to trainee_path(@trainee)
   end
 
