@@ -30,6 +30,19 @@ RSpec.feature "species:", type: :feature do
       context "on page load" do
         exec_check_every_50
 
+        it "doesn't display form info for Pokémon with no forms" do
+          expect(find "#species_001").not_to have_selector ".form"
+          expect(find "#species_001").not_to have_content "Form"
+        end
+
+        it "displays normal form" do
+          expect(find "#species_026").to have_content "Normal Form"
+        end
+
+        it "displays oddball form names correctly" do
+          expect(find "#species_555-zen").to have_content "Zen Mode"
+        end
+
         context "with manually entered GET query" do
           query = "ven"
 

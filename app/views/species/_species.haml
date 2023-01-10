@@ -1,9 +1,12 @@
 .data-entry[species]
-  .id= species.id
+  .id= species.pretty_id
   .main-content
     .top
       .sprite= species.sprite
-      .name= species.name
+      .name-form
+        .name= species.name
+        - if species.has_forms?
+          .form #{species.form} #{species.form_desc}
     .yields
       - species.yields.each do |stat, amt|
         .stat{class: stat} #{amt} #{format_stat stat}

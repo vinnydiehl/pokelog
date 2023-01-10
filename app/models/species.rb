@@ -11,6 +11,11 @@ class Species < ActiveYaml::Base
     self[:id].match(/\d+/).to_s
   end
 
+  # @return [String] HTML image tag for the artwork
+  def artwork
+    ActionController::Base.helpers.image_tag "artwork/#{self[:id]}.png"
+  end
+
   # @return [String] HTML image tag for the sprite
   def sprite
     ActionController::Base.helpers.image_tag "sprites/#{self[:id]}.png"
@@ -19,5 +24,10 @@ class Species < ActiveYaml::Base
   # @return [Hash] EV yields that are > 0
   def yields
     self[:ev_yield].select { |_, y| y > 0 }
+  end
+
+  # @return [Boolean] whether or not it has multiple forms
+  def has_forms?
+    self[:form].present?
   end
 end

@@ -33,9 +33,15 @@ $border: 3px solid black;
         align-items: center;
 
         .sprite {
+          margin: 0.25em;
         }
 
-        .name {
+        .name-form {
+          text-align: center;
+
+          .form {
+            font-style: italic;
+          }
         }
       }
 
