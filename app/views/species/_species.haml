@@ -2,7 +2,7 @@
   .id= species.id
   .main-content
     .top
-      .sprite= image_tag "sprites/#{species.id}.png"
+      .sprite= species.sprite
       .name= species.name
     .yields
       - species.yields.each do |stat, amt|
