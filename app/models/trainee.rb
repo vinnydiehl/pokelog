@@ -1,9 +1,11 @@
 class Trainee < ApplicationRecord
   belongs_to :user
   has_many :kills
+  attr_accessor :species
 
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :species, shortcuts: %i[id]
+  def species
+    Species.find_by_id species_id
+  end
 
   def evs
     PokeLog::Stats.new({

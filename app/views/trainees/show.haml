@@ -1,1 +1,5 @@
-= @trainee.id
+.radar-container
+  = render "shared/radar_chart", stats: @trainee.evs
+  - PokeLog::Stats.new.keys.each do |stat|
+    .point{class: stat}
+      %input

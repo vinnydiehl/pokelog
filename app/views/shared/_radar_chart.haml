@@ -1,7 +1,13 @@
 .radar-chart{id: id ||= "radar-chart"}
 :javascript
   anychart.onDocumentReady(function () {
-    var ev_max = 255;
+    // Display a zoomed chart
+    var ev_max = #{stats.values.max};
+    // ev_max needs to be at least 1 or else the chart will
+    // be filled when there are no EVs to show
+    if (ev_max < 1) {
+      ev_max++;
+    }
 
     var hp = #{stats[:hp]};
     var atk = #{stats[:atk]};
@@ -12,9 +18,12 @@
 
     var chart = anychart.radar();
 
-    chart.tooltip().format(`{%value} / ${ev_max}`);
+    // 255 needs to be hardcoded here
+    chart.tooltip().format(`{%value} / 255`);
 
+    chart.xAxis().labels().enabled(false);
     chart.yAxis().labels().enabled(false);
+
     chart.yAxis().ticks().enabled(false);
 
     chart.yScale()
