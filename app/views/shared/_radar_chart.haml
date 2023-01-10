@@ -1,0 +1,35 @@
+.radar-chart{id: id ||= "radar-chart"}
+:javascript
+  anychart.onDocumentReady(function () {
+    var ev_max = 255;
+
+    var hp = #{stats[:hp]};
+    var atk = #{stats[:atk]};
+    var def = #{stats[:def]};
+    var spa = #{stats[:spa]};
+    var spd = #{stats[:spd]};
+    var spe = #{stats[:spe]};
+
+    var chart = anychart.radar();
+
+    chart.tooltip().format(`{%value} / ${ev_max}`);
+
+    chart.yAxis().labels().enabled(false);
+    chart.yAxis().ticks().enabled(false);
+
+    chart.yScale()
+      .maximum(ev_max)
+      .ticks({"interval": ev_max / 4});
+
+    chart.area([
+      {x: "HP", value: hp},
+      {x: "Atk", value: atk},
+      {x: "Def", value: def},
+      {x: "Spe", value: spe},
+      {x: "Sp.D", value: spd},
+      {x: "Sp.A", value: spa}
+    ]);
+
+    chart.container("#{id}");
+    chart.draw();
+  });
