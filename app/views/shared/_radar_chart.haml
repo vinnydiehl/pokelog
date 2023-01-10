@@ -2,19 +2,17 @@
 :javascript
   anychart.onDocumentReady(function () {
     // Display a zoomed chart
-    var ev_max = #{stats.values.max};
-    // ev_max needs to be at least 1 or else the chart will
+    var y_max = #{stats.values.max};
+    // y_max needs to be at least 1 or else the chart will
     // be filled when there are no EVs to show
-    if (ev_max < 1) {
-      ev_max++;
+    if (y_max < 1) {
+      y_max++;
     }
 
-    var hp = #{stats[:hp]};
-    var atk = #{stats[:atk]};
-    var def = #{stats[:def]};
-    var spa = #{stats[:spa]};
-    var spd = #{stats[:spd]};
-    var spe = #{stats[:spe]};
+    // `var hp = #{stats[:hp]};`, etc. with Ruby magic
+    // (we can't just interpolate these straight into
+    //  chart.area() below because of HAML {} limitations)
+    #{stats.map { |s, n| "var #{s} = #{n};" }.join}
 
     var chart = anychart.radar();
 
@@ -27,8 +25,8 @@
     chart.yAxis().ticks().enabled(false);
 
     chart.yScale()
-      .maximum(ev_max)
-      .ticks({"interval": ev_max / 4});
+      .maximum(y_max)
+      .ticks({"interval": y_max / 4});
 
     chart.area([
       {x: "HP", value: hp},
