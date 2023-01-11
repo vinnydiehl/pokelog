@@ -113,6 +113,34 @@ $point_offset: $radar_size / 2 + 25px;
       font-size: 12pt;
       text-align: center;
       margin: 0;
+
+      // Make it look like it forces a 0 into an empty box
+      // (actually just a black placeholder
+      //  that disappears on focus)
+      &::placeholder {
+        color: black;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder { color: black; }
+      &::-ms-input-placeholder { color: black; }
+      &:focus {
+        border: 2px solid green;
+        &::placeholder {
+          color: transparent;
+        }
+      }
+
+      &:invalid {
+        border: 2px solid red;
+      }
+
+      // No arrows
+      -moz-appearance: textfield;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
     }
   }
 }

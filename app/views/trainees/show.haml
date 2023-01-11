@@ -1,5 +1,6 @@
 - provide :title, @trainee.nickname || "New Trainee"
 
+= javascript_include_tag "character_counter"
 = javascript_include_tag "select_init"
 = javascript_include_tag "species_autocomplete"
 
@@ -8,24 +9,30 @@
     .side-by-side
       .input-field.nickname
         = form.label :nickname, "Nickname"
-        = form.text_field :nickname, value: @trainee.nickname
+        = form.text_field :nickname, class: "counter", maxlength: 12, data: {length: 12},
+                                     onblur: "hideCounter();", value: @trainee.nickname
       .input-field.species
         = form.label :species, "Species"
         = form.text_field :species, class: "autocomplete", value: @trainee.species.name
     = @trainee.species.artwork
     .side-by-side
       .input-field
-        = form.select :nature, options_for_select([@nil_nature_option] + @nature_options, disabled: @nil_nature_option, selected: @selected_nature)
+        = form.select :nature,
+            options_for_select([@nil_nature_option] + @nature_options,
+                               disabled: @nil_nature_option, selected: @selected_nature)
         = form.label :nature, "Nature"
       .input-field
         = form.label :level, "Level"
-        = form.text_field :level, min: 1, max: 100, class: "validate", type: "number", value: @trainee.level
+        = form.text_field :level, class: "validate", type: "number", **maxlength(3),
+                                  min: 1, max: 100, value: @trainee.level
   .ev-info
     = render "shared/radar_chart", stats: @trainee.evs
     - PokeLog::Stats.new.keys.each do |stat|
       .point{class: stat}
         - attr_name = "#{stat}_ev"
-        = form.text_field attr_name.to_sym, class: "ev-input", value: @trainee.send(attr_name)
+        = form.text_field attr_name.to_sym,
+            class: "ev-input", type: "number", placeholder: 0, **maxlength(3),
+            min: 0, max: 255, value: @trainee.send(attr_name)
     .pokerus.switch
       %label
         = form.check_box :pokerus, value: @trainee.pokerus
