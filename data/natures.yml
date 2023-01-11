@@ -1,66 +1,66 @@
 ---
-:hardy: {}
-:lonely:
+"hardy": {}
+"lonely":
   :buff: :atk
   :nerf: :def
-:brave:
+"brave":
   :buff: :atk
   :nerf: :spe
-:adamant:
+"adamant":
   :buff: :atk
   :nerf: :spa
-:naughty:
+"naughty":
   :buff: :atk
   :nerf: :spd
-:bold:
+"bold":
   :buff: :def
   :nerf: :atk
-:docile: {}
-:relaxed:
+"docile": {}
+"relaxed":
   :buff: :def
   :nerf: :spe
-:impish:
+"impish":
   :buff: :def
   :nerf: :spa
-:lax:
+"lax":
   :buff: :def
   :nerf: :spd
-:timid:
+"timid":
   :buff: :spe
   :nerf: :atk
-:hasty:
+"hasty":
   :buff: :spe
   :nerf: :def
-:serious: {}
-:jolly:
+"serious": {}
+"jolly":
   :buff: :spe
   :nerf: :spa
-:naive:
+"naive":
   :buff: :spe
   :nerf: :spd
-:modest:
+"modest":
   :buff: :spa
   :nerf: :atk
-:mild:
+"mild":
   :buff: :spa
   :nerf: :def
-:quiet:
+"quiet":
   :buff: :spa
   :nerf: :spe
-:bashful: {}
-:rash:
+"bashful": {}
+"rash":
   :buff: :spa
   :nerf: :spd
-:calm:
+"calm":
   :buff: :spd
   :nerf: :atk
-:gentle:
+"gentle":
   :buff: :spd
   :nerf: :def
-:sassy:
+"sassy":
   :buff: :spd
   :nerf: :spe
-:careful:
+"careful":
   :buff: :spd
   :nerf: :spa
-:quirky: {}
+"quirky": {}

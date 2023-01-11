@@ -1,7 +1,22 @@
 - provide :title, @trainee.nickname || "New Trainee"
 
-.radar-container
-  = render "shared/radar_chart", stats: @trainee.evs
-  - PokeLog::Stats.new.keys.each do |stat|
-    .point{class: stat}
-      %input{text: @trainee.send("#{stat}_ev")}
+= javascript_include_tag "select_init"
+= javascript_include_tag "species_autocomplete"
+
+= form_with model: @trainee, class: "trainee-info", html: {autocomplete: "off"} do |form|
+  .species-info
+    .input-field
+      = form.label :nickname, "Nickname"
+      = form.text_field :nickname
+    .input-field
+      = form.label :species, "Species"
+      = form.text_field :species, class: "autocomplete", value: @trainee.species.name
+    = @trainee.species.artwork
+    .input-field
+      = form.select :nature, options_for_select([@nil_nature_option] + @nature_options, disabled: @nil_nature_option, selected: @selected_nature)
+  .radar-container
+    = render "shared/radar_chart", stats: @trainee.evs
+    - PokeLog::Stats.new.keys.each do |stat|
+      .point{class: stat}
+        - attr_name = "#{stat}_ev"
+        = form.text_field attr_name.to_sym, class: "ev-input", value: @trainee.send(attr_name)

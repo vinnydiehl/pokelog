@@ -11,10 +11,17 @@ class TraineesController < ApplicationController
 
   # GET /trainees/1
   def show
+    @nil_nature_option = ["Nature", ""]
+    @nature_options = YAML.load_file("data/natures.yml").keys.sort.map { |n| [n.capitalize, n] }
+    @selected_nature = @nature_options.find { |opt| opt.last == @trainee.nature } || @nil_nature_option
+
+
+    # for example
     @trainee.species_id = "001"
     @trainee.hp_ev = 125
     @trainee.def_ev = 80
     @trainee.atk_ev = 32
+    @trainee.nature = :bold
     @trainee.save!
   end
 

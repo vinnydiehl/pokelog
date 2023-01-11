@@ -1,7 +1,7 @@
 class CreateTrainees < ActiveRecord::Migration[7.0]
   def change
     create_enum :nature,
-      YAML.load_file("data/natures.yml").keys.map(&:to_s)
+      YAML.load_file("data/natures.yml").keys
 
     create_table :trainees do |t|
       t.belongs_to :user

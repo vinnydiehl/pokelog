@@ -1,8 +1,35 @@
+.trainee-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.species-info {
+  margin-right: 150px;
+
+  input {
+    display: block;
+    overflow: hidden;
+  }
+
+  .autocomplete-content img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .artwork {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+}
+
 $radar_size: 500px;
 $point_offset: $radar_size / 2 + 25px;
 
 .radar-container {
   position: relative;
+  float: right;
   width: $radar_size;
   height: $radar_size;
   margin-top: 100px;
@@ -67,7 +94,7 @@ $point_offset: $radar_size / 2 + 25px;
     }
   }
 
-  input {
+  input.ev-input {
     border: 2px solid black;
     font-size: 12pt;
     text-align: center;
