@@ -5,18 +5,29 @@
 
 = form_with model: @trainee, class: "trainee-info", html: {autocomplete: "off"} do |form|
   .species-info
-    .input-field
-      = form.label :nickname, "Nickname"
-      = form.text_field :nickname
-    .input-field
-      = form.label :species, "Species"
-      = form.text_field :species, class: "autocomplete", value: @trainee.species.name
+    .side-by-side
+      .input-field.nickname
+        = form.label :nickname, "Nickname"
+        = form.text_field :nickname, value: @trainee.nickname
+      .input-field.species
+        = form.label :species, "Species"
+        = form.text_field :species, class: "autocomplete", value: @trainee.species.name
     = @trainee.species.artwork
-    .input-field
-      = form.select :nature, options_for_select([@nil_nature_option] + @nature_options, disabled: @nil_nature_option, selected: @selected_nature)
-  .radar-container
+    .side-by-side
+      .input-field
+        = form.select :nature, options_for_select([@nil_nature_option] + @nature_options, disabled: @nil_nature_option, selected: @selected_nature)
+        = form.label :nature, "Nature"
+      .input-field
+        = form.label :level, "Level"
+        = form.text_field :level, min: 1, max: 100, class: "validate", type: "number", value: @trainee.level
+  .ev-info
     = render "shared/radar_chart", stats: @trainee.evs
     - PokeLog::Stats.new.keys.each do |stat|
       .point{class: stat}
         - attr_name = "#{stat}_ev"
         = form.text_field attr_name.to_sym, class: "ev-input", value: @trainee.send(attr_name)
+    .pokerus.switch
+      %label
+        = form.check_box :pokerus, value: @trainee.pokerus
+        %span.lever
+        Pokérus

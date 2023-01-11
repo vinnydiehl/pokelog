@@ -20,82 +20,99 @@
     max-width: 100%;
     object-fit: contain;
   }
+
+  .species {
+    flex: 2;
+  }
+}
+
+.side-by-side {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+
+  >* {
+    flex: 1;
+  }
 }
 
 $radar_size: 500px;
 $point_offset: $radar_size / 2 + 25px;
 
-.radar-container {
+.ev-info {
   position: relative;
-  float: right;
   width: $radar_size;
   height: $radar_size;
   margin-top: 100px;
-}
 
-.radar-chart {
-  position: absolute;
-  width: $radar_size;
-  height: $radar_size;
-  margin: auto;
-}
-
-.point {
-  width: 3em;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  // Correct enigmatic diagonal misalignment
-  margin: -2.5em 0 0 -1.95em;
-
-  text-align: center;
-
-  &.def {
-    transform: rotate(30deg) translate($point_offset) rotate(-30deg);
-    &::after{
-      content: "Def"
-    }
+  .pokerus {
+    margin-top: $radar_size;
   }
 
-  &.spe {
-    transform: rotate(90deg) translate($point_offset) rotate(-90deg);
-    &::after{
-      content: "Spe"
-    }
+  .radar-chart {
+    position: absolute;
+    width: $radar_size;
+    height: $radar_size;
+    margin: auto;
   }
 
-  &.spd {
-    transform: rotate(150deg) translate($point_offset) rotate(-150deg);
-    &::after{
-      content: "Sp.D"
-    }
-  }
+  .point {
+    width: 3em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    // Correct enigmatic diagonal misalignment
+    margin: -2.5em 0 0 -1.95em;
 
-  &.spa {
-    transform: rotate(210deg) translate($point_offset) rotate(-210deg);
-    &::before{
-      content: "Sp.A"
-    }
-  }
-
-  &.hp {
-    transform: rotate(270deg) translate($point_offset) rotate(-270deg);
-    &::before{
-      content: "HP"
-    }
-  }
-
-  &.atk {
-    transform: rotate(330deg) translate($point_offset) rotate(-330deg);
-    &::before{
-      content: "Atk"
-    }
-  }
-
-  input.ev-input {
-    border: 2px solid black;
-    font-size: 12pt;
     text-align: center;
-    margin: 0;
+
+    &.def {
+      transform: rotate(30deg) translate($point_offset) rotate(-30deg);
+      &::after{
+        content: "Def"
+      }
+    }
+
+    &.spe {
+      transform: rotate(90deg) translate($point_offset) rotate(-90deg);
+      &::after{
+        content: "Spe"
+      }
+    }
+
+    &.spd {
+      transform: rotate(150deg) translate($point_offset) rotate(-150deg);
+      &::after{
+        content: "Sp.D"
+      }
+    }
+
+    &.spa {
+      transform: rotate(210deg) translate($point_offset) rotate(-210deg);
+      &::before{
+        content: "Sp.A"
+      }
+    }
+
+    &.hp {
+      transform: rotate(270deg) translate($point_offset) rotate(-270deg);
+      &::before{
+        content: "HP"
+      }
+    }
+
+    &.atk {
+      transform: rotate(330deg) translate($point_offset) rotate(-330deg);
+      &::before{
+        content: "Atk"
+      }
+    }
+
+    input.ev-input {
+      border: 2px solid black;
+      font-size: 12pt;
+      text-align: center;
+      margin: 0;
+    }
   }
 }

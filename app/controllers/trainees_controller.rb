@@ -18,6 +18,9 @@ class TraineesController < ApplicationController
 
     # for example
     @trainee.species_id = "001"
+    @trainee.nickname = "Bud"
+    @trainee.pokerus = false
+    @trainee.level = 50
     @trainee.hp_ev = 125
     @trainee.def_ev = 80
     @trainee.atk_ev = 32
