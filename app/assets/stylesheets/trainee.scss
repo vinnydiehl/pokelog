@@ -1,12 +1,10 @@
 .trainee-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 
 .species-info {
-  margin-right: 150px;
-
   input {
     display: block;
     overflow: hidden;
