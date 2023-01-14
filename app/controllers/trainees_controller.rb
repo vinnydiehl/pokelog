@@ -22,6 +22,7 @@ class TraineesController < ApplicationController
 
     # for example
     @trainee.species_id = "001"
+    # @trainee.species_id = "100-h"
     @trainee.nickname = "Bud"
     @trainee.pokerus = false
     @trainee.item = "power_weight"

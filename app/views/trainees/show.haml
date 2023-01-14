@@ -14,7 +14,8 @@
                                        onblur: "hideCounter();", value: @trainee.nickname
         .input-field.species
           = form.label :species, "Species"
-          = form.text_field :species, class: "autocomplete", value: @trainee.species.name
+          = form.text_field :species, class: "autocomplete",
+                                      value: @trainee.species.display_name
       = @trainee.species.artwork
       .side-by-side
         .input-field
