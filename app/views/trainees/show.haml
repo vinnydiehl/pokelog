@@ -15,8 +15,11 @@
         .input-field.species
           = form.label :species, "Species"
           = form.text_field :species, class: "autocomplete",
-                                      value: @trainee.species.display_name
-      = @trainee.species.artwork
+              value: @trainee.species.nil? ? nil : @trainee.species.display_name
+      - if @trainee.species.nil?
+        = image_tag "/images/artwork/none.png"
+      - else
+        = @trainee.species.artwork
       .side-by-side
         .input-field
           = form.select :nature,
