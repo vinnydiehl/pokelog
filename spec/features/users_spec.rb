@@ -32,7 +32,6 @@ RSpec.feature "users:", type: :feature do
 
         context "on submission" do
           before :each do
-            expect(page).to have_field("username")
             fill_in "username", with: TEST_USERNAME
             fill_in "email", with: TEST_EMAIL
             click_button "Register"
