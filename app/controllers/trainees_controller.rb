@@ -19,19 +19,6 @@ class TraineesController < ApplicationController
                        @nil_nature_option
 
     @items_options = YAML.load_file("data/items.yml").keys
-
-    # for example
-    @trainee.species_id = "001"
-    # @trainee.species_id = "100-h"
-    @trainee.nickname = "Bud"
-    @trainee.pokerus = false
-    @trainee.item = "power_weight"
-    @trainee.level = 50
-    @trainee.hp_ev = 125
-    @trainee.def_ev = 80
-    @trainee.atk_ev = 32
-    @trainee.nature = :bold
-    @trainee.save!
   end
 
   # GET /trainees/new
