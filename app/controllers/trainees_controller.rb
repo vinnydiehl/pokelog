@@ -12,14 +12,19 @@ class TraineesController < ApplicationController
   # GET /trainees/1
   def show
     @nil_nature_option = ["Nature", ""]
-    @nature_options = YAML.load_file("data/natures.yml").keys.sort.map { |n| [n.capitalize, n] }
-    @selected_nature = @nature_options.find { |opt| opt.last == @trainee.nature } || @nil_nature_option
+    @nature_options = YAML.load_file("data/natures.yml").keys.sort.map do |n|
+      [n.capitalize, n]
+    end
+    @selected_nature = @nature_options.find { |o| o.last == @trainee.nature } ||
+                       @nil_nature_option
 
+    @items_options = YAML.load_file("data/items.yml").keys
 
     # for example
     @trainee.species_id = "001"
     @trainee.nickname = "Bud"
     @trainee.pokerus = false
+    @trainee.item = "power_weight"
     @trainee.level = 50
     @trainee.hp_ev = 125
     @trainee.def_ev = 80
