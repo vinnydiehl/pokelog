@@ -24,6 +24,14 @@ class Trainee < ApplicationRecord
     self.item = data["item"] == "on" ? nil : data["item"]
   end
 
+  def title
+    if nickname.blank?
+      species.blank? ? "New Trainee" : species.name
+    else
+      species.blank? ? nickname : "#{nickname} (#{species.name})"
+    end
+  end
+
   def species
     Species.find_by_id species_id
   end

@@ -7,7 +7,11 @@
     %tbody
       - @trainees.each do |trn|
         %tr{class: dom_id(trn)}
-          %td= link_to trn.id, trainee_path(trn)
+          - if trn.species
+            %td.sprite= trn.species.sprite
+          - else
+            %td
+          %td= link_to trn.title, trainee_path(trn)
 
 // + button
 = link_to new_trainee_path, id: "new-trainee", class: "btn-floating btn-large waves-effect waves-light red right" do

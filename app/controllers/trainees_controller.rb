@@ -42,7 +42,7 @@ class TraineesController < ApplicationController
         if @trainee.save
           format.turbo_stream do
             render turbo_stream: [
-              turbo_stream.update("title", html: @trainee.nickname),
+              turbo_stream.update("title", html: @trainee.title),
               turbo_stream.update("artwork", partial: "trainees/artwork",
                                   locals: {trainee: @trainee}),
               turbo_stream.update("radar-chart", partial: "shared/radar_chart",
