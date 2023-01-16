@@ -4,50 +4,57 @@
 = javascript_include_tag "select_init"
 = javascript_include_tag "species_autocomplete"
 
-= form_with model: @trainee, class: "trainee-info", html: {autocomplete: "off"} do |form|
+= form_with model: @trainee, class: "trainee-info",
+            html: {autocomplete: "off"}, data: {controller: "form-submission"} do |form|
   .trainee-info-top
-    .species-info
+    #species-info
       .side-by-side
         .input-field.nickname
           = form.label :nickname, "Nickname"
-          = form.text_field :nickname, class: "counter", maxlength: 12, data: {length: 12},
-                                       onblur: "hideCounter();", value: @trainee.nickname
+          = form.text_field :nickname, class: "counter", maxlength: 12,
+                            data: {length: 12, action: "blur->form-submission#submit"},
+                            onblur: "hideCounter();", value: @trainee.nickname
         .input-field.species
           = form.label :species, "Species"
           = form.text_field :species, class: "autocomplete",
+                            data: {action: "blur->form-submission#submit"},
               value: @trainee.species.nil? ? nil : @trainee.species.display_name
-      - if @trainee.species.nil?
-        = image_tag "/images/artwork/none.png"
-      - else
-        = @trainee.species.artwork
+      #artwork= render "trainees/artwork", trainee: @trainee
       .side-by-side
         .input-field
           = form.select :nature,
               options_for_select([@nil_nature_option] + @nature_options,
-                                 disabled: @nil_nature_option, selected: @selected_nature)
+                                 disabled: @nil_nature_option, selected: @selected_nature),
+              {}, {data: {action: "change->form-submission#submit"}}
           = form.label :nature, "Nature"
         .input-field
           = form.label :level, "Level"
           = form.text_field :level, class: "validate", type: "number", **maxlength(3),
-                                    min: 1, max: 100, value: @trainee.level
-    .ev-info
-      = render "shared/radar_chart", stats: @trainee.evs
-      - PokeLog::Stats.new.keys.each do |stat|
+                                    min: 1, max: 100, value: @trainee.level,
+                                    data: {action: "change->form-submission#submit"}
+    #ev-info
+      #radar-chart
+        = render "shared/radar_chart", stats: @trainee.evs
+      - PokeLog::Stats.stats.each do |stat|
         .point{class: stat}
           - attr_name = "#{stat}_ev"
           = form.text_field attr_name.to_sym,
               class: "ev-input", type: "number", placeholder: 0, **maxlength(3),
-              min: 0, max: 255, value: @trainee.send(attr_name)
+              min: 0, max: 255, value: @trainee.send(attr_name),
+              data: {action: "input->form-submission#submit"}
       .pokerus.switch
         %label
-          = form.check_box :pokerus, value: @trainee.pokerus
+          = form.check_box :pokerus, value: @trainee.pokerus,
+                                     data: {action: "input->form-submission#submit"}
           %span.lever
           Pokérus
   .items-options
     %label
-      = form.radio_button :item, nil, value: @trainee.item.nil?
+      = form.radio_button :item, nil, value: @trainee.item.nil?,
+                                 data: {action: "click->form-submission#submit"}
       %span No Item
     - @items_options.each do |item|
       %label
-        = form.radio_button :item, item, value: @trainee.item == item
+        = form.radio_button :item, item, value: @trainee.item == item,
+                                   data: {action: "click->form-submission#submit"}
         %span= item.titleize

@@ -29,19 +29,22 @@ class TraineesController < ApplicationController
     redirect_to trainee_path(@trainee)
   end
 
-  # GET /trainees/1/edit
-  def edit
-  end
-
-  # PATCH/PUT /trainees/1 or /trainees/1.json
+  # PATCH/PUT /trainees/1
   def update
     respond_to do |format|
-      if @trainee.update(trainee_params)
-        format.html { redirect_to trainee_url(@trainee), notice: "Trainee was successfully updated." }
-        format.json { render :show, status: :ok, location: @trainee }
+      @trainee.set_attributes params["trainee"]
+
+      if @trainee.save
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update("artwork", partial: "trainees/artwork",
+                                locals: {trainee: @trainee}),
+            turbo_stream.update("radar-chart", partial: "shared/radar_chart",
+                                locals: {stats: @trainee.evs})
+          ]
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @trainee.errors, status: :unprocessable_entity }
+        puts "Error: Unable to save."
       end
     end
   end
@@ -52,7 +55,6 @@ class TraineesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to trainees_url, notice: "Trainee was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   gap: 50px;
 
-  .species-info {
+  #species-info {
     input {
       display: block;
       overflow: hidden;
@@ -15,7 +15,7 @@
       height: auto;
     }
 
-    .artwork {
+    #artwork {
       max-height: 100%;
       max-width: 100%;
       object-fit: contain;
@@ -39,7 +39,7 @@
   $radar_size: 500px;
   $point_offset: $radar_size / 2 + 25px;
 
-  .ev-info {
+  #ev-info {
     position: relative;
     width: $radar_size;
     height: $radar_size;
@@ -49,7 +49,7 @@
       margin-top: $radar_size;
     }
 
-    .radar-chart {
+    #radar-chart {
       position: absolute;
       width: $radar_size;
       height: $radar_size;
