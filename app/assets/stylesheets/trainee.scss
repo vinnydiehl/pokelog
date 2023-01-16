@@ -1,153 +1,190 @@
-.trainee-info-top {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 50px;
+.trainee-info {
+  // Don't grey out inputs while logged out
+  *:disabled {
+    color: black !important;
 
-  #species-info {
-    input {
-      display: block;
-      overflow: hidden;
+    & + span {
+      pointer-events: none;
     }
 
-    .autocomplete-content img {
-      max-width: 100%;
-      height: auto;
+    // TODO: Make this same color as when logged in
+    &:checked + span {
+      &::before {
+        background-color: #59c1b6 !important;
+      }
     }
 
-    #artwork {
-      max-height: 100%;
-      max-width: 100%;
-      object-fit: contain;
+    // Get rid of adjustment arrows while disabled
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
-
-    .species {
-      flex: 2;
+    &[type=number] {
+      -moz-appearance: textfield;
     }
   }
+  .switch.disabled {
+    pointer-events: none;
+  }
+  // Get rid of select dropdown arrow while disabled
+  .select-wrapper.disabled svg {
+    display: none;
+  }
 
-  .side-by-side {
+  .trainee-info-top {
     display: flex;
-    justify-content: space-between;
-    gap: 1em;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 50px;
 
-    >* {
-      flex: 1;
+    #species-info {
+      input {
+        display: block;
+        overflow: hidden;
+      }
+
+      .autocomplete-content img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      #artwork {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+      }
+
+      .species {
+        flex: 2;
+      }
     }
-  }
 
-  $radar_size: 500px;
-  $point_offset: $radar_size / 2 + 25px;
+    .side-by-side {
+      display: flex;
+      justify-content: space-between;
+      gap: 1em;
 
-  #ev-info {
-    position: relative;
-    width: $radar_size;
-    height: $radar_size;
-    margin: 100px 0;
-
-    .pokerus {
-      margin-top: $radar_size;
+      >* {
+        flex: 1;
+      }
     }
 
-    #radar-chart {
-      position: absolute;
+    $radar_size: 500px;
+    $point_offset: $radar_size / 2 + 25px;
+
+    #ev-info {
+      position: relative;
       width: $radar_size;
       height: $radar_size;
-      margin: auto;
-    }
+      margin: 100px 0;
 
-    .point {
-      width: 3em;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      // Correct enigmatic diagonal misalignment
-      margin: -2.5em 0 0 -1.95em;
-
-      text-align: center;
-
-      &.def {
-        transform: rotate(30deg) translate($point_offset) rotate(-30deg);
-        &::after{
-          content: "Def"
-        }
+      .pokerus {
+        margin-top: $radar_size;
       }
 
-      &.spe {
-        transform: rotate(90deg) translate($point_offset) rotate(-90deg);
-        &::after{
-          content: "Spe"
-        }
+      #radar-chart {
+        position: absolute;
+        width: $radar_size;
+        height: $radar_size;
+        margin: auto;
       }
 
-      &.spd {
-        transform: rotate(150deg) translate($point_offset) rotate(-150deg);
-        &::after{
-          content: "Sp.D"
-        }
-      }
+      .point {
+        width: 3em;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        // Correct enigmatic diagonal misalignment
+        margin: -2.5em 0 0 -1.95em;
 
-      &.spa {
-        transform: rotate(210deg) translate($point_offset) rotate(-210deg);
-        &::before{
-          content: "Sp.A"
-        }
-      }
-
-      &.hp {
-        transform: rotate(270deg) translate($point_offset) rotate(-270deg);
-        &::before{
-          content: "HP"
-        }
-      }
-
-      &.atk {
-        transform: rotate(330deg) translate($point_offset) rotate(-330deg);
-        &::before{
-          content: "Atk"
-        }
-      }
-
-      input.ev-input {
-        border: 2px solid black;
-        font-size: 12pt;
         text-align: center;
-        margin: 0;
 
-        // Make it look like it forces a 0 into an empty box
-        // (actually just a black placeholder
-        //  that disappears on focus)
-        &::placeholder {
-          color: black;
-          opacity: 1;
-        }
-        &:-ms-input-placeholder { color: black; }
-        &::-ms-input-placeholder { color: black; }
-        &:focus {
-          border: 2px solid green;
-          &::placeholder {
-            color: transparent;
+        &.def {
+          transform: rotate(30deg) translate($point_offset) rotate(-30deg);
+          &::after{
+            content: "Def"
           }
         }
 
-        &:invalid {
-          border: 2px solid red;
+        &.spe {
+          transform: rotate(90deg) translate($point_offset) rotate(-90deg);
+          &::after{
+            content: "Spe"
+          }
         }
 
-        // No arrows
-        -moz-appearance: textfield;
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-          -webkit-appearance: none;
+        &.spd {
+          transform: rotate(150deg) translate($point_offset) rotate(-150deg);
+          &::after{
+            content: "Sp.D"
+          }
+        }
+
+        &.spa {
+          transform: rotate(210deg) translate($point_offset) rotate(-210deg);
+          &::before{
+            content: "Sp.A"
+          }
+        }
+
+        &.hp {
+          transform: rotate(270deg) translate($point_offset) rotate(-270deg);
+          &::before{
+            content: "HP"
+          }
+        }
+
+        &.atk {
+          transform: rotate(330deg) translate($point_offset) rotate(-330deg);
+          &::before{
+            content: "Atk"
+          }
+        }
+
+        input.ev-input {
+          border: 2px solid black;
+          font-size: 12pt;
+          text-align: center;
           margin: 0;
+
+          // Make it look like it forces a 0 into an empty box
+          // (actually just a black placeholder
+          //  that disappears on focus)
+          &::placeholder {
+            color: black;
+            opacity: 1;
+          }
+          &:-ms-input-placeholder { color: black; }
+          &::-ms-input-placeholder { color: black; }
+          &:focus {
+            border: 2px solid green;
+            &::placeholder {
+              color: transparent;
+            }
+          }
+
+          &:invalid {
+            border: 2px solid red;
+          }
+
+          // No arrows
+          -moz-appearance: textfield;
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
         }
       }
     }
   }
-}
 
-.items-options {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  .items-options {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    span {
+      color: #545454;
+    }
+  }
 }

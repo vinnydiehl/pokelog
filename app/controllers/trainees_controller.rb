@@ -31,21 +31,23 @@ class TraineesController < ApplicationController
 
   # PATCH/PUT /trainees/1
   def update
-    respond_to do |format|
-      @trainee.set_attributes params["trainee"]
+    if @current_user.present?
+      respond_to do |format|
+        @trainee.set_attributes params["trainee"]
 
-      if @trainee.save
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.update("title", html: @trainee.nickname),
-            turbo_stream.update("artwork", partial: "trainees/artwork",
-                                locals: {trainee: @trainee}),
-            turbo_stream.update("radar-chart", partial: "shared/radar_chart",
-                                locals: {stats: @trainee.evs})
-          ]
+        if @trainee.save
+          format.turbo_stream do
+            render turbo_stream: [
+              turbo_stream.update("title", html: @trainee.nickname),
+              turbo_stream.update("artwork", partial: "trainees/artwork",
+                                  locals: {trainee: @trainee}),
+              turbo_stream.update("radar-chart", partial: "shared/radar_chart",
+                                  locals: {stats: @trainee.evs})
+            ]
+          end
+        else
+          puts "Error: Unable to save."
         end
-      else
-        puts "Error: Unable to save."
       end
     end
   end

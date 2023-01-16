@@ -152,6 +152,7 @@ RSpec.feature "trainees:", type: :feature do
 
     context "with a blank trainee" do
       before :each do
+        log_in
         trainee = Trainee.new(user: User.first)
         trainee.save!
         visit trainee_path(trainee)
@@ -187,6 +188,7 @@ RSpec.feature "trainees:", type: :feature do
         TEST_TRAINEES.each do |display_name, attrs|
           describe "test trainee: #{attrs[:nickname]}" do
             before :each do
+              log_in
               trainee = Trainee.new(user: User.first, **attrs)
               trainee.save!
               visit trainee_path(trainee)
@@ -234,7 +236,8 @@ RSpec.feature "trainees:", type: :feature do
           visit trainee_path(trainee)
 
           # Make sure held item is selected
-          expect(page).to have_field "trainee_item_#{attrs[:item]}", checked: true
+          expect(page).to have_field "trainee_item_#{attrs[:item]}",
+            checked: true, disabled: true
           # Make sure all items are disabled
           ([""] + ITEMS.map { |s| "_#{s}" }).each do |item|
             expect(page).to have_field "trainee_item#{item}", disabled: true
