@@ -72,19 +72,35 @@ def test_server_interaction
         expect(Trainee.first.species_id).to eq SINGLE_ATTRS[:species_id]
       end
 
-      it "updates the artwork" do
+      it "changes the artwork" do
         expect(page).to have_xpath "//img[contains(@src,'artwork/#{SINGLE_ATTRS[:species_id]}.png')]"
       end
     end
 
-    %w[nickname level].each do |field|
-      it "updates the #{field}" do
-        fill_in "trainee_#{field}", with: (value = SINGLE_ATTRS[field.to_sym])
-        click_away
-        wait_for field, value
+    context "when changing the nickname" do
+      value = SINGLE_ATTRS[:nickname]
 
-        expect(Trainee.first.send field).to eq value
+      before :each do
+        fill_in "trainee_nickname", with: value
+        click_away
+        wait_for :nickname, value
       end
+
+      it "updates the nickname" do
+        expect(Trainee.first.nickname).to eq value
+      end
+
+      it "changes the page title" do
+        expect(find("#title").text).to eq value
+      end
+    end
+
+    it "updates the level" do
+      fill_in "trainee_level", with: (value = SINGLE_ATTRS[:level])
+      click_away
+      wait_for :level, value
+
+      expect(Trainee.first.level).to eq value
     end
 
     it "updates the nature" do
@@ -129,7 +145,7 @@ def test_server_interaction
 end
 
 RSpec.feature "trainees:", type: :feature do
-  describe "/trainees/:id", focus: true do
+  describe "/trainees/:id" do
     before :each do
       create_user
     end
