@@ -19,6 +19,10 @@ class TraineesController < ApplicationController
                        @nil_nature_option
 
     @items_options = YAML.load_file("data/items.yml").keys
+
+    @search_results = (query = params[:q]).present? ?
+      Species.all.select { |pkmn| pkmn.name =~ /.*#{query}.*/i } :
+      Species.all
   end
 
   # GET /trainees/new

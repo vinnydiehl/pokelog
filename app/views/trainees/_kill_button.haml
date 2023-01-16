@@ -1,0 +1,13 @@
+- js = species.yields.map { |stat, amt| "var n=document.getElementById('trainee_#{stat}_ev');n.value=parseInt(n.value)+#{amt};n.dispatchEvent(new Event('input',{bubbles:true}));" }.join
+.waves-effect.waves-teal.data-entry[species]{onclick: js}
+  .id= species.pretty_id
+  .main-content
+    .top
+      .sprite= species.sprite
+      .name-form
+        .name= species.name
+        - if species.has_forms?
+          .form #{species.form} #{species.form_desc}
+    .yields
+      - species.yields.each do |stat, amt|
+        .stat{class: stat} #{amt} #{format_stat stat}
