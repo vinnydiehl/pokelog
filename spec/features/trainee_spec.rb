@@ -91,7 +91,7 @@ def test_server_interaction
       end
 
       it "changes the page title" do
-        expect(find("#title").text).to eq value
+        expect(find("#title").text).to eq Trainee.first.title
       end
     end
 
