@@ -33,7 +33,7 @@
                          min: 1, max: 100, value: @trainee.level, disabled: logged_out?,
                          data: {action: "change->form-submission#submit"}
     #ev-info
-      #radar-chart
+      #stats-chart
         = render "shared/radar_chart", stats: @trainee.evs
       - PokeLog::Stats.stats.each do |stat|
         .point{class: stat}

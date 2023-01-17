@@ -46,7 +46,7 @@ class TraineesController < ApplicationController
               turbo_stream.update("artwork", partial: "trainees/artwork",
                                   locals: {trainee: @trainee}),
               turbo_stream.update("radar-chart", partial: "shared/radar_chart",
-                                  locals: {stats: @trainee.evs})
+                                  locals: {stats: @trainee.evs, stream: true})
             ]
           end
         else
