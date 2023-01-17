@@ -1,6 +1,7 @@
 - provide :title, @trainee.title
 
 = javascript_include_tag "character_counter"
+= javascript_include_tag "modal_init"
 = javascript_include_tag "select_init"
 = javascript_include_tag "species_autocomplete"
 = javascript_include_tag "update_evs"
@@ -34,6 +35,9 @@
                          min: 1, max: 100, value: @trainee.level, disabled: logged_out?,
                          data: {action: "change->form-submission#submit"}
     #ev-info
+      - if logged_in?
+        = link_to "#delete-modal", id: "delete", class: "modal-trigger" do
+          %i.material-icons delete
       #stats-chart
         = render "shared/radar_chart", stats: @trainee.evs
       - PokeLog::Stats.stats.each do |stat|
@@ -73,3 +77,14 @@
                        data: { action: "input->form-submission#submit" }
     .results
       = render "results", results: @search_results
+
+- if logged_in?
+  #delete-modal.modal
+    .modal-content
+      %h4 Confirm delete
+      %p Are you sure? This can't be undone.
+    .modal-footer
+      = form_with model: @trainee, method: :delete, data: {turbo: false} do |f|
+        %a#cancel-delete.modal-close.waves-effect.waves-teal.btn-flat Cancel
+        = f.submit "Delete", id: "confirm-delete",
+            class: "modal-close waves-effect waves-teal btn-flat"

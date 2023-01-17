@@ -37,6 +37,18 @@
     flex-wrap: wrap;
     gap: 50px;
 
+    #delete {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      z-index: 1;
+
+      i {
+        font-size: 3rem;
+        color: grey;
+      }
+    }
+
     #species-info {
       input {
         display: block;

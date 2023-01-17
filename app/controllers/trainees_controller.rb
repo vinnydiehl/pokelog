@@ -35,33 +35,42 @@ class TraineesController < ApplicationController
 
   # PATCH/PUT /trainees/1
   def update
-    if @current_user.present?
-      respond_to do |format|
-        @trainee.set_attributes params["trainee"]
+    if @current_user.blank?
+      return redirect_to trainee_path(@trainee), notice: NO_USER_NOTICE
+    end
 
-        if @trainee.save
-          format.turbo_stream do
-            render turbo_stream: [
-              turbo_stream.update("title", html: @trainee.title),
-              turbo_stream.update("artwork", partial: "trainees/artwork",
-                                  locals: {trainee: @trainee}),
-              turbo_stream.update("radar-chart", partial: "shared/radar_chart",
-                                  locals: {stats: @trainee.evs, stream: true})
-            ]
-          end
-        else
-          puts "Error: Unable to save."
+    respond_to do |format|
+      @trainee.set_attributes params["trainee"]
+
+      if @trainee.save
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update("title", html: @trainee.title),
+            turbo_stream.update("artwork", partial: "trainees/artwork",
+                                locals: {trainee: @trainee}),
+            turbo_stream.update("radar-chart", partial: "shared/radar_chart",
+                                locals: {stats: @trainee.evs, stream: true})
+          ]
         end
+      else
+        puts "Error: Unable to save."
       end
     end
   end
 
-  # DELETE /trainees/1 or /trainees/1.json
+  # DELETE /trainees/1
   def destroy
+    if @current_user.blank?
+      return redirect_to trainee_path(@trainee), notice: NO_USER_NOTICE
+    end
+
+    nickname = @trainee.nickname || "Trainee"
+
     @trainee.destroy
 
     respond_to do |format|
-      format.html { redirect_to trainees_url, notice: "Trainee was successfully destroyed." }
+      format.html { redirect_to trainees_url, status: :see_other,
+                      notice: "#{nickname} has been deleted." }
     end
   end
 

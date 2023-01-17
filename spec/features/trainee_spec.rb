@@ -169,6 +169,40 @@ def test_server_interaction
         end
       end
     end
+
+    describe "the delete button modal" do
+      before :each do
+        find("#delete").click
+      end
+
+      context "when accepted" do
+        before :each do
+          find("#confirm-delete").click
+        end
+
+        it "redirects to trainees#index" do
+          expect(page).to have_current_path trainees_path
+        end
+
+        it "deletes the trainee" do
+          expect(Trainee.all.size).to eq 0
+        end
+      end
+
+      context "when declined" do
+        before :each do
+          find("#cancel-delete").click
+        end
+
+        it "stays on the trainee page" do
+          expect(page).to have_current_path trainee_path(Trainee.first)
+        end
+
+        it "doesn't delete the trainee" do
+          expect(Trainee.all.size).to eq 1
+        end
+      end
+    end
   end
 end
 
@@ -354,6 +388,10 @@ RSpec.feature "trainees:", type: :feature do
 
         it "does not display the kill search" do
           expect(page).not_to have_selector("#kill-search")
+        end
+
+        it "does not display the delete button" do
+          expect(page).not_to have_selector("#delete")
         end
       end
     end
