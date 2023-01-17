@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_21_190321) do
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "item", ["macho_brace", "power_weight", "power_bracer", "power_belt", "power_lens", "power_band", "power_anklet"]
   create_enum "nature", ["hardy", "lonely", "brave", "adamant", "naughty", "bold", "docile", "relaxed", "impish", "lax", "timid", "hasty", "serious", "jolly", "naive", "modest", "mild", "quiet", "bashful", "rash", "calm", "gentle", "sassy", "careful", "quirky"]
 
   create_table "kills", id: false, force: :cascade do |t|
@@ -29,14 +30,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_21_190321) do
 
   create_table "trainees", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "team_id"
     t.string "species_id"
+    t.string "nickname"
     t.integer "level"
-    t.boolean "pokerus"
-    t.hstore "start_stats"
-    t.hstore "trained_stats"
+    t.boolean "pokerus", default: false
     t.enum "nature", enum_type: "nature"
-    t.hstore "evs"
+    t.enum "item", enum_type: "item"
+    t.integer "hp_ev", default: 0
+    t.integer "atk_ev", default: 0
+    t.integer "def_ev", default: 0
+    t.integer "spa_ev", default: 0
+    t.integer "spd_ev", default: 0
+    t.integer "spe_ev", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_trainees_on_user_id"

@@ -1,0 +1,206 @@
+.trainee-info {
+  // Don't grey out inputs while logged out
+  *:disabled {
+    color: black !important;
+
+    & + span {
+      pointer-events: none;
+    }
+
+    // TODO: Make this same color as when logged in
+    &:checked + span {
+      &::before {
+        background-color: #59c1b6 !important;
+      }
+    }
+
+    // Get rid of adjustment arrows while disabled
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &[type=number] {
+      -moz-appearance: textfield;
+    }
+  }
+  .switch.disabled {
+    pointer-events: none;
+  }
+  // Get rid of select dropdown arrow while disabled
+  .select-wrapper.disabled svg {
+    display: none;
+  }
+
+  .trainee-info-top {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 50px;
+
+    #delete {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      z-index: 1;
+
+      i {
+        font-size: 3rem;
+        color: grey;
+      }
+    }
+
+    #species-info {
+      input {
+        display: block;
+        overflow: hidden;
+      }
+
+      .autocomplete-content img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      #artwork {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+      }
+
+      .species {
+        flex: 2;
+      }
+    }
+
+    .side-by-side {
+      display: flex;
+      justify-content: space-between;
+      gap: 1em;
+
+      >* {
+        flex: 1;
+      }
+    }
+
+    $radar_size: 500px;
+    $point_offset: $radar_size / 2 + 25px;
+
+    #ev-info {
+      position: relative;
+      width: $radar_size;
+      height: $radar_size;
+      margin: 100px 0;
+
+      .pokerus {
+        margin-top: $radar_size;
+      }
+
+      .radar-chart {
+        position: absolute;
+        width: $radar_size;
+        height: $radar_size;
+        margin: auto;
+      }
+
+      .point {
+        width: 3em;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        // Correct enigmatic diagonal misalignment
+        margin: -2.5em 0 0 -1.95em;
+
+        text-align: center;
+
+        &.def {
+          transform: rotate(30deg) translate($point_offset) rotate(-30deg);
+          &::after{
+            content: "Def"
+          }
+        }
+
+        &.spe {
+          transform: rotate(90deg) translate($point_offset) rotate(-90deg);
+          &::after{
+            content: "Spe"
+          }
+        }
+
+        &.spd {
+          transform: rotate(150deg) translate($point_offset) rotate(-150deg);
+          &::after{
+            content: "Sp.D"
+          }
+        }
+
+        &.spa {
+          transform: rotate(210deg) translate($point_offset) rotate(-210deg);
+          &::before{
+            content: "Sp.A"
+          }
+        }
+
+        &.hp {
+          transform: rotate(270deg) translate($point_offset) rotate(-270deg);
+          &::before{
+            content: "HP"
+          }
+        }
+
+        &.atk {
+          transform: rotate(330deg) translate($point_offset) rotate(-330deg);
+          &::before{
+            content: "Atk"
+          }
+        }
+
+        input.ev-input {
+          border: 2px solid black;
+          font-size: 12pt;
+          text-align: center;
+          margin: 0;
+
+          // Make it look like it forces a 0 into an empty box
+          // (actually just a black placeholder
+          //  that disappears on focus)
+          &::placeholder {
+            color: black;
+            opacity: 1;
+          }
+          &:-ms-input-placeholder { color: black; }
+          &::-ms-input-placeholder { color: black; }
+          &:focus {
+            border: 2px solid green;
+            &::placeholder {
+              color: transparent;
+            }
+          }
+
+          &:invalid {
+            border: 2px solid red;
+          }
+
+          // No arrows
+          -moz-appearance: textfield;
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .items-options {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    span {
+      color: #545454;
+    }
+  }
+}
+
+#kill-search {
+  margin-top: 20px;
+}

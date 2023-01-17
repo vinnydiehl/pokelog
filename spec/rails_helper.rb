@@ -12,6 +12,7 @@ require "rspec/rails"
 
 # Internal
 require "gsi_patch"
+require "test_session"
 
 # Check for pending migrations and applies them before tests are run.
 begin

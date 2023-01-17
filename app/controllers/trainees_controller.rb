@@ -1,59 +1,76 @@
 class TraineesController < ApplicationController
   before_action :set_trainee, only: %i[show edit update destroy]
 
-  # GET /trainees or /trainees.json
+  NO_USER_NOTICE = "Not logged in."
+
+  # GET /trainees
   def index
+    return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
     @trainees = Trainee.where user: @current_user
   end
 
-  # GET /trainees/1 or /trainees/1.json
+  # GET /trainees/1
   def show
+    @nil_nature_option = ["Nature", ""]
+    @nature_options = YAML.load_file("data/natures.yml").keys.sort.map do |n|
+      [n.capitalize, n]
+    end
+    @selected_nature = @nature_options.find { |o| o.last == @trainee.nature } ||
+                       @nil_nature_option
+
+    @items_options = YAML.load_file("data/items.yml").keys
+
+    @search_results = (query = params[:q]).present? ?
+      Species.all.select { |pkmn| pkmn.name =~ /.*#{query}.*/i } :
+      Species.all
   end
 
   # GET /trainees/new
   def new
-    @trainee = Trainee.new
+    return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
+    @trainee = Trainee.new(user: @current_user)
+    @trainee.save!
+    redirect_to trainee_path(@trainee)
   end
 
-  # GET /trainees/1/edit
-  def edit
-  end
-
-  # POST /trainees or /trainees.json
-  def create
-    @trainee = Trainee.new(trainee_params)
-
-    respond_to do |format|
-      if @trainee.save
-        format.html { redirect_to trainee_url(@trainee), notice: "Trainee was successfully created." }
-        format.json { render :show, status: :created, location: @trainee }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @trainee.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /trainees/1 or /trainees/1.json
+  # PATCH/PUT /trainees/1
   def update
+    if @current_user.blank?
+      return redirect_to trainee_path(@trainee), notice: NO_USER_NOTICE
+    end
+
     respond_to do |format|
-      if @trainee.update(trainee_params)
-        format.html { redirect_to trainee_url(@trainee), notice: "Trainee was successfully updated." }
-        format.json { render :show, status: :ok, location: @trainee }
+      @trainee.set_attributes params["trainee"]
+
+      if @trainee.save
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update("title", html: @trainee.title),
+            turbo_stream.update("artwork", partial: "trainees/artwork",
+                                locals: {trainee: @trainee}),
+            turbo_stream.update("radar-chart", partial: "shared/radar_chart",
+                                locals: {stats: @trainee.evs, stream: true})
+          ]
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @trainee.errors, status: :unprocessable_entity }
+        puts "Error: Unable to save."
       end
     end
   end
 
-  # DELETE /trainees/1 or /trainees/1.json
+  # DELETE /trainees/1
   def destroy
+    if @current_user.blank?
+      return redirect_to trainee_path(@trainee), notice: NO_USER_NOTICE
+    end
+
+    nickname = @trainee.nickname || "Trainee"
+
     @trainee.destroy
 
     respond_to do |format|
-      format.html { redirect_to trainees_url, notice: "Trainee was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to trainees_url, status: :see_other,
+                      notice: "#{nickname} has been deleted." }
     end
   end
 

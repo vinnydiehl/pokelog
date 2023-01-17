@@ -21,7 +21,7 @@ module PokeLog
       end
     end
 
-    def initialize(hash)
+    def initialize(hash = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0})
       Stats.verify(hash)
 
       Stats.stats.each do |s|
@@ -31,12 +31,12 @@ module PokeLog
 
     def +(addend)
       Stats.verify addend, false
-      self.merge!(addend) { |_, old, new| old + new }
+      self.merge(addend) { |_, old, new| old + new }
     end
 
     def -(subtrahend)
       Stats.verify subtrahend, false
-      self.merge!(subtrahend) { |_, old, new| old - new }
+      self.merge(subtrahend) { |_, old, new| old - new }
     end
 
     def hp
