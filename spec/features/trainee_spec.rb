@@ -47,6 +47,18 @@ STATS = PokeLog::Stats.stats.map { |s| :"#{s}_ev" }
 
 ITEMS = YAML.load_file("data/items.yml").keys
 
+# Test cases for kill buttons. These selections cover a good range of cases;
+# each stat is tested, some affect multiple stats, increase stats by different
+# amounts, etc.
+# {
+#   species_003: {name: "Venusaur", spa: 2, spd: 1},
+#   species_004: {name: "Charmander", spe: 1},
+#   ...
+# }
+TEST_KILL_BUTTONS = %w[003 004 011 034 590 797].map do |id|
+  { "species_#{id}": {name: (s = Species.find(id)).name}.merge(s.yields) }
+end.inject(:merge)
+
 def click_away
   find("body").click
 end
@@ -56,6 +68,12 @@ def wait_for(attr, value, **args)
   t = Time.now
   until Trainee.first.send(attr) == value
     break if Time.now - t > timeout
+  end
+end
+
+class Hash
+  def double_values
+    map { |stat, value| { stat.to_sym => value * 2 } }.inject(:merge)
   end
 end
 
@@ -111,14 +129,12 @@ def test_server_interaction
       expect(Trainee.first.nature).to eq SINGLE_ATTRS[:nature]
     end
 
-    STATS.each do |stat|
-      it "updates #{stat}" do
-        fill_in "trainee_#{stat}", with: SINGLE_ATTRS[stat]
-        click_away
-        wait_for stat, SINGLE_ATTRS[stat]
+    it "updates Pokérus status" do
+      expected_status = !Trainee.first.pokerus
+      find(".pokerus label").click
+      wait_for :pokerus, expected_status
 
-        expect(Trainee.first.send stat).to eq SINGLE_ATTRS[stat]
-      end
+      expect(Trainee.first.pokerus).to eq expected_status
     end
 
     describe "items:" do
@@ -139,6 +155,18 @@ def test_server_interaction
         wait_for :item, nil
 
         expect(Trainee.first.item).to be_nil
+      end
+    end
+
+    context "when changing stats manually" do
+      STATS.each do |stat|
+        it "updates #{stat}" do
+          fill_in "trainee_#{stat}", with: SINGLE_ATTRS[stat]
+          click_away
+          wait_for stat, SINGLE_ATTRS[stat]
+
+          expect(Trainee.first.send stat).to eq SINGLE_ATTRS[stat]
+        end
       end
     end
   end
@@ -177,7 +205,73 @@ RSpec.feature "trainees:", type: :feature do
 
         STATS.each do |stat|
           it "#{stat}: 0" do
-            expect(page).to have_selector "#trainee_#{stat}[value='0']"
+            expect(page).to have_field "trainee_#{stat}", with: 0
+          end
+        end
+      end
+
+      TEST_KILL_BUTTONS.each do |id, data|
+        context "when using the #{data[:name]} kill button", js: true do
+          [true, false].each do |pokerus|
+            context "with#{pokerus ? "" : "out"} Pokérus" do
+              ([nil] + ITEMS).each do |item|
+                item_name = (item || "No Item").titleize
+
+                context "while holding #{item_name}" do
+                  before :each do
+                    # Calculate expected values based off Pokérus/held item
+                    @expected = PokeLog::Stats.new
+                    data.delete :name
+                    data.each { |stat, value| @expected[stat] = value }
+                    case item
+                    when "macho_brace"
+                      @expected = @expected.double_values
+                    when "power_weight"
+                      @expected[:hp] += 4
+                    when "power_bracer"
+                      @expected[:atk] += 4
+                    when "power_belt"
+                      @expected[:def] += 4
+                    when "power_lens"
+                      @expected[:spa] += 4
+                    when "power_band"
+                      @expected[:spd] += 4
+                    when "power_anklet"
+                      @expected[:spe] += 4
+                    end
+                    if pokerus
+                      @expected = @expected.double_values
+                    end
+
+                    # Click the necessary toggles
+                    if pokerus
+                      find(".pokerus label").click
+                      wait_for :pokerus, pokerus
+                    end
+                    find("span", text: item_name).click
+                    wait_for :item, item
+
+                    # Click the kill button
+                    find("##{id}").click
+                    # Use a stat that we know we're changing to wait for DB
+                    wait_stat = data.keys.first
+                    wait_for :"#{wait_stat}_ev", @expected[wait_stat]
+                  end
+
+                  it "sets the EVs in the database" do
+                    @expected.each do |stat, value|
+                      expect(Trainee.first.send "#{stat}_ev").to eq value
+                    end
+                  end
+
+                  it "changes the values in the EV inputs" do
+                    @expected.each do |stat, value|
+                      expect(page).to have_field "trainee_#{stat}_ev", with: value
+                    end
+                  end
+                end
+              end
+            end
           end
         end
       end
@@ -220,7 +314,7 @@ RSpec.feature "trainees:", type: :feature do
               STATS.each do |stat|
                 expected_value = attrs[stat]
                 it "#{stat}: #{expected_value}" do
-                  expect(page).to have_selector "#trainee_#{stat}[value='#{expected_value}']"
+                  expect(page).to have_field "trainee_#{stat}", with: expected_value
                 end
               end
             end
@@ -256,6 +350,10 @@ RSpec.feature "trainees:", type: :feature do
             expected_value = attrs[stat]
             expect(find("#trainee_#{stat}[value='#{expected_value}']")[:disabled]).to eq "disabled"
           end
+        end
+
+        it "does not display the kill search" do
+          expect(page).not_to have_selector("#kill-search")
         end
       end
     end
