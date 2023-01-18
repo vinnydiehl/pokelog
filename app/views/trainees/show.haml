@@ -37,7 +37,8 @@
                          data: {action: "change->form-submission#submit"}
     #ev-info
       #mobile-sprite
-        = @trainee.species.sprite
+        - if @trainee.species
+          = @trainee.species.sprite
       - if logged_in?
         = link_to "#delete-modal", id: "delete", class: "modal-trigger" do
           %i.material-icons delete
