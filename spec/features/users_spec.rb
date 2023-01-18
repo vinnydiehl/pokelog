@@ -86,7 +86,7 @@ RSpec.feature "users:", type: :feature do
     end
   end
 
-  describe "/logout", focus: true do
+  describe "/logout" do
     before :each do
       log_in
       find("#profile-widget").click

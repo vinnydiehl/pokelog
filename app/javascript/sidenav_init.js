@@ -1,6 +1,5 @@
 runOnLoad(() => {
-    var elems = document.querySelectorAll(".sidenav");
-    var instances = M.Sidenav.init(elems);
+    M.Sidenav.init(document.querySelectorAll(".sidenav"));
     if (window.innerWidth <= 992) {
         document.querySelector('#nav-full').style.transform = "translateX(-105%)";
         document.querySelector('#nav-full').style.display = "block";
