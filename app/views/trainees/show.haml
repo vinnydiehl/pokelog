@@ -11,7 +11,7 @@
             html: {autocomplete: "off"}, data: {controller: "form-submission"} do |f|
   .trainee-info-top
     #species-info
-      .side-by-side
+      #nickname-species.side-by-side
         .input-field.nickname
           = f.label :nickname, "Nickname"
           = f.text_field :nickname, class: "counter", maxlength: 12, disabled: logged_out?,
@@ -36,6 +36,8 @@
                          min: 1, max: 100, value: @trainee.level, disabled: logged_out?,
                          data: {action: "change->form-submission#submit"}
     #ev-info
+      #mobile-sprite
+        = @trainee.species.sprite
       - if logged_in?
         = link_to "#delete-modal", id: "delete", class: "modal-trigger" do
           %i.material-icons delete

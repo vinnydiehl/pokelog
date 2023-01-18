@@ -1,0 +1,8 @@
+$min-page-width: 375px;
+
+@media (max-width: #{$min-page-width}) {
+  body {
+    min-width: $min-page-width;
+    overflow-x: scroll;
+  }
+}
