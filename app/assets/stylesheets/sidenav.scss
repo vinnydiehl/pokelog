@@ -6,10 +6,16 @@ $mnav_size: 64px;
 header, main, footer {
   padding-left: 300px;
 }
-// Offset when sidebar is collapsed
-@media only screen and (max-width : 992px) {
+@media (max-width: #{$sidenav-breakpoint}) {
+  // Offset content from collapsed sidebar
   header, main, footer {
     padding-left: $mnav_size;
+  }
+
+  // Stop the open navbar from flashing on pageload on mobile.
+  // This will be set back to block with JS once initialized
+  #nav-full {
+    display: none;
   }
 }
 

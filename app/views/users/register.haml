@@ -1,5 +1,7 @@
 - provide :title, "New User"
 
+= javascript_include_tag "sidenav_init"
+
 %p Pick a username to continue!
 
 = form_with model: @user, url: "/register/submit", data: {turbo: false} do |form|

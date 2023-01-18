@@ -1,3 +1,5 @@
+@import "include/variables";
+
 $padding: 10px;
 $margin: 5px;
 $border: 3px solid black;
@@ -5,13 +7,25 @@ $border: 3px solid black;
 .results {
   margin-top: $margin;
 
+  // Stops selecting between data cells
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
 
+  @media (max-width: #{$species-med-breakpoint}) {
+    text-align: center;
+  }
+
   .data-entry {
+    // Need to re-enable selecting the text inside the cells
+    user-select: text;
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text;
+    -o-user-select: text;
+
     margin: $margin;
 
     border-radius: 25px;
@@ -20,6 +34,11 @@ $border: 3px solid black;
     padding-inline: $padding;
 
     display: inline-flex;
+    @media (max-width: #{$species-sm-breakpoint}) {
+      display: flex;
+      position: relative;
+      width: 100%
+    }
 
     width: auto;
 
@@ -31,8 +50,12 @@ $border: 3px solid black;
     .main-content {
       border-left: $border;
       margin-left: $padding;
-
       justify-content: space-between;
+
+      @media (max-width: #{$species-sm-breakpoint}) {
+        display: flex;
+        align-items: center;
+      }
 
       .top {
         display: flex;
@@ -44,6 +67,9 @@ $border: 3px solid black;
 
         .name-form {
           text-align: center;
+          @media (max-width: #{$species-sm-breakpoint}) {
+            text-align: left;
+          }
 
           .form {
             font-style: italic;
@@ -51,24 +77,13 @@ $border: 3px solid black;
         }
       }
 
-      .yields, .base-stats {
+      .yields {
         display: flex;
         justify-content: space-evenly;
-
-        .stat {
-        }
-
-        .hp {
-        }
-        .atk {
-        }
-        .def {
-        }
-        .spa {
-        }
-        .spd {
-        }
-        .spe {
+        @media (max-width: #{$species-sm-breakpoint}) {
+          display: block;
+          position: absolute;
+          right: $padding;
         }
       }
     }
