@@ -238,8 +238,8 @@ RSpec.feature "trainees:", type: :feature do
         end
 
         STATS.each do |stat|
-          it "#{stat}: 0" do
-            expect(page).to have_field "trainee_#{stat}", with: 0
+          it "#{stat}: blank" do
+            expect(find_field("trainee_#{stat}").value).to eq nil
           end
         end
       end
@@ -300,7 +300,8 @@ RSpec.feature "trainees:", type: :feature do
 
                   it "changes the values in the EV inputs" do
                     @expected.each do |stat, value|
-                      expect(page).to have_field "trainee_#{stat}_ev", with: value
+                      value = value.zero? ? "" : value.to_s
+                      expect(find_field("trainee_#{stat}_ev").value).to eq value
                     end
                   end
                 end
@@ -346,9 +347,9 @@ RSpec.feature "trainees:", type: :feature do
               end
 
               STATS.each do |stat|
-                expected_value = attrs[stat]
-                it "#{stat}: #{expected_value}" do
-                  expect(page).to have_field "trainee_#{stat}", with: expected_value
+                expected_value = attrs[stat].zero? ? nil : attrs[stat].to_s
+                it "#{stat}: #{expected_value || 'blank'}" do
+                  expect(find_field("trainee_#{stat}").value).to eq expected_value
                 end
               end
             end
@@ -381,7 +382,7 @@ RSpec.feature "trainees:", type: :feature do
           end
 
           STATS.each do |stat|
-            expected_value = attrs[stat]
+            expected_value = attrs[stat].zero? ? nil : attrs[stat]
             expect(find("#trainee_#{stat}[value='#{expected_value}']")[:disabled]).to eq "disabled"
           end
         end

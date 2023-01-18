@@ -49,7 +49,7 @@
           - attr_name = "#{stat}_ev"
           = f.text_field attr_name.to_sym,
               class: "ev-input", type: "number", placeholder: 0, **maxlength(3),
-              min: 0, max: 255, value: @trainee.send(attr_name),
+              min: 0, max: 255, value: ((v = @trainee.send(attr_name)).zero? ? nil : v),
               data: {action: "input->form-submission#submit"}, disabled: logged_out?
       .pokerus.switch{class: logged_out? ? "disabled" : ""}
         %label

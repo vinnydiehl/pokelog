@@ -29,7 +29,9 @@ function updateEvs(hp, atk, def, spa, spd, spe) {
 
     var inputs = document.querySelectorAll(".point input");
     inputs.forEach(input => {
-    input.value = parseInt(input.value) + eval(input.parentElement.classList[1]);
+        intValue = input.value == "" ? 0 : parseInt(input.value);
+        newValue = intValue + eval(input.parentElement.classList[1]);
+        input.value = newValue == 0 ? "" : newValue;
     });
     inputs[0].dispatchEvent(new Event('input',{bubbles:true}));
 }
