@@ -8,7 +8,7 @@ module ApplicationHelper
   def nav_link(icon, path, text = "")
     attrs = { class: "bold" }
 
-    attrs[:class] << " active" if current_page?(path)
+    attrs[:class] << " active" if request.path.starts_with? path
 
     content_tag(:li, attrs) do
       link_to path, class: "waves-effect" do
