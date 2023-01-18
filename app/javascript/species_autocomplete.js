@@ -1,4 +1,4 @@
-runOnLoad(function() {
+runOnLoad(() => {
     var elems = document.querySelectorAll(".autocomplete");
     var instances = M.Autocomplete.init(elems, { data: {
         "Bulbasaur": "/images/sprites/001.png",

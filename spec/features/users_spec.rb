@@ -86,11 +86,11 @@ RSpec.feature "users:", type: :feature do
     end
   end
 
-  describe "/logout" do
+  describe "/logout", focus: true do
     before :each do
       log_in
-      visit ENDPOINT
-      visit logout_path
+      find("#profile-widget").click
+      click_link "Logout"
     end
 
     it "redirects to /" do

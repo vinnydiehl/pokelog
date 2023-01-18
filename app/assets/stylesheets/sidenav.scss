@@ -22,12 +22,21 @@ header, main, footer {
 .sidenav {
   background-color: $dark_red;
 
+  #profile-widget .collapsible-header {
+    text-align: center;
+  }
+
   // Icon/text colors
   li>a {
     color: white;
-
     >i.material-icons {
       color: grey;
+    }
+  }
+  .collapsible li:not(.active)>a {
+    background-color: $dark_red;
+    &:hover {
+      background-color: #5e0606;
     }
   }
 

@@ -1,4 +1,4 @@
-runOnLoad(function() {
+runOnLoad(() => {
     M.CharacterCounter.init(document.querySelectorAll("input.counter"));
 });
 // Make it go away when you click away (call onblur)

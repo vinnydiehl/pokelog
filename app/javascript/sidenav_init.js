@@ -1,4 +1,4 @@
-runOnLoad(function() {
+runOnLoad(() => {
     var elems = document.querySelectorAll(".sidenav");
     var instances = M.Sidenav.init(elems);
     if (window.innerWidth <= 992) {

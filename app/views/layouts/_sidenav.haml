@@ -1,3 +1,4 @@
+= javascript_include_tag "collapsible_init"
 = javascript_include_tag "sidenav_init"
 = javascript_include_tag "waves_init"
 
@@ -13,10 +14,13 @@
     = link_to root_path, id: "logo-container", class: "waves-effect sidenav-close" do
       = image_tag "pokeball.svg", height: 120, id: "front-page-logo"
   - if logged_in?
-    %li#profile-widget
-      = link_to logout_path, float: "right" do
-        %span{style: "float: left;"}= @current_user.username
-        %span{style: "float: right;"} (click to logout)
+    %ul.collapsible
+      %li#profile-widget
+        %a.collapsible-header.waves-effect= @current_user.username
+        .collapsible-body
+          %ul
+            %li
+              = link_to "Logout", "/logout"
   - else
     %li#sign-in
       %a.sign-in= render "layouts/google_sign_in_button"
