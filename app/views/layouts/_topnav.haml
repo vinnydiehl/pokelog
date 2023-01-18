@@ -1,3 +1,7 @@
+- title = yield :title
+- mobile_title = yield :mobile_title
+
 %nav.top-nav
   .nav-wrapper
-    #title.brand-logo.center= yield :title
+    #title.brand-logo.center= title
+    #title-mobile.brand-logo.center= mobile_title.blank? ? title : mobile_title

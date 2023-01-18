@@ -3,4 +3,21 @@
 .top-nav {
   background-color: $red;
   margin-bottom: 30px;
+
+  #title {
+    // Stop from getting cut off too soon
+    width: 80%;
+
+    // Switch title for mobile
+    @media (max-width: #{$radar-breakpoint}) {
+      display: none;
+    }
+  }
+  #title-mobile {
+    width: 80%;
+
+    @media (min-width: #{$radar-breakpoint}) {
+      display: none;
+    }
+  }
 }
