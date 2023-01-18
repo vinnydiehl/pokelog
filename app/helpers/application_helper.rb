@@ -11,7 +11,7 @@ module ApplicationHelper
     attrs[:class] << " active" if request.path.starts_with? path
 
     content_tag(:li, attrs) do
-      link_to path, class: "waves-effect" do
+      link_to path, class: "waves-effect sidenav-close" do
         content_tag(:i, icon, class: "material-icons").concat(content_tag :div, text)
       end
     end

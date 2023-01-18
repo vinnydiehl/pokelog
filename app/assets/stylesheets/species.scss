@@ -5,6 +5,7 @@ $border: 3px solid black;
 .results {
   margin-top: $margin;
 
+  // Stops selecting between data cells
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -12,6 +13,13 @@ $border: 3px solid black;
   -o-user-select: none;
 
   .data-entry {
+    // Need to re-enable selecting the text inside the cells
+    user-select: text;
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text;
+    -o-user-select: text;
+
     margin: $margin;
 
     border-radius: 25px;
@@ -54,22 +62,6 @@ $border: 3px solid black;
       .yields, .base-stats {
         display: flex;
         justify-content: space-evenly;
-
-        .stat {
-        }
-
-        .hp {
-        }
-        .atk {
-        }
-        .def {
-        }
-        .spa {
-        }
-        .spd {
-        }
-        .spe {
-        }
       }
     }
   }
