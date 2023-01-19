@@ -1,7 +1,9 @@
+- login_uri = Rails.env.production? ? "https://www.pokelog.net" : "http://localhost:3000"
+
 %script{src: "https://accounts.google.com/gsi/client", async: true, defer: true}
 #g_id_onload{
   "data-client_id": "#{ENV["GOOGLE_OAUTH2_ID"]}",
-  "data-login_uri": "http://localhost:3000/login/submit",
+  "data-login_uri": "#{login_uri}/login/submit",
   "data-auto_prompt": "false"
 }
 .g_id_signin{
