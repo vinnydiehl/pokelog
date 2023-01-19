@@ -57,6 +57,6 @@ class UsersController < ApplicationController
   # Log in the user from @token (must be loaded from params w/ parse_token)
   def log_in
     cookies.encrypted[:google_id] = @token.user_id
-    redirect_to root_url, notice: "Logged in as #{@found_user.username}."
+    redirect_to trainees_url, notice: "Logged in as #{@found_user.username}."
   end
 end

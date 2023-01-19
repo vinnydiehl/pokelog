@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "pages#index"
 
-  %w[home index register].each { |r| get "/#{r}", to: redirect("/") }
+  %w[home index].each { |r| get "/#{r}", to: "pages#index" }
+  get "/register", to: redirect("/")
 
   resources :trainees
 

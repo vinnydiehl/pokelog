@@ -5,6 +5,39 @@ def logged_in?
 end
 
 RSpec.feature "users:", type: :feature do
+  describe "/" do
+    context "while logged out" do
+      before :each do
+        visit root_path
+      end
+
+      it "does not redirect" do
+        expect(page).to have_current_path root_path
+      end
+    end
+
+    context "while logged in" do
+      before :each do
+        log_in
+        visit root_path
+      end
+
+      it "redirects to /trainees" do
+        expect(page).to have_current_path trainees_path
+      end
+
+      %w[/home /index].each do |path|
+        context "when visiting #{path}" do
+          it "does not redirect" do
+            visit path
+
+            expect(page).to have_current_path path
+          end
+        end
+      end
+    end
+  end
+
   describe "a brand new user" do
     before :each do
       visit root_path
@@ -55,8 +88,8 @@ RSpec.feature "users:", type: :feature do
             expect(@user.google_id).to eq TEST_G_ID
           end
 
-          it "redirects to /" do
-            expect(page).to have_current_path root_path
+          it "redirects to /trainees" do
+            expect(page).to have_current_path trainees_path
           end
 
           it "logs the user in" do
@@ -71,8 +104,8 @@ RSpec.feature "users:", type: :feature do
         log_in
       end
 
-      it "redirects to /" do
-        expect(page).to have_current_path root_path
+      it "redirects to /trainees" do
+        expect(page).to have_current_path trainees_path
       end
 
       it "logs the user in" do

@@ -11,7 +11,7 @@
 
 %ul#nav-full.sidenav.sidenav-fixed{style: "transform: translateX(0px);"}
   %li.logo
-    = link_to root_path, id: "logo-container", class: "waves-effect sidenav-close" do
+    = link_to "/home", id: "logo-container", class: "waves-effect sidenav-close" do
       = image_tag "pokeball.svg", height: 120, id: "front-page-logo"
   - if logged_in?
     %ul.collapsible
