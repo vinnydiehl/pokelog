@@ -13,6 +13,15 @@ Rails.application.routes.draw do
 
   get "/species", to: "species#index"
 
+  {
+    400 => "bad_request",
+    404 => "not_found",
+    422 => "unprocessable_entity",
+    500 => "internal_server_error"
+  }.each do |code, view|
+    match "/#{code}", to: "errors##{view}", via: :all
+  end
+
   if Rails.env.test?
     get "/login/submit", to: "users#login"
   end

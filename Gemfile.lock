@@ -111,6 +111,11 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
+    haml-rails (2.1.0)
+      actionpack (>= 5.1)
+      activesupport (>= 5.1)
+      haml (>= 4.0.6)
+      railties (>= 5.1)
     hashie (5.0.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
@@ -281,6 +286,7 @@ DEPENDENCIES
   debug
   google_sign_in (~> 1.2)
   haml (~> 6.1)
+  haml-rails (~> 2.0)
   importmap-rails
   jbuilder
   pg (~> 1.4.5)
