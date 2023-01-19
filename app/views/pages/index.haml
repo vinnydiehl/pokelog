@@ -1,11 +1,19 @@
-- provide :title, "PokéLog"
+- provide :title, "PokéLog Beta"
 
 = javascript_include_tag "sidenav_init"
 
-%p
-  This will be a landing page if you're not logged in otherwise it'll take you
-  straight to your Pokémon. There will be a few paragraphs explaining the app and
-  offering a login/registration... for now here's some lorem ipsum. :)
-- 2.times do
-  %p
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed dignissim purus. Ut feugiat nulla et arcu ornare bibendum. In venenatis felis nec diam interdum, id pulvinar eros consequat. Donec non purus blandit, mollis risus sed, ultricies lorem. Aliquam fringilla elit quis maximus euismod. Quisque eu posuere lectus. Donec vel dolor ac leo tempor rhoncus. Nunc quam elit, congue nec libero id, maximus luctus velit. Quisque porta volutpat pellentesque. Maecenas nec bibendum mi. In molestie diam sit amet dolor ornare fringilla. In turpis ex, elementum quis magna id, semper finibus diam. Nunc at enim fringilla, tristique arcu sit amet, facilisis sapien. Morbi a fermentum nisl.
+%p Welcome to the beta for PokéLog! This app is in very early development, please don't hesitate to #{link_to "open an issue on GitHub", "https://github.com/vinnydiehl/pokelog/issues"} if you encounter any problems or have any recommendations.
+
+%p PokéLog is an EV training tool/logbook for hardcore Pokémon enthusaists. The first feature that I'm refining is a page where you can search for Pokémon as you defeat them, clicking the button to adjust your trainee's EVs, taking into account EV-boosting items and Pokérus if selected. Here is a demo:
+
+.center{style: "margin: 30px 0; display: flex; justify-content: space-around;"}
+  %iframe{width: 560, height: 315, src: "https://www.youtube.com/embed/cxYJr_4hQwg",
+    title: "PokéLog Demo", frameborder: "0", allowfullscreen: true,
+    allow: "accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture; web-share"}
+  %iframe{width: 560, height: 315, src: "https://www.youtube.com/embed/AfeNpnyfDIY",
+    title: "PokéLog Responsive Design", frameborder: "0", allowfullscreen: true,
+    allow: "accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture; web-share"}
+
+%p Being able to train multiple Pokémon at a time is obviously important since every Pokémon on your team that gains experience gains EVs. Implementing this functionality is a top priority.
