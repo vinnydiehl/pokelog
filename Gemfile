@@ -34,6 +34,12 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
+group :production do
+  # JS minification
+  gem "mini_racer", "~> 0.6"
+  gem "terser", "~> 1.1"
+end
+
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
 end

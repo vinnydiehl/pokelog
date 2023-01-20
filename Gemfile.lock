@@ -94,6 +94,7 @@ GEM
       reline (>= 0.3.1)
     diff-lcs (1.5.0)
     erubi (1.11.0)
+    execjs (2.8.1)
     faraday (2.7.2)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
@@ -129,6 +130,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jwt (2.5.0)
+    libv8-node (16.10.0.0-x86_64-linux)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -141,6 +143,8 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_racer (0.6.3)
+      libv8-node (~> 16.10.0.0)
     minitest (5.16.3)
     msgpack (1.6.0)
     multi_xml (0.6.0)
@@ -252,6 +256,8 @@ GEM
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     temple (0.9.1)
+    terser (1.1.13)
+      execjs (>= 0.3.0, < 3)
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.1)
@@ -289,6 +295,7 @@ DEPENDENCIES
   haml-rails (~> 2.0)
   importmap-rails
   jbuilder
+  mini_racer (~> 0.6)
   pg (~> 1.4.5)
   poke-api-v2
   puma (~> 5.0)
@@ -300,6 +307,7 @@ DEPENDENCIES
   selenium-webdriver (~> 4.1)
   sprockets-rails
   stimulus-rails
+  terser (~> 1.1)
   turbo-rails
   tzinfo-data
   web-console
