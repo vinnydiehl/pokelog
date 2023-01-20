@@ -61,8 +61,10 @@ $border: 3px solid black;
         display: flex;
         align-items: center;
 
-        .sprite {
-          margin: 0.25em;
+        div.sprite {
+          margin: 0.5em;
+          width: 56px;
+          height: 42px;
         }
 
         .name-form {
