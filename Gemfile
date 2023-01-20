@@ -38,6 +38,9 @@ group :production do
   # JS minification
   gem "mini_racer", "~> 0.6"
   gem "terser", "~> 1.1"
+
+  # Force domain name
+  gem "rack-canonical-host", "~> 1.1"
 end
 
 group :development, :test do
