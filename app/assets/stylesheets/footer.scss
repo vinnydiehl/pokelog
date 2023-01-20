@@ -1,0 +1,47 @@
+@import "include/variables";
+
+// See page.scss for the CSS keeping the footer
+// stuck to the bottom of the page.
+
+.page-footer {
+  background: transparent;
+  .footer-copyright {
+    background: $red;
+
+    @media (max-width: #{$image-breakpoint}) {
+      font-size: 0.75rem;
+    }
+
+    p, .row {
+      margin: 0;
+    }
+
+    .anychart {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: underline;
+      font-weight: bold;
+      white-space: nowrap;
+
+      display: inline-flex;
+      align-items: middle;
+
+      // Align text
+      transform: translateY(0.25rem);
+      @media (max-width: #{$image-breakpoint}) {
+        transform: translateY(0.15rem);
+      }
+
+      img {
+        // Stop stretching
+        align-self: center;
+
+        margin: 0 0.25rem;
+
+        @media (max-width: #{$image-breakpoint}) {
+          width: 0.85rem;
+          margin-left: 0.15rem;
+        }
+      }
+    }
+  }
+}

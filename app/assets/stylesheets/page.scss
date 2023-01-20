@@ -1,8 +1,19 @@
+// Set min page width before horizontal scrolling starts
 $min-page-width: 375px;
-
 @media (max-width: #{$min-page-width}) {
   body {
     min-width: $min-page-width;
     overflow-x: scroll;
   }
+}
+
+// Keep footer where it belongs
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
