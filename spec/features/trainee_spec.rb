@@ -244,6 +244,179 @@ RSpec.feature "trainees:", type: :feature do
         end
       end
 
+      context "with 254 HP EVs", js: true do
+        before :each do
+          fill_in "trainee_hp_ev", with: (@original = 254)
+          wait_for :hp_ev, @original
+        end
+
+        describe "a 2 HP kill button" do
+          before :each do
+            # Pidgeotto
+            find("#species_017").click
+            sleep 1
+          end
+
+          it "doesn't increment the HP EV" do
+            expect(find("#trainee_hp_ev").value).to eq @original.to_s
+            expect(Trainee.first.hp_ev).to eq @original
+          end
+        end
+      end
+
+      # Edge case behavior, see issue #1
+      context "with 509 total EVs", js: true do
+        before :each do
+          # Set everything except HP to 100
+          STATS[1..-1].each do |stat|
+            fill_in "trainee_#{stat}", with: 100
+          end
+          wait_for STATS.last, 100
+
+          fill_in "trainee_#{STATS.first}", with: (@original = 9)
+          wait_for STATS.first, @original
+        end
+
+        context "when you get a kill w/ 1 Def, 1 Sp.D" do
+          before :each do
+            # Blastoise
+            find("#species_008").click
+            wait_for :def_ev, 101
+          end
+
+          it "gives you 1 Def" do
+            expect(find("#trainee_def_ev").value).to eq "101"
+            expect(Trainee.first.def_ev).to eq 101
+          end
+
+          it "gives you 0 Sp.D" do
+            expect(find("#trainee_spd_ev").value).to eq "100"
+            expect(Trainee.first.spd_ev).to eq 100
+          end
+        end
+
+        context "when you get a kill w/ 1 Atk while holding a Power Band (4 Sp.D)" do
+          before :each do
+            find("span", text: "Power Band").click
+
+            # Ekans
+            find("#species_023").click
+            wait_for :atk_ev, 101
+          end
+
+          it "gives you 1 Atk" do
+            expect(find("#trainee_atk_ev").value).to eq "101"
+            expect(Trainee.first.atk_ev).to eq 101
+          end
+
+          it "gives you 0 Sp.D" do
+            expect(find("#trainee_spd_ev").value).to eq "100"
+            expect(Trainee.first.spd_ev).to eq 100
+          end
+        end
+      end
+
+      context "with 510 total EVs", js: true do
+        before :each do
+          # Set everything except HP to 100
+          STATS[1..-1].each do |stat|
+            fill_in "trainee_#{stat}", with: 100
+          end
+          wait_for STATS.last, 100
+
+          fill_in "trainee_#{STATS.first}", with: (@original = 10)
+          wait_for STATS.first, @original
+        end
+
+        it "turns the input borders green" do
+          find_all(".ev-input").each do |input|
+            # There's a range here for some reason
+            pass = (126..128).map { |n| "rgb(0, #{n}, 0)" }.include? input.style("border-color").values.first
+            expect(pass).to be true
+          end
+        end
+
+        it "keeps the borders green on reload" do
+          visit current_path
+          find_all(".ev-input").each do |input|
+            expect(input.style("border-color").values.first).to eq "rgb(0, 128, 0)"
+          end
+        end
+
+        context "if you set the total back to 509" do
+          before :each do
+            fill_in "trainee_#{STATS.first}", with: (@original = 9)
+            wait_for STATS.first, @original
+          end
+
+          it "turns the input borders black" do
+            find_all(".ev-input").each do |input|
+              # There's a range here for some reason
+              pass = (0..2).map { |n| "rgb(0, #{n}, 0)" }.include? input.style("border-color").values.first
+              expect(pass).to be true
+            end
+          end
+
+          it "keeps the borders black on reload" do
+            visit current_path
+            find_all(".ev-input").each do |input|
+              expect(input.style("border-color").values.first).to eq "rgb(0, 0, 0)"
+            end
+          end
+
+          context "if you try to use a kill button to go 2 over" do
+            before :each do
+              # Nidoqueen for 3 HP
+              find("#species_031").click
+              # Can't use wait_for because the server shouldn't update
+              sleep 1
+            end
+
+            it "doesn't update the input" do
+              expect(find("#trainee_#{STATS.first}").value).to eq @original.to_s
+            end
+
+            it "doesn't update the server" do
+              expect(Trainee.first.send STATS.first).to eq @original
+            end
+          end
+        end
+
+        context "if you try to enter 511 total through the inputs" do
+          before :each do
+            fill_in "trainee_#{STATS.first}", with: 11
+            # Can't use wait_for because the server shouldn't update
+            sleep 1
+          end
+
+          it "turns the input borders red" do
+            find_all(".ev-input").each do |input|
+              expect(input.style("border-color").values.first).to eq "rgb(255, 0, 0)"
+            end
+          end
+
+          it "doesn't update the server" do
+            expect(Trainee.first.send STATS.first).to eq @original
+          end
+        end
+
+        context "if you try to use a kill button to go 1 over" do
+          before :each do
+            # Caterpie for 1 HP
+            find("#species_010").click
+            sleep 1
+          end
+
+          it "doesn't update the input" do
+            expect(find("#trainee_#{STATS.first}").value).to eq @original.to_s
+          end
+
+          it "doesn't update the server" do
+            expect(Trainee.first.send STATS.first).to eq @original
+          end
+        end
+      end
+
       TEST_KILL_BUTTONS.each do |id, data|
         context "when using the #{data[:name]} kill button", js: true do
           [true, false].each do |pokerus|

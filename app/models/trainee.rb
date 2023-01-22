@@ -15,12 +15,15 @@ class Trainee < ApplicationRecord
       self.species_id = nil
     end
 
+    if PokeLog::Stats.stats.map { |s| data["#{s}_ev"].to_i }.inject(:+) <= 510
+      PokeLog::Stats.stats.each do |stat|
+        send "#{stat}_ev=", [data["#{stat}_ev"].to_i, 0, 255].sort[1]
+      end
+    end
+
     self.nickname, self.nature, self.level =
       data["nickname"], data["nature"], data["level"]
     self.pokerus = data["pokerus"].to_i.nonzero?
-    PokeLog::Stats.stats.each do |stat|
-      send "#{stat}_ev=", [data["#{stat}_ev"].to_i, 0, 255].sort[1]
-    end
     self.item = data["item"] == "on" ? nil : data["item"]
   end
 
