@@ -48,10 +48,10 @@
       - PokeLog::Stats.stats.each do |stat|
         .point{class: stat}
           - attr_name = "#{stat}_ev"
-          = f.text_field attr_name.to_sym, oninput: "setEvInputColor()",
+          = f.text_field attr_name.to_sym, **maxlength(3, "setEvInputColor()"),
               style: "border-color: #{@trainee.evs.values.inject(:+) == 510 ? 'green' : 'black'}",
-              class: "ev-input", type: "number", placeholder: 0, **maxlength(3),
-              min: 0, max: 255, value: ((v = @trainee.send(attr_name)).zero? ? nil : v),
+              class: "ev-input", type: "number", placeholder: 0, min: 0, max: 255,
+              value: ((v = @trainee.send(attr_name)).zero? ? nil : v),
               data: {action: "input->form-submission#submit"}, disabled: logged_out?
       .pokerus.switch{class: logged_out? ? "disabled" : ""}
         %label
@@ -82,8 +82,7 @@
         = f.text_field :q, value: params[:q],
                        data: { action: "input->form-submission#submit" }
     .results
-      = render "results", results: @search_results,
-        color: @trainee.evs.values.inject(:+) > 510 ? "red" : "teal"
+      = render "results", results: @search_results
 
 - if logged_in?
   #delete-modal.modal

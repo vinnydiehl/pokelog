@@ -6,6 +6,7 @@ function getEvSum() {
 
     return sum;
 }
+
 function updateEvs(hp, atk, def, spa, spd, spe) {
     switch (document.querySelector(".items-options input[type='radio']:checked").id) {
     case "trainee_item_macho_brace":

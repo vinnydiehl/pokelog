@@ -23,8 +23,9 @@ module ApplicationHelper
   #   = form.text_field :level, type: "number", min: 1, max: 100, **maxlength(3)
   #
   # @param n [Integer] number of characters to limit input to
+  # @param js [String] additional code for the oninput attribute
   # @return [Hash] option to pass to #text_field to limit characters
-  def maxlength(n)
-    { onKeyPress: "if (this.value.length > #{n - 1}) return false;" }
+  def maxlength(n, js=nil)
+    { oninput: "if(this.value.length>#{n - 1}) this.value=this.value.slice(0,#{n});#{js}" }
   end
 end
