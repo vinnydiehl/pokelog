@@ -55,7 +55,7 @@ class Species < ActiveYaml::Base
     form = nil
     if name[/\(/]
       form = name[/(?<=\()[^\)]+/]
-      name.gsub! /\s*\(.*$/, ""
+      name = name.split("(").first.strip
     end
     find { |s| s.name == name && (s.form == form || (form == nil && s.form == "Normal")) }
   end
