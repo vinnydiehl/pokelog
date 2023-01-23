@@ -1,5 +1,5 @@
 class TraineesController < ApplicationController
-  before_action :set_trainee, only: %i[show edit update destroy]
+  before_action :set_trainee, only: %i[update destroy]
 
   NO_USER_NOTICE = "Not logged in."
 
@@ -9,14 +9,14 @@ class TraineesController < ApplicationController
     @trainees = Trainee.where user: @current_user
   end
 
-  # GET /trainees/1
+  # GET /trainees/1 or /trainees/1,2,3
   def show
+    @trainees = Trainee.where id: params[:ids].split(",")
+
     @nil_nature_option = ["Nature", ""]
     @nature_options = YAML.load_file("data/natures.yml").keys.sort.map do |n|
       [n.capitalize, n]
     end
-    @selected_nature = @nature_options.find { |o| o.last == @trainee.nature } ||
-                       @nil_nature_option
 
     @items_options = YAML.load_file("data/items.yml").keys
 

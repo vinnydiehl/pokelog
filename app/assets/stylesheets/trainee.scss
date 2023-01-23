@@ -36,6 +36,17 @@ $small_radar_size: 250px;
     display: none;
   }
 
+  // Spacing between multiple trainees in a list
+  &:not(:first-child) {
+    margin-top: 30px;
+  }
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
+  &:only-child {
+    margin: 0;
+  }
+
   .trainee-info-top {
     display: flex;
     justify-content: space-around;
