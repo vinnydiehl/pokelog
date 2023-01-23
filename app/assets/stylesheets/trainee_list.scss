@@ -17,9 +17,15 @@
       z-index: 0;
     }
 
-    &.sprite {
+    &.sprite, &.check {
       width: 0;
       min-width: fit-content;
     }
   }
+}
+
+.align-opposite {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

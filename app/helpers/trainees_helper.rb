@@ -4,7 +4,7 @@ module TraineesHelper
   #
   # @param [Array<Trainee>] trainees to show
   # @return path to the trainees#show for those trainees
-  def multi_trainee_path(trainees)
+  def multi_trainees_path(trainees)
     trainee_path trainees.map(&:id).join(",")
   end
 

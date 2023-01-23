@@ -12,6 +12,6 @@
   .input-field
     = form.label :email, "Email Address"
     = form.text_field :email, value: @token.email_address
-  %button.btn.waves-effect.waves-light{type: "submit", name: "commit"}
+  %button#register-btn.btn.waves-effect.waves-light{type: "submit", name: "commit"}
     Register
     %i.material-icons.right send
