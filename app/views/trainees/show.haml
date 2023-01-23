@@ -9,7 +9,8 @@
 = javascript_include_tag "update_evs"
 
 #trainees
-  = render @trainees
+  - @trainees.each do |trainee|
+    = render trainee, trainees: @trainees
 
 - if logged_in?
   #kill-search
