@@ -38,13 +38,13 @@
       {x: "Sp.A", value: spa}
     ]);
 
-    // This if statement prevents the chart from double-loading on back/forward
-    // navigation. It's not included if this partial is being loaded via Turbo
-    // stream. For this reason, it breaks if you update the chart, then go back...
-    // TODO: We need a better solution
-    var id = "#{id}"
-    #{stream ? "" : "if (!document.querySelector('#'+id+' div')) {"}
-      chart.container(id);
-      chart.draw();
-    #{stream ? "" : "}"}
+    // If the chart already exists due to it being cached, delete the existing
+    // one before loading the new one
+    var existingChart = document.querySelector('##{id} div');
+    if (existingChart) {
+      existingChart.remove();
+    }
+
+    chart.container("#{id}");
+    chart.draw();
   });
