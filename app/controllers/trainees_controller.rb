@@ -39,13 +39,13 @@ class TraineesController < ApplicationController
       return redirect_to trainee_path(@trainee), notice: NO_USER_NOTICE
     end
 
-    titles = helpers.trainees_show_title(JSON.parse params[:trainees])
-
     respond_to do |format|
       @trainee.set_attributes params["trainee"]
 
       if @trainee.save
+        titles = helpers.trainees_show_title(JSON.parse params[:trainees])
         radar_id = "radar-chart-#{helpers.dom_id @trainee}"
+
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update("title", html: titles[:title]),

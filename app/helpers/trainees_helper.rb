@@ -15,6 +15,11 @@ module TraineesHelper
   # @param [Array<Trainee>] trainees being displayed
   # @return [Hash] with :title and :mobile_title values
   def trainees_show_title(trainees)
+    # Deserialized JSON data works too
+    if trainees.first.is_a? Hash
+      trainees[0] = Trainee.find trainees.first["id"]
+    end
+
     multi_title = "#{trainees.size} Trainees"
     trainees.size > 1 ? { title: multi_title, mobile_title: multi_title } : {
       title: trainees.first.title,
