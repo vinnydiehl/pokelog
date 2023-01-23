@@ -1,5 +1,7 @@
 # PokéLog
 
+http://www.pokelog.net/
+
 EV tracker for hardcore enthusaists. Under construction. Sparse developer
 documentation incoming.
 
