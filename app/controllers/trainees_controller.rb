@@ -43,15 +43,16 @@ class TraineesController < ApplicationController
       @trainee.set_attributes params["trainee"]
 
       if @trainee.save
+        radar_id = "radar-chart-#{helpers.dom_id @trainee}"
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update("title", html: @trainee.title),
             turbo_stream.update("title-mobile", html: @trainee.nickname),
-            turbo_stream.update("artwork", partial: "trainees/artwork",
-                                locals: {trainee: @trainee}),
-            turbo_stream.update("radar-chart", partial: "shared/radar_chart",
-                                locals: {stats: @trainee.evs}),
-            turbo_stream.update("mobile-sprite", html:
+            turbo_stream.update("artwork-#{helpers.dom_id @trainee}",
+                                partial: "trainees/artwork", locals: {trainee: @trainee}),
+            turbo_stream.update(radar_id, partial: "shared/radar_chart",
+                                locals: {stats: @trainee.evs, id: radar_id}),
+            turbo_stream.update("mobile-sprite-#{helpers.dom_id @trainee}", html:
                                 @trainee.species ? @trainee.species.sprite : nil)
           ]
         end

@@ -1,8 +1,8 @@
 = form_with model: trainee, class: "trainee-info",
             html: {autocomplete: "off"}, data: {controller: "form-submission"} do |f|
   .trainee-info-top
-    #species-info
-      #nickname-species.side-by-side
+    .species-info
+      .nickname-species.side-by-side
         .input-field.nickname
           = f.label :nickname, "Nickname"
           = f.text_field :nickname, class: "counter", maxlength: 12, disabled: logged_out?,
@@ -13,7 +13,8 @@
           = f.text_field :species, class: "autocomplete", disabled: logged_out?,
                          data: {action: "blur->form-submission#submit"},
               value: trainee.species.nil? ? nil : trainee.species.display_name
-      #artwork= render "trainees/artwork", trainee: trainee
+      .trainee-artwork{id: "artwork-#{dom_id trainee}"}
+        = render "trainees/artwork", trainee: trainee
       .side-by-side
         .input-field
           = f.select :nature,
@@ -27,15 +28,15 @@
           = f.text_field :level, class: "validate", type: "number", **maxlength(3),
                          min: 1, max: 100, value: trainee.level, disabled: logged_out?,
                          data: {action: "change->form-submission#submit"}
-    #ev-info
-      #mobile-sprite
+    .ev-info
+      %div{id: "mobile-sprite-#{dom_id trainee}"}
         - if trainee.species
           = trainee.species.sprite
       - if logged_in?
         = link_to "#delete-modal", id: "delete", class: "modal-trigger" do
           %i.material-icons delete
       #stats-chart
-        = render "shared/radar_chart", stats: trainee.evs
+        = render "shared/radar_chart", stats: trainee.evs, id: "radar-chart-#{dom_id trainee}"
       - PokeLog::Stats.stats.each do |stat|
         .point{class: stat}
           - attr_name = "#{stat}_ev"
