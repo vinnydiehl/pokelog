@@ -10,7 +10,7 @@
 = javascript_include_tag "species_autocomplete"
 = javascript_include_tag "update_evs"
 
-.multi-trainees
+#trainees
   = render @trainees
 
 - if logged_in?
@@ -26,7 +26,6 @@
     .results
       = render "results", results: @search_results
 
-- if logged_in?
   #delete-modal.modal
     .modal-content
       %h4 Confirm delete
