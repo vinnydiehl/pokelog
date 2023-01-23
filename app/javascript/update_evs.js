@@ -1,6 +1,6 @@
-function getEvSum() {
+function getEvSum(traineeInfo) {
     var sum = 0;
-    document.querySelectorAll(".ev-input").forEach(input => {
+    traineeInfo.querySelectorAll(".ev-input").forEach(input => {
       sum += parseInt(input.value) || 0
     });
 
@@ -53,7 +53,7 @@ function updateEvs(iHp, iAtk, iDef, iSpa, iSpd, iSpe) {
             intValue = input.value == "" ? 0 : parseInt(input.value);
             newValue = intValue + addend;
 
-            if (getEvSum() + addend <= 510 && newValue <= 255) {
+            if (getEvSum(traineeInfo) + addend <= 510 && newValue <= 255) {
                 input.value = newValue == 0 ? "" : newValue;
             }
         });
@@ -63,14 +63,16 @@ function updateEvs(iHp, iAtk, iDef, iSpa, iSpd, iSpe) {
 
 // Checks total of all EVs and sets color of input borders accordingly
 function setEvInputColor() {
-    sum = getEvSum();
-    document.querySelectorAll(".ev-input").forEach(input => {
-        if (sum > 510) {
-          input.style.borderColor = "red";
-        } else if (sum == 510) {
-          input.style.borderColor = "green";
-        } else {
-          input.style.borderColor = "black";
-        }
+    document.querySelectorAll(".trainee-info").forEach(traineeInfo => {
+        sum = getEvSum(traineeInfo);
+        traineeInfo.querySelectorAll(".ev-input").forEach(input => {
+            if (sum > 510) {
+              input.style.borderColor = "red";
+            } else if (sum == 510) {
+              input.style.borderColor = "green";
+            } else {
+              input.style.borderColor = "black";
+            }
+        });
     });
 }
