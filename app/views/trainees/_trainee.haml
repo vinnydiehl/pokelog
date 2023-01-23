@@ -1,5 +1,6 @@
 = form_with model: trainee, class: "trainee-info",
             html: {autocomplete: "off"}, data: {controller: "form-submission"} do |f|
+  = hidden_field_tag :trainees, @trainees.to_json
   .trainee-info-top
     .species-info
       .nickname-species.side-by-side

@@ -1,7 +1,5 @@
-- provide :title,
-  @trainees.size == 1 ? @trainees.first.title : "#{@trainees.size} Trainees"
-- provide :mobile_title,
-  @trainees.size == 1 ? @trainees.first.nickname : "#{@trainees.size} Trainees"
+- trainees_show_title(@trainees).each do |size, title|
+  - provide size, title
 
 = javascript_include_tag "character_counter"
 = javascript_include_tag "modal_init"
