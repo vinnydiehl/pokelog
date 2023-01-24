@@ -6,7 +6,7 @@ class TraineesController < ApplicationController
   # GET /trainees
   def index
     return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
-    @trainees = Trainee.where user: @current_user
+    @trainees = Trainee.where(user: @current_user).order(updated_at: :desc)
   end
 
   # GET /trainees/1 or /trainees/1,2,3
