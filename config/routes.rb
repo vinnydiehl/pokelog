@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # Need to manually define #new route since these are parsed from the top-down
   get "/trainees/new", to: "trainees#new"
   get "/trainees/:ids", to: "trainees#show", as: "trainee_show"
+  get "/trainees/:ids/new", to: "trainees#add_new"
   resources :trainees
 
   post "/login/submit", to: "users#login"

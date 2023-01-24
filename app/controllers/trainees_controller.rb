@@ -11,7 +11,8 @@ class TraineesController < ApplicationController
 
   # GET /trainees/1 or /trainees/1,2,3
   def show
-    @trainees = Trainee.where id: params[:ids].split(",")
+    @ids = params[:ids].split(",").map &:to_i
+    @trainees = Trainee.where(id: @ids)
 
     @nil_nature_option = ["Nature", ""]
     @nature_options = YAML.load_file("data/natures.yml").keys.sort.map do |n|
@@ -31,6 +32,14 @@ class TraineesController < ApplicationController
     @trainee = Trainee.new(user: @current_user)
     @trainee.save!
     redirect_to trainee_path(@trainee)
+  end
+
+  # GET /trainees/:ids/new
+  def add_new
+    return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
+    @trainee = Trainee.new(user: @current_user)
+    @trainee.save!
+    redirect_to trainee_path("#{params[:ids]},#{@trainee.id}")
   end
 
   # PATCH/PUT /trainees/1

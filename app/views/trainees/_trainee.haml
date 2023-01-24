@@ -35,7 +35,7 @@
           = trainee.species.sprite
       .corner-buttons
         - if logged_in?
-          = link_to "#delete-modal", id: "delete", class: "modal-trigger" do
+          = link_to "#delete-modal-#{dom_id trainee}", id: "delete", class: "modal-trigger" do
             %i.material-icons delete
         - if @trainees.size > 1
           = link_to multi_trainees_path(@trainees - [trainee]) do
@@ -67,3 +67,14 @@
                                 disabled: logged_out?,
                                 data: {action: "click->form-submission#submit"}
         %span= item.titleize
+
+- if logged_in?
+  .modal{id: "delete-modal-#{dom_id trainee}"}
+    .modal-content
+      %h4 Confirm delete
+      %p Are you sure? This will delete #{trainee.title} permanently.
+    .modal-footer
+      = form_with model: trainee, method: :delete, data: {turbo: false} do |f|
+        %a#cancel-delete.modal-close.waves-effect.waves-teal.btn-flat Cancel
+        = f.submit "Delete", id: "confirm-delete",
+            class: "modal-close waves-effect waves-teal btn-flat"

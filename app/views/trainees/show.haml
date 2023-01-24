@@ -2,6 +2,7 @@
   - provide size, title
 
 = javascript_include_tag "character_counter"
+= javascript_include_tag "fixed_action_init"
 = javascript_include_tag "modal_init"
 = javascript_include_tag "select_init"
 = javascript_include_tag "sidenav_init"
@@ -9,10 +10,22 @@
 = javascript_include_tag "update_evs"
 
 #trainees
-  - @trainees.each do |trainee|
-    = render trainee, trainees: @trainees
+  -# We're listing this way so they appear in order specified by URL
+  - @ids.each do |id|
+    = render @trainees.find(id), trainees: @trainees
 
 - if logged_in?
+  .fixed-action-btn
+    %a.btn-floating.btn-large.red
+      %i.material-icons.large add
+    %ul
+      %li
+        %a.btn-floating.red
+          %i.material-icons list
+      %li
+        = link_to "#{request.path}/new", class: "btn-floating red" do
+          %i.material-icons add
+
   #kill-search
     = form_with url: request.path, method: :get,
                 data: { controller: "form-submission",
@@ -24,13 +37,3 @@
                        data: { action: "input->form-submission#submit" }
     .results
       = render "results", results: @search_results
-
-  #delete-modal.modal
-    .modal-content
-      %h4 Confirm delete
-      %p Are you sure? This will delete your trainee permanently.
-    .modal-footer
-      = form_with model: @trainee, method: :delete, data: {turbo: false} do |f|
-        %a#cancel-delete.modal-close.waves-effect.waves-teal.btn-flat Cancel
-        = f.submit "Delete", id: "confirm-delete",
-            class: "modal-close waves-effect waves-teal btn-flat"

@@ -11,10 +11,9 @@
       - @trainees.each do |trainee|
         %tr{class: dom_id(trainee)}
           %td.check
-            - if trainee.species
-              %label
-                = check_box_tag "trainee_ids[]", trainee.id
-                %span
+            %label
+              = check_box_tag "trainee_ids[]", trainee.id
+              %span
           %td.sprite
             - if trainee.species
               = trainee.species.sprite
