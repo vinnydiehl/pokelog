@@ -16,6 +16,9 @@
 
     var chart = anychart.radar();
 
+    // Credits in footer
+    chart.credits().enabled(false);
+
     // 255 needs to be hardcoded here
     chart.tooltip().format(`{%value} / 255`);
 
