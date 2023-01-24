@@ -34,12 +34,12 @@
         - if trainee.species
           = trainee.species.sprite
       .corner-buttons
-        - if @trainees.size > 1
-          = link_to multi_trainees_path(@trainees - [trainee]) do
-            %i.material-icons close
         - if logged_in?
           = link_to "#delete-modal", id: "delete", class: "modal-trigger" do
             %i.material-icons delete
+        - if @trainees.size > 1
+          = link_to multi_trainees_path(@trainees - [trainee]) do
+            %i.material-icons close
       #stats-chart
         = render "shared/radar_chart", stats: trainee.evs, id: "radar-chart-#{dom_id trainee}"
       - PokeLog::Stats.stats.each do |stat|

@@ -28,7 +28,7 @@
   #delete-modal.modal
     .modal-content
       %h4 Confirm delete
-      %p Are you sure? This can't be undone.
+      %p Are you sure? This will delete your trainee permanently.
     .modal-footer
       = form_with model: @trainee, method: :delete, data: {turbo: false} do |f|
         %a#cancel-delete.modal-close.waves-effect.waves-teal.btn-flat Cancel
