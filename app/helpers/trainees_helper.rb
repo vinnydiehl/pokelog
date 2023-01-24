@@ -26,4 +26,15 @@ module TraineesHelper
       mobile_title: trainees.first.nickname
     }
   end
+
+  # Determines if a user is allowed to edit a trainee,
+  # i.e. if logged in and the trainee's owner.
+  def yours?(trainee)
+    logged_in? && trainee.user == @current_user
+  end
+
+  # Determines if a user isn't allowed to edit a trainee.
+  def not_yours?(trainee)
+    !yours? trainee
+  end
 end

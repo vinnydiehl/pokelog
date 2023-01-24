@@ -53,7 +53,8 @@ function updateEvs(iHp, iAtk, iDef, iSpa, iSpd, iSpe) {
             intValue = input.value == "" ? 0 : parseInt(input.value);
             newValue = intValue + addend;
 
-            if (getEvSum(traineeInfo) + addend <= 510 && newValue <= 255) {
+            if (getEvSum(traineeInfo) + addend <= 510 &&
+                newValue <= 255 && !input.disabled) {
                 input.value = newValue == 0 ? "" : newValue;
             }
         });

@@ -1,17 +1,17 @@
 = form_with model: trainee, class: "trainee-info",
             html: {autocomplete: "off"}, data: {controller: "form-submission"} do |f|
-  = hidden_field_tag :trainees, @trainees.to_json
+  = hidden_field_tag :trainees, @party.to_json
   .trainee-info-top
     .species-info
       .nickname-species.side-by-side
         .input-field.nickname
           = f.label :nickname, "Nickname"
-          = f.text_field :nickname, class: "counter", maxlength: 12, disabled: logged_out?,
+          = f.text_field :nickname, class: "counter", maxlength: 12, disabled: not_yours?(trainee),
                          data: {length: 12, action: "blur->form-submission#submit"},
                          onblur: "hideCounter();", value: trainee.nickname
         .input-field.species
           = f.label :species, "Species"
-          = f.text_field :species, class: "autocomplete", disabled: logged_out?,
+          = f.text_field :species, class: "autocomplete", disabled: not_yours?(trainee),
                          data: {action: "blur->form-submission#submit"},
               value: trainee.species.nil? ? nil : trainee.species.display_name
       .trainee-artwork{id: "artwork-#{dom_id trainee}"}
@@ -22,23 +22,23 @@
               options_for_select([@nil_nature_option] + @nature_options,
                 disabled: @nil_nature_option,
                 selected: @nature_options.find { |o| o.last == trainee.nature } || @nil_nature_option),
-              {}, {data: {action: "change->form-submission#submit"}, disabled: logged_out?}
+              {}, {data: {action: "change->form-submission#submit"}, disabled: not_yours?(trainee)}
           = f.label :nature, "Nature"
         .input-field
           = f.label :level, "Level"
           = f.text_field :level, class: "validate", type: "number", **maxlength(3),
-                         min: 1, max: 100, value: trainee.level, disabled: logged_out?,
+                         min: 1, max: 100, value: trainee.level, disabled: not_yours?(trainee),
                          data: {action: "change->form-submission#submit"}
     .ev-info
       %div{id: "mobile-sprite-#{dom_id trainee}"}
         - if trainee.species
           = trainee.species.sprite
       .corner-buttons
-        - if logged_in?
+        - if yours?(trainee)
           = link_to "#delete-modal-#{dom_id trainee}", id: "delete", class: "modal-trigger" do
             %i.material-icons delete
-        - if @trainees.size > 1
-          = link_to multi_trainees_path(@trainees - [trainee]) do
+        - if @party.size > 1
+          = link_to multi_trainees_path(@party - [trainee]) do
             %i.material-icons close
       #stats-chart
         = render "shared/radar_chart", stats: trainee.evs, id: "radar-chart-#{dom_id trainee}"
@@ -49,26 +49,26 @@
               style: "border-color: #{trainee.evs.values.inject(:+) == 510 ? 'green' : 'black'}",
               class: "ev-input", type: "number", placeholder: 0, min: 0, max: 255,
               value: ((v = trainee.send(attr_name)).zero? ? nil : v),
-              data: {action: "input->form-submission#submit"}, disabled: logged_out?
-      .pokerus.switch{class: logged_out? ? "disabled" : ""}
+              data: {action: "input->form-submission#submit"}, disabled: not_yours?(trainee)
+      .pokerus.switch{class: not_yours?(trainee) ? "disabled" : ""}
         %label
-          = f.check_box :pokerus, value: trainee.pokerus, disabled: logged_out?,
+          = f.check_box :pokerus, value: trainee.pokerus, disabled: not_yours?(trainee),
                                   data: {action: "input->form-submission#submit"}
           %span.lever
           Pokérus
   .items-options
     %label
-      = f.radio_button :item, nil, value: trainee.item.nil?, disabled: logged_out?,
+      = f.radio_button :item, nil, value: trainee.item.nil?, disabled: not_yours?(trainee),
                                    data: {action: "click->form-submission#submit"}
       %span No Item
     - @items_options.each do |item|
       %label
         = f.radio_button :item, item, value: trainee.item == item,
-                                disabled: logged_out?,
+                                disabled: not_yours?(trainee),
                                 data: {action: "click->form-submission#submit"}
         %span= item.titleize
 
-- if logged_in?
+- if yours?(trainee)
   .modal{id: "delete-modal-#{dom_id trainee}"}
     .modal-content
       %h4 Confirm delete

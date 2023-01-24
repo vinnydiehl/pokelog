@@ -1,4 +1,4 @@
-- trainees_show_title(@trainees).each do |size, title|
+- trainees_show_title(@party).each do |size, title|
   - provide size, title
 
 = javascript_include_tag "character_counter"
@@ -12,7 +12,7 @@
 #trainees
   -# We're listing this way so they appear in order specified by URL
   - @ids.each do |id|
-    = render @trainees.find(id), trainees: @trainees
+    = render @party.find(id)
 
 - if logged_in?
   .fixed-action-btn

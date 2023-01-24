@@ -2,6 +2,7 @@ class TraineesController < ApplicationController
   before_action :set_trainee, only: %i[update destroy]
 
   NO_USER_NOTICE = "Not logged in."
+  NOT_YOURS_NOTICE = "Not your trainee!"
 
   # GET /trainees
   def index
@@ -12,7 +13,7 @@ class TraineesController < ApplicationController
   # GET /trainees/1 or /trainees/1,2,3
   def show
     @ids = params[:ids].split(",").map &:to_i
-    @trainees = Trainee.where(id: @ids)
+    @party = Trainee.where(id: @ids)
 
     @nil_nature_option = ["Nature", ""]
     @nature_options = YAML.load_file("data/natures.yml").keys.sort.map do |n|
@@ -36,7 +37,7 @@ class TraineesController < ApplicationController
 
   # GET /trainees/:ids/new
   def add_new
-    return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
+    return redirect_to trainee_path(params[:ids]), notice: NO_USER_NOTICE if @current_user.blank?
     @trainee = Trainee.new(user: @current_user)
     @trainee.save!
     redirect_to trainee_path("#{params[:ids]},#{@trainee.id}")
@@ -44,48 +45,44 @@ class TraineesController < ApplicationController
 
   # PATCH/PUT /trainees/1
   def update
-    if @current_user.blank?
-      return redirect_to trainee_path(@trainee), notice: NO_USER_NOTICE
-    end
+    if allowed_to_edit? @trainee
+      respond_to do |format|
+        @trainee.set_attributes params["trainee"]
 
-    respond_to do |format|
-      @trainee.set_attributes params["trainee"]
+        if @trainee.save
+          titles = helpers.trainees_show_title(JSON.parse params[:trainees])
+          radar_id = "radar-chart-#{helpers.dom_id @trainee}"
 
-      if @trainee.save
-        titles = helpers.trainees_show_title(JSON.parse params[:trainees])
-        radar_id = "radar-chart-#{helpers.dom_id @trainee}"
-
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.update("title", html: titles[:title]),
-            turbo_stream.update("title-mobile", html: titles[:mobile_title]),
-            turbo_stream.update("artwork-#{helpers.dom_id @trainee}",
-                                partial: "trainees/artwork", locals: {trainee: @trainee}),
-            turbo_stream.update(radar_id, partial: "shared/radar_chart",
-                                locals: {stats: @trainee.evs, id: radar_id}),
-            turbo_stream.update("mobile-sprite-#{helpers.dom_id @trainee}", html:
-                                @trainee.species ? @trainee.species.sprite : nil)
-          ]
+          format.turbo_stream do
+            render turbo_stream: [
+              turbo_stream.update("title", html: titles[:title]),
+              turbo_stream.update("title-mobile", html: titles[:mobile_title]),
+              turbo_stream.update("artwork-#{helpers.dom_id @trainee}",
+                                  partial: "trainees/artwork", locals: {trainee: @trainee}),
+              turbo_stream.update(radar_id, partial: "shared/radar_chart",
+                                  locals: {stats: @trainee.evs, id: radar_id}),
+              turbo_stream.update("mobile-sprite-#{helpers.dom_id @trainee}", html:
+                                  @trainee.species ? @trainee.species.sprite : nil)
+            ]
+          end
+        else
+          puts "Error: Unable to save."
         end
-      else
-        puts "Error: Unable to save."
       end
     end
   end
 
   # DELETE /trainees/1
   def destroy
-    if @current_user.blank?
-      return redirect_to trainee_path(@trainee), notice: NO_USER_NOTICE
-    end
+    if allowed_to_edit? @trainee
+      nickname = @trainee.nickname || "Trainee"
 
-    nickname = @trainee.nickname || "Trainee"
+      @trainee.destroy
 
-    @trainee.destroy
-
-    respond_to do |format|
-      format.html { redirect_to trainees_url, status: :see_other,
-                      notice: "#{nickname} has been deleted." }
+      respond_to do |format|
+        format.html { redirect_to trainees_url, status: :see_other,
+                        notice: "#{nickname} has been deleted." }
+      end
     end
   end
 
@@ -98,5 +95,10 @@ class TraineesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def trainee_params
       params.require(:trainee).permit(:user_id, :team_id, :species_id, :level, :pokerus, :start_stats, :trained_stats, :kills, :nature, :evs)
+    end
+
+    # Authentication for trainee modification
+    def allowed_to_edit?(trainee)
+      !@current_user.blank? && @current_user == trainee.user
     end
 end
