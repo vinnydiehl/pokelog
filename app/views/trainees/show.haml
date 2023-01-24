@@ -35,6 +35,7 @@
       %a#cancel-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Cancel
       %a#confirm-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Add
 
+-if @party.any? { |trainee| yours? trainee }
   #kill-search
     = form_with url: request.path, method: :get,
                 data: { controller: "form-submission",
