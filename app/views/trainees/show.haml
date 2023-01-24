@@ -1,6 +1,7 @@
 - trainees_show_title(@party).each do |size, title|
   - provide size, title
 
+= javascript_include_tag "add_to_party"
 = javascript_include_tag "character_counter"
 = javascript_include_tag "fixed_action_init"
 = javascript_include_tag "modal_init"
@@ -20,11 +21,19 @@
       %i.material-icons.large add
     %ul
       %li
-        %a.btn-floating.red
+        = link_to "#add-to-party-modal", class: "btn-floating red modal-trigger" do
           %i.material-icons list
       %li
         = link_to "#{request.path}/new", class: "btn-floating red" do
           %i.material-icons add
+
+  #add-to-party-modal.modal
+    .modal-content
+      %h4 Add to party
+      = render "trainee_list", trainees: @other_trainees
+    .modal-footer
+      %a#cancel-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Cancel
+      %a#confirm-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Add
 
   #kill-search
     = form_with url: request.path, method: :get,

@@ -14,6 +14,7 @@ class TraineesController < ApplicationController
   def show
     @ids = params[:ids].split(",").map &:to_i
     @party = Trainee.where(id: @ids)
+    @other_trainees = Trainee.where.not(id: @ids)
 
     @nil_nature_option = ["Nature", ""]
     @nature_options = YAML.load_file("data/natures.yml").keys.sort.map do |n|

@@ -6,18 +6,7 @@
 - if @trainees.blank?
   %p.grey-text Nothing to show here. Click the + below to get started!
 - else
-  %table#trainee-list.highlight
-    %tbody
-      - @trainees.each do |trainee|
-        %tr{class: dom_id(trainee)}
-          %td.check
-            %label
-              = check_box_tag "trainee_ids[]", trainee.id
-              %span
-          %td.sprite
-            - if trainee.species
-              = trainee.species.sprite
-          %td= link_to trainee.title, trainee_path(trainee)
+  = render "trainee_list", trainees: @trainees
 
 .align-opposite
   %a#train-btn.waves-effect.waves-light.btn.red
