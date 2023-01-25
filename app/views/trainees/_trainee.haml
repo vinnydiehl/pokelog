@@ -35,10 +35,10 @@
           = trainee.species.sprite
       .corner-buttons
         - if yours?(trainee)
-          = link_to "#delete-modal-#{dom_id trainee}", id: "delete", class: "modal-trigger" do
+          = link_to "#delete-modal-#{dom_id trainee}", id: "delete-#{dom_id trainee}", class: "modal-trigger" do
             %i.material-icons delete
         - if @party.size > 1
-          = link_to multi_trainees_path(@party - [trainee]) do
+          = link_to multi_trainees_path(@party - [trainee]), id: "close-#{dom_id trainee}" do
             %i.material-icons close
       #stats-chart
         = render "shared/radar_chart", stats: trainee.evs, id: "radar-chart-#{dom_id trainee}"
