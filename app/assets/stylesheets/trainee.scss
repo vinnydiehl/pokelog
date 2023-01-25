@@ -36,6 +36,17 @@ $small_radar_size: 250px;
     display: none;
   }
 
+  // Spacing between multiple trainees in a list
+  &:not(:first-child) {
+    margin-top: 40px;
+  }
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
+  &:only-child {
+    margin: 0;
+  }
+
   .trainee-info-top {
     display: flex;
     justify-content: space-around;
@@ -60,7 +71,7 @@ $small_radar_size: 250px;
       }
     }
 
-    #delete {
+    .corner-buttons {
       position: absolute;
       top: -50px;
       right: 0;
@@ -82,7 +93,7 @@ $small_radar_size: 250px;
       }
     }
 
-    #species-info {
+    .species-info {
       @media (max-width: #{$image-breakpoint}) {
         width: 85%;
       }
@@ -97,7 +108,7 @@ $small_radar_size: 250px;
         height: auto;
       }
 
-      #artwork {
+      .trainee-artwork {
         max-height: 100%;
         max-width: 100%;
         @media (max-width: #{$image-breakpoint}) {
@@ -125,7 +136,7 @@ $small_radar_size: 250px;
       }
 
       @media (max-width: #{$radar-breakpoint}) {
-        &#nickname-species {
+        &.nickname-species {
           display: block;
           .input-field.nickname {
             margin: 0 0 20px 0;
@@ -141,7 +152,7 @@ $small_radar_size: 250px;
     $point_offset: $radar_size / 2 + 25px;
     $small_offset: $point_offset / 2;
 
-    #ev-info {
+    .ev-info {
       position: relative;
       margin: 100px 0;
       @media (max-width: #{$image-breakpoint}) {

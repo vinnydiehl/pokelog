@@ -1,77 +1,44 @@
-- provide :title, @trainee.title
-- provide :mobile_title, @trainee.nickname
+- trainees_show_title(@party).each do |size, title|
+  - provide size, title
 
+= javascript_include_tag "add_to_party"
 = javascript_include_tag "character_counter"
+= javascript_include_tag "fixed_action_init"
 = javascript_include_tag "modal_init"
+= javascript_include_tag "radar_chart"
 = javascript_include_tag "select_init"
 = javascript_include_tag "sidenav_init"
 = javascript_include_tag "species_autocomplete"
 = javascript_include_tag "update_evs"
 
-= form_with model: @trainee, class: "trainee-info",
-            html: {autocomplete: "off"}, data: {controller: "form-submission"} do |f|
-  .trainee-info-top
-    #species-info
-      #nickname-species.side-by-side
-        .input-field.nickname
-          = f.label :nickname, "Nickname"
-          = f.text_field :nickname, class: "counter", maxlength: 12, disabled: logged_out?,
-                         data: {length: 12, action: "blur->form-submission#submit"},
-                         onblur: "hideCounter();", value: @trainee.nickname
-        .input-field.species
-          = f.label :species, "Species"
-          = f.text_field :species, class: "autocomplete", disabled: logged_out?,
-                         data: {action: "blur->form-submission#submit"},
-              value: @trainee.species.nil? ? nil : @trainee.species.display_name
-      #artwork= render "trainees/artwork", trainee: @trainee
-      .side-by-side
-        .input-field
-          = f.select :nature,
-              options_for_select([@nil_nature_option] + @nature_options,
-                                 disabled: @nil_nature_option, selected: @selected_nature),
-              {}, {data: {action: "change->form-submission#submit"}, disabled: logged_out?}
-          = f.label :nature, "Nature"
-        .input-field
-          = f.label :level, "Level"
-          = f.text_field :level, class: "validate", type: "number", **maxlength(3),
-                         min: 1, max: 100, value: @trainee.level, disabled: logged_out?,
-                         data: {action: "change->form-submission#submit"}
-    #ev-info
-      #mobile-sprite
-        - if @trainee.species
-          = @trainee.species.sprite
-      - if logged_in?
-        = link_to "#delete-modal", id: "delete", class: "modal-trigger" do
-          %i.material-icons delete
-      #stats-chart
-        = render "shared/radar_chart", stats: @trainee.evs
-      - PokeLog::Stats.stats.each do |stat|
-        .point{class: stat}
-          - attr_name = "#{stat}_ev"
-          = f.text_field attr_name.to_sym, **maxlength(3, "setEvInputColor()"),
-              style: "border-color: #{@trainee.evs.values.inject(:+) == 510 ? 'green' : 'black'}",
-              class: "ev-input", type: "number", placeholder: 0, min: 0, max: 255,
-              value: ((v = @trainee.send(attr_name)).zero? ? nil : v),
-              data: {action: "input->form-submission#submit"}, disabled: logged_out?
-      .pokerus.switch{class: logged_out? ? "disabled" : ""}
-        %label
-          = f.check_box :pokerus, value: @trainee.pokerus, disabled: logged_out?,
-                                  data: {action: "input->form-submission#submit"}
-          %span.lever
-          Pokérus
-  .items-options
-    %label
-      = f.radio_button :item, nil, value: @trainee.item.nil?, disabled: logged_out?,
-                                   data: {action: "click->form-submission#submit"}
-      %span No Item
-    - @items_options.each do |item|
-      %label
-        = f.radio_button :item, item, value: @trainee.item == item,
-                                disabled: logged_out?,
-                                data: {action: "click->form-submission#submit"}
-        %span= item.titleize
+#trainees
+  -# We're listing this way so they appear in order specified by URL
+  - @ids.each do |id|
+    = render @party.find(id)
 
 - if logged_in?
+  .fixed-action-btn
+    %a#add-action-btn.btn-floating.btn-large.red
+      %i.material-icons.large add
+    %ul
+      %li
+        = link_to "#add-to-party-modal", id: "add-to-party-btn",
+                                         class: "btn-floating red modal-trigger" do
+          %i.material-icons list
+      %li
+        = link_to "#{request.path}/new", id: "new-trainee-btn",
+                                         class: "btn-floating red" do
+          %i.material-icons add
+
+  #add-to-party-modal.modal
+    .modal-content
+      %h4 Add to party
+      = render "trainee_list", trainees: @other_trainees
+    .modal-footer
+      %a#cancel-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Cancel
+      %a#confirm-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Add
+
+-if @party.any? { |trainee| yours? trainee }
   #kill-search
     = form_with url: request.path, method: :get,
                 data: { controller: "form-submission",
@@ -80,17 +47,6 @@
       .input-field
         = f.label :q, "Search"
         = f.text_field :q, value: params[:q],
-                       data: { action: "input->form-submission#submit" }
+                       data: { action: "input->form-submission#searchSubmit" }
     .results
       = render "results", results: @search_results
-
-- if logged_in?
-  #delete-modal.modal
-    .modal-content
-      %h4 Confirm delete
-      %p Are you sure? This can't be undone.
-    .modal-footer
-      = form_with model: @trainee, method: :delete, data: {turbo: false} do |f|
-        %a#cancel-delete.modal-close.waves-effect.waves-teal.btn-flat Cancel
-        = f.submit "Delete", id: "confirm-delete",
-            class: "modal-close waves-effect waves-teal btn-flat"

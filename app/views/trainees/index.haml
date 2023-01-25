@@ -1,20 +1,18 @@
 - provide :title, "Trainees"
 
 = javascript_include_tag "sidenav_init"
+= javascript_include_tag "train_button"
 
 - if @trainees.blank?
   %p.grey-text Nothing to show here. Click the + below to get started!
 - else
-  %table#trainee-list.highlight
-    %tbody
-      - @trainees.each do |trn|
-        %tr{class: dom_id(trn)}
-          - if trn.species
-            %td.sprite= trn.species.sprite
-          - else
-            %td
-          %td= link_to trn.title, trainee_path(trn)
+  = render "trainee_list", trainees: @trainees
 
-// + button
-= link_to new_trainee_path, id: "new-trainee", class: "btn-floating btn-large waves-effect waves-light red right" do
-  %i.material-icons add
+.align-opposite
+  %a#train-btn.waves-effect.waves-light.btn.red
+    %i.material-icons.left fitness_center
+    Train
+
+  // + button
+  = link_to new_trainee_path, id: "new-trainee", class: "btn-floating btn-large waves-effect waves-light red" do
+    %i.material-icons add

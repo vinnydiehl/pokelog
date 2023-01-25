@@ -1,22 +1,25 @@
 class TraineesController < ApplicationController
-  before_action :set_trainee, only: %i[show edit update destroy]
+  before_action :set_trainee, only: %i[update destroy]
 
   NO_USER_NOTICE = "Not logged in."
+  NOT_YOURS_NOTICE = "Not your trainee!"
 
   # GET /trainees
   def index
     return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
-    @trainees = Trainee.where user: @current_user
+    @trainees = Trainee.where(user: @current_user).order(updated_at: :desc)
   end
 
-  # GET /trainees/1
+  # GET /trainees/1 or /trainees/1,2,3
   def show
+    @ids = params[:ids].split(",").map &:to_i
+    @party = Trainee.where(id: @ids)
+    @other_trainees = Trainee.where(user: @current_user).where.not(id: @ids)
+
     @nil_nature_option = ["Nature", ""]
     @nature_options = YAML.load_file("data/natures.yml").keys.sort.map do |n|
       [n.capitalize, n]
     end
-    @selected_nature = @nature_options.find { |o| o.last == @trainee.nature } ||
-                       @nil_nature_option
 
     @items_options = YAML.load_file("data/items.yml").keys
 
@@ -33,47 +36,51 @@ class TraineesController < ApplicationController
     redirect_to trainee_path(@trainee)
   end
 
+  # GET /trainees/:ids/new
+  def add_new
+    return redirect_to trainee_path(params[:ids]), notice: NO_USER_NOTICE if @current_user.blank?
+    @trainee = Trainee.new(user: @current_user)
+    @trainee.save!
+    redirect_to trainee_path("#{params[:ids]},#{@trainee.id}")
+  end
+
   # PATCH/PUT /trainees/1
   def update
-    if @current_user.blank?
-      return redirect_to trainee_path(@trainee), notice: NO_USER_NOTICE
-    end
+    if allowed_to_edit? @trainee
+      respond_to do |format|
+        @trainee.set_attributes params["trainee"]
+        @trainee.save!
 
-    respond_to do |format|
-      @trainee.set_attributes params["trainee"]
+        titles = helpers.trainees_show_title(JSON.parse params[:trainees])
+        radar_id = "radar-chart-#{helpers.dom_id @trainee}"
 
-      if @trainee.save
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update("title", html: @trainee.title),
-            turbo_stream.update("title-mobile", html: @trainee.nickname),
-            turbo_stream.update("artwork", partial: "trainees/artwork",
-                                locals: {trainee: @trainee}),
-            turbo_stream.update("radar-chart", partial: "shared/radar_chart",
-                                locals: {stats: @trainee.evs}),
-            turbo_stream.update("mobile-sprite", html:
+            turbo_stream.update("title", html: titles[:title]),
+            turbo_stream.update("title-mobile", html: titles[:mobile_title]),
+            turbo_stream.update("artwork-#{helpers.dom_id @trainee}",
+                                partial: "trainees/artwork", locals: {trainee: @trainee}),
+            turbo_stream.update(radar_id, partial: "shared/radar_chart",
+                                locals: {stats: @trainee.evs, id: radar_id}),
+            turbo_stream.update("mobile-sprite-#{helpers.dom_id @trainee}", html:
                                 @trainee.species ? @trainee.species.sprite : nil)
           ]
         end
-      else
-        puts "Error: Unable to save."
       end
     end
   end
 
   # DELETE /trainees/1
   def destroy
-    if @current_user.blank?
-      return redirect_to trainee_path(@trainee), notice: NO_USER_NOTICE
-    end
+    if allowed_to_edit? @trainee
+      nickname = @trainee.nickname || "Trainee"
 
-    nickname = @trainee.nickname || "Trainee"
+      @trainee.destroy
 
-    @trainee.destroy
-
-    respond_to do |format|
-      format.html { redirect_to trainees_url, status: :see_other,
-                      notice: "#{nickname} has been deleted." }
+      respond_to do |format|
+        format.html { redirect_to trainees_url, status: :see_other,
+                        notice: "#{nickname} has been deleted." }
+      end
     end
   end
 
@@ -86,5 +93,10 @@ class TraineesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def trainee_params
       params.require(:trainee).permit(:user_id, :team_id, :species_id, :level, :pokerus, :start_stats, :trained_stats, :kills, :nature, :evs)
+    end
+
+    # Authentication for trainee modification
+    def allowed_to_edit?(trainee)
+      !@current_user.blank? && @current_user == trainee.user
     end
 end

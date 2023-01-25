@@ -1,0 +1,12 @@
+%table#trainee-list.highlight
+  %tbody
+    - trainees.each do |trainee|
+      %tr{id: "list-#{dom_id trainee}"}
+        %td.check
+          %label
+            = check_box_tag "trainee_ids[]", trainee.id
+            %span{id: "check-#{dom_id trainee}"}
+        %td.sprite
+          - if trainee.species
+            = trainee.species.sprite
+        %td= link_to trainee.title, trainee_path(trainee)
