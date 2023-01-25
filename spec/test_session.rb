@@ -11,6 +11,5 @@ def create_user
 end
 
 def log_in
-  create_user if User.none?
   visit ENDPOINT
 end

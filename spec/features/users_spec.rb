@@ -51,6 +51,7 @@ RSpec.feature "users:", type: :feature do
   describe ENDPOINT do
     context "with a new user" do
       before :each do
+        User.delete_all
         visit ENDPOINT
       end
 
