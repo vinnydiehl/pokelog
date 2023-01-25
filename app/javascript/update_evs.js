@@ -1,5 +1,5 @@
 function getEvSum(traineeInfo) {
-    return [0, ...document.querySelectorAll(".ev-input")].reduce((partialSum, input) => {
+    return [0, ...traineeInfo.querySelectorAll(".ev-input")].reduce((partialSum, input) => {
       return partialSum + (parseInt(input.value) || 0)
     });
 }
@@ -70,8 +70,11 @@ function updateEvs(iHp, iAtk, iDef, iSpa, iSpd, iSpe) {
 
         // Grab the final values from the inputs and use them
         // to update the radar chart
-        final = [...inputs].map(input => input.value);
-        drawRadarChart("radar-chart-trainee_" + id, ...final);
+        if (getEvSum(traineeInfo) <= 510) {
+            final = [...inputs].map(input => input.value);
+            drawRadarChart("radar-chart-trainee_" + id, ...final);
+        }
+
         setEvInputColor();
     });
 }
