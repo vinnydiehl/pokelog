@@ -18,14 +18,16 @@
 
 - if logged_in?
   .fixed-action-btn
-    %a.btn-floating.btn-large.red
+    %a#add-action-btn.btn-floating.btn-large.red
       %i.material-icons.large add
     %ul
       %li
-        = link_to "#add-to-party-modal", class: "btn-floating red modal-trigger" do
+        = link_to "#add-to-party-modal", id: "add-to-party-btn",
+                                         class: "btn-floating red modal-trigger" do
           %i.material-icons list
       %li
-        = link_to "#{request.path}/new", class: "btn-floating red" do
+        = link_to "#{request.path}/new", id: "new-trainee-btn",
+                                         class: "btn-floating red" do
           %i.material-icons add
 
   #add-to-party-modal.modal
