@@ -1,10 +1,7 @@
 function getEvSum(traineeInfo) {
-    var sum = 0;
-    traineeInfo.querySelectorAll(".ev-input").forEach(input => {
-      sum += parseInt(input.value) || 0
+    return [0, ...document.querySelectorAll(".ev-input")].reduce((partialSum, input) => {
+      return partialSum + (parseInt(input.value) || 0)
     });
-
-    return sum;
 }
 
 function updateEvs(iHp, iAtk, iDef, iSpa, iSpd, iSpe) {
@@ -75,6 +72,7 @@ function updateEvs(iHp, iAtk, iDef, iSpa, iSpd, iSpe) {
         // to update the radar chart
         final = [...inputs].map(input => input.value);
         drawRadarChart("radar-chart-trainee_" + id, ...final);
+        setEvInputColor();
     });
 }
 

@@ -7,10 +7,6 @@ export default class extends Controller {
     }
 
     submit() {
-        console.log("--");
-        console.log(this.element);
-        console.log("--");
-        console.log(event.target.closest("form"));
         event.target.closest("form").requestSubmit();
     }
 }
