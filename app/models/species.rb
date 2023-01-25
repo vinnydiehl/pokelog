@@ -55,12 +55,8 @@ class Species < ActiveYaml::Base
     form = nil
     if name[/\(/]
       form = name[/(?<=\()[^\)]+/]
-      form.downcase! if form
       name = name.split("(").first.strip
     end
-    find do |s|
-      s_form = s.form ? s.form.downcase : nil
-      s.name == name && (s_form == form || (form == nil && s_form == "normal"))
-    end
+    find { |s| s.name == name && (s.form == form || (form == nil && s.form == "Normal")) }
   end
 end
