@@ -30,11 +30,13 @@ module PokeLog
     end
 
     def +(addend)
+      return self if addend.nil?
       Stats.verify addend, false
       self.merge(addend) { |_, old, new| old + new }
     end
 
     def -(subtrahend)
+      return self if subtrahend.nil?
       Stats.verify subtrahend, false
       self.merge(subtrahend) { |_, old, new| old - new }
     end

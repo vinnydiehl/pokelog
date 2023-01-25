@@ -8,7 +8,7 @@ function getEvSum(traineeInfo) {
 }
 
 function updateEvs(iHp, iAtk, iDef, iSpa, iSpd, iSpe) {
-    document.querySelectorAll(".trainee-info").forEach(traineeInfo => {
+    document.querySelectorAll(".trainee-info").forEach((traineeInfo, index) => {
         // Locally scoped stats for each trainee
         var hp = iHp, atk = iAtk, def = iDef, spa = iSpa, spd = iSpd, spe = iSpe;
 
@@ -58,7 +58,23 @@ function updateEvs(iHp, iAtk, iDef, iSpa, iSpd, iSpe) {
                 input.value = newValue == 0 ? "" : newValue;
             }
         });
-        inputs[0].dispatchEvent(new Event('input', {bubbles: true}));
+
+        const id = traineeInfo.id.split("_")[1];
+
+        // Make the PATCH request and handle the response
+        // The Stimulus controller struggles with this
+        fetch("/trainees/" + id, {
+          method: "PATCH",
+          body: new FormData(traineeInfo),
+          headers: {
+            "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+          }
+        });
+
+        // Grab the final values from the inputs and use them
+        // to update the radar chart
+        final = [...inputs].map(input => input.value);
+        drawRadarChart("radar-chart-trainee_" + id, ...final);
     });
 }
 

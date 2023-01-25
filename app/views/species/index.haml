@@ -9,7 +9,7 @@
   .input-field
     = f.label :q, "Search"
     = f.text_field :q, value: params[:q],
-                   data: { action: "input->form-submission#submit" }
+                   data: { action: "input->form-submission#searchSubmit" }
 
 .results
   = render "results", results: @search_results

@@ -14,7 +14,7 @@ class TraineesController < ApplicationController
   def show
     @ids = params[:ids].split(",").map &:to_i
     @party = Trainee.where(id: @ids)
-    @other_trainees = Trainee.where.not(id: @ids)
+    @other_trainees = Trainee.where(user: @current_user).where.not(id: @ids)
 
     @nil_nature_option = ["Nature", ""]
     @nature_options = YAML.load_file("data/natures.yml").keys.sort.map do |n|
@@ -49,25 +49,22 @@ class TraineesController < ApplicationController
     if allowed_to_edit? @trainee
       respond_to do |format|
         @trainee.set_attributes params["trainee"]
+        @trainee.save!
 
-        if @trainee.save
-          titles = helpers.trainees_show_title(JSON.parse params[:trainees])
-          radar_id = "radar-chart-#{helpers.dom_id @trainee}"
+        titles = helpers.trainees_show_title(JSON.parse params[:trainees])
+        radar_id = "radar-chart-#{helpers.dom_id @trainee}"
 
-          format.turbo_stream do
-            render turbo_stream: [
-              turbo_stream.update("title", html: titles[:title]),
-              turbo_stream.update("title-mobile", html: titles[:mobile_title]),
-              turbo_stream.update("artwork-#{helpers.dom_id @trainee}",
-                                  partial: "trainees/artwork", locals: {trainee: @trainee}),
-              turbo_stream.update(radar_id, partial: "shared/radar_chart",
-                                  locals: {stats: @trainee.evs, id: radar_id}),
-              turbo_stream.update("mobile-sprite-#{helpers.dom_id @trainee}", html:
-                                  @trainee.species ? @trainee.species.sprite : nil)
-            ]
-          end
-        else
-          puts "Error: Unable to save."
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update("title", html: titles[:title]),
+            turbo_stream.update("title-mobile", html: titles[:mobile_title]),
+            turbo_stream.update("artwork-#{helpers.dom_id @trainee}",
+                                partial: "trainees/artwork", locals: {trainee: @trainee}),
+            turbo_stream.update(radar_id, partial: "shared/radar_chart",
+                                locals: {stats: @trainee.evs, id: radar_id}),
+            turbo_stream.update("mobile-sprite-#{helpers.dom_id @trainee}", html:
+                                @trainee.species ? @trainee.species.sprite : nil)
+          ]
         end
       end
     end
