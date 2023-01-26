@@ -4,7 +4,7 @@
 = javascript_include_tag "register_button"
 = javascript_include_tag "sidenav_init"
 
-%p Pick a username to continue! You can change your email address if you would like, we don't store any information about your Google account other than an identification code.
+%p Pick a username to continue! You can change your email address if you would like, we don't store any personal information from your Google account.
 
 = form_with model: @user, url: "/register/submit", data: {turbo: false} do |form|
   = form.hidden_field :credential, value: params["credential"]
@@ -15,7 +15,7 @@
                                  oninput: "activateRegisterButton();"
   .input-field
     = form.label :email, "Email Address"
-    = form.text_field :email, value: @token.email_address
+    = form.text_field :email, value: @token.email_address, oninput: "activateRegisterButton();"
   %button#register-btn.btn.waves-effect.waves-light{type: "submit", name: "commit", disabled: true}
     Register
     %i.material-icons.right send
