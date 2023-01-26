@@ -14,9 +14,14 @@ class UsersController < ApplicationController
 
   # POST /register/submit
   def create
+    if User.find_by_username(params["username"])
+      flash[:notice] = "Username #{params["username"]} has been taken."
+      return redirect_post register_path(credential: params["credential"])
+    end
+
     @user = User.new(
-      username: params["username"],
-      email: params["email"],
+      username: params["username"].strip,
+      email: params["email"].strip,
       google_id: @token.user_id
     )
 
