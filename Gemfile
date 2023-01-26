@@ -48,10 +48,12 @@ group :development do
 end
 
 group :test do
-  gem "capybara", "~> 3.38"
-  gem "capybara-selenium", "~> 0.0.6"
   gem "rspec", "~> 3.12"
   gem "rspec-rails", "~> 6.0"
+  gem "fuubar", "~> 2.0"
+
+  gem "capybara", "~> 3.38"
+  gem "capybara-selenium", "~> 0.0.6"
   gem "selenium-webdriver", "~> 4.1"
 end
 
