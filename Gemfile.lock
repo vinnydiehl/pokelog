@@ -93,6 +93,8 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     diff-lcs (1.5.0)
+    email_validator (1.6.0)
+      activemodel
     erubi (1.12.0)
     execjs (2.8.1)
     faraday (2.7.4)
@@ -294,6 +296,7 @@ DEPENDENCIES
   capybara (~> 3.38)
   capybara-selenium (~> 0.0.6)
   debug
+  email_validator (~> 1.6)
   fuubar (~> 2.0)
   google_sign_in (~> 1.2)
   haml (~> 6.1)

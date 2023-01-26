@@ -14,14 +14,22 @@ class UsersController < ApplicationController
 
   # POST /register/submit
   def create
+    params["username"].strip!
+    params["email"].strip!
+
     if User.find_by_username(params["username"])
       flash[:notice] = "Username #{params["username"]} has been taken."
       return redirect_post register_path(credential: params["credential"])
     end
 
+    unless EmailValidator.valid?(params["email"])
+      flash[:notice] = "Invalid email address."
+      return redirect_post register_path(credential: params["credential"])
+    end
+
     @user = User.new(
-      username: params["username"].strip,
-      email: params["email"].strip,
+      username: params["username"],
+      email: params["email"],
       google_id: @token.user_id
     )
 

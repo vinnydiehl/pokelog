@@ -58,6 +58,7 @@ group :test do
 end
 
 gem "active_hash", "~> 3.1"
+gem "email_validator", "~> 1.6"
 gem "google_sign_in", "~> 1.2"
 gem "haml", "~> 6.1"
 gem "haml-rails", "~> 2.0"
