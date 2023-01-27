@@ -14,9 +14,20 @@
 
 #profile-team {
   margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 
   img {
     width: 250px;
     height: 250px;
+    @media (max-width: 1390px) {
+      width: 200px;
+      height: 200px;
+    }
+    @media (max-width: 515px) {
+      width: 150px;
+      height: 150px;
+    }
   }
 }
