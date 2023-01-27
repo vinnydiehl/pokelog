@@ -1,0 +1,29 @@
+- your_profile = @current_user == @display_user
+- name = your_profile ? "Your" : "#{@display_user.username}'s"
+
+- provide :title, (title = "#{name} Profile")
+- provide :mobile_title, (your_profile ? title : @display_user.username)
+
+= javascript_include_tag "form_button_enable"
+
+- if your_profile
+  -# We know that we only want the user to be able to edit their own email,
+  -# so this form will be for @current_user. Functionally it doesn't matter,
+  -# because this is rendered conditionally, so that's my decision.
+  = form_with model: @current_user, id: "profile-email",
+              html: { "data-turbo" => false } do |f|
+    .input-field
+      = f.label :email, "Email Address"
+      = f.text_field :email, oninput: "enableEditButton();",
+          value: @current_user.email, "data-original-value" => @current_user.email
+    %button#edit-btn.btn.waves-effect.waves-light{type: "submit", name: "commit", disabled: true}
+      %i.material-icons.right edit
+
+- if @display_user.trainees.blank?
+  %p It doesn't look like #{your_profile ? "you have" : "#{@display_user.username} has"} any trainees yet.
+- else
+  %h4.center #{name} Team
+  #profile-team
+    - @display_user.trainees.each do |trainee|
+      - if trainee.species
+        = link_to trainee.species.artwork, trainee_path(trainee)
