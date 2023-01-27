@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post "/register", to: "users#register"
   post "/register/submit", to: "users#create"
   get "/logout", to: "users#logout"
+  resources :users, param: :username, only: [:show, :update, :destroy]
 
   get "/species", to: "species#index"
 

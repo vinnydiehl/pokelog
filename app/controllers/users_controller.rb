@@ -1,6 +1,19 @@
 class UsersController < ApplicationController
   skip_forgery_protection # Using Google API token verification
   before_action :parse_token, only: %i[login create register]
+  before_action :set_display_user, only: %i[show update destroy]
+
+  # GET /users/:username
+  def show
+  end
+
+  # PATCH /users/:username
+  def update
+  end
+
+  # DELETE /users/:username
+  def destroy
+  end
 
   # POST /login/submit
   def login
@@ -71,5 +84,10 @@ class UsersController < ApplicationController
   def log_in
     cookies.encrypted[:google_id] = @token.user_id
     redirect_to trainees_url, notice: "Logged in as #{@found_user.username}."
+  end
+
+  def set_display_user
+    @display_user = User.find_by username: params[:username]
+    redirect_to "/404" unless @display_user
   end
 end
