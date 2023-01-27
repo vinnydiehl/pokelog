@@ -28,4 +28,17 @@ module ApplicationHelper
   def maxlength(n, js=nil)
     { oninput: "if(this.value.length>#{n - 1}) this.value=this.value.slice(0,#{n});#{js}" }
   end
+
+  # Builds a page title (as displayed e.g. in the browser tab) based on the title
+  # from the topnav. If on the homepage this will simply be "PokéLog", otherwise
+  # it will have a "|" separating it from the remainder of the title.
+  #
+  # @param title [String] the title from `yield :title`
+  # @param path [String] the current request.path
+  # @return title formatted for the browser
+  def build_title(title, path)
+    "PokéLog#{
+      (title.blank? || %w[/ /home /index].include?(path)) ? "" : " | #{title}"
+    }"
+  end
 end

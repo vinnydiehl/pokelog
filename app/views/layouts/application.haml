@@ -13,7 +13,7 @@
       -# AdSense
       %script{src:"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411926405139648", crossorigin: "anonymous", async: true}
 
-    %title PokéLog
+    %title= build_title yield(:title), request.path
     = favicon_link_tag asset_path "favicon.ico"
 
     %meta{name: "viewport", content: "width=device-width,initial-scale=1"}
