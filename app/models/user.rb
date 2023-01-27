@@ -7,4 +7,8 @@ class User < ApplicationRecord
 
   validates_presence_of :email
   validates :email, email: true
+
+  def to_param
+    username
+  end
 end

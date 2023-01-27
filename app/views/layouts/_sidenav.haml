@@ -20,6 +20,8 @@
         .collapsible-body
           %ul
             %li
+              = link_to "Profile", user_path(@current_user)
+            %li
               = link_to "Logout", "/logout"
   - else
     %li#sign-in
