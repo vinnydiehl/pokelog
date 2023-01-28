@@ -275,6 +275,10 @@ def test_server_interaction
           expect(page).to have_current_path trainees_path
         end
 
+        it "displays a notice" do
+          expect(page).to have_selector "#notice"
+        end
+
         it "deletes the trainee" do
           expect(Trainee.all.size).to eq 0
         end

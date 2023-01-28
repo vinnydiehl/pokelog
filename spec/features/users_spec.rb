@@ -137,6 +137,10 @@ RSpec.feature "users:", type: :feature do
             it "logs the user in" do
               expect(logged_in?).to be true
             end
+
+            it "displays a notice" do
+              expect(page).to have_selector "#notice"
+            end
           end
 
           context "with a username that is taken" do
@@ -159,6 +163,10 @@ RSpec.feature "users:", type: :feature do
 
             it "keeps the Google credential loaded" do
               expect(find("#credential", visible: false).value).to eq TEST_CREDENTIAL
+            end
+
+            it "displays a notice" do
+              expect(page).to have_selector "#notice"
             end
           end
         end
@@ -198,6 +206,10 @@ RSpec.feature "users:", type: :feature do
 
     it "logs the user out" do
       expect(logged_in?).to be false
+    end
+
+    it "displays a notice" do
+      expect(page).to have_selector "#notice"
     end
   end
 
