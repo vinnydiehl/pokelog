@@ -1,0 +1,39 @@
+@import "include/variables";
+
+#notice {
+  background: $notice_bg;
+  padding: 0.5rem;
+  border: 2px solid $red;
+  border-radius: 0.75rem;
+
+  display: flex;
+  align-items: center;
+
+  button {
+    width: 1.6rem;
+    height: 1.6rem;
+
+    margin-left: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    border: 1px solid $red;
+    border-radius: 0.3rem;
+
+    background: $notice_btn;
+    &:hover {
+      background: $notice_btn_hover;
+    }
+    &:focus {
+      background: $notice_btn_focus;
+    }
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+}
