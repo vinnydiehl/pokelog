@@ -2,48 +2,62 @@
 
 http://www.pokelog.net/
 
-EV tracker for hardcore enthusaists. Under construction. Sparse developer
-documentation incoming.
+EV tracker for hardcore Pokémon enthusaists.
 
-# Database
+### What is EV Training?
 
-PokéLog uses PostgreSQL. Setup will vary depending on your environment but
-there is plenty of documentation on getting it running anywhere. Once your
-database server is running and you have created the `pokelog_dev` database, you
-should be able to `bin/rake db:migrate` and run the app.
+EVs, or Effort Values, are a hidden stat that can be increased through battling
+wild Pokémon. Each Pokémon species gives a certain amount of EVs in a specific
+stat when defeated. For example, defeating a Pidgey will give 1 EV for Speed.
+A Pokémon can have a maximum of 255 EVs in one stat, and a maximum of 510 EVs
+across all stats. 4 EVs translates to 1 extra stat point.
 
-# OAuth2
+EV training is the practice of strategically battling specific Pokémon in order
+to increase the EVs of your Pokémon in a specific stat. This can be accelerated
+by using items such as the Power Weight, which will gives extra HP EVs.
 
-You will need to set up an OAuth2 Client ID in the Google API Console. PokéLog
-uses the `google_sign_in` gem to handle logins; see
-[their README](https://github.com/basecamp/google_sign_in#configuration) for
-detailed instructions on setting up your development environment. Once you have
-credentials created, add the lines to your `~/.bashrc`, pasting in the values
-that the API Console gives you:
+With discipline you can enhance the stats of your Pokémon beyond the normal
+level-up process, allowing you to create a Pokémon that is tailored to your
+specific needs.
 
-```bash
-export GOOGLE_OAUTH2_ID='client id here'
-export GOOGLE_OAUTH2_SECRET='client secret here'
-```
+### So what is this website?
 
-# Testing
+PokéLog aims to remove some of the mystery behind EV training for newer
+players, and make the process of tracking progress across a team (or teams)
+less of a pain for experienced players.
 
-PokéLog uses RSpec and Capybara with the Selenium Chrome driver. You will need
-the appropriate version of Chrome installed for the driver version you are
-running; for the purposes of active development of this project, that will be
-the latest version of Chrome.
+Create entries in the app (we call them
+trainees) for each Pokémon that you wish to train, and load them all into your
+party (keeping in mind that EVs are applied to every Pokémon that gains EXP
+after a battle, even if they were never sent out). From this page you are able
+to search for Pokémon as you encounter them, see what EVs they yield, and click
+on them to apply those EVs to your trainees.
 
-You will need to create a PostgreSQL database named `pokelog_test`, then run
-`bin/rake db:migrate RAILS_ENV=test` to set it up for the first time.
+### Report a Bug
 
-The test suite bypasses Google sign in by patching the GSI gem
-[here](/spec/gsi_patch.rb); no internet connection or Google account is
-required to pass.
+Please don't hesitate to report any bugs, issues or general jank that you
+encounter on the [issues page](https://github.com/vinnydiehl/pokelog/issues).
+Please keep issues separated as they are tied into the development history of
+the software; if you have multiple bugs that you wish to report, open separate
+issues for each one so that they may be addressed and referenced individually.
 
-# PokéAPI
+### Contributing
 
-The `poke-api-v2` gem
-([GitHub](https://github.com/rdavid1099/poke-api-v2#poke-api-v2))
-is included in the development dependencies as it is an incredibly useful tool
-to use in the console for data management and debugging. See the [PokéAPI
-website](https://pokeapi.co/) for more information on this amazing service.
+PokéLog is built on Rails 7. If you are interested in helping out with the
+project, feel free to check out
+[my ever-growing TODO list](https://github.com/vinnydiehl/pokelog/issues) and
+pick something that interests you. If you have a new idea, please open a ticket
+and we can discuss it.
+
+See
+[`CONTRIBUTING.md`](https://github.com/vinnydiehl/pokelog/blob/develop/CONTRIBUTING.md)
+for more information on getting a development environment set up.
+
+### So PokéLog is open source?
+
+Not quite. PokéLog has a [fair-code](https://faircode.io/) distribution model,
+where its source code will always be available, and you're welcome to fork and
+contribute, and even run your own copy locally, but you are restricted from using
+the software commercially. See
+[`LICENSE.md`](https://github.com/vinnydiehl/pokelog/blob/develop/LICENSE.md)
+for all the fine print.

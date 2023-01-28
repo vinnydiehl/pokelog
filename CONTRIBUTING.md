@@ -1,0 +1,152 @@
+# Contributing to PokéLog
+
+Thank you for considering contributing to PokéLog! We are always looking 
+for new contributors to help us improve the project. Please give this
+document a read before you get started, it will help you get dependencies set
+up, and we can talk about best practices.
+
+## Rails
+
+PokéLog is a Ruby on Rails app. If you're just getting started with Rails,
+welcome! They have
+[excellent documentation](https://guides.rubyonrails.org/getting_started.html).
+I would recommend playing around with a basic app as they describe to get the
+hang of how Rails works. Once you get the feel for it, you can dive into some
+of our dependencies:
+
+### Preprocessors
+
+HTML and CSS have shitty syntax, there's no way around it. Actually, there is:
+
+#### HAML
+
+Okay, so maybe HTML isn't that bad. It's sensible to read, at least, but it's a
+bear to type. HAML changes that; see [their docs](https://haml.info) for more
+info.
+
+#### SCSS
+
+[SCSS](https://sass-lang.com/guide) makes CSS about 30% less of a pain by allowing
+nice things such as nesting, variables, mixins, and more.
+
+### Database
+
+PokéLog uses PostgreSQL. Setup will vary depending on your environment but
+there is plenty of documentation on getting it running anywhere. Once your
+database server is running and you have created the `pokelog_dev` database, you
+should be able to `bin/rake db:migrate` and run the app.
+
+### Google Sign In
+
+In order to log into the app in development you will need to create an OAuth2
+client ID in the
+[Google Cloud API Console](https://console.developers.google.com/apis/credentials):
+
+1. In the projects menu at the top of the page, create a new one and select it.
+2. In the left-side navigation menu, choose APIs & Services → Credentials.
+3. Click the button near the top labeled "Create Credentials". In the menu that appears,
+   choose to create an OAuth client ID.
+4. When prompted to select an application type, select "Web application".
+5. Enter a name you would like to refer to the credential by, e.g. `pokelog-oauth2`.
+6. Under "Authorized JavaScript origins", press the "Add URI" button and enter
+   `http://localhost`.
+7. Add another JavaScript Origin URI for `http://localhost:3000`.
+8. Under "Authorized redirect URIs", add `http://localhost:3000/login/submit`.
+9. Click the button labeled “Create.” You’ll be presented with a client ID and client
+   secret. 
+10. Add these lines to your `~/.bashrc`, pasting in the values that the API Console
+    gives you:
+
+    ```bash
+    export GOOGLE_OAUTH2_ID='client id here'
+    export GOOGLE_OAUTH2_SECRET='client secret here'
+    ```
+
+These environment variables will be loaded by the Rails server on boot up and
+you should be able to use the Google Sign In button in development with your
+own Google account. Make sure you `source ~/.bashrc` before running the server
+if you are just getting this set up.
+
+### Testing
+
+Testing is absolutely critical for the continued maintenance of any software.
+As PokéLog becomes increasingly complex it is important that we do not break
+existing behavior while making bugfixes and improvements. As such, any time you
+make a change that introduces a new behavior to (or removes an undesired
+behavior from) the application, you should write a test to go along with it.
+Make sure all tests are green before you open a pull request; that's why they're
+there!
+
+PokéLog uses RSpec and Capybara with the Selenium Chrome driver. You will need
+the appropriate version of Chrome installed for the driver version you are
+running; for the purposes of active development of this project, that will be
+the latest version of Chrome.
+
+You will need to create a PostgreSQL database named `pokelog_test`, then run
+`bin/rake db:migrate RAILS_ENV=test` to set it up for the first time. The
+database is automatically wiped in between each test, so each test is
+essentially acting on a freshly installed version of the app.
+
+The test suite bypasses Google sign in by patching the GSI gem
+[here](/spec/gsi_patch.rb); no internet connection or Google account is
+required to pass.
+
+For more information, see the docs for [RSpec](https://rspec.info/documentation/)
+and [Capybara](https://rubydoc.info/github/jnicklas/capybara#using-capybara-with-rspec).
+
+### PokéAPI
+
+The `poke-api-v2` gem
+([GitHub](https://github.com/rdavid1099/poke-api-v2#poke-api-v2))
+is included in the development dependencies as it is an incredibly useful tool
+to use in the console for data management and debugging. See the [PokéAPI
+website](https://pokeapi.co/) for more information on this amazing service.
+
+## Best Practices
+
+### Code Style
+
+Readability and consistency above all else. The
+[Ruby Style Guide](https://rubystyle.guide/) is a good start, but liberties may
+be taken so long as the code makes sense. Try to keep lines under 80
+characters, but this isn't always feasible. In views especially, 90-character
+lines are okay.
+
+I'm not a fan of having parens everywhere, but if there's ever a question about
+what is nested in what, use them. Whether to use `foo bar(baz)` or `foo(bar baz)`
+depends entirely on the context. `foo(bar(baz))` is generally frowned upon.
+
+Use `"` for quotes universally. Only exceptions are when nesting gets weird and
+it would increase readability, such as `"foo #{bar ? 'baz' : 'bat'}"`.
+
+### Git Flow
+
+PokéLog uses the git flow branching model for managing development. This 
+means that the HEAD of the `master` branch should always contain the version
+that is running live, and that new features should be developed on a separate
+branch.
+
+The `develop` branch is the main branch that all work gets merged into, and it
+is frequently merged into `master` as those features are released. At least,
+this will be the case post-1.0; while the website is in beta the code
+that is running live will be whatever we are currently testing.
+
+When starting work on a new feature, create a new branch off of `develop` 
+with a name that describes the feature you're working on, like 
+`feature/really-cool-thing`.
+
+Make your changes on this branch, committing them as you go. Once you're 
+finished, open a pull request to merge your feature branch into `develop`.
+
+Here's an example of how you might add a new feature to PokéLog:
+
+1. Check out the `develop` branch: `git checkout develop`
+2. Create a new branch for your feature: `git checkout -b feature/really-cool-thing`
+3. Make your changes, write tests, and commit them: `git commit -am "Add awesome feature"`
+4. Make sure all tests pass: `bin/rspec`
+4. Push your branch to GitHub: `git push origin feature/really-cool-thing`
+5. Open a pull request to merge your feature branch into `develop`
+
+If your commits are neat and tidy, they'll be preserved; otherwise, they'll be
+squashed before merge. It doesn't really matter. I don't care if it's all in
+one giant commit as long as the tests are green and I like your feature.
