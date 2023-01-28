@@ -18,8 +18,10 @@ class UsersController < ApplicationController
       return redirect_to user_path(@user), notice: "Authentication failed."
     end
 
-    @user.update! email: params[:user][:email]
-    redirect_to user_path(@user), notice: "Email updated."
+    @user.email = params[:user][:email]
+
+    notice = @user.save ? "Email updated." : "There was a problem updating your email."
+    redirect_to user_path(@user), notice: notice
   end
 
   # DELETE /users/:username
@@ -82,10 +84,7 @@ class UsersController < ApplicationController
     begin
       @token = GoogleSignIn::Identity.new(params["credential"])
     rescue GoogleSignIn::Identity::ValidationError
-      redirect_to root_url, notice: "Authentication failed."
-      puts "User authentication failed. POST params:"
-      p params # TODO: Log this
-      return
+      return redirect_to root_url, notice: "Authentication failed."
     end
 
     @found_user = User.find_by_google_id @token.user_id

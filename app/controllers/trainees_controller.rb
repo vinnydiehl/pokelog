@@ -3,6 +3,7 @@ class TraineesController < ApplicationController
 
   NO_USER_NOTICE = "Not logged in."
   NOT_YOURS_NOTICE = "Not your trainee!"
+  PROBLEM_CREATING_NOTICE = "There was a problem creating a trainee."
 
   # GET /trainees
   def index
@@ -32,16 +33,21 @@ class TraineesController < ApplicationController
   def new
     return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
     @trainee = Trainee.new(user: @current_user)
-    @trainee.save!
-    redirect_to trainee_path(@trainee)
+
+    notice = @trainee.save ? nil : PROBLEM_CREATING_NOTICE
+    redirect_to trainee_path(@trainee), notice: notice
   end
 
   # GET /trainees/:ids/new
   def add_new
     return redirect_to trainee_path(params[:ids]), notice: NO_USER_NOTICE if @current_user.blank?
     @trainee = Trainee.new(user: @current_user)
-    @trainee.save!
-    redirect_to trainee_path("#{params[:ids]},#{@trainee.id}")
+    if @trainee.save
+      redirect_to trainee_path("#{params[:ids]},#{@trainee.id}")
+    else
+      flash[:notice] = PROBLEM_CREATING_NOTICE
+      redirect_back fallback_location: root_path
+    end
   end
 
   # PATCH/PUT /trainees/1
@@ -67,13 +73,17 @@ class TraineesController < ApplicationController
           ]
         end
       end
+    else
+      flash[:notice] = NOT_YOURS_NOTICE
+      redirect_back fallback_location: root_path
     end
   end
 
   # DELETE /trainees/1
   def destroy
     if allowed_to_edit? @trainee
-      nickname = @trainee.nickname || "Trainee"
+      nickname = @trainee.nickname
+      nickname = "Trainee" if nickname.blank?
 
       @trainee.destroy
 
@@ -81,6 +91,9 @@ class TraineesController < ApplicationController
         format.html { redirect_to trainees_url, status: :see_other,
                         notice: "#{nickname} has been deleted." }
       end
+    else
+      flash[:notice] = NOT_YOURS_NOTICE
+      redirect_back fallback_location: root_path
     end
   end
 
