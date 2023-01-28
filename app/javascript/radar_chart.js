@@ -12,8 +12,8 @@ function drawRadarChart(id, hp, atk, def, spa, spd, spe) {
     // Credits in footer
     chart.credits().enabled(false);
 
-    // 255 needs to be hardcoded here
-    chart.tooltip().format(`{%value} / 255`);
+    chart.interactivity().selectionMode("none");
+    chart.tooltip().enabled(false);
 
     chart.xAxis().labels().enabled(false);
     chart.yAxis().labels().enabled(false);
