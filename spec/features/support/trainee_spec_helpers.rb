@@ -72,7 +72,7 @@ end.inject(:merge)
 
 def click_away(**args)
   if args[:within] == :trainee_info
-    find(".radar-chart").click
+    find(".ev-info").click
   else
     find("body").click
   end
@@ -269,6 +269,7 @@ def test_server_interaction
       context "when accepted" do
         before :each do
           find("#confirm-delete").click
+          sleep 0.5
         end
 
         it "redirects to trainees#index" do
