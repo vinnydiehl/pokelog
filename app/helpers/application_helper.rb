@@ -1,4 +1,26 @@
 module ApplicationHelper
+  # Gets the current PokéLog version
+  #
+  # @return [String] current version number
+  def version
+    File.read(Rails.root / "VERSION")
+  end
+
+  # Generates a human-readable amount of time since the server was started.
+  #
+  # @return [String] amount of server uptime in plain English
+  def uptime
+    time_ago_in_words PokeLog::BOOTED_AT, include_seconds: true
+  end
+
+  # Generates a human-readable amount of time since the app was deployed.
+  # Uses the modification time of the "app" directory.
+  #
+  # @return [String] amount of time since app was deployed in plain English
+  def time_since_deploy
+    time_ago_in_words File.mtime("app"), include_seconds: true
+  end
+
   # Generates a nav link for the sidenav, with an icon and optional text.
   #
   # @param icon [String] material-icons ligature

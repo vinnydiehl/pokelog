@@ -16,13 +16,12 @@ of our dependencies:
 
 ### Preprocessors
 
-HTML and CSS have shitty syntax, there's no way around it. Actually, there is:
+PokéLog uses some software to pretty up the front-end code:
 
 #### HAML
 
-Okay, so maybe HTML isn't that bad. It's sensible to read, at least, but it's a
-bear to type. HAML changes that; see [their docs](https://haml.info) for more
-info.
+HAML formats HTML/ERB in a minimalist, indentation-driven syntax; see
+[their docs](https://haml.info) for more info.
 
 #### SCSS
 
@@ -129,7 +128,8 @@ branch.
 The `develop` branch is the main branch that all work gets merged into, and it
 is frequently merged into `master` as those features are released. At least,
 this will be the case post-1.0; while the website is in beta the code
-that is running live will be whatever we are currently testing.
+that is running live will be whatever we are currently testing. The current
+live commit is displayed on [the about page](https://www.pokelog.net/about).
 
 When starting work on a new feature, create a new branch off of `develop` 
 with a name that describes the feature you're working on, like 

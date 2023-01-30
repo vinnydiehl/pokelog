@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
     # Navigation links
     @nav_links = [
       ["school", trainees_path, "Trainees"],
-      ["fitness_center", species_path, "EV Yields"]
+      ["fitness_center", species_path, "EV Yields"],
+      ["info", "/about", "About Us"]
     ]
   end
 

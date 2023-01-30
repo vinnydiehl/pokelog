@@ -132,6 +132,8 @@ GEM
     irb (1.6.2)
       reline (>= 0.3.0)
     jwt (2.6.0)
+    kramdown (2.4.0)
+      rexml
     libv8-node (16.10.0.0-x86_64-linux)
     loofah (2.19.1)
       crass (~> 1.0.2)
@@ -302,6 +304,7 @@ DEPENDENCIES
   haml (~> 6.1)
   haml-rails (~> 2.0)
   importmap-rails
+  kramdown (~> 2.4)
   mini_racer (~> 0.6)
   pg (~> 1.4.5)
   poke-api-v2

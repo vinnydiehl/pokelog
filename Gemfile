@@ -26,9 +26,6 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", "~> 1.16", require: false
 
-# Use SCSS
-gem "sassc-rails", "~> 2.1"
-
 group :production do
   # JS minification
   gem "mini_racer", "~> 0.6"
@@ -60,6 +57,13 @@ end
 gem "active_hash", "~> 3.1"
 gem "email_validator", "~> 1.6"
 gem "google_sign_in", "~> 1.2"
+
+# HAML/SCSS Preprocessors
 gem "haml", "~> 6.1"
 gem "haml-rails", "~> 2.0"
+gem "sassc-rails", "~> 2.1"
+# Markdown processor for HAML
+gem "kramdown", "~> 2.4"
+
+# redirect_post
 gem "repost", "~> 0.4"

@@ -1,0 +1,12 @@
+#about-data {
+  color: grey;
+
+  display: flex;
+  justify-content: space-between;
+  // Stop text from bunching up on mobile
+  gap: 6rem;
+
+  #uptime {
+    text-align: right;
+  }
+}

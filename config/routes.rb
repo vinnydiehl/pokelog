@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     match "/#{code}", to: "errors##{view}", via: :all
   end
 
+  get "/about", to: "pages#about"
+
   if Rails.env.test?
     get "/login/submit", to: "users#login"
   end

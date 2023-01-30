@@ -2,9 +2,15 @@
 
 = javascript_include_tag "sidenav_init"
 
-%p Welcome to the beta for PokéLog! This app is in very early development, please don't hesitate to #{link_to "open an issue on GitHub", "https://github.com/vinnydiehl/pokelog/issues"} if you encounter any problems or have any recommendations.
+:markdown
+  Welcome to the beta for PokéLog! This app is in very early development, please don't
+  hesitate to [open an issue on GitHub](https://github.com/vinnydiehl/pokelog/issues)
+  if you encounter any problems or have any recommendations.
 
-%p PokéLog is an EV training tool/logbook for hardcore Pokémon enthusaists. The first feature that I'm refining is a page where you can search for Pokémon as you defeat them, clicking the button to adjust your trainee's EVs, taking into account EV-boosting items and Pokérus if selected. Here is a demo:
+  PokéLog is an EV training tool/logbook for hardcore Pokémon enthusaists. The first
+  feature that I'm refining is a page where you can search for Pokémon as you defeat
+  them, clicking the button to adjust your trainee's EVs, taking into account EV-boosting
+  items and Pokérus. Here is a demo (much progress has been made since recording):
 
 .center{style: "margin: 30px 0; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;"}
   %iframe{width: 560, height: 315, src: "https://www.youtube.com/embed/cxYJr_4hQwg",
@@ -16,6 +22,11 @@
     allow: "accelerometer; autoplay; clipboard-write; encrypted-media;
             gyroscope; picture-in-picture; web-share"}
 
-%h4 Multi-Pokémon Training
+:markdown
+  #### Multi-Pokémon Training
 
-%p You can now train multiple Pokémon at a time! On the #{link_to "trainees page", trainees_path}, check off one or more of your trainees, hit the "Train" button and as you defeat Pokémon, changes will be applied to all of your trainees displayed. Keep in mind that every Pokémon in your party that gains EXP also gains EVs, with boosts from their own items and Pokérus, even if they were never sent out.
+  You can now train multiple Pokémon at a time! On the [trainees page](#{trainees_path}),
+  check off one or more of your trainees, hit the "Train" button and as you defeat
+  Pokémon, changes will be applied to all of the trainees displayed. Keep in mind that
+  every Pokémon in your party that gains EXP also gains EVs, with boosts from their own
+  items and Pokérus, even if they were never sent out.
