@@ -3,7 +3,10 @@
 = javascript_include_tag "sidenav_init"
 
 #about-data
-  #version Version: #{version}
+  #version
+    %div Version: #{version}
+    - if Rails.env.development?
+      %div Running in development mode.
   #uptime
     %div Uptime: #{uptime}
     %div Last deploy: #{time_since_deploy} ago
