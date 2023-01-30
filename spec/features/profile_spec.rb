@@ -27,7 +27,7 @@ RSpec.feature "users:", type: :feature do
       it "404s" do
         visit "/users/nobodyhome"
 
-        expect(page).to have_current_path "/404"
+        expect(page).to have_content "404"
       end
     end
 

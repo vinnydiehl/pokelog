@@ -17,6 +17,8 @@ class TraineesController < ApplicationController
     @party = Trainee.where(id: @ids)
     @other_trainees = Trainee.where(user: @current_user).where.not(id: @ids)
 
+    render "errors/not_found", status: 404 if @party.empty?
+
     @nil_nature_option = ["Nature", ""]
     @nature_options = YAML.load_file("data/natures.yml").keys.sort.map do |n|
       [n.capitalize, n]

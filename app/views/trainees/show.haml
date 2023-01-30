@@ -13,7 +13,8 @@
 #trainees
   -# We're listing this way so they appear in order specified by URL
   - @ids.each do |id|
-    = render @party.find(id)
+    - if (trainee = @party.find_by id: id)
+      = render trainee
 
 - if logged_in?
   .fixed-action-btn

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     # This is the user being displayed on the profile page, not necessarily
     # the logged in user.
     @display_user = User.find_by username: params[:username]
-    redirect_to "/404" unless @display_user
+    render "errors/not_found", status: 404 unless @display_user
   end
 
   # PATCH /users/:username
