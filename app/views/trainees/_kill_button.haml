@@ -1,12 +1,2 @@
-.waves-effect.waves-teal.data-entry[species]{onclick: "updateEvs(#{species.ev_yield.values.join(',')})"}
-  .id= species.pretty_id
-  .main-content
-    .top
-      .sprite= species.sprite
-      .name-form
-        .name= species.name
-        - if species.has_forms?
-          .form #{species.form} #{species.form_desc}
-    .yields
-      - species.yields.each do |stat, amt|
-        .stat{class: stat} #{amt} #{format_stat stat}
+= render species, attrs: { class: "waves-effect waves-teal",
+                           onclick: "updateEvs(#{species.ev_yield.values.join(',')})"}

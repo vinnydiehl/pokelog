@@ -1,4 +1,6 @@
-.data-entry[species]
+- attrs ||= {}
+
+.data-entry[species]{**attrs}
   .id= species.pretty_id
   .main-content
     .top
@@ -7,6 +9,10 @@
         .name= species.name
         - if species.has_forms?
           .form #{species.form} #{species.form_desc}
-    .yields
-      - species.yields.each do |stat, amt|
-        .stat{class: stat} #{amt} #{format_stat stat}
+    .yields-and-types
+      .yields
+        - species.yields.each do |stat, amt|
+          .stat{class: stat} #{amt} #{format_stat stat}
+      .types
+        - species.types.each do |type|
+          .type{class: type}
