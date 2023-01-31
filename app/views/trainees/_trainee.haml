@@ -30,13 +30,13 @@
                          min: 1, max: 100, value: trainee.level, disabled: not_yours?(trainee),
                          data: {action: "change->form-submission#submit"}
     .ev-info
-      - if trainee.species
-        .sprite-and-types
-          %div{id: "mobile-sprite-#{dom_id trainee}"}
+      .sprite-and-types
+        %div{id: "mobile-sprite-#{dom_id trainee}"}
+          - if trainee.species
             = trainee.species.sprite
-          .trainee-types
-            - trainee.species.types.each do |type|
-              .type.large{class: type}
+        .trainee-types{id: "types-#{dom_id trainee}"}
+          - if trainee.species
+            = trainee.species.type_badges size: :large
       .corner-buttons
         - if yours?(trainee)
           = link_to "#delete-modal-#{dom_id trainee}", id: "delete-#{dom_id trainee}", class: "delete-btn modal-trigger" do

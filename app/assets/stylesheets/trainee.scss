@@ -60,6 +60,7 @@ $small_radar_size: 250px;
       z-index: 1;
 
       display: flex;
+      align-items: center;
 
       .sprite {
         @media (min-width: #{$image-breakpoint}) {

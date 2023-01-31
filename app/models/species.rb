@@ -32,6 +32,15 @@ class Species < ActiveYaml::Base
       class: "sprite"
   end
 
+  # See app/assets/stylesheets/types.scss
+  #
+  # @return [String] HTML div tags for type badges
+  def type_badges(**args)
+    types.map do |type|
+      "<div class='type#{args[:size] == :large ? ' large' : ''} #{type}'></div>"
+    end.join.html_safe
+  end
+
   # @return [String] path to the sprite
   def sprite_path
     "/images/sprites/#{self[:id]}.png"

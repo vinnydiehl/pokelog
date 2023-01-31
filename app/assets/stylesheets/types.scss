@@ -20,6 +20,13 @@
         margin-left: 0.5em;
         content: "#{$type}";
         color: white;
+
+        // Disable text when radar chart shrinks
+        @media (max-width: #{$radar-breakpoint}) {
+          &.large {
+            display: none;
+          }
+        }
       }
     }
   }

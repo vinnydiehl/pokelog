@@ -14,5 +14,4 @@
         - species.yields.each do |stat, amt|
           .stat{class: stat} #{amt} #{format_stat stat}
       .types
-        - species.types.each do |type|
-          .type{class: type}
+        = species.type_badges

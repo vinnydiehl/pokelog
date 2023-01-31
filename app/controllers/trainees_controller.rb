@@ -71,7 +71,11 @@ class TraineesController < ApplicationController
             turbo_stream.update(radar_id, partial: "shared/radar_chart",
                                 locals: {stats: @trainee.evs, id: radar_id}),
             turbo_stream.update("mobile-sprite-#{helpers.dom_id @trainee}", html:
-                                @trainee.species ? @trainee.species.sprite : nil)
+                                @trainee.species ? @trainee.species.sprite : nil),
+            turbo_stream.update(
+              "types-#{helpers.dom_id @trainee}",
+              html: @trainee.species ? @trainee.species.type_badges(size: :large) : nil
+            )
           ]
         end
       end
