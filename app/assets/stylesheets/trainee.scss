@@ -53,21 +53,29 @@ $small_radar_size: 250px;
     flex-wrap: wrap;
     gap: 50px;
 
-    .sprite {
+    .sprite-and-types {
       position: absolute;
       top: -45px;
       left: -25px;
       z-index: 1;
 
-      @media (min-width: #{$image-breakpoint}) {
-        display: none;
+      display: flex;
+
+      .sprite {
+        @media (min-width: #{$image-breakpoint}) {
+          display: none;
+        }
+        @media (min-width: #{$radar-breakpoint}) and
+               (max-width: #{$image-breakpoint}) {
+          width: 75px;
+        }
+        @media (max-width: #{$radar-breakpoint}) {
+          left: -10px;
+        }
       }
-      @media (min-width: #{$radar-breakpoint}) and
-             (max-width: #{$image-breakpoint}) {
-        width: 75px;
-      }
-      @media (max-width: #{$radar-breakpoint}) {
-        left: -10px;
+
+      .trainee-types {
+        width: 0;
       }
     }
 

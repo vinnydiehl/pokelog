@@ -24,4 +24,27 @@ RSpec.feature "types:", type: :feature do
       end
     end
   end
+
+  describe "the trainee partial" do
+    before :each do
+      TYPE_TEST_CASES.each do |id, _|
+        trainee = Trainee.new user: User.first, species_id: id
+        trainee.save!
+      end
+    end
+
+    TYPE_TEST_CASES.each do |id, types|
+      describe "species ##{id}" do
+        before :each do
+          visit trainee_path(Trainee.find_by species_id: id)
+        end
+
+        types.each do |type|
+          it "is type #{type}" do
+            expect(find ".sprite-and-types").to have_selector ".#{type}"
+          end
+        end
+      end
+    end
+  end
 end
