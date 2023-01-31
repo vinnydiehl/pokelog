@@ -184,6 +184,12 @@ def test_server_interaction
       it "changes the artwork" do
         expect(page).to have_xpath "//img[contains(@src,'artwork/#{SINGLE_ATTRS[:species_id]}.png')]"
       end
+
+      it "changes the types" do
+        Species.find(SINGLE_ATTRS[:species_id]).types.each do |type|
+          expect(find ".sprite-and-types").to have_css ".#{type}"
+        end
+      end
     end
 
     context "when changing the nickname" do

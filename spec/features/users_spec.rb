@@ -28,7 +28,9 @@ RSpec.feature "users:", type: :feature do
 
     context "while logged in" do
       before :each do
+        create_user
         log_in
+
         visit root_path
       end
 
@@ -61,11 +63,10 @@ RSpec.feature "users:", type: :feature do
   describe ENDPOINT do
     context "with a new user" do
       before :each do
-        User.delete_all
         visit "#{ENDPOINT}?credential=#{TEST_CREDENTIAL}"
       end
 
-      it "redirects to /register if user does not exist", js: true do
+      it "redirects to /register", js: true do
         expect(page).to have_current_path register_path, ignore_query: true
       end
 
@@ -175,6 +176,7 @@ RSpec.feature "users:", type: :feature do
 
     context "existing user" do
       before :each do
+        create_user
         log_in
       end
 
@@ -195,7 +197,9 @@ RSpec.feature "users:", type: :feature do
 
   describe "/logout" do
     before :each do
+      create_user
       log_in
+
       find("#profile-widget").click
       click_link "Logout"
     end

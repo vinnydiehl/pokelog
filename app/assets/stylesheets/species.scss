@@ -4,6 +4,11 @@ $padding: 10px;
 $margin: 5px;
 $border: 3px solid black;
 
+.kill-button {
+  width: fit-content;
+  height: fit-content;
+}
+
 .results {
   margin-top: $margin;
 
@@ -28,7 +33,7 @@ $border: 3px solid black;
 
     margin: $margin;
 
-    border-radius: 25px;
+    border-radius: 1.5rem;
     border: $border;
 
     padding-inline: $padding;
@@ -48,6 +53,8 @@ $border: 3px solid black;
     }
 
     .main-content {
+      font-size: 0.9rem;
+
       border-left: $border;
       margin-left: $padding;
       justify-content: space-between;
@@ -72,20 +79,44 @@ $border: 3px solid black;
           @media (max-width: #{$species-sm-breakpoint}) {
             text-align: left;
           }
+          flex: 1;
 
           .form {
             font-style: italic;
+            font-size: 0.8em;
+            @media (max-width: #{$species-sm-breakpoint}) {
+              width: 12ch;
+            }
           }
         }
       }
 
-      .yields {
-        display: flex;
-        justify-content: space-evenly;
+      .yields-and-types {
         @media (max-width: #{$species-sm-breakpoint}) {
-          display: block;
+          display: flex;
+          align-items: center;
           position: absolute;
           right: $padding;
+        }
+
+        .yields {
+          display: flex;
+          justify-content: space-evenly;
+          @media (max-width: #{$species-sm-breakpoint}) {
+            display: block;
+          }
+
+        }
+        .types {
+          text-align: center;
+          margin-left: $padding;
+          @media (min-width: #{$species-sm-breakpoint}) {
+            margin: 0.3rem;
+          }
+          // Stack on mobile
+          @media (max-width: #{$species-sm-breakpoint}) {
+            width: 2.2rem;
+          }
         }
       }
     }

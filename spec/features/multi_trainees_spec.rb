@@ -7,11 +7,14 @@ include TraineesHelper
 RSpec.feature "trainees#show:", type: :feature do
   context "with multiple trainees in the party" do
     before :each do
+      create_user
       log_in
+
       TEST_TRAINEES.each do |_, attrs|
         trainee = Trainee.new user: User.first, **attrs
         trainee.save!
       end
+
       visit multi_trainees_path Trainee.all
     end
 

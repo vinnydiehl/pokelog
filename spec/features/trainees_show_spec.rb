@@ -13,7 +13,9 @@ RSpec.feature "trainees:", type: :feature do
 
     context "while logged in" do
       before :each do
+        create_user
         log_in
+
         visit trainees_path
       end
 

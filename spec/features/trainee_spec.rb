@@ -6,9 +6,12 @@ RSpec.feature "trainees#show: ", type: :feature do
   context "with one trainee in the party" do
     context "with a blank trainee" do
       before :each do
+        create_user
         log_in
+
         trainee = Trainee.new(user: User.first)
         trainee.save!
+
         visit trainee_path(trainee)
       end
 
@@ -246,9 +249,12 @@ RSpec.feature "trainees#show: ", type: :feature do
         TEST_TRAINEES.each do |display_name, attrs|
           describe "test trainee: #{attrs[:nickname]}" do
             before :each do
+              create_user
               log_in
+
               trainee = Trainee.new user: User.first, **attrs
               trainee.save!
+
               visit trainee_path(trainee)
             end
 
@@ -262,6 +268,8 @@ RSpec.feature "trainees#show: ", type: :feature do
 
       context "while logged out" do
         it "displays a static page" do
+          create_user
+
           display_name, attrs = TEST_TRAINEES.first
           trainee = Trainee.new(user: User.first, **attrs)
           trainee.save!
