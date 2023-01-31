@@ -27,9 +27,10 @@ RSpec.feature "types:", type: :feature do
 
   describe "the trainee partial" do
     before :each do
+      create_user
+
       TYPE_TEST_CASES.each do |id, _|
-        trainee = Trainee.new user: User.first, species_id: id
-        trainee.save!
+        Trainee.new(user: User.first, species_id: id).save!
       end
     end
 

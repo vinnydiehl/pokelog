@@ -7,7 +7,9 @@ TEST_CHANGED_EMAIL = "t2@test.com"
 RSpec.feature "users:", type: :feature do
   describe "the profile link in the sidenav" do
     it "links to the user's profile" do
+      create_user
       log_in
+
       find("#profile-widget").click
       click_link "Profile"
 
@@ -17,6 +19,8 @@ RSpec.feature "users:", type: :feature do
 
   describe "/users/:username" do
     before :each do
+      create_user
+
       TEST_TRAINEES.each do |_, attrs|
         trainee = Trainee.new user: User.first, **attrs
         trainee.save!
@@ -63,6 +67,7 @@ RSpec.feature "users:", type: :feature do
       context "while logged in" do
         before :each do
           log_in
+
           visit user_path User.first
         end
 
