@@ -9,21 +9,15 @@
 
     &::before {
       content: "";
-      display: inline-block;
       background-image: url("/icons/types/#{$type}.svg");
       background-size: contain;
-      background-repeat: no-repeat;
       width: 1.5em;
       height: 1.5em;
-      vertical-align: middle;
-
-      @media (min-width: #{$species-sm-breakpoint}) {
-        margin-right: 0.5em;
-      }
     }
 
     @media (min-width: #{$species-sm-breakpoint}) {
       &::after {
+        margin-left: 0.5em;
         content: "#{$type}";
         color: white;
       }
@@ -39,9 +33,6 @@
   }
   display: inline-flex;
   width: auto;
-  align-items: center;
-  background-repeat: no-repeat;
-  background-position: left center;
   border-radius: 0.5em;
 
   text-transform: uppercase;
