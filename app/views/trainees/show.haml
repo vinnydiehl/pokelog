@@ -40,13 +40,9 @@
 
 -if @party.any? { |trainee| yours? trainee }
   #kill-search
-    = form_with url: request.path, method: :get,
-                data: { controller: "form-submission",
-                        turbo_frame: "results",
-                        turbo_action: "advance" } do |f|
-      .input-field
-        = f.label :q, "Search"
-        = f.text_field :q, value: params[:q],
-                       data: { action: "input->form-submission#searchSubmit" }
+    = render "species/search_bar"
     .results
-      = render "results", results: @search_results
+      = turbo_frame_tag :results do
+        - @search_results.each do |species|
+          = render species, attrs: { class: "waves-effect waves-teal",
+                            onclick: "updateEvs(#{species.ev_yield.values.join(',')})"}

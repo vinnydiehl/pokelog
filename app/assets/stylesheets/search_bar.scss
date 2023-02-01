@@ -1,0 +1,21 @@
+.species-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .input-field {
+    flex: 1;
+  }
+
+  #filters-btn {
+    i {
+      font-size: 1.5rem;
+    }
+    width: 2.25rem;
+    height: 2.25rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

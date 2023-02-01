@@ -1,0 +1,17 @@
+= form_with url: request.path, method: :get, class: "species-search",
+            data: { controller: "form-submission",
+                    turbo_frame: "results",
+                    turbo_action: "advance" } do |f|
+  .input-field
+    = f.label :q, "Search"
+    = f.text_field :q, value: params[:q],
+                       data: { action: "input->form-submission#searchSubmit" }
+  = link_to "#species-filters", id: "filters-btn", class: "btn modal-trigger waves-effect grey" do
+    %i.material-icons settings
+  #species-filters.modal
+    .modal-content
+      %h4 Filters
+    .modal-footer
+      %a#cancel-filters.modal-close.waves-effect.waves-teal.btn-flat Cancel
+      = f.submit "Apply Filters", id: "confirm-filters",
+          class: "modal-close waves-effect waves-teal btn-flat"
