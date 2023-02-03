@@ -8,14 +8,32 @@
   }
 
   #filters-btn {
+    width: 2.25rem;
+    height: 2.25rem;
     i {
       font-size: 1.5rem;
     }
-    width: 2.25rem;
-    height: 2.25rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+#species-filters {
+  overflow-x: hidden;
+
+  h6 {
+    margin-bottom: 1rem;
+  }
+
+  .ev-yielded {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  #amount-yielded-slider {
+    margin-top: 1.5rem;
   }
 }

@@ -1,3 +1,6 @@
+= javascript_include_tag "nouislider.min.js"
+= javascript_include_tag "amount_yielded_slider"
+
 = form_with url: request.path, method: :get, class: "species-search",
             data: { controller: "form-submission",
                     turbo_frame: "results",
@@ -11,7 +14,22 @@
   #species-filters.modal
     .modal-content
       %h4 Filters
+      %h6 EVs yielded:
+      .ev-yielded
+        - PokeLog::Stats.stats.each do |stat|
+          %label
+            = check_box_tag "filters[#{stat}]", "1", filter_checked?(stat),
+                            data: { action: "input->form-submission#submit" }
+            %span= format_stat stat
+      %h6 Amount yielded:
+      #amount-yielded-slider
+      -# These checkboxes are essentially acting as hidden inputs because
+      -# Materialize hides them in the absence of a label>span wrapper. This is
+      -# convenient because they won't show in the URL query string when unchecked
+      = check_box_tag "filters[min]", (filter_value("min") || 1),
+          filter_value("min").present?, "data-action": "input->form-submission#submit"
+      = check_box_tag "filters[max]", (filter_value("max") || 3),
+          filter_value("max").present?, "data-action": "input->form-submission#submit"
     .modal-footer
-      %a#cancel-filters.modal-close.waves-effect.waves-teal.btn-flat Cancel
-      = f.submit "Apply Filters", id: "confirm-filters",
-          class: "modal-close waves-effect waves-teal btn-flat"
+      %a#clear-filters-btn.waves-effect.waves-teal.btn-flat Clear All
+      %a#filters-close-btn.modal-close.waves-effect.waves-teal.btn-flat Close
