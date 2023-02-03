@@ -15,10 +15,10 @@
     .modal-content
       %h4 Filters
       %h6 EVs yielded:
-      .ev-yielded
+      .checkboxes
         - PokeLog::Stats.stats.each do |stat|
           %label
-            = check_box_tag "filters[#{stat}]", "1", filter_checked?(stat),
+            = check_box_tag "filters[yielded][]", stat, filter_checked?("yielded", stat),
                             data: { action: "input->form-submission#submit" }
             %span= format_stat stat
       %h6 Amount yielded:
@@ -30,6 +30,14 @@
           filter_value("min").present?, "data-action": "input->form-submission#submit"
       = check_box_tag "filters[max]", (filter_value("max") || 3),
           filter_value("max").present?, "data-action": "input->form-submission#submit"
+      - %w[types weak_to].each do |section|
+        %h6 #{section.humanize}:
+        .checkboxes.types
+          - PokeLog::Types.types.each do |type|
+            %label
+              = check_box_tag "filters[#{section}][]", type, filter_checked?(section, type),
+                              data: { action: "input->form-submission#submit" }
+              %span= type.capitalize
     .modal-footer
       %a#clear-filters-btn.waves-effect.waves-teal.btn-flat Clear All
       %a#filters-close-btn.modal-close.waves-effect.waves-teal.btn-flat Close

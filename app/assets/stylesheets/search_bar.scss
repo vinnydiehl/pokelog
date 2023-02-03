@@ -27,13 +27,17 @@
     margin-bottom: 1rem;
   }
 
-  .ev-yielded {
+  .checkboxes {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
   }
 
   #amount-yielded-slider {
-    margin-top: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .types {
+    justify-content: center;
   }
 }
