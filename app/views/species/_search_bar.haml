@@ -19,7 +19,7 @@
         - PokeLog::Stats.stats.each do |stat|
           %label
             = check_box_tag "filters[yielded][]", stat, filter_checked?("yielded", stat),
-                            data: { action: "input->form-submission#submit" }
+              id: "filters_yielded_#{stat}", "data-action": "input->form-submission#submit"
             %span= format_stat stat
       %h6 Amount yielded:
       #amount-yielded-slider
@@ -32,11 +32,11 @@
           filter_value("max").present?, "data-action": "input->form-submission#submit"
       - %w[types weak_to].each do |section|
         %h6 #{section.humanize}:
-        .checkboxes.types
+        .checkboxes.types{id: "#{section}_filters"}
           - PokeLog::Types.types.each do |type|
             %label
               = check_box_tag "filters[#{section}][]", type, filter_checked?(section, type),
-                              data: { action: "input->form-submission#submit" }
+                  id: "filters_#{section}_#{type}", "data-action": "input->form-submission#submit"
               %span= type.capitalize
     .modal-footer
       %a#clear-filters-btn.waves-effect.waves-teal.btn-flat Clear All
