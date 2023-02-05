@@ -29,6 +29,9 @@ end
 Capybara.javascript_driver = :chrome_1080
 Capybara.server = :puma, { Silent: true }
 
+# Uncomment for debugging, if you need to see what's going on in the browser
+# Capybara.javascript_driver = :selenium_chrome
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true

@@ -2,6 +2,9 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
+// Vendor Styles
+@import "../../../vendor/assets/stylesheets/\*";
+
 // Recursively include all CSS/SCSS files in this directory.
 @import "/\*";
 // Styles added below this line will take precedence over styles defined in any

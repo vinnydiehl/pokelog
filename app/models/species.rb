@@ -68,4 +68,56 @@ class Species < ActiveYaml::Base
     end
     find { |s| s.name == name && (s.form == form || (form == nil && s.form == "Normal")) }
   end
+
+  # Search form logic for displaying species
+  #
+  # @param params [Hash] parameters from query string
+  # @param show_all_by_default [Boolean] whether or not to show
+  # @return [Array<Species>] the species that satisfy the query and filters
+  def self.search(params, show_all_by_default=false)
+    # If there's no query or params, show either all or nothing depending on options
+    if [(query = params[:q]), (filters = params[:filters] || [])].all?(&:blank?)
+      return show_all_by_default ? all : []
+    end
+
+    results = Species.all
+
+    if filters.present?
+      # Amount yielded
+      range = (filters[:min] || 1).to_i..(filters[:max] || 3).to_i
+      results = results.select do |pkmn|
+        pkmn.yields.values.any? { |v| range.include? v }
+      end
+
+      # EVs yielded
+      if filters[:yielded]
+        filters[:yielded].map! &:to_sym
+        results.select! do |pkmn|
+          pkmn.yields.keys.any? { |stat| filters[:yielded].include? stat }
+        end
+      end
+
+      # Types
+      if filters[:types]
+        filters[:types].map! &:to_sym
+        results.select! do |pkmn|
+          filters[:types].all? { |type| pkmn.types.include? type }
+        end
+      end
+
+      # Weak to
+      if filters[:weak_to]
+        filters[:weak_to].map! &:to_sym
+        results.select! do |pkmn|
+          filters[:weak_to].any? { |type| PokeLog::Types.multiplier(type, pkmn.types) > 1 }
+        end
+      end
+    end
+
+    if query.present?
+      results = results.select { |pkmn| pkmn.name.downcase.include? query.downcase }
+    end
+
+    results
+  end
 end

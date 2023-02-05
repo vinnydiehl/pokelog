@@ -26,9 +26,7 @@ class TraineesController < ApplicationController
 
     @items_options = YAML.load_file("data/items.yml").keys
 
-    @search_results = (query = params[:q]).present? ?
-      Species.all.select { |pkmn| pkmn.name.downcase.include? query.downcase } :
-      Species.all
+    @search_results = Species.search params
   end
 
   # GET /trainees/new

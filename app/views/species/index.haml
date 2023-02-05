@@ -1,15 +1,9 @@
 - provide :title, "EV Yields"
 
+= javascript_include_tag "modal_init"
 = javascript_include_tag "sidenav_init"
 
-= form_with url: request.path, method: :get,
-            data: { controller: "form-submission",
-                    turbo_frame: "results",
-                    turbo_action: "advance" } do |f|
-  .input-field
-    = f.label :q, "Search"
-    = f.text_field :q, value: params[:q],
-                   data: { action: "input->form-submission#searchSubmit" }
-
+= render "search_bar"
 .results
-  = render "results", results: @search_results
+  = turbo_frame_tag :results do
+    = render @search_results
