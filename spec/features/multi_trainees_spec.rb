@@ -85,7 +85,7 @@ RSpec.feature "trainees#show:", type: :feature do
     end
 
     TEST_KILL_BUTTONS.each do |id, data|
-      context "when using the #{data[:name]} kill button", js: true do
+      context "when using the #{(name = data[:name])} kill button", js: true do
         TEST_TRAINEES.each do |_, attrs|
           describe "the #{attrs[:nickname]} UI" do
             before :each do
@@ -97,6 +97,7 @@ RSpec.feature "trainees#show:", type: :feature do
                                               data, @trainee.evs
 
               # Click the kill button
+              fill_in "Search", with: name
               find("##{id}").click
               # Use a stat that we know we're changing to wait for DB
               wait_stat = data.keys.first
@@ -141,7 +142,9 @@ RSpec.feature "trainees#show:", type: :feature do
       describe "the delete button for #{attrs[:nickname]}", js: true do
         before :each do
           find("#delete-trainee_#{find_id attrs}").click
+          sleep 0.5
           find("#confirm-delete").click
+          sleep 0.5
         end
 
         it "deletes the trainee from the server" do

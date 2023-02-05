@@ -29,7 +29,7 @@ RSpec.feature "trainees#show: ", type: :feature do
 
         describe "a 2 HP kill button" do
           before :each do
-            # Pidgeotto
+            fill_in "Search", with: "Pidgeotto"
             find("#species_017").click
             sleep 1
           end
@@ -56,7 +56,7 @@ RSpec.feature "trainees#show: ", type: :feature do
 
         context "when you get a kill w/ 1 Def, 1 Sp.D" do
           before :each do
-            # Blastoise
+            fill_in "Search", with: "Wartortle"
             find("#species_008").click
             wait_for :def_ev, 101
           end
@@ -77,7 +77,7 @@ RSpec.feature "trainees#show: ", type: :feature do
             find("span", text: "Power Band").click
             wait_for :item, "power_band"
 
-            # Ekans
+            fill_in "Search", with: "Ekans"
             find("#species_023").click
             wait_for :atk_ev, 101
           end
@@ -146,6 +146,7 @@ RSpec.feature "trainees#show: ", type: :feature do
           context "if you try to use a kill button to go 2 over" do
             before :each do
               # Nidoqueen for 3 HP
+              fill_in "Search", with: "Nidoqueen"
               find("#species_031").click
               # Can't use wait_for because the server shouldn't update
               sleep 1
@@ -182,6 +183,7 @@ RSpec.feature "trainees#show: ", type: :feature do
         context "if you try to use a kill button to go 1 over" do
           before :each do
             # Caterpie for 1 HP
+            fill_in "Search", with: "Caterpie"
             find("#species_010").click
             sleep 1
           end
@@ -197,7 +199,7 @@ RSpec.feature "trainees#show: ", type: :feature do
       end
 
       TEST_KILL_BUTTONS.each do |id, data|
-        context "when using the #{data[:name]} kill button", js: true do
+        context "when using the #{(name = data[:name])} kill button", js: true do
           [true, false].each do |pokerus|
             context "with#{pokerus ? "" : "out"} Pokérus" do
               ([nil] + ITEMS).each do |item|
@@ -218,6 +220,7 @@ RSpec.feature "trainees#show: ", type: :feature do
                     wait_for :item, item
 
                     # Click the kill button
+                    fill_in "Search", with: name
                     find("##{id}").click
                     # Use a stat that we know we're changing to wait for DB
                     wait_stat = data.keys.first

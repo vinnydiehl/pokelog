@@ -270,6 +270,7 @@ def test_server_interaction
     describe "the delete button modal" do
       before :each do
         find(".delete-btn").click
+        sleep 0.5
       end
 
       context "when accepted" do
