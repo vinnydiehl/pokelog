@@ -13,9 +13,9 @@ function clearAllFilters() {
 
 runOnLoad(() => {
     // Prevent more than 2 Types filters from being selected
-    document.querySelectorAll("#types-filters input").forEach(checkbox => {
+    document.querySelectorAll("#types_filters input").forEach(checkbox => {
         checkbox.addEventListener("click", event => {
-            if (document.querySelectorAll("#types-filters input:checked").length > 2 && checkbox.checked)
+            if (document.querySelectorAll("#types_filters input:checked").length > 2 && checkbox.checked)
                 event.preventDefault();
         });
     });
