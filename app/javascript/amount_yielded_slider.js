@@ -25,7 +25,10 @@ runOnLoad(() => {
             "min": 1,
             "max": 3
         },
-        format: wNumb({ decimals: 0 })
+        tooltips: [
+            wNumb({ decimals: 0 }),
+            wNumb({ decimals: 0 })
+        ]
     });
 
     slider.noUiSlider.on("change", () => {
