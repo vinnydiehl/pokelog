@@ -79,11 +79,17 @@ RSpec.feature "filters:", type: :feature, js: true do
                   find("span", text: type).click
                 end
               end
+
+              sleep 0.5
             end
 
             it "doesn't let you" do
               expect(find("#filters_types_flying", visible: false).checked?).
                 to be false
+            end
+
+            it "doesn't send the form" do
+              expect(current_url).not_to include "flying"
             end
           end
         end

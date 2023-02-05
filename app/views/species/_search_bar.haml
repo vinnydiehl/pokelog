@@ -1,5 +1,6 @@
 = javascript_include_tag "nouislider.min.js"
 = javascript_include_tag "amount_yielded_slider"
+= javascript_include_tag "filters"
 
 = form_with url: request.path, method: :get, class: "species-search",
             data: { controller: "form-submission",
@@ -40,5 +41,5 @@
                   id: "filters_#{section}_#{type}", "data-action": "input->form-submission#submit"
               %span= type.capitalize
     .modal-footer
-      %a#clear-filters-btn.waves-effect.waves-teal.btn-flat Clear All
+      %a#clear-filters-btn.waves-effect.waves-teal.btn-flat{onclick: "clearAllFilters()"} Clear All
       %a#filters-close-btn.modal-close.waves-effect.waves-teal.btn-flat Close
