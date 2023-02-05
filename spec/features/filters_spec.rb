@@ -105,6 +105,23 @@ RSpec.feature "filters:", type: :feature, js: true do
             find("#filters-btn").click
           end
 
+          describe "the Clear All button", focus: true do
+            before :each do
+              within("#species-filters") { find_all("span").each &:click }
+              sleep 0.2
+              find("#clear-filters-btn").click
+              sleep 0.2
+
+              # Refresh not necessary, but tests that the URL has been modified
+              refresh
+            end
+
+            it "clears all inputs" do
+              expect(page).to have_current_path trainee_path(Trainee.first) +
+                "?q=#{using_query ? QUERY : ""}"
+            end
+          end
+
           # EVs yielded
 
           PokeLog::Stats.stats.each_with_index do |stat, i|
