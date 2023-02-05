@@ -15,12 +15,13 @@
     .modal-content
       %h4 Filters
       %h6 EVs yielded:
-      .checkboxes
-        - PokeLog::Stats.stats.each do |stat|
-          %label
-            = check_box_tag "filters[yielded][]", stat, filter_checked?("yielded", stat),
-              id: "filters_yielded_#{stat}", "data-action": "input->form-submission#submit"
-            %span= format_stat stat
+      #evs-yielded-filters
+        .checkboxes
+          - PokeLog::Stats.stats.each do |stat|
+            %label
+              = check_box_tag "filters[yielded][]", stat, filter_checked?("yielded", stat),
+                id: "filters_yielded_#{stat}", "data-action": "input->form-submission#submit"
+              %span= format_stat stat
       %h6 Amount yielded:
       #amount-yielded-slider
       -# These checkboxes are essentially acting as hidden inputs because
