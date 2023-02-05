@@ -51,6 +51,30 @@ RSpec.feature "filters:", type: :feature, js: true do
       visit trainee_path(Trainee.first)
     end
 
+    context "when visiting via a URL" do
+      before :each do
+        visit trainee_path(Trainee.first) +
+          "?q=&filters[yielded][]=hp&filters[min]=2&filters[types][]=normal&filters[weak_to][]=fighting"
+        find("#filters-btn").click
+      end
+
+      it "has the EVs yielded filter selected" do
+        expect(page).to have_checked_field "filters_yielded_hp", visible: false
+      end
+
+      it "has the Amount yielded input set" do
+        expect(page).to have_checked_field "filters_min", visible: false
+      end
+
+      it "has the Types filter selected" do
+        expect(page).to have_checked_field "filters_types_normal", visible: false
+      end
+
+      it "has the Weak to filter selected" do
+        expect(page).to have_checked_field "filters_weak_to_fighting", visible: false
+      end
+    end
+
     [["out", false], ["", true]].each do |out, using_query|
       context "with#{out} a query" do
         if using_query

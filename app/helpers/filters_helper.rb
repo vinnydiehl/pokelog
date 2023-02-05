@@ -14,6 +14,6 @@ module FiltersHelper
   # @return [Boolean] whether or not the filter is checked
   def filter_checked?(filter, value)
     params["filters"] && params["filters"][filter] &&
-      params["filters"][filter].include?(value.to_s)
+      params["filters"][filter].include?(value)
   end
 end
