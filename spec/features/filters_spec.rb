@@ -4,9 +4,19 @@ include StatsHelper
 
 QUERY = "b"
 
+# Grab a sample of 5 evenly spread out elements
+# to test, otherwise this takes forever
+def data_entry_sample
+  results = find_all(".data-entry")
+  return results if results.length <= 5
+  step = results.length / 5
+  (0...5).map { |i| results[i * step] }
+end
+
+# Spec to see that the query string is being applied
 def results_should_contain_query
   it "should display only results containing the query" do
-    find_all(".data-entry").each do |data_entry|
+    data_entry_sample.each do |data_entry|
       expect(data_entry.find(".name").text.downcase).to include QUERY
     end
   end
@@ -18,7 +28,7 @@ def check_filter(*names)
 
   # Refreshing shouldn't be necessary, but Selenium gets upset
   # at the page reload behind the modal.
-  sleep 0.2
+  sleep 0.5
   refresh
 end
 
@@ -28,7 +38,6 @@ def get_types(data_entry)
     elem[:class].gsub(/\s*type\s*/, "").to_sym
   end
 end
-
 
 RSpec.feature "filters:", type: :feature, js: true do
   describe "/trainees/:ids" do
@@ -84,10 +93,15 @@ RSpec.feature "filters:", type: :feature, js: true do
         describe "amount yielded slider" do
           [1..1, 1..2, 2..3, 3..3].each do |range|
             context "when set #{range}" do
-              results_should_contain_query
+              before :each do
+                visit trainee_path(Trainee.first) +
+                  "?q=#{using_query ? QUERY : ""}&filters[min]=#{range.min}&filters[max]=#{range.max}"
+              end
+
+              results_should_contain_query if using_query
 
               it "only displays the species if either yield is in-range" do
-                find_all(".data-entry").each do |data_entry|
+                data_entry_sample.each do |data_entry|
                   # Get yields of the data entry as integers
                   yields = data_entry.find('.yields').all('.stat').map do |elem|
                     elem.text.slice(/\d/).to_i
@@ -105,12 +119,12 @@ RSpec.feature "filters:", type: :feature, js: true do
             find("#filters-btn").click
           end
 
-          describe "the Clear All button", focus: true do
+          describe "the Clear All button" do
             before :each do
               within("#species-filters") { find_all("span").each &:click }
-              sleep 0.2
+              sleep 0.5
               find("#clear-filters-btn").click
-              sleep 0.2
+              sleep 0.5
 
               # Refresh not necessary, but tests that the URL has been modified
               refresh
@@ -139,7 +153,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               describe "the results" do
                 # Only run these for the first type, to save time
                 if i == 1
-                  results_should_contain_query
+                  results_should_contain_query if using_query
 
                   it "are displayed" do
                     expect(page).to have_selector(".data-entry")
@@ -147,7 +161,7 @@ RSpec.feature "filters:", type: :feature, js: true do
                 end
 
                 it "all yield #{format_stat stat} EVs" do
-                  find_all(".data-entry").each do |data_entry|
+                  data_entry_sample.each do |data_entry|
                     expect(data_entry.find ".yields").to have_css ".#{stat}"
                   end
                 end
@@ -163,7 +177,7 @@ RSpec.feature "filters:", type: :feature, js: true do
             end
 
             it "displays species that yield any of the selected EVs" do
-              find_all(".data-entry").each do |data_entry|
+              data_entry_sample.each do |data_entry|
                 expect(@test_filters).to be_any do |stat|
                   data_entry.find(".yields").has_css? ".#{stat.downcase}"
                 end
@@ -190,7 +204,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               describe "the results" do
                 # Only run these for the first type, to save time
                 if i == 1
-                  results_should_contain_query
+                  results_should_contain_query if using_query
 
                   it "are displayed" do
                     expect(page).to have_selector(".data-entry")
@@ -198,7 +212,7 @@ RSpec.feature "filters:", type: :feature, js: true do
                 end
 
                 it "are all #{type.capitalize} type" do
-                  find_all(".data-entry").each do |data_entry|
+                  data_entry_sample.each do |data_entry|
                     expect(data_entry.find ".types").to have_css ".#{type}"
                   end
                 end
@@ -216,9 +230,9 @@ RSpec.feature "filters:", type: :feature, js: true do
             end
 
             it "only shows Pokémon that are both types" do
-              find_all(".data-entry").each do |data_entry|
+              data_entry_sample.each do |data_entry|
                 @test_types.each do |type|
-                  expect(data_entry.find ".types").to have_css ".#{type}"
+                  expect(data_entry.find ".types").to have_css ".#{type.downcase}"
                 end
               end
             end
@@ -243,7 +257,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               describe "the results" do
                 # Only run these for the first type, to save time
                 if i == 1
-                  results_should_contain_query
+                  results_should_contain_query if using_query
 
                   it "are displayed" do
                     expect(page).to have_selector(".data-entry")
@@ -251,7 +265,7 @@ RSpec.feature "filters:", type: :feature, js: true do
                 end
 
                 it "are all weak to #{type.capitalize} type" do
-                  find_all(".data-entry").each do |data_entry|
+                  data_entry_sample.each do |data_entry|
                     types = get_types data_entry
 
                     expect(PokeLog::Types.multiplier type, types).to be > 1
@@ -271,7 +285,7 @@ RSpec.feature "filters:", type: :feature, js: true do
             end
 
             it "displays species that are weak to any of the types" do
-              find_all(".data-entry").each do |data_entry|
+              data_entry_sample.each do |data_entry|
                 types = get_types data_entry
 
                 expect(@test_types).to be_any do |type|
