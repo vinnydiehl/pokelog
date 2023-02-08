@@ -331,22 +331,22 @@ $small_radar_size: 250px;
 
       // Stop clicking the background from expanding the collapsible
       pointer-events: none;
-      // Turn pointer events back on for the radio buttons and the expand button
-      span, i.expand { pointer-events: auto; }
+      // Turn pointer events back on for the radio buttons
+      // (if logged in), and the expand button
+      input:not([disabled]) + span, i.expand { pointer-events: auto; }
 
       .held-items {
         flex-grow: 1;
 
         display: flex;
         justify-content: space-between;
-        gap: 1rem;
+        gap: 0.5rem;
         flex-wrap: wrap;
 
         span {
           display: flex;
           align-items: center;
           padding: 0 0 0.25rem 1.8rem;
-          pointer-events: auto;
           color: #545454;
 
           img {
