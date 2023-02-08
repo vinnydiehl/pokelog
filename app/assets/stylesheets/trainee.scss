@@ -339,11 +339,19 @@ $small_radar_size: 250px;
 
         display: flex;
         justify-content: space-between;
+        gap: 1rem;
         flex-wrap: wrap;
 
         span {
+          display: flex;
+          align-items: center;
+          padding: 0 0 0.25rem 1.8rem;
           pointer-events: auto;
           color: #545454;
+
+          img {
+            margin-right: 0.25rem;
+          }
         }
       }
 
