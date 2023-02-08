@@ -9,11 +9,4 @@ export default class extends Controller {
     submit() {
         event.target.closest("form").requestSubmit();
     }
-
-    filterSubmit() {
-        event.target.closest("form").requestSubmit();
-        // Stops modal from bugging out and freezing when using
-        // back/forward buttons while changing filters
-        history.replaceState({}, '', window.location.href);
-    }
 }
