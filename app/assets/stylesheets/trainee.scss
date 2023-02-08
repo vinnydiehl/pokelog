@@ -359,6 +359,21 @@ $small_radar_size: 250px;
         margin: 0 0 0 1rem;
       }
     }
+
+    .consumables.row {
+      padding: 0.5rem;
+
+      .col.middle {
+        $dividers: 1px solid grey;
+        border-left: $dividers;
+        border-right: $dividers;
+      }
+
+      h5 {
+        margin-top: 0;
+        text-align: center;
+      }
+    }
   }
 
 }

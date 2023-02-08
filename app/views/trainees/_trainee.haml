@@ -2,6 +2,7 @@
             html: {autocomplete: "off"}, data: {controller: "form-submission"} do |f|
   = hidden_field_tag :trainees, @party.to_json
   .trainee-info-top
+    // Left section, with artwork, text inputs etc. at full size
     .species-info
       .nickname-species.side-by-side
         .input-field.nickname
@@ -29,6 +30,8 @@
           = f.text_field :level, class: "validate", type: "number", **maxlength(3),
                          min: 1, max: 100, value: trainee.level, disabled: not_yours?(trainee),
                          data: {action: "change->form-submission#submit"}
+
+    // Right section, with stat chart, Pokérus switch, types etc.
     .ev-info
       .sprite-and-types
         %div{id: "mobile-sprite-#{dom_id trainee}"}
@@ -60,6 +63,8 @@
                                   data: {action: "input->form-submission#submit"}
           %span.lever
           Pokérus
+
+  // Items Menu
   %ul.collapsible.items-menu
     %li
       .collapsible-header
@@ -73,15 +78,22 @@
               = f.radio_button :item, item, value: trainee.item == item,
                                       disabled: not_yours?(trainee),
                                       data: {action: "click->form-submission#submit"}
-              %span
+              %span.tooltipped{data: {tooltip: item_tooltip(item), position: "top"}}
                 = image_tag "/images/items/held/#{item}.png"
                 = item.titleize
         - if yours?(trainee)
           %i.material-icons.expand more_vert
       - if yours?(trainee)
-        .collapsible-body
-          %span All of the new items go here
+        .collapsible-body.consumables.row
+          .col.s4
+            %h5 Vitamins
+          .col.s4.middle
+            %h5 Feathers
+          .col.s4
+            %h5 Berries
 
+// Each trainee has its own modal to delete it. The footer is a
+// form that sends a DELETE request for the trainee
 - if yours?(trainee)
   .modal{id: "delete-modal-#{dom_id trainee}"}
     .modal-content
