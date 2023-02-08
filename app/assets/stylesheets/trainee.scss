@@ -322,14 +322,37 @@ $small_radar_size: 250px;
     }
   }
 
-  .items-options {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    span {
-      color: #545454;
+  .items-menu {
+    margin-top: 0;
+
+    .collapsible-header {
+      display: flex;
+      justify-content: space-between;
+
+      // Stop clicking the background from expanding the collapsible
+      pointer-events: none;
+      // Turn pointer events back on for the radio buttons and the expand button
+      span, i.expand { pointer-events: auto; }
+
+      .held-items {
+        flex-grow: 1;
+
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        span {
+          pointer-events: auto;
+          color: #545454;
+        }
+      }
+
+      i.expand {
+        margin: 0 0 0 1rem;
+      }
     }
   }
+
 }
 
 #kill-search {

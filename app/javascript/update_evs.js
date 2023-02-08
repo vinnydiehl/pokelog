@@ -9,7 +9,7 @@ function updateEvs(iHp, iAtk, iDef, iSpa, iSpd, iSpe) {
         // Locally scoped stats for each trainee
         var hp = iHp, atk = iAtk, def = iDef, spa = iSpa, spd = iSpd, spe = iSpe;
 
-        switch (traineeInfo.querySelector(".items-options input[type='radio']:checked").id) {
+        switch (traineeInfo.querySelector(".held-items input[type='radio']:checked").id) {
         case "trainee_item_macho_brace":
             hp *= 2; atk *= 2; def *= 2; spa *= 2; spd *= 2; spe *= 2;
             break;

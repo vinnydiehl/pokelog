@@ -60,17 +60,23 @@
                                   data: {action: "input->form-submission#submit"}
           %span.lever
           Pokérus
-  .items-options
-    %label
-      = f.radio_button :item, nil, value: trainee.item.nil?, disabled: not_yours?(trainee),
-                                   data: {action: "click->form-submission#submit"}
-      %span No Item
-    - @items_options.each do |item|
-      %label
-        = f.radio_button :item, item, value: trainee.item == item,
-                                disabled: not_yours?(trainee),
-                                data: {action: "click->form-submission#submit"}
-        %span= item.titleize
+  %ul.collapsible.items-menu
+    %li
+      .collapsible-header
+        .held-items
+          %label
+            = f.radio_button :item, nil, value: trainee.item.nil?, disabled: not_yours?(trainee),
+                                         data: {action: "click->form-submission#submit"}
+            %span No Item
+          - @items_options.each do |item|
+            %label
+              = f.radio_button :item, item, value: trainee.item == item,
+                                      disabled: not_yours?(trainee),
+                                      data: {action: "click->form-submission#submit"}
+              %span= item.titleize
+        %i.material-icons.expand more_vert
+      .collapsible-body
+        %span All of the new items go here
 
 - if yours?(trainee)
   .modal{id: "delete-modal-#{dom_id trainee}"}
