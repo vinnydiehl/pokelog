@@ -1,7 +1,6 @@
 function runOnLoad(func) {
-    if (document.readyState !== "loading") {
+    if (document.readyState !== "loading")
         func();
-    } else {
+    else
         document.addEventListener("DOMContentLoaded", func);
-    }
 }

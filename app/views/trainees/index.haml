@@ -6,7 +6,7 @@
 - if @trainees.blank?
   %p.grey-text Nothing to show here. Click the + below to get started!
 - else
-  = render "trainee_list", trainees: @trainees
+  = render "list", trainees: @trainees
 
 .align-opposite
   %a#train-btn.waves-effect.waves-light.btn.red

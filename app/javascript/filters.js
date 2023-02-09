@@ -1,8 +1,6 @@
 function clearAllFilters() {
-    document.querySelector("#species-filters").querySelectorAll("input[type='checkbox']").
-        forEach(checkbox => {
-        checkbox.checked = false
-    });
+    document.querySelector("#species-filters").querySelectorAll("input[type='checkbox']")
+        .forEach(box => box.checked = false);
 
     document.getElementById("amount-yielded-slider").noUiSlider.set([1, 3]);
 
