@@ -394,6 +394,9 @@ $small_radar_size: 250px;
       h5 {
         margin-top: 0;
         text-align: center;
+        @media (max-width: #{$items-text-wrap-breakpoint}) {
+          font-size: 1.3rem;
+        }
       }
 
       .consumables-buttons {
@@ -412,6 +415,13 @@ $small_radar_size: 250px;
           .stat-label {
             width: 6ch;
             border-right: 1px solid grey;
+          }
+
+          @media (max-width: #{$radar-breakpoint}) {
+            justify-content: center;
+            .item-name {
+              display: none;
+            }
           }
         }
       }
