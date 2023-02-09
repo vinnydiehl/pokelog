@@ -343,14 +343,32 @@ $small_radar_size: 250px;
         gap: 0.5rem;
         flex-wrap: wrap;
 
+        // Flowing grid as page width gets smaller
+        @media (max-width: #{$items-lg-breakpoint}) {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+        }
+        @media (max-width: #{$items-med-breakpoint}) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
         span {
           display: flex;
           align-items: center;
           padding: 0 0 0.25rem 1.8rem;
           color: #545454;
+          line-height: 1rem;
 
           img {
             margin-right: 0.25rem;
+            width: 32px;
+            height: 32px;
+          }
+
+          // Wrap text simultaneously, min-width stops "No Item" from wrapping
+          @media (min-width: 427px) and
+                 (max-width: #{$items-text-wrap-breakpoint}) {
+            width: 60%;
           }
         }
       }
@@ -361,12 +379,16 @@ $small_radar_size: 250px;
     }
 
     .consumables.row {
-      padding: 0.5rem;
+      padding: 0.5rem 0;
 
-      .col.middle {
-        $dividers: 1px solid grey;
-        border-left: $dividers;
-        border-right: $dividers;
+      .col {
+        padding-bottom: 0.5rem;
+
+        &.middle {
+          $dividers: 1px solid grey;
+          border-left: $dividers;
+          border-right: $dividers;
+        }
       }
 
       h5 {
