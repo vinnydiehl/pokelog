@@ -50,6 +50,41 @@ module PokeLog
       %i[hp atk def spa spd spe]
     end
 
+    def self.consumables_for(stat)
+      {
+        hp: {
+          vitamin: :hp_up,
+          feather: :health,
+          berry: :pomeg
+        },
+        atk: {
+          vitamin: :protein,
+          feather: :muscle,
+          berry: :kelpsy
+        },
+        def: {
+          vitamin: :iron,
+          feather: :resist,
+          berry: :qualot
+        },
+        spa: {
+          vitamin: :calcium,
+          feather: :genius,
+          berry: :hondew
+        },
+        spd: {
+          vitamin: :zinc,
+          feather: :clever,
+          berry: :grepa
+        },
+        spe: {
+          vitamin: :carbos,
+          feather: :swift,
+          berry: :tamato
+        }
+      }[stat.to_sym]
+    end
+
     def self.verify(hash, strict=true)
       if (strict && hash.keys.sort != Stats.stats.sort) ||
          !hash.keys.all? { |s| Stats.stats.include? s }

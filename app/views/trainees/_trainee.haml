@@ -87,10 +87,31 @@
         .collapsible-body.consumables.row
           .col.s4
             %h5 Vitamins
+            .consumables-buttons
+              - PokeLog::Stats.stats.each do |stat|
+                %a.waves-effect.waves-light.btn
+                  .stat-label= format_stat stat
+                  - item = PokeLog::Stats.consumables_for(stat)[:vitamin]
+                  = image_tag "/images/items/vitamins/#{item}.png"
+                  = item.to_s.gsub("_", " ")
           .col.s4.middle
             %h5 Feathers
+            .consumables-buttons
+              - PokeLog::Stats.stats.each do |stat|
+                %a.waves-effect.waves-light.btn
+                  .stat-label= format_stat stat
+                  - item = PokeLog::Stats.consumables_for(stat)[:feather]
+                  = image_tag "/images/items/feathers/#{item}.png"
+                  = item
           .col.s4
             %h5 Berries
+            .consumables-buttons
+              - PokeLog::Stats.stats.each do |stat|
+                %a.waves-effect.waves-light.btn
+                  .stat-label= format_stat stat
+                  - item = PokeLog::Stats.consumables_for(stat)[:berry]
+                  = image_tag "/images/items/berries/#{item}.png"
+                  = item
 
 // Each trainee has its own modal to delete it. The footer is a
 // form that sends a DELETE request for the trainee
