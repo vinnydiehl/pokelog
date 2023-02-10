@@ -394,14 +394,14 @@ $small_radar_size: 250px;
     .consumables.row {
       padding: 0.5rem 0;
 
-      .col {
-        padding-bottom: 0.5rem;
-
-        &.middle {
-          border-inline: 1px solid lightgrey;
-        }
+      // Separator lines
+      >:nth-child(2) {
+        border-inline: 1px solid lightgrey;
       }
 
+      .col {
+        padding-bottom: 0.5rem;
+      }
       h5 {
         margin-top: 0;
         text-align: center;

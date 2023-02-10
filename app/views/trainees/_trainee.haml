@@ -2,7 +2,7 @@
             html: {autocomplete: "off"}, data: {controller: "form-submission"} do |f|
   = hidden_field_tag :trainees, @party.to_json
   .trainee-info-top
-    // Left section, with artwork, text inputs etc. at full size
+    -# Left section, with artwork, text inputs etc. at full size
     .species-info
       .nickname-species.side-by-side
         .input-field.nickname
@@ -31,7 +31,7 @@
                          min: 1, max: 100, value: trainee.level, disabled: not_yours?(trainee),
                          data: {action: "change->form-submission#submit"}
 
-    // Right section, with stat chart, Pokérus switch, types etc.
+    -# Right section, with stat chart, Pokérus switch, types etc.
     .ev-info
       .sprite-and-types
         %div{id: "mobile-sprite-#{dom_id trainee}"}
@@ -64,7 +64,7 @@
           %span.lever
           Pokérus
 
-  // Items Menu
+  -# Items Menu
   %ul.collapsible.items-menu
     %li
       .collapsible-header
@@ -85,38 +85,23 @@
                 = item.titleize
         - if yours?(trainee)
           %i.material-icons.expand more_vert
+
+      -# Consumables (collapsible)
       - if yours?(trainee)
         .collapsible-body.consumables.row
-          .col.s4
-            %h5 Vitamins
-            .consumables-buttons.vitamins
-              - PokeLog::Stats.stats.each do |stat|
-                - item = PokeLog::Stats.consumables_for(stat)[:vitamin]
-                %a.waves-effect.waves-light.btn{class: item}
-                  .stat-label= format_stat stat
-                  = image_tag "/images/items/vitamins/#{item}.png"
-                  .item-name= item.to_s.gsub("_", " ")
-          .col.s4.middle
-            %h5 Feathers
-            .consumables-buttons.feathers
-              - PokeLog::Stats.stats.each do |stat|
-                - item = PokeLog::Stats.consumables_for(stat)[:feather]
-                %a.waves-effect.waves-light.btn{class: item}
-                  .stat-label= format_stat stat
-                  = image_tag "/images/items/feathers/#{item}.png"
-                  .item-name= item
-          .col.s4
-            %h5 Berries
-            .consumables-buttons.berries
-              - PokeLog::Stats.stats.each do |stat|
-                - item = PokeLog::Stats.consumables_for(stat)[:berry]
-                %a.waves-effect.waves-light.btn{class: item}
-                  .stat-label= format_stat stat
-                  = image_tag "/images/items/berries/#{item}.png"
-                  .item-name= item
+          - %w[vitamins feathers berries].each do |item_type|
+            .col.s4
+              %h5= item_type.capitalize
+              .consumables-buttons{class: item_type}
+                - PokeLog::Stats.stats.each do |stat|
+                  - item = PokeLog::Stats.consumables_for(stat)[item_type.singularize.to_sym]
+                  %a.waves-effect.waves-light.btn{class: item}
+                    .stat-label= format_stat stat
+                    = image_tag "/images/items/#{item_type}/#{item}.png"
+                    .item-name= item.to_s.sub("_", " ")
 
-// Each trainee has its own modal to delete it. The footer is a
-// form that sends a DELETE request for the trainee
+-# Each trainee has its own modal to delete it. The footer is a
+-# form that sends a DELETE request for the trainee
 - if yours?(trainee)
   .modal{id: "delete-modal-#{dom_id trainee}"}
     .modal-content
