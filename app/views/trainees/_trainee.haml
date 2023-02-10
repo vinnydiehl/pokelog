@@ -95,7 +95,8 @@
               .consumables-buttons{class: item_type}
                 - PokeLog::Stats.stats.each do |stat|
                   - item = PokeLog::Stats.consumables_for(stat)[item_type.singularize.to_sym]
-                  %a.waves-effect.waves-light.btn{class: item}
+                  %a.waves-effect.waves-light.btn{class: item,
+                    onclick: "useConsumable(this.closest('.trainee-info'), '#{item_type}', '#{stat}')"}
                     .stat-label= format_stat stat
                     = image_tag "/images/items/#{item_type}/#{item}.png"
                     .item-name= item.to_s.sub("_", " ")

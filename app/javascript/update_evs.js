@@ -3,11 +3,12 @@ function getEvSum(traineeInfo) {
         .reduce((partialSum, input) => partialSum + (parseInt(input.value) || 0));
 }
 
-function updateEvs(iHp, iAtk, iDef, iSpA, iSpD, iSpe) {
-    document.querySelectorAll(".trainee-info").forEach((traineeInfo, index) => {
-        // Locally scoped stats for each trainee
-        let stats = { hp: iHp, atk: iAtk, def: iDef, spa: iSpA, spd: iSpD, spe: iSpe };
+// Sets EVs, checking for edge cases and optionally applying items (enabled by default)
+function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
+                   applyItemsAndPokerus=true, perStatLimit=255) {
+    let stats = { hp: iHp, atk: iAtk, def: iDef, spa: iSpA, spd: iSpD, spe: iSpe };
 
+    if (applyItemsAndPokerus) {
         // Find the item, if any
         const itemStat = {
             "trainee_item_macho_brace": Object.keys(stats),
@@ -29,47 +30,80 @@ function updateEvs(iHp, iAtk, iDef, iSpA, iSpD, iSpe) {
         if (traineeInfo.querySelector("#trainee_pokerus").checked)
             for (const stat in stats)
                 stats[stat] *= 2;
+    }
 
-        // You may be wondering what order these stats need to be applied in when
-        // they're nearly at 510 but receiving yields of multiple stats. See issue
-        // #1 for a deep dive into this; these elements load in the correct order
-        // as applied by the game.
-        let inputs = traineeInfo.querySelectorAll(".point input");
-        inputs.forEach(input => {
+    // You may be wondering what order these stats need to be applied in when
+    // they're nearly at 510 but receiving yields of multiple stats. See issue
+    // #1 for a deep dive into this; these elements load in the correct order
+    // as applied by the game.
+    let inputs = traineeInfo.querySelectorAll(".point input");
+    inputs.forEach(input => {
+        if (!input.disabled) {
             // Use the class of the input box to get the stat we're adding
             // (hp, atk, etc.) which is the variable name of the number we
             // need, passing into eval() gets the amount
-            addend = stats[input.parentElement.classList[1]];
-            intValue = input.value == "" ? 0 : parseInt(input.value);
-            newValue = intValue + addend;
+            let addend = stats[input.parentElement.classList[1]];
+            let intValue = input.value == "" ? 0 : parseInt(input.value);
+            let newValue = intValue + addend;
 
-            if (getEvSum(traineeInfo) + addend <= 510 &&
-                newValue <= 255 && !input.disabled) {
+            let evSum = getEvSum(traineeInfo);
+
+            if (evSum + addend > 510)
+                input.value = intValue + (510 - evSum);
+            else if (newValue < 0)
+                input.value = 0;
+            else if (newValue > perStatLimit) {
+                // Do nothing if we're over the limit, otherwise the input will
+                // e.g. reset back to 100 if you click a vitamin while over 100
+                if (perStatLimit < 255 && intValue > perStatLimit)
+                    return;
+
+                input.value = perStatLimit;
+            } else
                 input.value = newValue == 0 ? "" : newValue;
-            }
-        });
-
-        const id = traineeInfo.id.split("_")[1];
-
-        // Make the PATCH request and handle the response
-        // The Stimulus controller struggles with this
-        fetch("/trainees/" + id, {
-            method: "PATCH",
-            body: new FormData(traineeInfo),
-            headers: {
-                "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
-            }
-        });
-
-        // Grab the final values from the inputs and use them
-        // to update the radar chart
-        if (getEvSum(traineeInfo) <= 510) {
-            final = [...inputs].map(input => input.value);
-            drawRadarChart("radar-chart-trainee_" + id, ...final);
         }
-
-        setEvInputColor();
     });
+
+    const id = traineeInfo.id.split("_")[1];
+
+    // Make the PATCH request and handle the response
+    // The Stimulus controller struggles with this
+    fetch("/trainees/" + id, {
+        method: "PATCH",
+        body: new FormData(traineeInfo),
+        headers: {
+            "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+        }
+    });
+
+    // Grab the final values from the inputs and use them
+    // to update the radar chart
+    if (getEvSum(traineeInfo) <= 510) {
+        final = [...inputs].map(input => input.value);
+        drawRadarChart("radar-chart-trainee_" + id, ...final);
+    }
+
+    setEvInputColor();
+}
+
+// Called by the kill buttons onclick
+function killButton(iHp, iAtk, iDef, iSpA, iSpD, iSpe) {
+    document.querySelectorAll(".trainee-info")
+        .forEach(traineeInfo => updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe))
+}
+
+// Called by the consumables buttons onclick
+function useConsumable(traineeInfo, itemType, stat) {
+    let stats = { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
+
+    stats[stat] += {
+        "vitamins": 10,
+        "feathers": 1,
+        "berries": -10
+    }[itemType];
+
+    updateEvs(traineeInfo, ...Object.values(stats), false,
+              itemType == "vitamins" ? 100 : 255);
 }
 
 // Checks total of all EVs and sets color of input borders accordingly
