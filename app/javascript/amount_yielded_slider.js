@@ -5,7 +5,7 @@ function updateYielded(inputType, value, checkWhen) {
 }
 
 runOnLoad(() => {
-    var slider = document.getElementById("amount-yielded-slider");
+    let slider = document.getElementById("amount-yielded-slider");
 
     // Prevent double loading- delete and create a
     // new slider each time this script is run.

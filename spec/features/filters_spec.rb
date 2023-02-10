@@ -1,5 +1,7 @@
 require "rails_helper"
 
+require_relative "support/trainee_spec_helpers"
+
 include StatsHelper
 
 QUERY = "b"
@@ -42,13 +44,7 @@ end
 RSpec.feature "filters:", type: :feature, js: true do
   describe "/trainees/:ids" do
     before :each do
-      create_user
-      log_in
-
-      trainee = Trainee.new user: User.first
-      trainee.save!
-
-      visit trainee_path(Trainee.first)
+      launch_new_blank_trainee
     end
 
     context "when visiting via a URL" do

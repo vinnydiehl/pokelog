@@ -2,17 +2,11 @@ require "rails_helper"
 
 require_relative "support/trainee_spec_helpers"
 
-RSpec.feature "trainees#show: ", type: :feature do
+RSpec.feature "trainees#show:", type: :feature do
   context "with one trainee in the party" do
     context "with a blank trainee" do
       before :each do
-        create_user
-        log_in
-
-        trainee = Trainee.new(user: User.first)
-        trainee.save!
-
-        visit trainee_path(trainee)
+        launch_new_blank_trainee
       end
 
       test_server_interaction
@@ -23,20 +17,19 @@ RSpec.feature "trainees#show: ", type: :feature do
 
       context "with 254 HP EVs", js: true do
         before :each do
-          fill_in "trainee_hp_ev", with: (@original = 254)
-          wait_for :hp_ev, @original
+          set_ev :hp, 254
         end
 
         describe "a 2 HP kill button" do
           before :each do
-            fill_in "Search", with: "Pidgeotto"
-            find("#species_017").click
-            sleep 1
+            fill_in "Search", with: "Jigglypuff"
+            find("#species_039").click
+            wait_for :hp_ev, 255
           end
 
-          it "doesn't increment the HP EV" do
-            expect(find("#trainee_hp_ev").value).to eq @original.to_s
-            expect(Trainee.first.hp_ev).to eq @original
+          it "increments the HP EV to 255" do
+            expect(find("#trainee_hp_ev").value).to eq "255"
+            expect(Trainee.first.hp_ev).to eq 255
           end
         end
       end
@@ -50,8 +43,7 @@ RSpec.feature "trainees#show: ", type: :feature do
           end
           wait_for STATS.last, 100
 
-          fill_in "trainee_#{STATS.first}", with: (@original = 9)
-          wait_for STATS.first, @original
+          set_ev STATS.first, (@original = 9)
         end
 
         context "when you get a kill w/ 1 Def, 1 Sp.D" do
@@ -102,8 +94,7 @@ RSpec.feature "trainees#show: ", type: :feature do
           end
           wait_for STATS.last, 100
 
-          fill_in "trainee_#{STATS.first}", with: (@original = 10)
-          wait_for STATS.first, @original
+          set_ev STATS.first, (@original = 10)
         end
 
         it "turns the input borders green" do
@@ -124,8 +115,7 @@ RSpec.feature "trainees#show: ", type: :feature do
 
         context "if you set the total back to 509" do
           before :each do
-            fill_in "trainee_#{STATS.first}", with: (@original = 9)
-            wait_for STATS.first, @original
+            set_ev STATS.first, (@original = 9)
           end
 
           it "turns the input borders black" do
@@ -152,12 +142,12 @@ RSpec.feature "trainees#show: ", type: :feature do
               sleep 1
             end
 
-            it "doesn't update the input" do
-              expect(find("#trainee_#{STATS.first}").value).to eq @original.to_s
+            it "only lets you max it out" do
+              expect(find("#trainee_#{STATS.first}").value).to eq (@original + 1).to_s
             end
 
             it "doesn't update the server" do
-              expect(Trainee.first.send STATS.first).to eq @original
+              expect(Trainee.first.send STATS.first).to eq(@original + 1)
             end
           end
         end
@@ -203,7 +193,7 @@ RSpec.feature "trainees#show: ", type: :feature do
           [true, false].each do |pokerus|
             context "with#{pokerus ? "" : "out"} Pokérus" do
               ([nil] + ITEMS).each do |item|
-                item_name = (item || "No Item").titleize
+                item_name = (item || "None").titleize
 
                 context "while holding #{item_name}" do
                   before :each do

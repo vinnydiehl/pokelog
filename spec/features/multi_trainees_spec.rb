@@ -2,20 +2,10 @@ require "rails_helper"
 
 require_relative "support/trainee_spec_helpers"
 
-include TraineesHelper
-
 RSpec.feature "trainees#show:", type: :feature do
   context "with multiple trainees in the party" do
     before :each do
-      create_user
-      log_in
-
-      TEST_TRAINEES.each do |_, attrs|
-        trainee = Trainee.new user: User.first, **attrs
-        trainee.save!
-      end
-
-      visit multi_trainees_path Trainee.all
+      launch_multi_trainee
     end
 
     TEST_TRAINEES.each do |display_name, attrs|
@@ -31,8 +21,7 @@ RSpec.feature "trainees#show:", type: :feature do
         STATS.each do |stat|
           it "sets #{stat} to 0 on the server" do
             within "#trainee_#{@id}" do
-              fill_in "trainee_#{stat}", with: "0"
-              wait_for stat, 0, attrs: attrs
+              set_ev stat, 0, attrs: attrs
 
               expect(find_trainee(attrs).send stat).to eq 0
             end
@@ -75,7 +64,7 @@ RSpec.feature "trainees#show:", type: :feature do
           within "#trainee_#{@id}" do
             # In case there's no item, choose one and then go back
             find("span", text: ITEMS.first.titleize).click
-            find("span", text: "No Item").click
+            find("span", text: "None").click
             wait_for :item, nil, attrs: attrs
 
             expect(find_trainee(attrs).item).to be_nil

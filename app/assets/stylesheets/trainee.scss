@@ -322,12 +322,120 @@ $small_radar_size: 250px;
     }
   }
 
-  .items-options {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    span {
-      color: #545454;
+  .items-menu {
+    margin-top: 0;
+
+    .collapsible-header {
+      display: flex;
+      justify-content: space-between;
+
+      // Stop clicking the background from expanding the collapsible
+      pointer-events: none;
+      // Turn pointer events back on for the radio buttons
+      // (if logged in), and the expand button
+      input:not([disabled]) + span, i.expand { pointer-events: auto; }
+
+      .held-items {
+        flex-grow: 1;
+
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5em;
+        flex-wrap: wrap;
+
+        // Flowing grid as page width gets smaller
+        @media (max-width: #{$items-lg-breakpoint}) {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+        }
+        @media (max-width: #{$items-med-breakpoint}) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: #{$items-text-wrap-breakpoint}) {
+          grid-column-gap: 1.5em;
+        }
+
+        span {
+          display: flex;
+          align-items: center;
+          padding: 0 0 0.25em 1.8em;
+          color: #545454;
+          line-height: 1rem;
+
+          img {
+            margin-right: 0.25em;
+            width: 32px;
+            height: 32px;
+          }
+          i.no-item-icon {
+            margin-right: 0.25em;
+            @media (max-width: #{$items-text-wrap-breakpoint}) {
+              margin-right: 0.3em;
+            }
+            font-size: 26px;
+          }
+
+          &.no-item {
+            white-space: nowrap;
+          }
+
+          // Wrap text simultaneously
+          @media (max-width: #{$items-text-wrap-breakpoint}) {
+            width: 0;
+          }
+        }
+      }
+
+      i.expand {
+        margin: 0 0 0 1em;
+      }
+    }
+
+    .consumables.row {
+      padding: 0.5rem 0;
+
+      // Separator lines
+      >:nth-child(2) {
+        border-inline: 1px solid lightgrey;
+      }
+
+      .col {
+        padding-bottom: 0.5rem;
+      }
+      h5 {
+        margin-top: 0;
+        text-align: center;
+        @media (max-width: #{$items-text-wrap-breakpoint}) {
+          font-size: 1.3rem;
+        }
+      }
+
+      .consumables-buttons {
+        display: grid;
+        @media (min-width: #{$items-buttons-breakpoint}) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        grid-gap: 0.5rem;
+
+        .btn {
+          display: flex;
+          align-items: center;
+
+          padding: 1rem 0;
+
+          .stat-label {
+            width: 6ch;
+            border-right: 1px solid grey;
+          }
+
+          @media (max-width: #{$radar-breakpoint}) {
+            justify-content: center;
+            .item-name {
+              display: none;
+            }
+          }
+        }
+      }
     }
   }
 }

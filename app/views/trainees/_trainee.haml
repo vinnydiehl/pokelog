@@ -2,6 +2,7 @@
             html: {autocomplete: "off"}, data: {controller: "form-submission"} do |f|
   = hidden_field_tag :trainees, @party.to_json
   .trainee-info-top
+    -# Left section, with artwork, text inputs etc. at full size
     .species-info
       .nickname-species.side-by-side
         .input-field.nickname
@@ -29,6 +30,8 @@
           = f.text_field :level, class: "validate", type: "number", **maxlength(3),
                          min: 1, max: 100, value: trainee.level, disabled: not_yours?(trainee),
                          data: {action: "change->form-submission#submit"}
+
+    -# Right section, with stat chart, Pokérus switch, types etc.
     .ev-info
       .sprite-and-types
         %div{id: "mobile-sprite-#{dom_id trainee}"}
@@ -60,18 +63,46 @@
                                   data: {action: "input->form-submission#submit"}
           %span.lever
           Pokérus
-  .items-options
-    %label
-      = f.radio_button :item, nil, value: trainee.item.nil?, disabled: not_yours?(trainee),
-                                   data: {action: "click->form-submission#submit"}
-      %span No Item
-    - @items_options.each do |item|
-      %label
-        = f.radio_button :item, item, value: trainee.item == item,
-                                disabled: not_yours?(trainee),
-                                data: {action: "click->form-submission#submit"}
-        %span= item.titleize
 
+  -# Items Menu
+  %ul.collapsible.items-menu
+    %li
+      .collapsible-header
+        .held-items
+          %label
+            = f.radio_button :item, nil, value: trainee.item.nil?, disabled: not_yours?(trainee),
+                                         data: {action: "click->form-submission#submit"}
+            %span.no-item
+              %i.material-icons.no-item-icon do_not_disturb_alt
+              None
+          - @items_options.each do |item|
+            %label
+              = f.radio_button :item, item, value: trainee.item == item,
+                                      disabled: not_yours?(trainee),
+                                      data: {action: "click->form-submission#submit"}
+              %span.tooltipped{data: {tooltip: item_tooltip(item), position: "top"}}
+                = image_tag "/images/items/held/#{item}.png"
+                = item.titleize
+        - if yours?(trainee)
+          %i.material-icons.expand more_vert
+
+      -# Consumables (collapsible)
+      - if yours?(trainee)
+        .collapsible-body.consumables.row
+          - %w[vitamins feathers berries].each do |item_type|
+            .col.s4
+              %h5= item_type.capitalize
+              .consumables-buttons{class: item_type}
+                - PokeLog::Stats.stats.each do |stat|
+                  - item = PokeLog::Stats.consumables_for(stat)[item_type.singularize.to_sym]
+                  %a.waves-effect.waves-light.btn{class: item,
+                    onclick: "useConsumable(this.closest('.trainee-info'), '#{item_type}', '#{stat}')"}
+                    .stat-label= format_stat stat
+                    = image_tag "/images/items/#{item_type}/#{item}.png"
+                    .item-name= item.to_s.sub("_", " ")
+
+-# Each trainee has its own modal to delete it. The footer is a
+-# form that sends a DELETE request for the trainee
 - if yours?(trainee)
   .modal{id: "delete-modal-#{dom_id trainee}"}
     .modal-content

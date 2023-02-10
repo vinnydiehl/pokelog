@@ -4,7 +4,5 @@ runOnLoad(() => {
 
 // Make it go away when you click away (call onblur)
 function hideCounter() {
-    document.querySelectorAll(".character-counter").forEach(function(input) {
-        input.innerHTML = "";
-    });
+    document.querySelectorAll(".character-counter").forEach(input => input.innerHTML = "");
 }

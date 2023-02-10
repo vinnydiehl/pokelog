@@ -1,3 +1,5 @@
+include TraineesHelper
+
 TEST_TRAINEES = {
   "Bulbasaur" => {
     species_id: "001",
@@ -40,6 +42,36 @@ TEST_TRAINEES = {
   }
 }
 SINGLE_DISPLAY_NAME, SINGLE_ATTRS = TEST_TRAINEES.to_a.last
+
+# For tests which require a blank trainee and nothing more. To be run at the
+# beginning of the feature, this creates a user and everything.
+def launch_new_blank_trainee
+  create_user
+  log_in
+
+  trainee = Trainee.new(user: User.first)
+  trainee.save!
+
+  visit trainee_path trainee
+end
+
+def launch_multi_trainee
+  create_user
+  log_in
+
+  TEST_TRAINEES.each do |_, attrs|
+    trainee = Trainee.new user: User.first, **attrs
+    trainee.save!
+  end
+
+  visit multi_trainees_path Trainee.all
+end
+
+# Set a trainee's EV to a certain value. Works with or without _ev suffix.
+def set_ev(stat, value, **args)
+  fill_in "trainee_#{stat = stat.to_s.sub(/_ev/, "")}_ev", with: value
+  wait_for :"#{stat}_ev", value, attrs: args[:attrs]
+end
 
 # Find a trainee by the value (Hash) of the test cases above
 def find_trainee(attrs)
@@ -248,7 +280,7 @@ def test_server_interaction
         # It starts on no item, so choose one and then go back
         # As long as the item update tests pass, this one is good
         find("span", text: ITEMS.first.titleize).click
-        find("span", text: "No Item").click
+        find("span", text: "None").click
         wait_for :item, nil
 
         expect(Trainee.first.item).to be_nil
@@ -258,9 +290,7 @@ def test_server_interaction
     context "when changing stats manually" do
       STATS.each do |stat|
         it "updates #{stat}" do
-          fill_in "trainee_#{stat}", with: SINGLE_ATTRS[stat]
-          click_away
-          wait_for stat, SINGLE_ATTRS[stat]
+          set_ev stat, SINGLE_ATTRS[stat]
 
           expect(Trainee.first.send stat).to eq SINGLE_ATTRS[stat]
         end

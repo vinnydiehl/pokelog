@@ -8,6 +8,7 @@
 = javascript_include_tag "select_init"
 = javascript_include_tag "sidenav_init"
 = javascript_include_tag "species_autocomplete"
+= javascript_include_tag "tooltip_init"
 = javascript_include_tag "update_evs"
 
 #trainees
@@ -33,7 +34,7 @@
   #add-to-party-modal.modal
     .modal-content
       %h4 Add to party
-      = render "trainee_list", trainees: @other_trainees
+      = render "list", trainees: @other_trainees
     .modal-footer
       %a#cancel-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Cancel
       %a#confirm-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Add
@@ -45,4 +46,4 @@
       = turbo_frame_tag :results do
         - @search_results.each do |species|
           = render species, attrs: { class: "waves-effect waves-teal",
-                            onclick: "updateEvs(#{species.ev_yield.values.join(',')})"}
+                            onclick: "killButton(#{species.ev_yield.values.join(',')})"}
