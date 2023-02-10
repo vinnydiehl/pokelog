@@ -17,19 +17,19 @@ RSpec.feature "trainees#show:", type: :feature do
 
       context "with 254 HP EVs", js: true do
         before :each do
-          set_ev :hp, (@original = 254)
+          set_ev :hp, 254
         end
 
         describe "a 2 HP kill button" do
           before :each do
-            fill_in "Search", with: "Pidgeotto"
-            find("#species_017").click
-            sleep 1
+            fill_in "Search", with: "Jigglypuff"
+            find("#species_039").click
+            wait_for :hp_ev, 255
           end
 
-          it "doesn't increment the HP EV" do
-            expect(find("#trainee_hp_ev").value).to eq @original.to_s
-            expect(Trainee.first.hp_ev).to eq @original
+          it "increments the HP EV to 255" do
+            expect(find("#trainee_hp_ev").value).to eq "255"
+            expect(Trainee.first.hp_ev).to eq 255
           end
         end
       end
@@ -142,12 +142,12 @@ RSpec.feature "trainees#show:", type: :feature do
               sleep 1
             end
 
-            it "doesn't update the input" do
-              expect(find("#trainee_#{STATS.first}").value).to eq @original.to_s
+            it "only lets you max it out" do
+              expect(find("#trainee_#{STATS.first}").value).to eq (@original + 1).to_s
             end
 
             it "doesn't update the server" do
-              expect(Trainee.first.send STATS.first).to eq @original
+              expect(Trainee.first.send STATS.first).to eq(@original + 1)
             end
           end
         end

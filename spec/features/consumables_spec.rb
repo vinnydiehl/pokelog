@@ -69,7 +69,7 @@ RSpec.feature "consumables:", type: :feature, js: true do
     end
   end
 
-  context "with multiple trainees in the party", focus: true do
+  context "with multiple trainees in the party" do
     describe "the consumables buttons" do
       before :each do
         launch_multi_trainee

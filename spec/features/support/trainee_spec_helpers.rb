@@ -1,3 +1,5 @@
+include TraineesHelper
+
 TEST_TRAINEES = {
   "Bulbasaur" => {
     species_id: "001",
