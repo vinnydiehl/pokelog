@@ -75,7 +75,7 @@ RSpec.feature "trainees#show:", type: :feature do
           within "#trainee_#{@id}" do
             # In case there's no item, choose one and then go back
             find("span", text: ITEMS.first.titleize).click
-            find("span", text: "No Item").click
+            find("span", text: "None").click
             wait_for :item, nil, attrs: attrs
 
             expect(find_trainee(attrs).item).to be_nil

@@ -248,7 +248,7 @@ def test_server_interaction
         # It starts on no item, so choose one and then go back
         # As long as the item update tests pass, this one is good
         find("span", text: ITEMS.first.titleize).click
-        find("span", text: "No Item").click
+        find("span", text: "None").click
         wait_for :item, nil
 
         expect(Trainee.first.item).to be_nil

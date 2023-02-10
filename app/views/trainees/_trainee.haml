@@ -72,7 +72,9 @@
           %label
             = f.radio_button :item, nil, value: trainee.item.nil?, disabled: not_yours?(trainee),
                                          data: {action: "click->form-submission#submit"}
-            %span No Item
+            %span.no-item
+              %i.material-icons.no-item-icon do_not_disturb_alt
+              None
           - @items_options.each do |item|
             %label
               = f.radio_button :item, item, value: trainee.item == item,

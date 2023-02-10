@@ -340,7 +340,7 @@ $small_radar_size: 250px;
 
         display: flex;
         justify-content: space-between;
-        gap: 0.5rem;
+        gap: 0.5em;
         flex-wrap: wrap;
 
         // Flowing grid as page width gets smaller
@@ -351,30 +351,43 @@ $small_radar_size: 250px;
         @media (max-width: #{$items-med-breakpoint}) {
           grid-template-columns: repeat(2, 1fr);
         }
+        @media (max-width: #{$items-text-wrap-breakpoint}) {
+          grid-column-gap: 1.5em;
+        }
 
         span {
           display: flex;
           align-items: center;
-          padding: 0 0 0.25rem 1.8rem;
+          padding: 0 0 0.25em 1.8em;
           color: #545454;
           line-height: 1rem;
 
           img {
-            margin-right: 0.25rem;
+            margin-right: 0.25em;
             width: 32px;
             height: 32px;
           }
+          i.no-item-icon {
+            margin-right: 0.25em;
+            @media (max-width: #{$items-text-wrap-breakpoint}) {
+              margin-right: 0.3em;
+            }
+            font-size: 26px;
+          }
 
-          // Wrap text simultaneously, min-width stops "No Item" from wrapping
-          @media (min-width: 427px) and
-                 (max-width: #{$items-text-wrap-breakpoint}) {
-            width: 60%;
+          &.no-item {
+            white-space: nowrap;
+          }
+
+          // Wrap text simultaneously
+          @media (max-width: #{$items-text-wrap-breakpoint}) {
+            width: 0;
           }
         }
       }
 
       i.expand {
-        margin: 0 0 0 1rem;
+        margin: 0 0 0 1em;
       }
     }
 
@@ -385,9 +398,7 @@ $small_radar_size: 250px;
         padding-bottom: 0.5rem;
 
         &.middle {
-          $dividers: 1px solid grey;
-          border-left: $dividers;
-          border-right: $dividers;
+          border-inline: 1px solid lightgrey;
         }
       }
 
@@ -427,7 +438,6 @@ $small_radar_size: 250px;
       }
     }
   }
-
 }
 
 #kill-search {

@@ -203,7 +203,7 @@ RSpec.feature "trainees#show: ", type: :feature do
           [true, false].each do |pokerus|
             context "with#{pokerus ? "" : "out"} Pokérus" do
               ([nil] + ITEMS).each do |item|
-                item_name = (item || "No Item").titleize
+                item_name = (item || "None").titleize
 
                 context "while holding #{item_name}" do
                   before :each do
