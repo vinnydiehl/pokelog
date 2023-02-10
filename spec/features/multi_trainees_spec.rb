@@ -31,8 +31,7 @@ RSpec.feature "trainees#show:", type: :feature do
         STATS.each do |stat|
           it "sets #{stat} to 0 on the server" do
             within "#trainee_#{@id}" do
-              fill_in "trainee_#{stat}", with: "0"
-              wait_for stat, 0, attrs: attrs
+              set_ev stat, 0, attrs: attrs
 
               expect(find_trainee(attrs).send stat).to eq 0
             end

@@ -82,7 +82,7 @@ module PokeLog
           feather: :swift,
           berry: :tamato
         }
-      }[stat.to_sym]
+      }[stat.to_s.sub(/_ev/, "").to_sym]
     end
 
     def self.verify(hash, strict=true)

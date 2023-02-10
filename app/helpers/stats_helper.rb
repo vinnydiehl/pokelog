@@ -7,6 +7,6 @@ module StatsHelper
       spa: "Sp.A",
       spd: "Sp.D",
       spe: "Spe"
-    }[stat]
+    }[stat.to_s.sub(/_ev/, "").to_sym]
   end
 end
