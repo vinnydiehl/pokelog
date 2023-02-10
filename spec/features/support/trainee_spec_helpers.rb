@@ -53,6 +53,18 @@ def launch_new_blank_trainee
   visit trainee_path trainee
 end
 
+def launch_multi_trainee
+  create_user
+  log_in
+
+  TEST_TRAINEES.each do |_, attrs|
+    trainee = Trainee.new user: User.first, **attrs
+    trainee.save!
+  end
+
+  visit multi_trainees_path Trainee.all
+end
+
 # Set a trainee's EV to a certain value. Works with or without _ev suffix.
 def set_ev(stat, value, **args)
   fill_in "trainee_#{stat = stat.to_s.sub(/_ev/, "")}_ev", with: value
