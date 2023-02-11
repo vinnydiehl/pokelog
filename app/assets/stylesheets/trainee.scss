@@ -412,7 +412,7 @@ $small_radar_size: 250px;
 
       .consumables-buttons {
         display: grid;
-        @media (min-width: #{$items-buttons-breakpoint}) {
+        @media (min-width: #{$items-buttons-grid-breakpoint}) {
           grid-template-columns: repeat(2, 1fr);
         }
         grid-gap: 0.5rem;
@@ -424,16 +424,30 @@ $small_radar_size: 250px;
           padding: 1rem 0;
 
           .stat-label {
-            width: 6ch;
-            border-right: 1px solid grey;
-          }
-
-          @media (max-width: #{$radar-breakpoint}) {
+            display: flex;
             justify-content: center;
-            .item-name {
-              display: none;
+            border-right: 1px solid grey;
+            width: 6ch;
+
+            @media (max-width: #{$items-buttons-text-breakpoint}) {
+              flex: 1;
             }
           }
+
+          .item-sprite-and-name {
+            flex: 1;
+            display: flex;
+            align-items: center;
+
+            @media (max-width: #{$items-buttons-text-breakpoint}) {
+              justify-content: center;
+
+              .item-name {
+                  display: none;
+              }
+            }
+          }
+
         }
       }
     }

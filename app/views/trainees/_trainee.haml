@@ -98,8 +98,9 @@
                   %a.waves-effect.waves-light.btn{class: item,
                     onclick: "useConsumable(this.closest('.trainee-info'), '#{item_type}', '#{stat}')"}
                     .stat-label= format_stat stat
-                    = image_tag "/images/items/#{item_type}/#{item}.png"
-                    .item-name= item.to_s.sub("_", " ")
+                    .item-sprite-and-name
+                      = image_tag "/images/items/#{item_type}/#{item}.png"
+                      .item-name= item.to_s.sub("_", " ")
 
 -# Each trainee has its own modal to delete it. The footer is a
 -# form that sends a DELETE request for the trainee

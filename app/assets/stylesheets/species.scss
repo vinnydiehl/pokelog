@@ -28,13 +28,16 @@ $border: 3px solid black;
 
     margin: $margin;
 
-    border-radius: 1.5rem;
     border: $border;
+    border-radius: 1.5rem;
+    @media (max-width: #{$species-breakpoint}) {
+      border-radius: 1rem;
+    }
 
     padding-inline: $padding;
 
     display: inline-flex;
-    @media (max-width: #{$species-sm-breakpoint}) {
+    @media (max-width: #{$species-breakpoint}) {
       display: flex;
       position: relative;
       width: 100%
@@ -57,7 +60,7 @@ $border: 3px solid black;
       margin-left: $padding;
       justify-content: space-between;
 
-      @media (max-width: #{$species-sm-breakpoint}) {
+      @media (max-width: #{$species-breakpoint}) {
         display: flex;
         align-items: center;
       }
@@ -68,7 +71,7 @@ $border: 3px solid black;
 
         div.sprite {
           margin: 0.5em;
-          @media (min-width: #{$species-sm-breakpoint}) {
+          @media (min-width: #{$species-breakpoint}) {
             margin-right: 0;
           }
 
@@ -78,7 +81,7 @@ $border: 3px solid black;
 
         .name-form {
           text-align: center;
-          @media (max-width: #{$species-sm-breakpoint}) {
+          @media (max-width: #{$species-breakpoint}) {
             text-align: left;
           }
           flex: 1;
@@ -91,7 +94,7 @@ $border: 3px solid black;
           .form {
             font-style: italic;
             font-size: 0.8em;
-            @media (max-width: #{$species-sm-breakpoint}) {
+            @media (max-width: #{$species-breakpoint}) {
               width: 12ch;
             }
           }
@@ -99,7 +102,7 @@ $border: 3px solid black;
       }
 
       .yields-and-types {
-        @media (max-width: #{$species-sm-breakpoint}) {
+        @media (max-width: #{$species-breakpoint}) {
           display: flex;
           align-items: center;
           position: absolute;
@@ -109,7 +112,7 @@ $border: 3px solid black;
         .yields {
           display: flex;
           justify-content: space-evenly;
-          @media (max-width: #{$species-sm-breakpoint}) {
+          @media (max-width: #{$species-breakpoint}) {
             display: block;
           }
 
@@ -117,11 +120,11 @@ $border: 3px solid black;
         .types {
           text-align: center;
           margin-left: $padding;
-          @media (min-width: #{$species-sm-breakpoint}) {
+          @media (min-width: #{$species-breakpoint}) {
             margin: 0.3rem;
           }
           // Stack on mobile
-          @media (max-width: #{$species-sm-breakpoint}) {
+          @media (max-width: #{$species-breakpoint}) {
             width: 2.2rem;
           }
         }

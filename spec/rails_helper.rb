@@ -21,9 +21,12 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 
-Capybara.register_driver :chrome_1080 do |app|
-  Capybara::Selenium::Driver.new app, browser: :chrome,
-    options: Selenium::WebDriver::Chrome::Options.new(args: %w[headless disable-gpu window-size=1920x1080])
+[[:chrome_1080, 1920, 1080],
+ [:chrome_375,  375,  812 ]].each do |name, width, height|
+  Capybara.register_driver name do |app|
+    Capybara::Selenium::Driver.new app, browser: :chrome,
+      options: Selenium::WebDriver::Chrome::Options.new(args: %W[headless disable-gpu window-size=#{width}x#{height}])
+  end
 end
 
 Capybara.javascript_driver = :chrome_1080

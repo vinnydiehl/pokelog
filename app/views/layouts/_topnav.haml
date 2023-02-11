@@ -1,7 +1,11 @@
 - title = yield :title
 - mobile_title = yield :mobile_title
 
+= javascript_include_tag "sidenav_init"
+
 %nav.top-nav
   .nav-wrapper
+    %a.sidenav-trigger.hide-on-large-only{"data-target": "sidenav", onclick: "M.Sidenav.getInstance(document.querySelector('#sidenav')).open()"}
+      %i#sidenav-expand.material-icons menu
     #title.brand-logo.center= title
     #title-mobile.brand-logo.center= mobile_title.blank? ? title : mobile_title

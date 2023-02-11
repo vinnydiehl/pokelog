@@ -15,7 +15,7 @@
       height: 1.5em;
     }
 
-    @media (min-width: #{$species-sm-breakpoint}) {
+    @media (min-width: #{$species-breakpoint}) {
       &::after {
         margin-left: 0.5em;
         content: "#{$type}";
@@ -35,7 +35,7 @@
 .type {
   margin: 0.1em;
   padding: 0.3em;
-  @media (min-width: #{$species-sm-breakpoint}) {
+  @media (min-width: #{$species-breakpoint}) {
     padding-right: 0.6em;
   }
   display: inline-flex;

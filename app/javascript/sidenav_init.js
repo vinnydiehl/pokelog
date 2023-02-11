@@ -1,7 +1,7 @@
 runOnLoad(() => {
     M.Sidenav.init(document.querySelectorAll(".sidenav"));
     if (window.innerWidth <= 992) {
-        document.querySelector('#nav-full').style.transform = "translateX(-105%)";
-        document.querySelector('#nav-full').style.display = "block";
+        document.querySelector('#sidenav').style.transform = "translateX(-105%)";
+        document.querySelector('#sidenav').style.display = "block";
     }
 });

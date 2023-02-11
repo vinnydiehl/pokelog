@@ -195,13 +195,14 @@ RSpec.feature "users:", type: :feature do
     end
   end
 
-  describe "/logout" do
+  describe "/logout", js: true do
     before :each do
       create_user
       log_in
 
       find("#profile-widget").click
-      click_link "Logout"
+      sleep 0.5
+      find("#sidenav a", text: "Logout").click
     end
 
     it "redirects to /" do

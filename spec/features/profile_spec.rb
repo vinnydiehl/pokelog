@@ -5,13 +5,14 @@ require_relative "support/trainee_spec_helpers"
 TEST_CHANGED_EMAIL = "t2@test.com"
 
 RSpec.feature "users:", type: :feature do
-  describe "the profile link in the sidenav" do
+  describe "the profile link in the sidenav", js: true do
     it "links to the user's profile" do
       create_user
       log_in
 
       find("#profile-widget").click
-      click_link "Profile"
+      sleep 0.5
+      find("#sidenav a", text: "Profile").click
 
       expect(page).to have_current_path user_path(User.first)
     end

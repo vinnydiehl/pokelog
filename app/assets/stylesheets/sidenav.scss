@@ -1,20 +1,16 @@
 @import "include/variables";
 
-$mnav_size: 64px;
-
-// Offset content from sidebar
-header, main, footer {
-  padding-left: 300px;
-}
-@media (max-width: #{$sidenav-breakpoint}) {
-  // Offset content from collapsed sidebar
+@media (min-width: #{$sidenav-breakpoint}) {
+  // Offset content from sidebar
   header, main, footer {
-    padding-left: $mnav_size;
+    padding-left: 300px;
   }
+}
 
+@media (max-width: #{$sidenav-breakpoint}) {
   // Stop the open navbar from flashing on pageload on mobile.
   // This will be set back to block with JS once initialized
-  #nav-full {
+  #sidenav {
     display: none;
   }
 }
@@ -53,33 +49,6 @@ header, main, footer {
   hr {
     border-color: darkred;
     margin: 0 15px 0 15px;
-  }
-}
-
-// Patch to make li square with the bar
-@mixin mnav-height {
-  height: $mnav_size;
-  line-height: $mnav_size;
-}
-
-// Narrow sidenav on mobile
-#mnav.sidenav {
-  // Don't hide
-  transform: translateX(0%) !important;
-  width: $mnav_size;
-
-  li>a {
-    padding: 0;
-    text-align: center;
-    @include mnav-height;
-
-    >i {
-      @include mnav-height;
-
-      // Center mobile icons
-      margin: auto;
-      width: $mnav_size;
-    }
   }
 }
 

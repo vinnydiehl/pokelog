@@ -4,6 +4,10 @@
   background-color: $red;
   margin-bottom: 30px;
 
+  #sidenav-expand {
+    cursor: pointer;
+  }
+
   #title {
     // Stop from getting cut off too soon
     width: 80%;

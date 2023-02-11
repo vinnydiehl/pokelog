@@ -2,16 +2,9 @@
 = javascript_include_tag "sidenav_init"
 = javascript_include_tag "waves_init"
 
-%ul#mnav.sidenav.sidenav-fixed
-  %li.expand
-    %a.sidenav-trigger.hide-on-large-only{href: "#", "data-target": "nav-full"}
-      %i#sidenav-expand.material-icons menu
-  - @nav_links.each do |icon, path|
-    = nav_link icon, path
-
-%ul#nav-full.sidenav.sidenav-fixed{style: "transform: translateX(0px);"}
+%ul#sidenav.sidenav.sidenav-fixed{style: "transform: translateX(0px);"}
   %li.logo
-    = link_to "/home", id: "logo-container", class: "waves-effect sidenav-close" do
+    %a#logo-container.waves-effect{onclick: nav_link_js("/home")}
       = image_tag "logo.svg", height: 120, id: "front-page-logo"
   - if logged_in?
     %ul.collapsible
@@ -20,9 +13,9 @@
         .collapsible-body
           %ul
             %li
-              = link_to "Profile", user_path(@current_user)
+              %a.waves-effect{onclick: nav_link_js(user_path @current_user)} Profile
             %li
-              = link_to "Logout", "/logout"
+              %a.waves-effect{onclick: nav_link_js("/logout")} Logout
   - else
     %li#sign-in
       %a.sign-in= render "layouts/google_sign_in_button"
