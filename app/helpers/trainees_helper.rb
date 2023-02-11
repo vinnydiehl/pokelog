@@ -20,10 +20,16 @@ module TraineesHelper
       trainees[0] = Trainee.find trainees.first["id"]
     end
 
+    nickname = trainees.first.nickname
+    species = trainees.first.species
+
     multi_title = "#{trainees.size} Trainees"
     trainees.size > 1 ? { title: multi_title, mobile_title: multi_title } : {
+      # On desktop displays "Nickname (Species)", or one or the other, or "New Trainee"
       title: trainees.first.title,
-      mobile_title: trainees.first.nickname
+      # On mobile it either displays the nickname OR the species, preferring the
+      # nickname. If neither exists, displays "New Trainee"
+      mobile_title: nickname.blank? ? (species ? species.name : "New Trainee") : nickname
     }
   end
 
