@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_forgery_protection # Using Google API token verification
+  # skip_forgery_protection # Using Google API token verification
+  skip_before_action :verify_authenticity_token, only: %i[login register]
   before_action :parse_token, only: %i[login create register]
 
   # GET /users/:username
@@ -26,6 +27,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/:username
   def destroy
+    # TODO. Issue #16
   end
 
   # POST /login/submit
@@ -43,16 +45,6 @@ class UsersController < ApplicationController
     params["username"].strip!
     params["email"].strip!
 
-    if User.find_by_username(params["username"])
-      flash[:notice] = "Username #{params["username"]} has been taken."
-      return redirect_post register_path(credential: params["credential"])
-    end
-
-    unless EmailValidator.valid?(params["email"])
-      flash[:notice] = "Invalid email address."
-      return redirect_post register_path(credential: params["credential"])
-    end
-
     @user = User.new(
       username: params["username"],
       email: params["email"],
@@ -63,7 +55,8 @@ class UsersController < ApplicationController
       @found_user = @user
       log_in
     else
-      redirect_to root_url, notice: "Registration failed."
+      flash[:notice] = "Registration failed: #{@user.errors.full_messages.join ', '}"
+      redirect_post register_path(credential: params["credential"])
     end
   end
 
@@ -92,7 +85,7 @@ class UsersController < ApplicationController
 
   # Log in the user from @token (must be loaded from params w/ parse_token)
   def log_in
-    cookies.encrypted[:google_id] = @token.user_id
+    cookies.permanent.encrypted[:google_id] = @token.user_id
     redirect_to trainees_url, notice: "Logged in as #{@found_user.username}."
   end
 end

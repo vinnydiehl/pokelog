@@ -46,4 +46,4 @@
       = turbo_frame_tag :results do
         - @search_results.each do |species|
           = render species, attrs: { class: "waves-effect waves-teal",
-                            onclick: "killButton(#{species.ev_yield.values.join(',')})"}
+                            onclick: "killButton(#{species.ev_yield.values.join(',')})" }
