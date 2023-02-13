@@ -14,7 +14,7 @@
               html: { "data-turbo" => false } do |f|
     .input-field
       = f.label :email, "Email Address"
-      = f.text_field :email, oninput: "enableEditButton();",
+      = f.text_field :email, oninput: "enableEditButton()",
           value: @current_user.email, "data-original-value" => @current_user.email
     %button#edit-btn.btn.waves-effect.waves-light{type: "submit", name: "commit", disabled: true}
       %i.material-icons.right edit
