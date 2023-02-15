@@ -1,38 +1,5 @@
 require "rails_helper"
 
-require_relative "support/trainee_spec_helpers"
-
-include StatsHelper
-
-# @param item_type [Symbol] :vitamins, :feathers, or :berries
-# @param test_cases [Array] cases like [start_value, expected_result]
-def test_consumables(cases)
-  cases.each do |item_type, test_cases|
-    describe "#{item_type}:" do
-      STATS.each do |stat|
-        item = PokeLog::Stats.consumables_for(stat)[item_type.to_s.singularize.to_sym]
-
-        describe "#{item.to_s.humanize.downcase}" do
-          test_cases.each do |start_value, expected_value|
-            context "with #{start_value} #{format_stat stat}" do
-              difference = expected_value - start_value
-              action = difference < 0 ? "subtracts" : "adds"
-
-              it "#{action} #{difference.abs} #{format_stat stat} EVs" do
-                set_ev stat, start_value unless start_value.zero?
-                find(".#{item_type} .#{item}").click
-                wait_for stat, expected_value
-
-                expect(Trainee.first.send stat).to eq expected_value
-              end
-            end
-           end
-        end
-      end
-    end
-  end
-end
-
 RSpec.feature "consumables:", type: :feature, js: true do
   context "with a blank trainee" do
     before :each do
@@ -41,7 +8,7 @@ RSpec.feature "consumables:", type: :feature, js: true do
       sleep 0.5
     end
 
-    test_consumables {
+    test_consumables({
       vitamins: [[  0, 10 ],
                  [ 99, 109],
                  [101, 111],
@@ -53,7 +20,7 @@ RSpec.feature "consumables:", type: :feature, js: true do
       berries:  [[252, 242],
                  [100, 90 ],
                  [  5, 0  ]]
-    }
+    })
 
     context "with 509 total EVs" do
       describe "a vitamin button" do

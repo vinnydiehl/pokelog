@@ -1,7 +1,5 @@
 require "rails_helper"
 
-require_relative "support/trainee_spec_helpers"
-
 RSpec.feature "trainees#show:", type: :feature do
   context "with multiple trainees in the party" do
     before :each do

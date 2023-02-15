@@ -1,7 +1,5 @@
 require "rails_helper"
 
-require_relative "support/trainee_spec_helpers"
-
 TEST_CHANGED_EMAIL = "t2@test.com"
 
 RSpec.feature "users:", type: :feature do

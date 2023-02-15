@@ -1,5 +1,3 @@
-include TraineesHelper
-
 TEST_TRAINEES = {
   "Bulbasaur" => {
     species_id: "001",
@@ -156,6 +154,27 @@ def test_trainee_ui(display_name, attrs)
         within "#trainee_#{find_id attrs}" do
           expect(find_field("trainee_#{stat}").value).to eq expected_value
         end
+      end
+    end
+  end
+end
+
+def test_max_evs_per_stat(max)
+  context "with #{max - 1} HP EVs", js: true do
+    before :each do
+      set_ev :hp, max - 1
+    end
+
+    describe "a 2 HP kill button" do
+      before :each do
+        fill_in "Search", with: "Jigglypuff"
+        find("#species_039").click
+        wait_for :hp_ev, max
+      end
+
+      it "increments the HP EV to #{max}" do
+        expect(find("#trainee_hp_ev").value).to eq max.to_s
+        expect(Trainee.first.hp_ev).to eq max
       end
     end
   end

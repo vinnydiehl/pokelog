@@ -1,9 +1,5 @@
 require "rails_helper"
 
-require_relative "support/trainee_spec_helpers"
-
-include StatsHelper
-
 QUERY = "b"
 
 # Grab a sample of 5 evenly spread out elements

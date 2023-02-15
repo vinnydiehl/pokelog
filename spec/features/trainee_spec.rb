@@ -1,7 +1,5 @@
 require "rails_helper"
 
-require_relative "support/trainee_spec_helpers"
-
 RSpec.feature "trainees#show:", type: :feature do
   context "with one trainee in the party" do
     context "with a blank trainee" do
@@ -15,24 +13,7 @@ RSpec.feature "trainees#show:", type: :feature do
       test_trainee_ui nil, STATS.map { |s| {s.to_sym => 0} }.
         append({nature: ""}).inject(&:merge)
 
-      context "with 251 HP EVs", js: true do
-        before :each do
-          set_ev :hp, 251
-        end
-
-        describe "a 2 HP kill button" do
-          before :each do
-            fill_in "Search", with: "Jigglypuff"
-            find("#species_039").click
-            wait_for :hp_ev, 252
-          end
-
-          it "increments the HP EV to 252" do
-            expect(find("#trainee_hp_ev").value).to eq "252"
-            expect(Trainee.first.hp_ev).to eq 252
-          end
-        end
-      end
+      test_max_evs_per_stat 252
 
       # Edge case behavior, see issue #1
       context "with 509 total EVs", js: true do
