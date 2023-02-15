@@ -171,7 +171,9 @@ module PokeLog
   end
 end
 
-def calculate_final_evs(item, pokerus, kill_button_data, initial_evs=nil)
+def calculate_final_evs(item, pokerus, kill_button_data, **args)
+  args[:power_boost] ||= 8
+
   # Set stats to the base yield from the kill button
   expected = PokeLog::Stats.new
   kill_button_data.each { |stat, value| expected[stat] = value }
@@ -180,24 +182,24 @@ def calculate_final_evs(item, pokerus, kill_button_data, initial_evs=nil)
   when "macho_brace"
     expected = expected.double_values
   when "power_weight"
-    expected[:hp] += 4
+    expected[:hp] += args[:power_boost]
   when "power_bracer"
-    expected[:atk] += 4
+    expected[:atk] += args[:power_boost]
   when "power_belt"
-    expected[:def] += 4
+    expected[:def] += args[:power_boost]
   when "power_lens"
-    expected[:spa] += 4
+    expected[:spa] += args[:power_boost]
   when "power_band"
-    expected[:spd] += 4
+    expected[:spd] += args[:power_boost]
   when "power_anklet"
-    expected[:spe] += 4
+    expected[:spe] += args[:power_boost]
   end
 
   if pokerus
     expected = expected.double_values
   end
 
-  expected + initial_evs
+  expected + args[:initial_evs]
 end
 
 def test_server_interaction
