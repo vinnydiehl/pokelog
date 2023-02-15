@@ -4,23 +4,20 @@ RSpec.feature "consumables:", type: :feature, js: true do
   context "with a blank trainee" do
     before :each do
       launch_new_blank_trainee
-      find(".collapsible-header .expand").click
-      sleep 0.5
+      open_consumables_menu
     end
 
-    test_consumables({
-      vitamins: [[  0, 10 ],
-                 [ 99, 109],
-                 [101, 111],
-                 [248, 252]],
-      feathers: [[  0, 1  ],
-                 [150, 151],
-                 [251, 252],
-                 [252, 252]],
-      berries:  [[252, 242],
-                 [100, 90 ],
-                 [  5, 0  ]]
-    })
+    test_consumables vitamins: [[  0, 10 ],
+                                [ 99, 109],
+                                [101, 111],
+                                [248, 252]],
+                     feathers: [[  0, 1  ],
+                                [150, 151],
+                                [251, 252],
+                                [252, 252]],
+                      berries: [[252, 242],
+                                [100, 90 ],
+                                [  5, 0  ]]
 
     context "with 509 total EVs" do
       describe "a vitamin button" do

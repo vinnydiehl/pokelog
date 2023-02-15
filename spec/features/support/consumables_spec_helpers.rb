@@ -1,5 +1,10 @@
+def open_consumables_menu
+  find(".collapsible-header .expand").click
+  sleep 0.5
+end
+
 # @param cases [Hash] test cases in format `item_type: [start_value, expected_result]`
-def test_consumables(cases)
+def test_consumables(**cases)
   # item_type is :vitamins, :feathers, or :berries
   cases.each do |item_type, test_cases|
     describe "#{item_type}:" do
