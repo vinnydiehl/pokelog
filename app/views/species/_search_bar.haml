@@ -10,7 +10,7 @@
     = f.label :q, "Search"
     = f.text_field :q, value: params[:q],
                        data: { action: "input->form-submission#searchSubmit" }
-  = link_to "#species-filters", id: "filters-btn", class: "btn modal-trigger waves-effect grey" do
+  %a#filters-btn.btn.waves-effect.grey{onclick:"openModal('species-filters')"}
     %i.material-icons settings
   #species-filters.modal
     .modal-content

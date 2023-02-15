@@ -42,7 +42,7 @@
             = trainee.species.type_badges size: :large
       .corner-buttons
         - if yours?(trainee)
-          = link_to "#delete-modal-#{dom_id trainee}", id: "delete-#{dom_id trainee}", class: "delete-btn modal-trigger" do
+          %a.delete-btn{id: "delete-#{dom_id trainee}", onclick: "openModal('delete-modal-#{dom_id trainee}')"}
             %i.material-icons delete
         - if @party.size > 1
           = link_to multi_trainees_path(@party - [trainee]), id: "close-#{dom_id trainee}" do

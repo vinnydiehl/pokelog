@@ -4,7 +4,7 @@
 = javascript_include_tag "add_to_party"
 = javascript_include_tag "character_counter"
 = javascript_include_tag "fixed_action_init"
-= javascript_include_tag "modal_init"
+= javascript_include_tag "open_modal"
 = javascript_include_tag "select_init"
 = javascript_include_tag "sidenav_init"
 = javascript_include_tag "species_autocomplete"
@@ -23,8 +23,7 @@
       %i.material-icons.large add
     %ul
       %li
-        = link_to "#add-to-party-modal", id: "add-to-party-btn",
-                                         class: "btn-floating red modal-trigger" do
+        %a#add-to-party-btn.btn-floating.red{onclick: "openModal('add-to-party-modal')"}
           %i.material-icons list
       %li
         = link_to "#{request.path}/new", id: "new-trainee-btn",

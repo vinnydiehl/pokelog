@@ -93,6 +93,10 @@ $small_radar_size: 250px;
         right: 15px;
       }
 
+      a {
+        cursor: pointer;
+      }
+
       i {
         font-size: 3rem;
         @media (max-width: #{$radar-breakpoint}) {
