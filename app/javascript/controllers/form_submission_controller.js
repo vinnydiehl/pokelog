@@ -12,7 +12,7 @@ export default class extends Controller {
 
     // This select (in the filters modal) just sets a cookie and refreshes the form
     generationSubmit() {
-        const gen = document.getElementById("generation").value;
+        const gen = parseInt(document.getElementById("generation").value);
 
         // If a gen is selected, permanent cookie. Otherwise delete any existing cookie
         const expire_date = gen ? new Date(Date.now() + (20 * 365 * 24 * 60 * 60 * 1000))
@@ -20,12 +20,9 @@ export default class extends Controller {
 
         document.cookie = `generation=${gen}; path=/; SameSite=Lax; expires=${expire_date}`;
 
-        // Stop "generation" from showing in params
-        document.getElementById("generation").disabled = true;
-        this.submit(event);
+        M.Modal.getInstance(document.getElementById("species-filters")).close();
 
-        // It looks like this gets re-enabled on submit, but if you go back
-        // then forward, it would break
-        document.getElementById("generation").disabled = false;
+        // Reload entire page, this way we update the tooltips, etc.
+        Turbo.visit(window.location.href, {action: "replace"});
     }
 }

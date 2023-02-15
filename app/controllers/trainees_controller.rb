@@ -26,6 +26,20 @@ class TraineesController < ApplicationController
 
     @items_options = YAML.load_file("data/items.yml").keys
 
+    @generation = cookies[:generation].to_i
+
+    [[3, /power/],
+     [7, /macho_brace/]].each do |disabled_gen, pattern|
+      if @generation == disabled_gen
+        @party.each do |trainee|
+          if trainee.item =~ pattern
+            trainee.item = nil
+            trainee.save!
+          end
+        end
+      end
+    end
+
     @search_results = Species.search params
   end
 

@@ -77,10 +77,11 @@
               None
           - @items_options.each do |item|
             %label
-              = f.radio_button :item, item, value: trainee.item == item,
-                                      disabled: not_yours?(trainee),
-                                      data: {action: "click->form-submission#submit"}
-              %span.tooltipped{data: {tooltip: item_tooltip(item), position: "top"}}
+              = f.radio_button :item, item, value: trainee.item == item, "data-action": "click->form-submission#submit",
+                disabled: not_yours?(trainee) || (@generation == 3 && item =~ /power/) || (@generation == 7 && item == "macho_brace")
+
+
+              %span.tooltipped{data: {tooltip: item_tooltip(item, @generation), position: "top"}}
                 = image_tag "/images/items/held/#{item}.png"
                 = item.titleize
         - if yours?(trainee)

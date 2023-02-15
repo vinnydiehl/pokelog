@@ -45,7 +45,7 @@ RSpec.feature "trainees#show:", type: :feature do
           end
         end
 
-        context "when you get a kill w/ 1 Atk while holding a Power Band (4 Sp.D)" do
+        context "when you get a kill w/ 1 Atk while holding a Power Band (8 Sp.D)" do
           before :each do
             find("span", text: "Power Band").click
             wait_for :item, "power_band"

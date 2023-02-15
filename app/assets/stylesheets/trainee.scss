@@ -355,6 +355,10 @@ $small_radar_size: 250px;
           grid-column-gap: 1.5em;
         }
 
+        input:disabled + span>img {
+          filter: grayscale(1);
+        }
+
         span {
           display: flex;
           align-items: center;
