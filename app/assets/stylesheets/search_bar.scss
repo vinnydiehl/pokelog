@@ -26,8 +26,13 @@
   overflow-x: hidden;
   max-width: 60em;
 
-  h6 {
+  h6:not(.no-bottom-margin) {
     margin-bottom: 1rem;
+  }
+
+  // Grey out None (it's not disabled)
+  .select-wrapper>ul>li:first-child span {
+    color: grey;
   }
 
   .checkboxes {
