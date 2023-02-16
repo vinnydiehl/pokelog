@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   validates_presence_of :username, message: "can't be blank"
   validates_uniqueness_of :username, message: "has already been taken"
+  validates_uniqueness_of :google_id, message: "has already been taken"
   validates :username,
     length: { maximum: 20, message: "must be 20 characters or less" }
 
