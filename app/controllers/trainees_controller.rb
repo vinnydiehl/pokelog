@@ -26,6 +26,7 @@ class TraineesController < ApplicationController
 
     @items_options = YAML.load_file("data/items.yml").keys
 
+    # The behavior defaults to gen 9 throughout most of the UI
     @generation = cookies[:generation] ? cookies[:generation].to_i : 9
 
     [[3, /power/],
@@ -40,7 +41,8 @@ class TraineesController < ApplicationController
       end
     end
 
-    @search_results = Species.search params
+    # Search uses the cookie, if there is none set it will not filter
+    @search_results = Species.search params, cookies[:generation]
   end
 
   # GET /trainees/new

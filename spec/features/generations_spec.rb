@@ -33,8 +33,8 @@ def test_power_item_boost(item, expected_boost)
   context "when you click a 1 HP kill button holding a #{item.titleize}" do
     it "increases #{stat = stat_for(item)} by #{expected_boost}" do
       set_held_item item
-      fill_in "Search", with: "Caterpie" # 1 HP
-      find("#species_010").click
+      fill_in "Search", with: "Slowpoke" # 1 HP, available in all gens
+      find("#species_079").click
       wait_for :hp_ev, (1 + (stat == :hp_ev ? expected_boost : 0))
 
       expect(Trainee.first.send stat).to eq(expected_boost + (stat == :hp_ev ? 1 : 0))
@@ -200,6 +200,33 @@ RSpec.feature "generations:", type: :feature, js: true do
           test_consumables berries: test_cases
         end
       end
+    end
+
+    # Search filters
+    describe "species search" do
+      [[3, "Deoxys", "Turtwig"],
+       [4, "Arceus", "Victini"],
+       [5, "Genesect", "Chespin"],
+       [6, "Volcanion", "Rowlet"],
+       [7, "Melmetal", "Grookey"],
+       [8, "Enamorus", "Sprigatito"],
+       [9, "Sprigatito", "Enamorus"]].each do |gen, included, not_included|
+          context "generation #{gen}:" do
+            before(:each) do
+              set_generation gen
+            end
+
+            it "includes #{included}" do
+              fill_in "Search", with: included
+              expect(find ".results").to have_content included
+            end
+
+            it "does not include #{not_included}" do
+              fill_in "Search", with: not_included
+              expect(find ".results").not_to have_content not_included
+            end
+          end
+       end
     end
   end
 

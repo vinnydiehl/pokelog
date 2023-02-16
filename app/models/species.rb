@@ -72,15 +72,20 @@ class Species < ActiveYaml::Base
   # Search form logic for displaying species
   #
   # @param params [Hash] parameters from query string
+  # @param generation [String] the generation cookie (can be nil)
   # @param show_all_by_default [Boolean] whether or not to show
   # @return [Array<Species>] the species that satisfy the query and filters
-  def self.search(params, show_all_by_default=false)
-    # If there's no query or params, show either all or nothing depending on options
-    if [(query = params[:q]), (filters = params[:filters] || [])].all?(&:blank?)
-      return show_all_by_default ? all : []
+  def self.search(params, generation, show_all_by_default=false)
+    results = all
+
+    if generation
+      results = results.select { |pkmn| pkmn.generations.include? generation.to_i }
     end
 
-    results = Species.all
+    # If there's no query or params, show either all or nothing depending on options
+    if [(query = params[:q]), (filters = params[:filters] || [])].all?(&:blank?)
+      return show_all_by_default ? results : []
+    end
 
     if filters.present?
       # Amount yielded

@@ -27030,7 +27030,8 @@
     :spa: 1
     :spd: 0
     :spe: 0
-  :generations: []
+  :generations:
+  - 8
 - :id: '900'
   :name: Kleavor
   :form:
@@ -27052,7 +27053,8 @@
     :spa: 0
     :spd: 0
     :spe: 0
-  :generations: []
+  :generations:
+  - 8
 - :id: '901'
   :name: Ursaluna
   :form:
@@ -27074,7 +27076,8 @@
     :spa: 0
     :spd: 0
     :spe: 0
-  :generations: []
+  :generations:
+  - 8
 - :id: 902-m
   :name: Basculegion
   :form: Male
@@ -27096,7 +27099,8 @@
     :spa: 0
     :spd: 0
     :spe: 0
-  :generations: []
+  :generations:
+  - 8
 - :id: 902-f
   :name: Basculegion
   :form: Female
@@ -27118,7 +27122,8 @@
     :spa: 0
     :spd: 0
     :spe: 0
-  :generations: []
+  :generations:
+  - 8
 - :id: '903'
   :name: Sneasler
   :form:
@@ -27140,7 +27145,8 @@
     :spa: 0
     :spd: 0
     :spe: 0
-  :generations: []
+  :generations:
+  - 8
 - :id: '904'
   :name: Overqwil
   :form:
@@ -27162,7 +27168,8 @@
     :spa: 0
     :spd: 0
     :spe: 0
-  :generations: []
+  :generations:
+  - 8
 - :id: 905-i
   :name: Enamorus
   :form: Incarnate
@@ -27184,7 +27191,8 @@
     :spa: 3
     :spd: 0
     :spe: 0
-  :generations: []
+  :generations:
+  - 8
 - :id: 905-t
   :name: Enamorus
   :form: Therian
@@ -27206,7 +27214,8 @@
     :spa: 3
     :spd: 0
     :spe: 0
-  :generations: []
+  :generations:
+  - 8
 - :id: '906'
   :name: Sprigatito
   :form:
