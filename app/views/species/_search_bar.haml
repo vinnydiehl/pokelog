@@ -10,11 +10,20 @@
     = f.label :q, "Search"
     = f.text_field :q, value: params[:q],
                        data: { action: "input->form-submission#searchSubmit" }
-  = link_to "#species-filters", id: "filters-btn", class: "btn modal-trigger waves-effect grey" do
+  %a#filters-btn.btn.waves-effect.grey{onclick:"openModal('species-filters')"}
     %i.material-icons settings
   #species-filters.modal
     .modal-content
       %h4 Filters
+
+      %h6.no-bottom-margin Generation:
+      - generation_options = [["None", nil]] + (3..9).map { |n| [n.to_s] * 2 }
+      -# Dummy form attribute keeps this from showing as a query parameter;
+      -# this feature uses cookies only.
+      = select_tag "generation", options_for_select(generation_options,
+          selected: generation_options.find { |o| o.last == cookies[:generation] }),
+        "data-action": "change->form-submission#generationSubmit", form: "dummy"
+
       %h6 EVs yielded:
       #evs-yielded-filters
         .checkboxes
@@ -23,6 +32,7 @@
               = check_box_tag "filters[yielded][]", stat, filter_checked?("yielded", stat),
                 id: "filters_yielded_#{stat}", "data-action": "input->form-submission#submit"
               %span= format_stat stat
+
       %h6 Amount yielded:
       #amount-yielded-slider
       -# These checkboxes are essentially acting as hidden inputs because
@@ -32,6 +42,8 @@
           filter_value("min").present?, "data-action": "input->form-submission#submit"
       = check_box_tag "filters[max]", (filter_value("max") || 3),
           filter_value("max").present?, "data-action": "input->form-submission#submit"
+
+      -# Types/Weak to:
       - %w[types weak_to].each do |section|
         %h6 #{section.humanize}:
         .checkboxes.types{id: "#{section}_filters"}
@@ -41,6 +53,7 @@
                               id: "filters_#{section}_#{type}",
                               "data-action": "input->form-submission#submit"
               %span= type.capitalize
+
     .modal-footer
       %a#clear-filters-btn.waves-effect.waves-teal.btn-flat{onclick: "clearAllFilters()"} Clear All
       %a#filters-close-btn.modal-close.waves-effect.waves-teal.btn-flat Close

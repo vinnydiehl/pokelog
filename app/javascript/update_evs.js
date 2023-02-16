@@ -3,10 +3,19 @@ function getEvSum(traineeInfo) {
         .reduce((partialSum, input) => partialSum + (parseInt(input.value) || 0));
 }
 
+// Trainee UI behaves as 9th gen if none is selected. This doesn't affect search results.
+function getGeneration() {
+    return parseInt(document.getElementById("generation").value || 9);
+}
+
 // Sets EVs, checking for edge cases and optionally applying items (enabled by default)
 function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
-                   applyItemsAndPokerus=true, perStatLimit=255) {
+                   applyItemsAndPokerus=true, perStatLimit=null) {
     let stats = { hp: iHp, atk: iAtk, def: iDef, spa: iSpA, spd: iSpD, spe: iSpe };
+
+    const generation = getGeneration();
+
+    perStatLimit ||= generation > 5 ? 252 : 255;
 
     if (applyItemsAndPokerus) {
         // Find the item, if any
@@ -20,11 +29,12 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
             "trainee_item_power_anklet": "spe"
         }[traineeInfo.querySelector(".held-items input[type='radio']:checked").id];
 
-        // If it's an array, it's a macho brace, double everything
+        // If it's an array, it's a macho brace; double everything
         if (Array.isArray(itemStat))
             itemStat.forEach(stat => stats[stat] *= 2);
+        // Power item boosts, varies by generation
         else if (itemStat)
-            stats[itemStat] += 4;
+            stats[itemStat] += generation > 6 ? 8 : 4;
 
         // Apply Pokérus last
         if (traineeInfo.querySelector("#trainee_pokerus").checked)
@@ -96,6 +106,13 @@ function killButton(iHp, iAtk, iDef, iSpA, iSpD, iSpe) {
 function useConsumable(traineeInfo, itemType, stat) {
     let stats = { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
 
+    const generation = getGeneration();
+
+    let evInput = traineeInfo.querySelector(`.point.${stat} input`);
+
+    if (generation == 4 && itemType == "berries" && parseInt(evInput.value) > 110)
+        evInput.value = "110";
+
     stats[stat] += {
         "vitamins": 10,
         "feathers": 1,
@@ -103,7 +120,7 @@ function useConsumable(traineeInfo, itemType, stat) {
     }[itemType];
 
     updateEvs(traineeInfo, ...Object.values(stats), false,
-              itemType == "vitamins" ? 100 : 255);
+              itemType == "vitamins" && generation < 8 ? 100 : null);
 }
 
 // Checks total of all EVs and sets color of input borders accordingly

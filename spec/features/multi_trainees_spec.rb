@@ -1,7 +1,5 @@
 require "rails_helper"
 
-require_relative "support/trainee_spec_helpers"
-
 RSpec.feature "trainees#show:", type: :feature do
   context "with multiple trainees in the party" do
     before :each do
@@ -83,7 +81,7 @@ RSpec.feature "trainees#show:", type: :feature do
               # Calculate expected values based off Pokérus/held item
               data.delete :name
               @expected = calculate_final_evs attrs[:item], attrs[:pokerus],
-                                              data, @trainee.evs
+                                              data, initial_evs: @trainee.evs
 
               # Click the kill button
               fill_in "Search", with: name

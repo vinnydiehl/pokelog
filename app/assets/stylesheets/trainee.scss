@@ -85,12 +85,17 @@ $small_radar_size: 250px;
       top: -50px;
       right: 0;
       z-index: 1;
+      user-select: none;
 
       @media (max-width: #{$image-breakpoint}) {
         top: -35px;
       }
       @media (max-width: #{$radar-breakpoint}) {
         right: 15px;
+      }
+
+      a {
+        cursor: pointer;
       }
 
       i {
@@ -355,6 +360,10 @@ $small_radar_size: 250px;
           grid-column-gap: 1.5em;
         }
 
+        input:disabled + span>img {
+          filter: grayscale(1);
+        }
+
         span {
           display: flex;
           align-items: center;
@@ -388,6 +397,7 @@ $small_radar_size: 250px;
 
       i.expand {
         margin: 0 0 0 1em;
+        user-select: none;
       }
     }
 
@@ -423,6 +433,12 @@ $small_radar_size: 250px;
 
           padding: 1rem 0;
 
+          &.disabled {
+            img {
+              filter: grayscale(1);
+            }
+          }
+
           .stat-label {
             display: flex;
             justify-content: center;
@@ -447,7 +463,6 @@ $small_radar_size: 250px;
               }
             }
           }
-
         }
       }
     }

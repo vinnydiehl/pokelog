@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # skip_forgery_protection # Using Google API token verification
+  # Using Google API token verification
   skip_before_action :verify_authenticity_token, only: %i[login register]
   before_action :parse_token, only: %i[login create register]
 

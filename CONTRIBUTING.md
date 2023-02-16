@@ -87,8 +87,8 @@ database is automatically wiped in between each test, so each test is
 essentially acting on a freshly installed version of the app.
 
 The test suite bypasses Google sign in by patching the GSI gem
-[here](/spec/gsi_patch.rb); no internet connection or Google account is
-required to pass.
+[here](/https://github.com/vinnydiehl/pokelog/blob/develop/spec/support/gsi_patch.rb);
+no internet connection or Google account is required to pass.
 
 For more information, see the docs for [RSpec](https://rspec.info/documentation/)
 and [Capybara](https://rubydoc.info/github/jnicklas/capybara#using-capybara-with-rspec).

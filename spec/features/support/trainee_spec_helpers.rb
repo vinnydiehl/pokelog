@@ -1,5 +1,3 @@
-include TraineesHelper
-
 TEST_TRAINEES = {
   "Bulbasaur" => {
     species_id: "001",
@@ -161,6 +159,27 @@ def test_trainee_ui(display_name, attrs)
   end
 end
 
+def test_max_evs_per_stat(max)
+  context "with #{max - 1} HP EVs", js: true do
+    before :each do
+      set_ev :hp, max - 1
+    end
+
+    describe "a 2 HP kill button" do
+      before :each do
+        fill_in "Search", with: "Jigglypuff"
+        find("#species_039").click
+        wait_for :hp_ev, max
+      end
+
+      it "increments the HP EV to #{max}" do
+        expect(find("#trainee_hp_ev").value).to eq max.to_s
+        expect(Trainee.first.hp_ev).to eq max
+      end
+    end
+  end
+end
+
 module PokeLog
   class Stats
     def double_values
@@ -171,7 +190,9 @@ module PokeLog
   end
 end
 
-def calculate_final_evs(item, pokerus, kill_button_data, initial_evs=nil)
+def calculate_final_evs(item, pokerus, kill_button_data, **args)
+  args[:power_boost] ||= 8
+
   # Set stats to the base yield from the kill button
   expected = PokeLog::Stats.new
   kill_button_data.each { |stat, value| expected[stat] = value }
@@ -180,24 +201,24 @@ def calculate_final_evs(item, pokerus, kill_button_data, initial_evs=nil)
   when "macho_brace"
     expected = expected.double_values
   when "power_weight"
-    expected[:hp] += 4
+    expected[:hp] += args[:power_boost]
   when "power_bracer"
-    expected[:atk] += 4
+    expected[:atk] += args[:power_boost]
   when "power_belt"
-    expected[:def] += 4
+    expected[:def] += args[:power_boost]
   when "power_lens"
-    expected[:spa] += 4
+    expected[:spa] += args[:power_boost]
   when "power_band"
-    expected[:spd] += 4
+    expected[:spd] += args[:power_boost]
   when "power_anklet"
-    expected[:spe] += 4
+    expected[:spe] += args[:power_boost]
   end
 
   if pokerus
     expected = expected.double_values
   end
 
-  expected + initial_evs
+  expected + args[:initial_evs]
 end
 
 def test_server_interaction

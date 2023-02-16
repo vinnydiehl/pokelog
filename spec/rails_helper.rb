@@ -10,9 +10,9 @@ end
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 
-# Internal
-require "gsi_patch"
-require "test_session"
+# Support files (top level first)
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/*/support/**/*.rb")].each { |f| require f }
 
 # Check for pending migrations and applies them before tests are run.
 begin
