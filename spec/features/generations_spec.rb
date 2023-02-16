@@ -147,6 +147,41 @@ RSpec.feature "generations:", type: :feature, js: true do
       end
     end
 
+    # Wings/Feathers Disabled?
+    [[(3..4), false],
+     [(5..9), true ]].each do |range, availability|
+      range.each do |gen|
+        context "generation #{gen}:" do
+          before(:each) do
+            set_generation gen
+            open_consumables_menu
+          end
+
+          it "feathers are#{availability ? '' : ' not'} available" do
+            expect(page).to have_selector(
+              ".consumables-buttons .btn#{availability ? '' : '.disabled'}")
+          end
+        end
+      end
+    end
+
+    # Wings/Feathers Name
+    [[(3..7), "Wings"   ],
+     [(8..9), "Feathers"]].each do |range, name|
+      range.each do |gen|
+        context "generation #{gen}:" do
+          before(:each) do
+            set_generation gen
+            open_consumables_menu
+          end
+
+          it "they are called #{name.downcase}" do
+            expect(page).to have_selector ".items-menu h5", text: name
+          end
+        end
+      end
+    end
+
     # Berries
     [[             [4], [[252, 100],
                          [109, 99 ],

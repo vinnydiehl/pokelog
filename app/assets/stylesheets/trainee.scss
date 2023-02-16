@@ -431,6 +431,12 @@ $small_radar_size: 250px;
 
           padding: 1rem 0;
 
+          &.disabled {
+            img {
+              filter: grayscale(1);
+            }
+          }
+
           .stat-label {
             display: flex;
             justify-content: center;
@@ -455,7 +461,6 @@ $small_radar_size: 250px;
               }
             }
           }
-
         }
       }
     }

@@ -26,7 +26,7 @@ class TraineesController < ApplicationController
 
     @items_options = YAML.load_file("data/items.yml").keys
 
-    @generation = cookies[:generation].to_i
+    @generation = cookies[:generation] ? cookies[:generation].to_i : 9
 
     [[3, /power/],
      [7, /macho_brace/]].each do |disabled_gen, pattern|
