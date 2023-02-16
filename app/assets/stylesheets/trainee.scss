@@ -85,6 +85,7 @@ $small_radar_size: 250px;
       top: -50px;
       right: 0;
       z-index: 1;
+      user-select: none;
 
       @media (max-width: #{$image-breakpoint}) {
         top: -35px;
@@ -396,6 +397,7 @@ $small_radar_size: 250px;
 
       i.expand {
         margin: 0 0 0 1em;
+        user-select: none;
       }
     }
 

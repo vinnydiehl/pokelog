@@ -79,8 +79,6 @@
             %label
               = f.radio_button :item, item, value: trainee.item == item, "data-action": "click->form-submission#submit",
                 disabled: not_yours?(trainee) || (@generation < 4 && item =~ /power/) || ([1, 2, 7].include?(@generation) && item == "macho_brace")
-
-
               %span.tooltipped{data: {tooltip: item_tooltip(item, @generation), position: "top"}}
                 = image_tag "/images/items/held/#{item}.png"
                 = item.titleize
