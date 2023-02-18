@@ -59,7 +59,7 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
             let evSum = getEvSum(traineeInfo);
 
             if (evSum + addend > 510)
-                input.value = intValue + (510 - evSum);
+                input.value = Math.min(252, intValue + (510 - evSum));
             else if (newValue < 0)
                 input.value = 0;
             else if (newValue > perStatLimit) {

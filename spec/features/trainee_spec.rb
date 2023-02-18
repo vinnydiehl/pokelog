@@ -169,6 +169,40 @@ RSpec.feature "trainees#show:", type: :feature do
         end
       end
 
+      # Edge cases involving interaction between global/individual limits, see #30
+      context "if EVs are approaching both the individual and global limits", js: true do
+        it "global limits don't cause individual overflow" do
+          find("span", text: "Power Weight").click
+          fill_in "trainee_spd_ev", with: "252"
+          wait_for :spd_ev, 252
+          fill_in "trainee_hp_ev", with: "251"
+          wait_for :hp_ev, 251
+          fill_in "Search", with: "Wigglytuff" # 3 HP
+          find("#species_040").click
+          wait_for :hp_ev, 252
+
+          expect(find("#trainee_hp_ev").value).to eq "252"
+          expect(Trainee.first.hp_ev).to eq 252
+        end
+
+        it "individual limits don't cause global overflow" do
+          find("span", text: "Power Weight").click
+          fill_in "trainee_spd_ev", with: "252"
+          wait_for :spd_ev, 252
+          fill_in "trainee_spa_ev", with: "7"
+          wait_for :spa_ev, 7
+          fill_in "trainee_hp_ev", with: "251"
+          wait_for :hp_ev, 251
+          fill_in "Search", with: "Wigglytuff" # 3 HP
+          find("#species_040").click
+          sleep 0.5
+
+          # Nothing should happen as it was already at 510
+          expect(find("#trainee_hp_ev").value).to eq "251"
+          expect(Trainee.first.hp_ev).to eq 251
+        end
+      end
+
       TEST_KILL_BUTTONS.each do |id, data|
         context "when using the #{(name = data[:name])} kill button", js: true do
           [true, false].each do |pokerus|

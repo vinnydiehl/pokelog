@@ -54,7 +54,7 @@
           - attr_name = "#{stat}_ev"
           = f.text_field attr_name.to_sym, **maxlength(3, "setEvInputColor()"),
               style: "border-color: #{trainee.evs.values.inject(:+) == 510 ? 'green' : 'black'}",
-              class: "ev-input", type: "number", placeholder: 0, min: 0, max: 255,
+              class: "ev-input", type: "number", placeholder: 0, min: 0, max: (@generation > 7 ? 252 : 255),
               value: ((v = trainee.send(attr_name)).zero? ? nil : v),
               data: {action: "input->form-submission#searchSubmit"}, disabled: not_yours?(trainee)
       .pokerus.switch{class: not_yours?(trainee) ? "disabled" : ""}

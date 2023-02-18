@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :init_globals, :set_current_user, :turbo_request_variant
+  before_action *%i[init_globals set_current_user turbo_request_variant]
 
   private
 
