@@ -1,10 +1,11 @@
+function radarYValue(value, y_max) {
+    const offset = y_max / 35.0;
+    return value <= offset ? offset : value;
+}
+
 function drawRadarChart(id, hp, atk, def, spa, spd, spe) {
     // Display a zoomed chart
     let y_max = Math.max(hp, atk, def, spa, spd, spe);
-    // y_max needs to be at least 1 or else the chart will
-    // be filled when there are no EVs to show
-    if (y_max < 1)
-        y_max++;
 
     let chart = anychart.radar();
 
@@ -19,16 +20,21 @@ function drawRadarChart(id, hp, atk, def, spa, spd, spe) {
 
     chart.yAxis().ticks().enabled(false);
 
-    chart.yScale().maximum(y_max).ticks({"interval": y_max / 4});
-
     chart.area([
-        {x: "HP", value: hp},
-        {x: "Atk", value: atk},
-        {x: "Def", value: def},
-        {x: "Spe", value: spe},
-        {x: "Sp.D", value: spd},
-        {x: "Sp.A", value: spa}
+        {x: "HP", value: radarYValue(hp, y_max)},
+        {x: "Atk", value: radarYValue(atk, y_max)},
+        {x: "Def", value: radarYValue(def, y_max)},
+        {x: "Spe", value: radarYValue(spe, y_max)},
+        {x: "Sp.D", value: radarYValue(spd, y_max)},
+        {x: "Sp.A", value: radarYValue(spa, y_max)},
     ]);
+
+    // y_max needs to be positive or else the chart will
+    // be filled when there are no EVs to show
+    if (y_max <= 0)
+        y_max++;
+
+    chart.yScale().maximum(y_max).ticks({"interval": y_max / 4});
 
     // If the chart already exists due to it being cached, delete the existing
     // one before loading the new one
