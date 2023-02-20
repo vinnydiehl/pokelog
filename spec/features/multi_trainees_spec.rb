@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "trainees#show:", type: :feature do
-  context "with multiple trainees in the party" do
+  context "with multiple trainees in the party", js: true do
     before :each do
       launch_multi_trainee
     end
@@ -11,7 +11,7 @@ RSpec.feature "trainees#show:", type: :feature do
     end
 
     TEST_TRAINEES.each do |_, attrs|
-      context "if you clear all inputs for #{attrs[:nickname]}", js: true do
+      context "if you clear all inputs for #{attrs[:nickname]}" do
         before :each do
           @id = find_id attrs
         end
@@ -72,7 +72,7 @@ RSpec.feature "trainees#show:", type: :feature do
     end
 
     TEST_KILL_BUTTONS.each do |id, data|
-      context "when using the #{(name = data[:name])} kill button", js: true do
+      context "when using the #{(name = data[:name])} kill button" do
         TEST_TRAINEES.each do |_, attrs|
           describe "the #{attrs[:nickname]} UI" do
             before :each do
@@ -114,6 +114,8 @@ RSpec.feature "trainees#show:", type: :feature do
       describe "the close button for #{attrs[:nickname]}" do
         before :each do
           @id = find_id attrs
+          fill_in "Search", with: (@query = "Bulbasaur")
+          sleep 0.5
           find("#close-trainee_#{@id}").click
         end
 
@@ -124,9 +126,13 @@ RSpec.feature "trainees#show:", type: :feature do
         it "doesn't delete the trainee from the server" do
           expect(find_trainee attrs).not_to be_nil
         end
+
+        it "retains the query string" do
+          expect(current_url).to include @query
+        end
       end
 
-      describe "the delete button for #{attrs[:nickname]}", js: true do
+      describe "the delete button for #{attrs[:nickname]}" do
         before :each do
           find("#delete-trainee_#{find_id attrs}").click
           sleep 0.5
@@ -144,7 +150,7 @@ RSpec.feature "trainees#show:", type: :feature do
       end
     end
 
-    describe "the new trainee button", js: true do
+    describe "the new trainee button" do
       before :each do
         @original_path = current_path
         find("#add-action-btn").hover
@@ -162,7 +168,7 @@ RSpec.feature "trainees#show:", type: :feature do
       end
     end
 
-    describe "the add to party menu", js: true do
+    describe "the add to party menu" do
       other_trainees = TEST_TRAINEES.to_a[1..-1].to_h
 
       before :each do

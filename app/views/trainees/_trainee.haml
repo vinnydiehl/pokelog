@@ -45,7 +45,7 @@
           %a.delete-btn{id: "delete-#{dom_id trainee}", onclick: "openModal('delete-modal-#{dom_id trainee}')"}
             %i.material-icons delete
         - if @party.size > 1
-          = link_to multi_trainees_path(@party - [trainee]), id: "close-#{dom_id trainee}" do
+          %a{id: "close-#{dom_id trainee}", onclick: "closeTrainee(#{trainee.id})"}
             %i.material-icons close
       #stats-chart
         = render "shared/radar_chart", stats: trainee.evs, id: "radar-chart-#{dom_id trainee}"

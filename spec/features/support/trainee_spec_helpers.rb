@@ -119,40 +119,42 @@ def wait_for(attr, value, **args)
 end
 
 def test_trainee_ui(display_name, attrs)
-  it "displays the artwork for #{attrs[:nickname] || 'no trainee'}" do
-    within "#trainee_#{find_id attrs}" do
-      expect(page).to have_xpath "//img[contains(@src,'artwork/#{attrs[:species_id] || 'none'}.png')]"
-    end
-  end
-
-  describe "it prefills the fields:" do
-    it "item: #{attrs[:item] || 'none'}" do
+  describe "the trainee UI for #{display_name}", js: false do
+    it "displays the artwork for #{attrs[:nickname] || 'no trainee'}" do
       within "#trainee_#{find_id attrs}" do
-        id_suffix = attrs[:item] ? "_#{attrs[:item]}" : nil
-        expect(page).to have_field "trainee_item#{id_suffix}", checked: true
+        expect(page).to have_xpath "//img[contains(@src,'artwork/#{attrs[:species_id] || 'none'}.png')]"
       end
     end
 
-    it "species: #{display_name || 'none'}" do
-      within "#trainee_#{find_id attrs}" do
-        expect(find_field("trainee_species").value).to eq display_name
-      end
-    end
-
-    %w[nickname level nature].each do |field|
-      expected_value = attrs[field.to_sym] ? attrs[field.to_sym].to_s : nil
-      it "#{field}: #{expected_value || 'none'}" do
+    describe "has pre-filled fields:" do
+      it "item: #{attrs[:item] || 'none'}" do
         within "#trainee_#{find_id attrs}" do
-          expect(find_field("trainee_#{field}").value).to eq expected_value
+          id_suffix = attrs[:item] ? "_#{attrs[:item]}" : nil
+          expect(page).to have_field "trainee_item#{id_suffix}", checked: true
         end
       end
-    end
 
-    STATS.each do |stat|
-      expected_value = attrs[stat].zero? ? nil : attrs[stat].to_s
-      it "#{stat}: #{expected_value || 'blank'}" do
+      it "species: #{display_name || 'none'}" do
         within "#trainee_#{find_id attrs}" do
-          expect(find_field("trainee_#{stat}").value).to eq expected_value
+          expect(find_field("trainee_species").value).to eq display_name
+        end
+      end
+
+      %w[nickname level nature].each do |field|
+        expected_value = attrs[field.to_sym] ? attrs[field.to_sym].to_s : nil
+        it "#{field}: #{expected_value || 'none'}" do
+          within "#trainee_#{find_id attrs}" do
+            expect(find_field("trainee_#{field}").value).to eq expected_value
+          end
+        end
+      end
+
+      STATS.each do |stat|
+        expected_value = attrs[stat].zero? ? nil : attrs[stat].to_s
+        it "#{stat}: #{expected_value || 'blank'}" do
+          within "#trainee_#{find_id attrs}" do
+            expect(find_field("trainee_#{stat}").value).to eq expected_value
+          end
         end
       end
     end
