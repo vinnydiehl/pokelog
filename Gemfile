@@ -11,7 +11,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.4.5"
 
 # Use the Puma web server
-gem "puma", "~> 5.0"
+gem "puma", "~> 6.1"
 
 # Use JavaScript with ESM import maps
 gem "importmap-rails"
@@ -51,11 +51,11 @@ group :test do
 
   gem "capybara", "~> 3.38"
   gem "capybara-selenium", "~> 0.0.6"
-  gem "selenium-webdriver", "~> 4.1"
+  gem "selenium-webdriver", "4.8.0"
 end
 
 gem "active_hash", "~> 3.1"
-gem "email_validator", "~> 1.6"
+gem "email_validator", "~> 2.2"
 gem "google_sign_in", "~> 1.2"
 
 # HAML/SCSS Preprocessors
