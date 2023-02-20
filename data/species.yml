@@ -29518,10 +29518,10 @@
     :spe: 0
   :generations:
   - 9
-- :id: 999-c
+- :id: '999'
   :name: Gimmighoul
-  :form: Chest
-  :form_desc: Form
+  :form:
+  :form_desc:
   :types:
   - :ghost
   :base_stats:
@@ -29531,28 +29531,6 @@
     :spa: 75
     :spd: 70
     :spe: 10
-  :ev_yield:
-    :hp: 0
-    :atk: 0
-    :def: 0
-    :spa: 1
-    :spd: 0
-    :spe: 0
-  :generations:
-  - 9
-- :id: 999-r
-  :name: Gimmighoul
-  :form: Roaming
-  :form_desc: Form
-  :types:
-  - :ghost
-  :base_stats:
-    :hp: 45
-    :atk: 30
-    :def: 25
-    :spa: 75
-    :spd: 45
-    :spe: 80
   :ev_yield:
     :hp: 0
     :atk: 0
