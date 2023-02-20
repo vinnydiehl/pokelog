@@ -120,7 +120,7 @@ class Species < ActiveYaml::Base
     end
 
     if query.present?
-      results = results.select { |pkmn| pkmn.name.downcase.include? query.downcase }
+      results = results.select { |pkmn| pkmn.name.downcase.include? query.strip.downcase }
     end
 
     results

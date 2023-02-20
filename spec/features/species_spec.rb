@@ -56,7 +56,7 @@ RSpec.feature "species:", type: :feature do
         end
       end
 
-      context "after query has been erased" do
+      context "after query has been erased", js: true do
         before :each do
           fill_in "Search", with: "ven"
           fill_in "Search", with: ""
@@ -71,7 +71,7 @@ RSpec.feature "species:", type: :feature do
         # Test case insensitivity
         "VENUSaur": %w[Venusaur]
       }.each do |query, expected_results|
-        context %[with query "#{query}"] do
+        context %[with query "#{query}"], js: true do
           before :each do
             fill_in "Search", with: query
           end
@@ -87,6 +87,12 @@ RSpec.feature "species:", type: :feature do
             expect(check_every_50 except: expected_results).to be false
           end
         end
+      end
+
+      it "trims user input", js: true do
+        fill_in "Search", with: " Bulbasaur "
+
+        expect(page).to have_selector "#species_001"
       end
     end
   end
