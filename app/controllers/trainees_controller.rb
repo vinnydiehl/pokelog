@@ -69,6 +69,21 @@ class TraineesController < ApplicationController
     end
   end
 
+  # GET /trainees/:ids/delete
+  def delete_multi
+    params[:ids].split(",").map { |id| Trainee.find id }.each do |trainee|
+      if allowed_to_edit? trainee
+        trainee.destroy
+        # ||= that way the "not yours" notice sticks if it is triggered
+        flash[:notice] ||= "Trainees deleted."
+      else
+        flash[:notice] = "Not your trainee!"
+      end
+    end
+
+    redirect_back fallback_location: root_path
+  end
+
   # PATCH/PUT /trainees/1
   def update
     if allowed_to_edit? @trainee

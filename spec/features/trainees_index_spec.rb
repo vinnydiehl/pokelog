@@ -56,28 +56,33 @@ RSpec.feature "trainees:", type: :feature do
           end
         end
 
-        describe "the Train button", js: true do
-          it "is disabled" do
-            expect(page).to have_selector "#train-btn.disabled"
-          end
-
-          context "when you check off a trainee" do
-            before :each do
-              first(".trainee-checkbox").click
+        # Test auto disable/enable for train and delete buttons
+        %w[train delete].each do |button|
+          describe "the #{button.capitalize} button", js: true do
+            it "is disabled" do
+              expect(page).to have_selector "##{button}-btn.disabled"
             end
 
-            it "is enabled" do
-              expect(page).to have_selector "#train-btn:not(.disabled)"
-            end
-
-            context "when you uncheck the trainee" do
-              it "is disabled again" do
+            context "when you check off a trainee" do
+              before :each do
                 first(".trainee-checkbox").click
-                expect(page).to have_selector "#train-btn.disabled"
+              end
+
+              it "is enabled" do
+                expect(page).to have_selector "##{button}-btn:not(.disabled)"
+              end
+
+              context "when you uncheck the trainee" do
+                it "is disabled again" do
+                  first(".trainee-checkbox").click
+                  expect(page).to have_selector "##{button}-btn.disabled"
+                end
               end
             end
           end
+        end
 
+        describe "the Train button", js: true do
           context "when you check off all trainees and press it" do
             before :each do
               all(".trainee-checkbox").each &:click
@@ -88,6 +93,57 @@ RSpec.feature "trainees:", type: :feature do
               expect(all(".trainee-info").size).to eq Trainee.where(user: @current_user).size
             end
           end
+        end
+
+        describe "the Delete button", js: true do
+          context "when you check off all trainees and press it" do
+            before :each do
+              all(".trainee-checkbox").each &:click
+              find("#delete-btn").click
+            end
+
+            describe "the confirm button" do
+              it "is disabled" do
+                expect(page).to have_selector "#confirm-delete.disabled"
+              end
+
+              context "when you check the confirmation checkbox" do
+                before :each do
+                  find("#delete-multi label span").click
+                end
+
+                context "and then click the confirm (Delete) button" do
+                  before :each do
+                    find("#confirm-delete").click
+                    sleep 0.5
+                  end
+
+                  it "removes the selected trainees from the page" do
+                    # Check for greyed out "no trainees" message
+                    expect(page).to have_selector ".grey-text"
+                  end
+
+                  it "deletes the selected trainees" do
+                    expect(Trainee.where(user: @current_user).size).to eq 0
+                  end
+                end
+
+                context "and then uncheck it again" do
+                  it "re-disables the confirm button" do
+                    find("#delete-multi label span").click
+                    expect(page).to have_selector "#confirm-delete.disabled"
+                  end
+                end
+              end
+            end
+          end
+        end
+
+        it "cannot be exploited by calling the endpoint with another user's trainee" do
+          visit "/trainees/#{Trainee.where.not(user: @current_user).map { |t| t.id.to_s}.join ','}/delete"
+          sleep 0.5
+
+          expect(User.last.trainees.size).to eq 5
         end
       end
 

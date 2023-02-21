@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/trainees/new", to: "trainees#new"
   get "/trainees/:ids", to: "trainees#show", as: "trainee_show"
   get "/trainees/:ids/new", to: "trainees#add_new"
+  get "/trainees/:ids/delete", to: "trainees#delete_multi"
   resources :trainees
 
   post "/login/submit", to: "users#login"
