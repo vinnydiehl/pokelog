@@ -1,7 +1,7 @@
 - provide :title, "Trainees"
 
 = javascript_include_tag "sidenav_init"
-= javascript_include_tag "train_button"
+= javascript_include_tag "trainees_index"
 
 - if @trainees.blank?
   %p.grey-text Nothing to show here. Click the + below to get started!
@@ -9,7 +9,7 @@
   = render "list", trainees: @trainees
 
 .align-opposite
-  %a#train-btn.waves-effect.waves-light.btn.red
+  %a#train-btn.waves-effect.waves-light.btn.red.disabled
     %i.material-icons.left fitness_center
     Train
 

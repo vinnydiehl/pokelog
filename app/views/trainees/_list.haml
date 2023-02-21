@@ -5,7 +5,7 @@
         %td.check
           %label
             = check_box_tag "trainee_ids[]", trainee.id
-            %span{id: "check-#{dom_id trainee}"}
+            %span.trainee-checkbox{id: "check-#{dom_id trainee}"}
         %td.sprite
           - if trainee.species
             = trainee.species.sprite

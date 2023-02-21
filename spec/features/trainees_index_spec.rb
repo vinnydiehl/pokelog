@@ -55,6 +55,40 @@ RSpec.feature "trainees:", type: :feature do
             expect(page).not_to have_link href: trainee_path(trn)
           end
         end
+
+        describe "the Train button", js: true do
+          it "is disabled" do
+            expect(page).to have_selector "#train-btn.disabled"
+          end
+
+          context "when you check off a trainee" do
+            before :each do
+              first(".trainee-checkbox").click
+            end
+
+            it "is enabled" do
+              expect(page).to have_selector "#train-btn:not(.disabled)"
+            end
+
+            context "when you uncheck the trainee" do
+              it "is disabled again" do
+                first(".trainee-checkbox").click
+                expect(page).to have_selector "#train-btn.disabled"
+              end
+            end
+          end
+
+          context "when you check off all trainees and press it" do
+            before :each do
+              all(".trainee-checkbox").each &:click
+              find("#train-btn").click
+            end
+
+            it "directs to the #show view for all selected trainees" do
+              expect(all(".trainee-info").size).to eq Trainee.where(user: @current_user).size
+            end
+          end
+        end
       end
 
       describe "the + button" do
