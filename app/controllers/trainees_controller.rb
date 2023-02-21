@@ -48,6 +48,7 @@ class TraineesController < ApplicationController
   # GET /trainees/new
   def new
     return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
+
     @trainee = Trainee.new(user: @current_user)
 
     notice = @trainee.save ? nil : PROBLEM_CREATING_NOTICE
@@ -57,9 +58,11 @@ class TraineesController < ApplicationController
   # GET /trainees/:ids/new
   def add_new
     return redirect_to trainee_path(params[:ids]), notice: NO_USER_NOTICE if @current_user.blank?
+
     @trainee = Trainee.new(user: @current_user)
+
     if @trainee.save
-      redirect_to trainee_path("#{params[:ids]},#{@trainee.id}")
+      redirect_to "#{trainee_path("#{params[:ids]},#{@trainee.id}")}?#{request.query_parameters.to_query}"
     else
       flash[:notice] = PROBLEM_CREATING_NOTICE
       redirect_back fallback_location: root_path
@@ -107,8 +110,8 @@ class TraineesController < ApplicationController
 
       @trainee.destroy
 
-      # Regex removes the targeted ID from comma-separated list
-      redirect_path =
+      # Regex removes the targeted ID from comma-separated list. Redirect to trainees#index if only 1
+      redirect_path = !params["redirect_path"].include?(",") ? trainees_path :
         params["redirect_path"].sub(/\b#{id}\b,|,\b#{id}\b(?=$|\?)/, "") + params["redirect_params"]
 
       respond_to do |format|

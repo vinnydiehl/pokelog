@@ -27,8 +27,8 @@
         %a#add-to-party-btn.btn-floating.red{onclick: "openModal('add-to-party-modal')"}
           %i.material-icons list
       %li
-        = link_to "#{request.path}/new", id: "new-trainee-btn",
-                                         class: "btn-floating red" do
+        -# This button's href is set on click by JavaScript
+        %a#new-trainee-btn.btn-floating.red
           %i.material-icons add
 
   #add-to-party-modal.modal

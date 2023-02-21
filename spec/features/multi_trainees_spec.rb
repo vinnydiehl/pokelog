@@ -175,20 +175,34 @@ RSpec.feature "trainees#show:", type: :feature do
     end
 
     describe "the new trainee button" do
-      before :each do
-        @original_path = current_path
-        find("#add-action-btn").hover
-        find("#new-trainee-btn").click
-      end
+      ["Bulbasaur", ""].each do |query|
+        context "with#{query.blank? ? "out" : ""} a query" do
+          before :each do
+            if query.present?
+              fill_in "Search", with: query
+              sleep 0.5
+            end
 
-      it "adds a new trainee to the database" do
-        sleep 0.5
-        expect(Trainee.all.size).to eq TEST_TRAINEES.size + 1
-      end
+            @original_path = current_path
+            find("#add-action-btn").hover
+            find("#new-trainee-btn").click
+            sleep 0.5
+          end
 
-      it "adds the new trainee to the end of the page" do
-        sleep 0.5
-        expect(current_path).to eq "#{@original_path},#{Trainee.last.id}"
+          it "adds a new trainee to the database" do
+            expect(Trainee.all.size).to eq TEST_TRAINEES.size + 1
+          end
+
+          it "adds the new trainee to the end of the page" do
+            expect(current_path).to include "#{@original_path},#{Trainee.last.id}"
+          end
+
+          if query.present?
+            it "retains the query string" do
+              expect(current_url).to include query
+            end
+          end
+        end
       end
     end
 
