@@ -102,14 +102,18 @@ class TraineesController < ApplicationController
   # DELETE /trainees/1
   def destroy
     if allowed_to_edit? @trainee
-      nickname = @trainee.nickname
+      id, nickname = @trainee.id, @trainee.nickname
       nickname = "Trainee" if nickname.blank?
 
       @trainee.destroy
 
+      # Regex removes the targeted ID from comma-separated list
+      redirect_path =
+        params["redirect_path"].sub(/\b#{id}\b,|,\b#{id}\b(?=$|\?)/, "") + params["redirect_params"]
+
       respond_to do |format|
-        format.html { redirect_to trainees_url, status: :see_other,
-                        notice: "#{nickname} has been deleted." }
+        format.html { redirect_to redirect_path, status: :see_other,
+                                                 notice: "#{nickname} has been deleted." }
       end
     else
       flash[:notice] = NOT_YOURS_NOTICE

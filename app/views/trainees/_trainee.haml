@@ -105,12 +105,15 @@
 -# Each trainee has its own modal to delete it. The footer is a
 -# form that sends a DELETE request for the trainee
 - if yours?(trainee)
-  .modal{id: "delete-modal-#{dom_id trainee}"}
+  .modal.delete{id: "delete-modal-#{dom_id trainee}"}
     .modal-content
       %h4 Confirm delete
       %p Are you sure? This will delete #{trainee.title} permanently.
     .modal-footer
       = form_with model: trainee, method: :delete, data: {turbo: false} do |f|
+        = hidden_field_tag "redirect_path", request.path
+        -# Params are updated by JavaScript on form submit
+        = hidden_field_tag "redirect_params"
         %a#cancel-delete.modal-close.waves-effect.waves-teal.btn-flat Cancel
         = f.submit "Delete", id: "confirm-delete",
             class: "modal-close waves-effect waves-teal btn-flat"

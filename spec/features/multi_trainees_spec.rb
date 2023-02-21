@@ -112,40 +112,64 @@ RSpec.feature "trainees#show:", type: :feature do
 
     TEST_TRAINEES.each do |_, attrs|
       describe "the close button for #{attrs[:nickname]}" do
-        before :each do
-          @id = find_id attrs
-          fill_in "Search", with: (@query = "Bulbasaur")
-          sleep 0.5
-          find("#close-trainee_#{@id}").click
-        end
+        ["Bulbasaur", ""].each do |query|
+          context "with#{query.blank? ? "out" : ""} a query" do
+            before :each do
+              if query.present?
+                fill_in "Search", with: query
+                sleep 0.5
+              end
 
-        it "removes the trainee from the page" do
-          expect(page).not_to have_selector("#trainee_#{@id}")
-        end
+              @id = find_id attrs
+              find("#close-trainee_#{@id}").click
+            end
 
-        it "doesn't delete the trainee from the server" do
-          expect(find_trainee attrs).not_to be_nil
-        end
+            it "removes the trainee from the page" do
+              expect(page).not_to have_selector("#trainee_#{@id}")
+            end
 
-        it "retains the query string" do
-          expect(current_url).to include @query
+            it "doesn't delete the trainee from the server" do
+              expect(find_trainee attrs).not_to be_nil
+            end
+
+            if query.present?
+              it "retains the query string" do
+                expect(current_url).to include query
+              end
+            end
+          end
         end
       end
 
       describe "the delete button for #{attrs[:nickname]}" do
-        before :each do
-          find("#delete-trainee_#{find_id attrs}").click
-          sleep 0.5
-          find("#confirm-delete").click
-          sleep 0.5
-        end
+        ["Bulbasaur", ""].each do |query|
+          context "with#{query.blank? ? "out" : ""} a query" do
+            before :each do
+              if query.present?
+                fill_in "Search", with: query
+                sleep 0.5
+              end
 
-        it "deletes the trainee from the server" do
-          expect(find_trainee attrs).to be_nil
-        end
+              find("#delete-trainee_#{find_id attrs}").click
+              sleep 0.5
+              find("#confirm-delete").click
+              sleep 0.5
+            end
 
-        it "doesn't delete the other trainees" do
-          expect(Trainee.all.size).to eq TEST_TRAINEES.size - 1
+            it "deletes the trainee from the server" do
+              expect(find_trainee attrs).to be_nil
+            end
+
+            it "doesn't delete the other trainees" do
+              expect(Trainee.all.size).to eq TEST_TRAINEES.size - 1
+            end
+
+            if query.present?
+              it "retains the query string" do
+                expect(current_url).to include query
+              end
+            end
+          end
         end
       end
     end
