@@ -229,7 +229,9 @@ def test_server_interaction
       before :each do
         fill_in "trainee_species", with: SINGLE_DISPLAY_NAME
         click_away
-        wait_for :species, Species.find_by_display_name(SINGLE_DISPLAY_NAME.dup)
+        wait_for :species, Species.find_by_display_name(SINGLE_DISPLAY_NAME)
+        # The server updates before the page, sleep just to be safe
+        sleep 0.2
       end
 
       it "updates the species" do
@@ -254,6 +256,8 @@ def test_server_interaction
         fill_in "trainee_nickname", with: value
         click_away
         wait_for :nickname, value
+        # The server updates before the page, sleep just to be safe
+        sleep 0.2
       end
 
       it "updates the nickname" do
