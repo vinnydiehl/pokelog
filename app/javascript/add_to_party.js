@@ -4,6 +4,7 @@ runOnLoad(() => {
             .map(checkbox => checkbox.value);
 
         if (selectedIds.length > 0)
-            window.location = location.pathname + "," + selectedIds.join(",") + location.search;
+            Turbo.visit(location.pathname + "," + selectedIds.join(",") + location.search,
+                        {action: "replace"});
     });
 });

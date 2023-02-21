@@ -207,38 +207,63 @@ RSpec.feature "trainees#show:", type: :feature do
     end
 
     describe "the add to party menu" do
-      other_trainees = TEST_TRAINEES.to_a[1..-1].to_h
+      ["Bulbasaur", ""].each do |query|
+        context "with#{query.blank? ? "out" : ""} a query" do
+          other_trainees = TEST_TRAINEES.to_a[1..-1].to_h
 
-      before :each do
-        # Start with 1 trainee
-        visit trainee_path(Trainee.first)
-        @original_path = current_path
+          before :each do
+            # Start with 1 trainee
+            visit trainee_path(Trainee.first)
+            @original_path = current_path
 
-        find("#add-action-btn").hover
-        find("#add-to-party-btn").click
-      end
+            if query.present?
+              fill_in "Search", with: query
+              sleep 0.5
+            end
 
-      other_trainees.each do |_, attrs|
-        context "when you select #{attrs[:nickname]}" do
-          it "adds the trainee to the page" do
-            id = find_id attrs
-            find("#check-trainee_#{id}").click
-            find("#confirm-add-to-party").click
-
-            expect(page).to have_selector("#trainee_#{id}")
+            find("#add-action-btn").hover
+            find("#add-to-party-btn").click
           end
-        end
-      end
 
-      context "when you select all trainees" do
-        it "adds all of the trainees to the page" do
           other_trainees.each do |_, attrs|
-            find("#check-trainee_#{find_id attrs}").click
-          end
-          find("#confirm-add-to-party").click
+            context "when you select #{attrs[:nickname]}" do
+              before :each do
+                @id = find_id attrs
+                find("#check-trainee_#{@id}").click
+                find("#confirm-add-to-party").click
+              end
 
-          TEST_TRAINEES.each do |_, attrs|
-            expect(page).to have_selector("#trainee_#{find_id attrs}")
+              it "adds the trainee to the page" do
+                expect(page).to have_selector("#trainee_#{@id}")
+              end
+
+              if query.present?
+                it "retains the query string" do
+                  expect(current_url).to include query
+                end
+              end
+            end
+          end
+
+          context "when you select all trainees" do
+            before :each do
+              other_trainees.each do |_, attrs|
+                find("#check-trainee_#{find_id attrs}").click
+              end
+              find("#confirm-add-to-party").click
+            end
+
+            it "adds all of the trainees to the page" do
+              TEST_TRAINEES.each do |_, attrs|
+                expect(page).to have_selector("#trainee_#{find_id attrs}")
+              end
+            end
+
+            if query.present?
+              it "retains the query string" do
+                expect(current_url).to include query
+              end
+            end
           end
         end
       end
