@@ -20,7 +20,7 @@
     - if (trainee = @party.find_by id: id)
       = render trainee
 
-- if logged_in?
+-if @party.any? { |trainee| yours? trainee }
   .fixed-action-btn
     %a#add-action-btn.btn-floating.btn-large.red
       %i.material-icons.large add
@@ -41,7 +41,6 @@
       %a#cancel-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Cancel
       %a#confirm-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Add
 
--if @party.any? { |trainee| yours? trainee }
   #kill-search
     = render "species/search_bar"
     .results

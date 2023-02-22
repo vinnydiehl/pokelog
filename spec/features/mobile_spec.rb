@@ -76,7 +76,10 @@ RSpec.feature "mobile UI:", type: :feature, driver: :chrome_375 do
       context "when you swipe a kill button to the #{dir}" do
         it "increments the EV" do
           find("#species_010 #{dir == :left ? '.yields-and-types' : '.id'}").
-            drag_by (dir == :left ? -200 : 200), 0
+            # 100px is dialed in for how quickly the driver swipes. As you
+            # decrease sensitivity in the app, just as this test starts to fail,
+            # the swiping starts to feel unresponsive.
+            drag_by (100 * (dir == :left ? -1 : 1)), 0
           wait_for :hp_ev, 1
 
           expect(find("#trainee_hp_ev").value).to eq "1"

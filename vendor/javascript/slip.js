@@ -83,6 +83,12 @@
     USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+// Used to prevent swiping while scrolling
+window.addEventListener("scroll", () => window.lastScrollTime = new Date().getTime());
+function is_scrolling() {
+    return window.lastScrollTime && new Date().getTime() < window.lastScrollTime;
+}
+
 window['Slip'] = (function(){
     'use strict';
 
@@ -312,20 +318,23 @@ window['Slip'] = (function(){
                     leaveState: function() {
                         if (swipeSuccess) {
                             this.animateSwipe(function(target) {
-                                target.node.style.opacity = '0';
-                                target.node.style[transitionJSPropertyName] = 'all 0.3s ease-out';
+                                target.node.style[transitionJSPropertyName] = 'transform 0.3s ease-out';
                                 target.node.style[transformJSPropertyName] = 'translateX(' + (xMovement > 0 ? '' : '-') + '120%) ' + hwLayerMagicStyle + target.baseTransform.original;
 
                                 setTimeout(function() {
-                                    target.node.style[transformJSPropertyName] = target.baseTransform.original;
-                                    target.node.style.opacity = '1';
-                                    target.node.style[transitionJSPropertyName] = 'opacity 0.3s ease-out';
-                                    if (this.dispatch(target.node, 'afterswipe')) {
-                                        removeClass();
-                                        return true;
-                                    } else {
-                                        this.animateToZero(undefined, target);
-                                    }
+                                    target.node.style.opacity = '0';
+
+                                    setTimeout(function() {
+                                        target.node.style[transformJSPropertyName] = target.baseTransform.original;
+                                        target.node.style.opacity = '1';
+                                        target.node.style[transitionJSPropertyName] = 'opacity 0.3s ease-out';
+                                        if (this.dispatch(target.node, 'afterswipe')) {
+                                            removeClass();
+                                            return true;
+                                        } else {
+                                            this.animateToZero(undefined, target);
+                                        }
+                                    }.bind(this), 300);
                                 }.bind(this), 300);
                             }.bind(this));
                         } else {
@@ -336,7 +345,7 @@ window['Slip'] = (function(){
                     onMove: function() {
                         var move = this.getTotalMovement();
 
-                        if (Math.abs(move.y) < this.target.height+20) {
+                        if (!is_scrolling() && Math.abs(move.y) < this.target.height+20) {
                             if (this.dispatch(this.target.node, 'animateswipe', {x: move.x, originalIndex: originalIndex})) {
                                 this.target.node.style[transformJSPropertyName] = 'translate(' + move.x + 'px,0) ' + hwLayerMagicStyle + this.target.baseTransform.value;
                             }
@@ -356,9 +365,15 @@ window['Slip'] = (function(){
                         var velocity = move.x / move.time;
 
                         // How far out has the item been swiped?
-                        var swipedPercent = Math.abs((this.startPosition.x - this.previousPosition.x) / this.container.clientWidth) * 100;
+                        var swipedPercent = Math.abs(move.x / this.container.offsetWidth) * 100;
 
-                        var swiped = (velocity > this.options.minimumSwipeVelocity && move.time > this.options.minimumSwipeTime) || (this.options.keepSwipingPercent && swipedPercent > this.options.keepSwipingPercent);
+                        var swiped = !is_scrolling() &&
+                            // Check velocity/time options
+                            ((velocity > this.options.minimumSwipeVelocity &&
+                              move.time > this.options.minimumSwipeTime) ||
+                            // Check percentage options (either option set will pass)
+                            (this.options.keepSwipingPercent &&
+                             swipedPercent > this.options.keepSwipingPercent));
 
                         if (swiped) {
                             if (this.dispatch(this.target.node, 'swipe', {direction: move.directionX, originalIndex: originalIndex})) {
@@ -616,11 +631,8 @@ window['Slip'] = (function(){
             }
             this.latestPosition = pos;
 
-            if (this.state.onMove) {
-                if (this.state.onMove.call(this) === false) {
-                    e.preventDefault();
-                }
-            }
+            if (e.cancelable && this.state.onMove && this.state.onMove.call(this) === false)
+                e.preventDefault();
 
             // sample latestPosition 100ms for velocity
             if (this.latestPosition.time - this.previousPosition.time > 100) {
@@ -750,8 +762,7 @@ window['Slip'] = (function(){
             var target = this.target;
             var siblings = this.getSiblings(target);
             var emptySpaceTransformStyle = 'translate(0,' + this.target.height + 'px) ' + hwLayerMagicStyle + ' ';
-
-            setTimeout(function() { callback.call(this, target) }.bind(this), 300);
+            callback.call(this, target)
         },
     };
 
