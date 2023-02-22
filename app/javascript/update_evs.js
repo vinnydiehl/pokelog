@@ -97,9 +97,10 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
 }
 
 // Called by the kill buttons onclick
-function killButton(iHp, iAtk, iDef, iSpA, iSpD, iSpe) {
-    document.querySelectorAll(".trainee-info")
-        .forEach(traineeInfo => updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe))
+function killButton(iHp, iAtk, iDef, iSpA, iSpD, iSpe, allowMobile=false) {
+    if (allowMobile || (window.ontouchstart === undefined && screen.width > 509))
+        document.querySelectorAll(".trainee-info")
+            .forEach(traineeInfo => updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe));
 }
 
 // Called by the consumables buttons onclick

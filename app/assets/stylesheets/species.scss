@@ -5,6 +5,11 @@ $margin: 5px;
 $border: 3px solid black;
 
 .results {
+  // Prevent swiping overflow on mobile
+  #results {
+    overflow-x: hidden;
+  }
+
   margin-top: $margin;
 
   // Stops selecting between data cells
@@ -17,12 +22,14 @@ $border: 3px solid black;
   text-align: center;
 
   .data-entry {
-    // Need to re-enable selecting the text inside the cells
-    user-select: text;
-    -moz-user-select: text;
-    -khtml-user-select: text;
-    -webkit-user-select: text;
-    -o-user-select: text;
+    @media (min-width: #{$species-breakpoint}) {
+      // Need to re-enable selecting the text inside the cells on desktop
+      user-select: text;
+      -moz-user-select: text;
+      -khtml-user-select: text;
+      -webkit-user-select: text;
+      -o-user-select: text;
+    }
 
     width: 15.5rem;
 

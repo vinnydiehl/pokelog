@@ -7,6 +7,8 @@
 = javascript_include_tag "open_modal"
 = javascript_include_tag "select_init"
 = javascript_include_tag "sidenav_init"
+= javascript_include_tag "slip"
+= javascript_include_tag "slip_init"
 = javascript_include_tag "species_autocomplete"
 = javascript_include_tag "tooltip_init"
 = javascript_include_tag "trainee"
@@ -45,5 +47,6 @@
     .results
       = turbo_frame_tag :results do
         - @search_results.each do |species|
+          - ev_string = species.ev_yield.values.join ","
           = render species, attrs: { class: "waves-effect waves-teal",
-                            onclick: "killButton(#{species.ev_yield.values.join(',')})" }
+                   onclick: "killButton(#{ev_string})", "data-ev-yield": "#{ev_string}" }

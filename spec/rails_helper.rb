@@ -24,8 +24,14 @@ end
 [[:chrome_1080, 1920, 1080],
  [:chrome_375,  375,  812 ]].each do |name, width, height|
   Capybara.register_driver name do |app|
-    Capybara::Selenium::Driver.new app, browser: :chrome,
-      options: Selenium::WebDriver::Chrome::Options.new(args: %W[headless disable-gpu window-size=#{width}x#{height}])
+    options = Selenium::WebDriver::Chrome::Options.new(
+      args: %W[headless disable-gpu window-size=#{width}x#{height} disable-extensions
+               enable-features=NetworkService,NetworkServiceInProcess])
+
+    # iPhone 8 specs. 375px is the smallest width supported before scrolling begins.
+    options.add_emulation(device_name: "iPhone 8") if name == :chrome_375
+
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
   end
 end
 
