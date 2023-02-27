@@ -20,7 +20,7 @@ def click_nav_link(text)
   find("#sidenav div", text: text).click
 end
 
-RSpec.feature "mobile UI:", type: :feature, driver: :chrome_375 do
+RSpec.feature "mobile UI:", type: :feature, driver: :chrome_mobile do
   it "doesn't display the sidenav" do
     expect(page).not_to have_selector "#sidenav"
   end
@@ -63,12 +63,24 @@ RSpec.feature "mobile UI:", type: :feature, driver: :chrome_375 do
     end
 
     context "when you click a kill button" do
-      it "does nothing" do
+      before :each do
         find("#species_010").click
+      end
+
+      it "does nothing" do
         sleep 0.5
 
         expect(find("#trainee_hp_ev").value).to be_blank
         expect(Trainee.first.hp_ev).to eq 0
+      end
+
+      context "in landscape mode (regular buttons visible)", driver: :chrome_mobile_ls do
+        it "increments the EV" do
+          wait_for :hp_ev, 1
+
+          expect(find("#trainee_hp_ev").value).to eq "1"
+          expect(Trainee.first.hp_ev).to eq 1
+        end
       end
     end
 

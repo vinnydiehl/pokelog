@@ -96,9 +96,10 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
     setEvInputColor();
 }
 
-// Called by the kill buttons onclick
+// Called by the kill buttons onclick, as well as from the swipe events
+// allowMobile (true when from the swipe bindings) helps them not to clash
 function killButton(iHp, iAtk, iDef, iSpA, iSpD, iSpe, allowMobile=false) {
-    if (allowMobile || (window.ontouchstart === undefined && screen.width > 509))
+    if (allowMobile || window.ontouchstart === undefined || screen.width > 509)
         document.querySelectorAll(".trainee-info")
             .forEach(traineeInfo => updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe));
 }

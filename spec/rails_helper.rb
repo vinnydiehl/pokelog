@@ -21,15 +21,16 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 
-[[:chrome_1080, 1920, 1080],
- [:chrome_375,  375,  812 ]].each do |name, width, height|
+[[:chrome_1080,     1920, 1080],
+ [:chrome_mobile,    375,  812],
+ [:chrome_mobile_ls, 812,  375]].each do |name, width, height|
   Capybara.register_driver name do |app|
     options = Selenium::WebDriver::Chrome::Options.new(
       args: %W[headless disable-gpu window-size=#{width}x#{height} disable-extensions
                enable-features=NetworkService,NetworkServiceInProcess])
 
     # iPhone 8 specs. 375px is the smallest width supported before scrolling begins.
-    options.add_emulation(device_name: "iPhone 8") if name == :chrome_375
+    options.add_emulation(device_metrics: {width: width, height: height, pixelRatio: 3, touch: true})
 
     Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
   end
