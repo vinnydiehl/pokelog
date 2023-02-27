@@ -82,17 +82,13 @@ $small_radar_size: 250px;
 
     .corner-buttons {
       position: absolute;
-      top: -50px;
-      right: 0;
+      top: -3em;
+      right: -3em;
+      @media (max-width: #{$radar-breakpoint}) {
+        right: -2em;
+      }
       z-index: 1;
       user-select: none;
-
-      @media (max-width: #{$image-breakpoint}) {
-        top: -35px;
-      }
-      @media (max-width: #{$radar-breakpoint}) {
-        right: 15px;
-      }
 
       a {
         cursor: pointer;
