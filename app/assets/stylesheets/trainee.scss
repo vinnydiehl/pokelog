@@ -305,6 +305,12 @@ $small_radar_size: 250px;
           padding: 0 0.1em;
           height: 3em;
 
+          &::before {
+            content: "/";
+            position: absolute;
+            color: $charcoal;
+          }
+
           .ev-input, .goal-input {
             font-size: 1em;
             text-align: center;

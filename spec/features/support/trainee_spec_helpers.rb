@@ -67,7 +67,7 @@ end
 
 # Set a trainee's EV to a certain value. Works with or without _ev suffix.
 def set_ev(stat, value, **args)
-  fill_in "trainee_#{stat = stat.to_s.sub(/_ev/, "")}_ev", with: value
+  fill_in "trainee_#{stat = stat.to_s.sub(/_(ev|goal)/, "")}_#{args[:suffix] || 'ev'}", with: value
   wait_for :"#{stat}_ev", value, attrs: args[:attrs]
 end
 

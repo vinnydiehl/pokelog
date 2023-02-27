@@ -67,9 +67,9 @@ RSpec.feature "trainees#show:", type: :feature do
         end
       end
 
-      {"EV inputs": STATS, "goal inputs": GOALS}.each do |name, attrs|
-        describe "the #{name}", focus: true do
-          context "with 510 total EVs", js: true do
+      {ev: STATS, goal: GOALS}.each do |name, attrs|
+        describe "the #{name.capitalize} inputs", js: true, focus: true do
+          context "with 510 total EVs" do
             before :each do
               # Set everything except HP to 100
               attrs[1..-1].each do |stat|
@@ -77,7 +77,7 @@ RSpec.feature "trainees#show:", type: :feature do
               end
               wait_for attrs.last, 100
 
-              set_ev attrs.first, (@original = 10)
+              set_ev attrs.first, (@original = 10), suffix: name
             end
 
             it "turns the input borders green" do
@@ -98,7 +98,7 @@ RSpec.feature "trainees#show:", type: :feature do
 
             context "if you set the total back to 509" do
               before :each do
-                set_ev attrs.first, (@original = 9)
+                set_ev attrs.first, (@original = 9), suffix: name
               end
 
               it "turns the input borders black" do
@@ -116,7 +116,7 @@ RSpec.feature "trainees#show:", type: :feature do
                 end
               end
 
-              if name == :"EV inputs"
+              if name == :ev
                 context "if you try to use a kill button to go 2 over" do
                   before :each do
                     # Nidoqueen for 3 HP
@@ -154,23 +154,25 @@ RSpec.feature "trainees#show:", type: :feature do
                 expect(Trainee.first.send attrs.first).to eq @original
               end
             end
-          end
-        end
 
-        context "if you try to use a kill button to go 1 over" do
-          before :each do
-            # Caterpie for 1 HP
-            fill_in "Search", with: "Caterpie"
-            find("#species_010").click
-            sleep 1
-          end
+            if name == :ev
+              context "if you try to use a kill button to go 1 over" do
+                before :each do
+                  # Caterpie for 1 HP
+                  fill_in "Search", with: "Caterpie"
+                  find("#species_010").click
+                  sleep 1
+                end
 
-          it "doesn't update the input" do
-            expect(find("#trainee_#{STATS.first}").value).to eq @original.to_s
-          end
+                it "doesn't update the input" do
+                  expect(find("#trainee_#{STATS.first}").value).to eq @original.to_s
+                end
 
-          it "doesn't update the server" do
-            expect(Trainee.first.send STATS.first).to eq @original
+                it "doesn't update the server" do
+                  expect(Trainee.first.send STATS.first).to eq @original
+                end
+              end
+            end
           end
         end
       end

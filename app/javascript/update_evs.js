@@ -46,17 +46,17 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
     // they're nearly at 510 but receiving yields of multiple stats. See issue
     // #1 for a deep dive into this; these elements load in the correct order
     // as applied by the game.
-    let inputs = traineeInfo.querySelectorAll(".point input");
+    let inputs = traineeInfo.querySelectorAll(".ev-input");
     inputs.forEach(input => {
         if (!input.disabled) {
             // Use the class of the input box to get the stat we're adding
-            // (hp, atk, etc.) which is the variable name of the number we
-            // need, passing into eval() gets the amount
-            let addend = stats[input.parentElement.classList[1]];
+            // (hp, atk, etc.) which is the name of the number we need
+            let addend = stats[input.closest(".point").classList[1]];
             let intValue = input.value == "" ? 0 : parseInt(input.value);
             let newValue = intValue + addend;
 
             let evSum = getEvSum(traineeInfo);
+            console.log(evSum);
 
             if (evSum + addend > 510)
                 input.value = Math.min(252, intValue + (510 - evSum));
@@ -109,7 +109,7 @@ function useConsumable(traineeInfo, itemType, stat) {
 
     const generation = getGeneration();
 
-    let evInput = traineeInfo.querySelector(`.point.${stat} input`);
+    let evInput = traineeInfo.querySelector(`.point.${stat} .ev-input`);
 
     if (generation == 4 && itemType == "berries" && parseInt(evInput.value) > 110)
         evInput.value = "110";
@@ -128,7 +128,7 @@ function useConsumable(traineeInfo, itemType, stat) {
 function setEvInputColor() {
     document.querySelectorAll(".trainee-info").forEach(traineeInfo => {
         sum = getEvSum(traineeInfo);
-        traineeInfo.querySelectorAll(".ev-input").forEach(input => {
+        traineeInfo.querySelectorAll(".ev-container").forEach(input => {
             if (sum > 510)
                 input.style.borderColor = "red";
             else if (sum == 510)
