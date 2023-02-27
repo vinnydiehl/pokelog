@@ -15,9 +15,11 @@ class Trainee < ApplicationRecord
       self.species_id = nil
     end
 
-    if PokeLog::Stats.stats.map { |s| data["#{s}_ev"].to_i }.inject(:+) <= 510
-      PokeLog::Stats.stats.each do |stat|
-        send "#{stat}_ev=", [data["#{stat}_ev"].to_i, 0, 255].sort[1]
+    %w[ev goal].each do |name|
+      if PokeLog::Stats.stats.map { |s| data["#{s}_#{name}"].to_i }.inject(:+) <= 510
+        PokeLog::Stats.stats.each do |stat|
+          send "#{stat}_#{name}=", [data["#{stat}_#{name}"].to_i, 0, 255].sort[1]
+        end
       end
     end
 

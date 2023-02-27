@@ -51,12 +51,18 @@
         = render "shared/radar_chart", stats: trainee.evs, id: "radar-chart-#{dom_id trainee}"
       - PokeLog::Stats.stats.each do |stat|
         .point{class: stat}
-          - attr_name = "#{stat}_ev"
-          = f.text_field attr_name.to_sym, **maxlength(3, "setEvInputColor()"),
-              style: "border-color: #{trainee.evs.values.inject(:+) == 510 ? 'green' : 'black'}",
-              class: "ev-input", type: "number", placeholder: 0, min: 0, max: (@generation > 7 ? 252 : 255),
-              value: ((v = trainee.send(attr_name)).zero? ? nil : v),
-              data: {action: "input->form-submission#searchSubmit"}, disabled: not_yours?(trainee)
+          - attr_name, goal_attr_name = "#{stat}_ev", "#{stat}_goal"
+          - max_per_stat = @generation > 7 ? 252 : 255
+          .ev-container{style: "border-color: #{trainee.evs.values.inject(:+) == 510 ? 'green' : 'black'}"}
+            = f.text_field attr_name.to_sym, **maxlength(3, "setEvInputColor()"),
+                class: "ev-input", type: "number", placeholder: 0, min: 0,
+                max: max_per_stat, value: ((v = trainee.send(attr_name)).zero? ? nil : v),
+                data: {action: "input->form-submission#searchSubmit"}, disabled: not_yours?(trainee)
+            \/
+            = f.text_field goal_attr_name.to_sym, **maxlength(3, "setEvInputColor()"),
+                class: "goal-input", type: "number", placeholder: 0, min: 0,
+                max: max_per_stat, value: ((v = trainee.send(goal_attr_name)).zero? ? nil : v),
+                data: {action: "input->form-submission#searchSubmit"}, disabled: not_yours?(trainee)
       .pokerus.switch{class: not_yours?(trainee) ? "disabled" : ""}
         %label
           = f.check_box :pokerus, value: trainee.pokerus, disabled: not_yours?(trainee),

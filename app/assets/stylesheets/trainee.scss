@@ -166,7 +166,9 @@ $small_radar_size: 250px;
     }
 
     $point_offset: $radar_size / 2 + 25px;
+    $side_offset: $radar_size / 2 + 50px;
     $small_offset: $point_offset / 2;
+    $small_side_offset: $side_offset / 2;
 
     .ev-info {
       position: relative;
@@ -185,12 +187,21 @@ $small_radar_size: 250px;
         height: $small_radar_size;
       }
 
+      .sprite-and-types {
+        left: -4.5em;
+
+        @media (max-width: #{$radar-breakpoint}) {
+          left: -3em;
+        }
+      }
+
       .pokerus {
+        position: absolute;
+        left: -3.5em;
+
         margin-top: $radar_size;
         @media (max-width: #{$radar-breakpoint}) {
           margin-top: $small_radar_size;
-          position: absolute;
-          left: -30px;
         }
       }
 
@@ -206,22 +217,24 @@ $small_radar_size: 250px;
       }
 
       .point {
-        width: 3em;
+        width: 12ch;
+        @media (max-width: #{$radar-breakpoint}) {
+          font-size: 0.75rem;
+        }
+
         position: absolute;
         left: 50%;
         top: 50%;
+
         // Correct enigmatic diagonal misalignment
-        margin: -2.5em 0 0 -1.95em;
-        @media (max-width: #{$radar-breakpoint}) {
-          margin: -2em 0 0 -1.85em;
-        }
+        margin: -2.4em 0 0 -3.66em;
 
         text-align: center;
 
         &.def {
-          transform: rotate(30deg) translate($point_offset) rotate(-30deg);
+          transform: rotate(30deg) translate($side_offset) rotate(-30deg);
           @media (max-width: #{$radar-breakpoint}) {
-            transform: rotate(30deg) translate($small_offset) rotate(-30deg);
+            transform: rotate(30deg) translate($small_side_offset) rotate(-30deg);
           }
 
           &::after{
@@ -241,9 +254,9 @@ $small_radar_size: 250px;
         }
 
         &.spd {
-          transform: rotate(150deg) translate($point_offset) rotate(-150deg);
+          transform: rotate(150deg) translate($side_offset) rotate(-150deg);
           @media (max-width: #{$radar-breakpoint}) {
-            transform: rotate(150deg) translate($small_offset) rotate(-150deg);
+            transform: rotate(150deg) translate($small_side_offset) rotate(-150deg);
           }
 
           &::after{
@@ -252,9 +265,9 @@ $small_radar_size: 250px;
         }
 
         &.spa {
-          transform: rotate(210deg) translate($point_offset) rotate(-210deg);
+          transform: rotate(210deg) translate($side_offset) rotate(-210deg);
           @media (max-width: #{$radar-breakpoint}) {
-            transform: rotate(210deg) translate($small_offset) rotate(-210deg);
+            transform: rotate(210deg) translate($small_side_offset) rotate(-210deg);
           }
 
           &::before{
@@ -274,9 +287,9 @@ $small_radar_size: 250px;
         }
 
         &.atk {
-          transform: rotate(330deg) translate($point_offset) rotate(-330deg);
+          transform: rotate(330deg) translate($side_offset) rotate(-330deg);
           @media (max-width: #{$radar-breakpoint}) {
-            transform: rotate(330deg) translate($small_offset) rotate(-330deg);
+            transform: rotate(330deg) translate($small_side_offset) rotate(-330deg);
           }
 
           &::before{
@@ -284,43 +297,42 @@ $small_radar_size: 250px;
           }
         }
 
-        input.ev-input {
+        .ev-container {
           border: 2px solid black;
-          font-size: 12pt;
-          text-align: center;
-          margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 0.1em;
+          height: 3em;
 
-          @media (max-width: #{$radar-breakpoint}) {
-            width: 2rem;
-            height: 2rem;
-          }
-
-          // Make it look like it forces a 0 into an empty box
-          // (actually just a black placeholder
-          //  that disappears on focus)
-          &::placeholder {
-            color: black;
-            opacity: 1;
-          }
-          &:-ms-input-placeholder { color: black; }
-          &::-ms-input-placeholder { color: black; }
-          &:focus {
-            border: 2px solid green;
-            &::placeholder {
-              color: transparent;
-            }
-          }
-
-          &:invalid {
-            border: 2px solid red;
-          }
-
-          // No arrows
-          -moz-appearance: textfield;
-          &::-webkit-outer-spin-button,
-          &::-webkit-inner-spin-button {
-            -webkit-appearance: none;
+          .ev-input, .goal-input {
+            font-size: 1em;
+            text-align: center;
+            border: none;
             margin: 0;
+
+            // Make it look like it forces a 0 into an empty box
+            // (actually just a black placeholder
+            //  that disappears on focus)
+            &::placeholder {
+              color: black;
+              opacity: 1;
+            }
+            &:-ms-input-placeholder { color: black; }
+            &::-ms-input-placeholder { color: black; }
+            &:focus {
+              &::placeholder {
+                color: transparent;
+              }
+            }
+
+            // No arrows
+            -moz-appearance: textfield;
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
           }
         }
       }

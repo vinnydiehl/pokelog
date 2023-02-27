@@ -67,87 +67,93 @@ RSpec.feature "trainees#show:", type: :feature do
         end
       end
 
-      context "with 510 total EVs", js: true do
-        before :each do
-          # Set everything except HP to 100
-          STATS[1..-1].each do |stat|
-            fill_in "trainee_#{stat}", with: 100
-          end
-          wait_for STATS.last, 100
-
-          set_ev STATS.first, (@original = 10)
-        end
-
-        it "turns the input borders green" do
-          # Wait for color transition
-          sleep 0.5
-
-          find_all(".ev-input").each do |input|
-            expect(input.style("border-color").values.first).to eq "rgb(0, 128, 0)"
-          end
-        end
-
-        it "keeps the borders green on reload" do
-          visit current_path
-          find_all(".ev-input").each do |input|
-            expect(input.style("border-color").values.first).to eq "rgb(0, 128, 0)"
-          end
-        end
-
-        context "if you set the total back to 509" do
-          before :each do
-            set_ev STATS.first, (@original = 9)
-          end
-
-          it "turns the input borders black" do
-            # Wait for color transition
-            sleep 0.5
-            find_all(".ev-input").each do |input|
-              expect(input.style("border-color").values.first).to eq "rgb(0, 0, 0)"
-            end
-          end
-
-          it "keeps the borders black on reload" do
-            visit current_path
-            find_all(".ev-input").each do |input|
-              expect(input.style("border-color").values.first).to eq "rgb(0, 0, 0)"
-            end
-          end
-
-          context "if you try to use a kill button to go 2 over" do
+      {"EV inputs": STATS, "goal inputs": GOALS}.each do |name, attrs|
+        describe "the #{name}", focus: true do
+          context "with 510 total EVs", js: true do
             before :each do
-              # Nidoqueen for 3 HP
-              fill_in "Search", with: "Nidoqueen"
-              find("#species_031").click
-              # Can't use wait_for because the server shouldn't update
-              sleep 1
+              # Set everything except HP to 100
+              attrs[1..-1].each do |stat|
+                fill_in "trainee_#{stat}", with: 100
+              end
+              wait_for attrs.last, 100
+
+              set_ev attrs.first, (@original = 10)
             end
 
-            it "only lets you max it out" do
-              expect(find("#trainee_#{STATS.first}").value).to eq (@original + 1).to_s
+            it "turns the input borders green" do
+              # Wait for color transition
+              sleep 0.5
+
+              find_all(".ev-container").each do |input|
+                expect(input.style("border-color").values.first).to eq "rgb(0, 128, 0)"
+              end
             end
 
-            it "doesn't update the server" do
-              expect(Trainee.first.send STATS.first).to eq(@original + 1)
+            it "keeps the borders green on reload" do
+              visit current_path
+              find_all(".ev-container").each do |input|
+                expect(input.style("border-color").values.first).to eq "rgb(0, 128, 0)"
+              end
             end
-          end
-        end
 
-        context "if you try to enter 511 total through the inputs" do
-          before :each do
-            fill_in "trainee_#{STATS.first}", with: 11
-            # Can't use wait_for because the server shouldn't update
-            sleep 1
-          end
+            context "if you set the total back to 509" do
+              before :each do
+                set_ev attrs.first, (@original = 9)
+              end
 
-          it "turns the input borders red" do
-            find_all(".ev-input").each do |input|
-              expect(input.style("border-color").values.first).to eq "rgb(255, 0, 0)"
+              it "turns the input borders black" do
+                # Wait for color transition
+                sleep 0.5
+                find_all(".ev-container").each do |input|
+                  expect(input.style("border-color").values.first).to eq "rgb(0, 0, 0)"
+                end
+              end
+
+              it "keeps the borders black on reload" do
+                visit current_path
+                find_all(".ev-container").each do |input|
+                  expect(input.style("border-color").values.first).to eq "rgb(0, 0, 0)"
+                end
+              end
+
+              if name == :"EV inputs"
+                context "if you try to use a kill button to go 2 over" do
+                  before :each do
+                    # Nidoqueen for 3 HP
+                    fill_in "Search", with: "Nidoqueen"
+                    find("#species_031").click
+                    # Can't use wait_for because the server shouldn't update
+                    sleep 1
+                  end
+
+                  it "only lets you max it out" do
+                    expect(find("#trainee_#{attrs.first}").value).to eq (@original + 1).to_s
+                  end
+
+                  it "doesn't update the server" do
+                    expect(Trainee.first.send attrs.first).to eq(@original + 1)
+                  end
+                end
+              end
             end
-          end
 
-          it "doesn't update the server" do
-            expect(Trainee.first.send STATS.first).to eq @original
+            context "if you try to enter 511 total through the inputs" do
+              before :each do
+                fill_in "trainee_#{attrs.first}", with: 11
+                # Can't use wait_for because the server shouldn't update
+                sleep 1
+              end
+
+              it "turns the input borders red" do
+                find_all(".ev-container").each do |input|
+                  expect(input.style("border-color").values.first).to eq "rgb(255, 0, 0)"
+                end
+              end
+
+              it "doesn't update the server" do
+                expect(Trainee.first.send attrs.first).to eq @original
+              end
+            end
           end
         end
 

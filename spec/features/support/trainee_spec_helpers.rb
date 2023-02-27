@@ -85,6 +85,7 @@ def find_id(attrs)
 end
 
 STATS = PokeLog::Stats.stats.map { |s| :"#{s}_ev" }
+GOALS = PokeLog::Stats.stats.map { |s| :"#{s}_goal" }
 
 ITEMS = YAML.load_file("data/items.yml").keys
 
