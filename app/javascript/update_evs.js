@@ -1,5 +1,5 @@
-function getEvSum(traineeInfo) {
-    return [0, ...traineeInfo.querySelectorAll(".ev-input")]
+function getInputSum(traineeInfo, klass) {
+    return [0, ...traineeInfo.querySelectorAll(klass)]
         .reduce((partialSum, input) => partialSum + (parseInt(input.value) || 0));
 }
 
@@ -55,7 +55,7 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
             let intValue = input.value == "" ? 0 : parseInt(input.value);
             let newValue = intValue + addend;
 
-            let evSum = getEvSum(traineeInfo);
+            let evSum = getInputSum(traineeInfo, ".ev-input");
             console.log(evSum);
 
             if (evSum + addend > 510)
@@ -88,7 +88,7 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
 
     // Grab the final values from the inputs and use them
     // to update the radar chart
-    if (getEvSum(traineeInfo) <= 510) {
+    if (getInputSum(traineeInfo, ".ev-input") <= 510) {
         final = [...inputs].map(input => input.value);
         drawRadarChart("radar-chart-trainee_" + id, ...final);
     }
@@ -127,9 +127,12 @@ function useConsumable(traineeInfo, itemType, stat) {
 // Checks total of all EVs and sets color of input borders accordingly
 function setEvInputColor() {
     document.querySelectorAll(".trainee-info").forEach(traineeInfo => {
-        sum = getEvSum(traineeInfo);
+        sum = getInputSum(traineeInfo, ".ev-input");
+        goalSum = getInputSum(traineeInfo, ".goal-input");
+
         traineeInfo.querySelectorAll(".ev-container").forEach(input => {
-            if (sum > 510)
+            if (sum > 510 || goalSum > 510 ||
+                ![".ev-input", ".goal-input"].every(klass => input.querySelector(klass).checkValidity()))
                 input.style.borderColor = "red";
             else if (sum == 510)
                 input.style.borderColor = "green";

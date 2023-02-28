@@ -68,7 +68,32 @@ RSpec.feature "trainees#show:", type: :feature do
       end
 
       {ev: STATS, goal: GOALS}.each do |name, attrs|
-        describe "the #{name.capitalize} inputs", js: true, focus: true do
+        describe "the #{name.capitalize} inputs", js: true do
+          context "with 253 EVs in a single stat" do
+            before :each do
+              fill_in (@id = "trainee_#{attrs.first}"), with: 253
+              @container = find("##{@id}").ancestor ".ev-container"
+            end
+
+            it "has a red border" do
+              check_border_color @container, :red
+            end
+
+            it "keeps the other borders black" do
+              find_all(".ev-container:not(:has(##{@id}))").each do |other_container|
+                check_border_color other_container, :black
+              end
+            end
+
+            context "and then set the EVs for that stat back to 252" do
+              it "turns the border back to black" do
+                fill_in (@id = "trainee_#{attrs.first}"), with: 252
+
+                check_border_color @container, :black
+              end
+            end
+          end
+
           context "with 510 total EVs" do
             before :each do
               # Set everything except HP to 100
@@ -80,43 +105,40 @@ RSpec.feature "trainees#show:", type: :feature do
               set_ev attrs.first, (@original = 10), suffix: name
             end
 
-            it "turns the input borders green" do
-              # Wait for color transition
-              sleep 0.5
-
-              find_all(".ev-container").each do |input|
-                expect(input.style("border-color").values.first).to eq "rgb(0, 128, 0)"
-              end
-            end
-
-            it "keeps the borders green on reload" do
-              visit current_path
-              find_all(".ev-container").each do |input|
-                expect(input.style("border-color").values.first).to eq "rgb(0, 128, 0)"
-              end
-            end
-
-            context "if you set the total back to 509" do
-              before :each do
-                set_ev attrs.first, (@original = 9), suffix: name
-              end
-
-              it "turns the input borders black" do
+            if name == :ev
+              it "turns the input borders green" do
                 # Wait for color transition
                 sleep 0.5
+
                 find_all(".ev-container").each do |input|
-                  expect(input.style("border-color").values.first).to eq "rgb(0, 0, 0)"
+                  check_border_color input, :green
                 end
               end
 
-              it "keeps the borders black on reload" do
+              it "keeps the borders green on reload" do
                 visit current_path
-                find_all(".ev-container").each do |input|
-                  expect(input.style("border-color").values.first).to eq "rgb(0, 0, 0)"
-                end
+
+                check_all_border_colors :green
               end
 
-              if name == :ev
+              context "if you set the total back to 509" do
+                before :each do
+                  set_ev attrs.first, (@original = 9), suffix: name
+                end
+
+                it "turns the input borders black" do
+                  # Wait for color transition
+                  sleep 0.5
+
+                  check_all_border_colors :black
+                end
+
+                it "keeps the borders black on reload" do
+                  visit current_path
+
+                  check_all_border_colors :black
+                end
+
                 context "if you try to use a kill button to go 2 over" do
                   before :each do
                     # Nidoqueen for 3 HP
@@ -145,9 +167,7 @@ RSpec.feature "trainees#show:", type: :feature do
               end
 
               it "turns the input borders red" do
-                find_all(".ev-container").each do |input|
-                  expect(input.style("border-color").values.first).to eq "rgb(255, 0, 0)"
-                end
+                check_all_border_colors :red
               end
 
               it "doesn't update the server" do

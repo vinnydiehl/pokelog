@@ -183,6 +183,20 @@ def test_max_evs_per_stat(max)
   end
 end
 
+def check_border_color(element, color)
+  expect(element.style("border-color").values.first).to eq "rgb(#{{
+    red: "255, 0, 0",
+    green: "0, 128, 0",
+    black: "0, 0, 0"
+  }[color]})"
+end
+
+def check_all_border_colors(color)
+  find_all(".ev-container").each do |input|
+    check_border_color input, color
+  end
+end
+
 module PokeLog
   class Stats
     def double_values

@@ -326,6 +326,9 @@ $small_radar_size: 250px;
               &::placeholder {
                 color: transparent;
               }
+
+              // Get rid of green underline that usually appears on focus
+              box-shadow: none;
             }
 
             // No arrows
