@@ -9,10 +9,8 @@ RSpec.feature "trainees#show:", type: :feature do
 
       test_server_interaction
 
-      # Stats need to be 0, nature needs to be "" for compatibility
-      test_trainee_ui nil, STATS.map { |s| {s.to_sym => 0} }.
-        append({nature: ""}).inject(&:merge)
-
+      # Stats/goals need to be 0, nature needs to be "" for compatibility
+      test_trainee_ui nil, (STATS + GOALS).product([0]).to_h.merge(nature: "")
       test_max_evs_per_stat 252
 
       # Edge case behavior, see issue #1

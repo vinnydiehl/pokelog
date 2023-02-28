@@ -10,7 +10,13 @@ TEST_TRAINEES = {
     def_ev: 3,
     spa_ev: 4,
     spd_ev: 5,
-    spe_ev: 6
+    spe_ev: 6,
+    hp_goal: 0,
+    atk_goal: 0,
+    def_goal: 0,
+    spa_goal: 0,
+    spd_goal: 0,
+    spe_goal: 0
   },
   "Voltorb" => {
     species_id: "100",
@@ -23,7 +29,13 @@ TEST_TRAINEES = {
     def_ev: 4,
     spa_ev: 3,
     spd_ev: 2,
-    spe_ev: 1
+    spe_ev: 1,
+    hp_goal: 0,
+    atk_goal: 0,
+    def_goal: 0,
+    spa_goal: 0,
+    spd_goal: 0,
+    spe_goal: 0
   },
   "Voltorb (Hisuian)" => {
     species_id: "100-h",
@@ -31,12 +43,18 @@ TEST_TRAINEES = {
     level: 1,
     nature: "rash",
     item: "macho_brace",
-    hp_ev: 10,
+    hp_ev: 2,
     atk_ev: 0,
     def_ev: 0,
     spa_ev: 150,
     spd_ev: 0,
-    spe_ev: 150
+    spe_ev: 150,
+    hp_goal: 0,
+    atk_goal: 0,
+    def_goal: 0,
+    spa_goal: 0,
+    spd_goal: 0,
+    spe_goal: 0
   }
 }
 SINGLE_DISPLAY_NAME, SINGLE_ATTRS = TEST_TRAINEES.to_a.last
@@ -66,9 +84,12 @@ def launch_multi_trainee
 end
 
 # Set a trainee's EV to a certain value. Works with or without _ev suffix.
+# Supports _goal with args[:suffix] but it's really hacky
 def set_ev(stat, value, **args)
-  fill_in "trainee_#{stat = stat.to_s.sub(/_(ev|goal)/, "")}_#{args[:suffix] || 'ev'}", with: value
-  wait_for :"#{stat}_ev", value, attrs: args[:attrs]
+  stat = :"#{stat.to_s.sub /_(ev|goal)/, ""}_#{args[:suffix] ||= "ev"}"
+
+  fill_in "trainee_#{stat}", with: value
+  wait_for stat, value, attrs: args[:attrs]
 end
 
 # Find a trainee by the value (Hash) of the test cases above
@@ -150,11 +171,13 @@ def test_trainee_ui(display_name, attrs)
         end
       end
 
-      STATS.each do |stat|
-        expected_value = attrs[stat].zero? ? nil : attrs[stat].to_s
-        it "#{stat}: #{expected_value || 'blank'}" do
-          within "#trainee_#{find_id attrs}" do
-            expect(find_field("trainee_#{stat}").value).to eq expected_value
+      [STATS, GOALS].each do |attr_array|
+        attr_array.each do |attr|
+          expected_value = attrs[attr].zero? ? nil : attrs[attr].to_s
+          it "#{attr}: #{expected_value || 'blank'}" do
+            within "#trainee_#{find_id attrs}" do
+              expect(find_field("trainee_#{attr}").value).to eq expected_value
+            end
           end
         end
       end
@@ -335,6 +358,16 @@ def test_server_interaction
           set_ev stat, SINGLE_ATTRS[stat]
 
           expect(Trainee.first.send stat).to eq SINGLE_ATTRS[stat]
+        end
+      end
+    end
+
+    context "when changing EV goals", focus: true do
+      GOALS.each do |goal|
+        it "updates #{goal}" do
+          set_ev goal, (value = 1), suffix: "goal"
+
+          expect(Trainee.first.send goal).to eq value
         end
       end
     end
