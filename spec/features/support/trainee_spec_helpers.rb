@@ -291,6 +291,10 @@ def test_server_interaction
           expect(find ".sprite-and-types").to have_css ".#{type}"
         end
       end
+
+      it "changes the trainee's hidden title" do
+        expect(find(".trainee-title", visible: false).text(:all)).to eq Trainee.first.title
+      end
     end
 
     context "when changing the nickname" do
@@ -310,6 +314,10 @@ def test_server_interaction
 
       it "changes the page title" do
         expect(find("#title").text).to eq Trainee.first.title
+      end
+
+      it "changes the trainee's hidden title" do
+        expect(find(".trainee-title", visible: false).text(:all)).to eq Trainee.first.title
       end
     end
 

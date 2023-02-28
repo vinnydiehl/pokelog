@@ -27,7 +27,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
      [:power_belt,   nil, 11],
      [:power_belt,   6,   7],
      [:power_bracer, nil, 3]].each do |item, generation, offset|
-      context "generation: #{generation}" do
+      context "generation: #{generation || 'none'} |" do
         before :each do
           set_generation(generation) if generation
         end
@@ -40,9 +40,11 @@ RSpec.feature "EV goals:", type: :feature, js: true do
           [true, false].each do |pokerus|
             context "pokerus: #{pokerus} |" do
               before :each do
+                @offset = offset
+
                 if pokerus
                   find(".pokerus label").click
-                  offset *= 2
+                  @offset *= 2
                 end
 
                 set_goal :def, (@goal = 150)
@@ -50,7 +52,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
 
               context "when the EV is #{offset + 1} away" do
                 before :each do
-                  set_ev :def, @goal - offset - 1
+                  set_ev :def, @goal - @offset - 1
                 end
 
                 modal_should_not_display
@@ -58,7 +60,17 @@ RSpec.feature "EV goals:", type: :feature, js: true do
 
               context "when the EV is #{offset} away" do
                 before :each do
-                  set_ev :def, @goal - offset
+                  set_ev :def, @goal - @offset
+                end
+
+                modal_should_display
+              end
+
+              context "when you use a kill button to enter alert range" do
+                before :each do
+                  set_ev :def, @goal - @offset - 1
+                  fill_in "Search", with: "Squirtle" # 1 Def
+                  find("#species_007").click
                 end
 
                 modal_should_display

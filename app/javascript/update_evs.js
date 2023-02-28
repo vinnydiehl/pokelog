@@ -8,6 +8,19 @@ function getGeneration() {
     return parseInt(document.getElementById("generation").value || 9);
 }
 
+// Returns the item(s) associated with the held item for a given trainee
+function itemStat(traineeInfo) {
+    return {
+        "trainee_item_macho_brace": ["hp", "atk", "def", "spa", "spd", "spe"],
+        "trainee_item_power_weight": "hp",
+        "trainee_item_power_bracer": "atk",
+        "trainee_item_power_belt": "def",
+        "trainee_item_power_lens": "spa",
+        "trainee_item_power_band": "spd",
+        "trainee_item_power_anklet": "spe"
+    }[traineeInfo.querySelector(".held-items input[type='radio']:checked").id];
+}
+
 // Sets EVs, checking for edge cases and optionally applying items (enabled by default)
 function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
                    applyItemsAndPokerus=true, perStatLimit=null) {
@@ -19,22 +32,14 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
 
     if (applyItemsAndPokerus) {
         // Find the item, if any
-        const itemStat = {
-            "trainee_item_macho_brace": Object.keys(stats),
-            "trainee_item_power_weight": "hp",
-            "trainee_item_power_bracer": "atk",
-            "trainee_item_power_belt": "def",
-            "trainee_item_power_lens": "spa",
-            "trainee_item_power_band": "spd",
-            "trainee_item_power_anklet": "spe"
-        }[traineeInfo.querySelector(".held-items input[type='radio']:checked").id];
+        const selectedItem = itemStat(traineeInfo);
 
         // If it's an array, it's a macho brace; double everything
-        if (Array.isArray(itemStat))
-            itemStat.forEach(stat => stats[stat] *= 2);
+        if (Array.isArray(selectedItem))
+            selectedItem.forEach(stat => stats[stat] *= 2);
         // Power item boosts, varies by generation
-        else if (itemStat)
-            stats[itemStat] += generation > 6 ? 8 : 4;
+        else if (selectedItem)
+            stats[selectedItem] += generation > 6 ? 8 : 4;
 
         // Apply Pokérus last
         if (traineeInfo.querySelector("#trainee_pokerus").checked)
@@ -56,10 +61,9 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
             let newValue = intValue + addend;
 
             let evSum = getInputSum(traineeInfo, ".ev-input");
-            console.log(evSum);
 
             if (evSum + addend > 510)
-                input.value = Math.min(252, intValue + (510 - evSum));
+                input.value = Math.min(perStatLimit, intValue + (510 - evSum));
             else if (newValue < 0)
                 input.value = 0;
             else if (newValue > perStatLimit) {
@@ -94,6 +98,7 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
     }
 
     setEvInputColor();
+    checkGoals();
 }
 
 // Called by the kill buttons onclick
@@ -140,4 +145,61 @@ function setEvInputColor() {
                 input.style.borderColor = "black";
         });
     });
+}
+
+// Displays an alert if the user's EV goals have been or are about to be exceeded
+function checkGoals() {
+    const generation = getGeneration();
+
+    // As the trainees' stats get iterated over, any that need an alert are added to
+    // these arrays as objects w/ trainee (title), stat, evs, and goal
+    let approaching = [];
+    let onGoal = [];
+    let over = [];
+
+    document.querySelectorAll(".trainee-info").forEach(traineeInfo => {
+        let traineeTitle = traineeInfo.querySelector(".trainee-title").innerHTML;
+
+        // Each stat is in a .point div. This div also has a class with the name
+        // of the stat which we will grab in a minute
+        document.querySelectorAll(".point").forEach(point => {
+            let goal = parseInt(point.querySelector(".goal-input").value);
+            if (goal) {
+                const stat = point.classList[1];
+                const evs = parseInt(point.querySelector(".ev-input").value) || 0;
+                const selectedItem = itemStat(traineeInfo);
+                const offset = goal - evs;
+
+                // The expected offset starts at 3 and will be built upon based
+                // on item and Pokérus
+                let alertOffset = 3;
+
+                // If itemStat is an array, it's a macho brace
+                if (Array.isArray(selectedItem))
+                    alertOffset *= 2;
+                // Power item boost only applied if it's for this stat
+                else if (selectedItem == stat)
+                    alertOffset += generation > 6 ? 8 : 4;
+
+                // Apply Pokérus last
+                if (traineeInfo.querySelector("#trainee_pokerus").checked)
+                    alertOffset *= 2;
+
+                const data = {name: traineeTitle, stat: stat, evs: evs, goal: goal}
+
+                if (offset < 0)
+                    over.push(data);
+                else if (offset == 0)
+                    onGoal.push(data);
+                else if (offset <= alertOffset)
+                    approaching.push(data);
+            }
+        });
+    });
+
+    if (approaching.length + onGoal.length + over.length > 0) {
+        // TODO: Generate modal contents
+
+        openModal("goal-alert");
+    }
 }
