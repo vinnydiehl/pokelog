@@ -92,6 +92,11 @@ def set_ev(stat, value, **args)
   wait_for stat, value, attrs: args[:attrs]
 end
 
+# Makes the above feel less hacky in use
+def set_goal(stat, value, **args)
+  set_ev stat, value, **args.merge(suffix: "goal")
+end
+
 # Find a trainee by the value (Hash) of the test cases above
 def find_trainee(attrs)
   # Falls back on species, this could break if more test cases are added with
@@ -109,6 +114,7 @@ STATS = PokeLog::Stats.stats.map { |s| :"#{s}_ev" }
 GOALS = PokeLog::Stats.stats.map { |s| :"#{s}_goal" }
 
 ITEMS = YAML.load_file("data/items.yml").keys
+POWER_ITEMS = ITEMS[1..-1]
 
 # Test cases for kill buttons. These selections cover a good range of cases;
 # each stat is tested, some affect multiple stats, increase stats by different
@@ -362,10 +368,10 @@ def test_server_interaction
       end
     end
 
-    context "when changing EV goals", focus: true do
+    context "when changing EV goals" do
       GOALS.each do |goal|
         it "updates #{goal}" do
-          set_ev goal, (value = 1), suffix: "goal"
+          set_goal goal, (value = 1)
 
           expect(Trainee.first.send goal).to eq value
         end
