@@ -52,11 +52,11 @@
       #stats-chart
         = render "shared/radar_chart", stats: trainee.evs, id: "radar-chart-#{dom_id trainee}"
       - PokeLog::Stats.stats.each do |stat|
-        .point{class: stat}
+        .point{class: stat, "data-format-stat": format_stat(stat)}
           - attr_name, goal_attr_name = "#{stat}_ev", "#{stat}_goal"
           - max_per_stat = @generation > 7 ? 252 : 255
           .ev-container{style: "border-color: #{trainee.evs.values.inject(:+) == 510 ? 'green' : 'black'}"}
-            - [["ev-input",   "#{stat}_ev",   "checkGoals()"],
+            - [["ev-input",   "#{stat}_ev",   "checkGoals(this)"],
                ["goal-input", "#{stat}_goal", nil]].each do |klass, attr_name, on_input|
               = f.text_field attr_name.to_sym, **maxlength(3, "setEvInputColor();#{on_input}"),
                   class: klass, type: "number", placeholder: 0, min: 0, disabled: not_yours?(trainee),
@@ -84,7 +84,7 @@
           - @items_options.each do |item|
             %label
               = f.radio_button :item, item, value: trainee.item == item,
-                "data-action": "click->form-submission#submit", onclick: "checkGoals()",
+                "data-action": "click->form-submission#submit", onclick: "checkGoals(this)",
                 disabled: not_yours?(trainee) || (@generation < 4 && item =~ /power/) || ([1, 2, 7].include?(@generation) && item == "macho_brace")
               %span.tooltipped{data: {tooltip: item_tooltip(item, @generation), position: "top"}}
                 = image_tag "/images/items/held/#{item}.png"

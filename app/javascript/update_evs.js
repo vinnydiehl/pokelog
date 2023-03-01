@@ -23,7 +23,7 @@ function itemStat(traineeInfo) {
 
 // Sets EVs, checking for edge cases and optionally applying items (enabled by default)
 function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
-                   applyItemsAndPokerus=true, perStatLimit=null) {
+                   applyItemsAndPokerus=true, perStatLimit=null, goalAlertTrainee=null) {
     let stats = { hp: iHp, atk: iAtk, def: iDef, spa: iSpA, spd: iSpD, spe: iSpe };
 
     const generation = getGeneration();
@@ -98,7 +98,7 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
     }
 
     setEvInputColor();
-    checkGoals();
+    checkGoals(goalAlertTrainee);
 }
 
 // Called by the kill buttons onclick
@@ -126,7 +126,8 @@ function useConsumable(traineeInfo, itemType, stat) {
     }[itemType];
 
     updateEvs(traineeInfo, ...Object.values(stats), false,
-              itemType == "vitamins" && generation < 8 ? 100 : null);
+              itemType == "vitamins" && generation < 8 ? 100 : null,
+              traineeInfo);
 }
 
 // Checks total of all EVs and sets color of input borders accordingly
@@ -148,7 +149,10 @@ function setEvInputColor() {
 }
 
 // Displays an alert if the user's EV goals have been or are about to be exceeded
-function checkGoals() {
+//
+// @param onlyDisplayFor [Element within .trainee-info] only display if alert involves
+//                                                       a specific trainee
+function checkGoals(onlyDisplayFor=null) {
     const generation = getGeneration();
 
     // As the trainees' stats get iterated over, any that need an alert are added to
@@ -158,11 +162,11 @@ function checkGoals() {
     let over = [];
 
     document.querySelectorAll(".trainee-info").forEach(traineeInfo => {
-        let traineeTitle = traineeInfo.querySelector(".trainee-title").innerHTML;
+        const traineeTitle = traineeInfo.querySelector(".trainee-title").innerHTML;
 
         // Each stat is in a .point div. This div also has a class with the name
         // of the stat which we will grab in a minute
-        document.querySelectorAll(".point").forEach(point => {
+        traineeInfo.querySelectorAll(".point").forEach(point => {
             let goal = parseInt(point.querySelector(".goal-input").value);
             if (goal) {
                 const stat = point.classList[1];
@@ -185,7 +189,7 @@ function checkGoals() {
                 if (traineeInfo.querySelector("#trainee_pokerus").checked)
                     alertOffset *= 2;
 
-                const data = {name: traineeTitle, stat: stat, evs: evs, goal: goal}
+                const data = {name: traineeTitle, stat: point.dataset.formatStat, evs: evs, goal: goal}
 
                 if (offset < 0)
                     over.push(data);
@@ -197,8 +201,53 @@ function checkGoals() {
         });
     });
 
-    if (approaching.length + onGoal.length + over.length > 0) {
-        // TODO: Generate modal contents
+    // This check allows you to narrow down the trainee whose actions trigger the modal,
+    // i.e. changing the input of a trainee with no alerts wont display an alert that
+    // pertains to a different trainee.
+    let narrowTraineeCheck = !onlyDisplayFor || [approaching, onGoal, over].some(arr => arr.some(entry => {
+        return entry.name ==
+            onlyDisplayFor.closest(".trainee-info").querySelector(".trainee-title").innerHTML
+    }));
+
+    // If any data has been collected, generate the contents of the alert modal and display it
+    const nAlerts = approaching.length + onGoal.length + over.length;
+
+    if (nAlerts > 0 && narrowTraineeCheck) {
+        // Title varies based on number/type of alerts
+        document.getElementById("goal-alerts-title").innerHTML =
+            nAlerts > 1 ? "You have alerts!" :
+            approaching.length > 0 ? "Almost there!" :
+            onGoal.length > 0 ? "You've reached your goal!" :
+            "Oh no, you went over!";
+
+        const table = document.createElement("table");
+
+        const tableHeader = table.createTHead();
+        const headerRow = tableHeader.insertRow();
+        ["Name", "Stat", "EVs"].forEach(headerLabel => {
+            headerRow.appendChild(
+                Object.assign(document.createElement("th"), {textContent: headerLabel}));
+        });
+
+        const tableBody = table.createTBody();
+        [["approaching-goal", approaching],
+         ["on-goal", onGoal],
+         ["over-goal", over]].forEach(([klass, dataSet]) => {
+            if (dataSet.length > 0) {
+                dataSet.forEach(entry => {
+                    const { name, stat, evs, goal } = entry;
+
+                    const row = tableBody.insertRow();
+                    row.classList.add(klass);
+
+                    [name, stat, `${evs}/${goal}`].forEach(value => {
+                        row.insertCell().textContent = value;
+                    });
+                });
+            }
+        });
+
+        document.getElementById("goal-table").replaceChildren(table);
 
         openModal("goal-alert");
     }
