@@ -41,5 +41,5 @@ runOnLoad(() => {
     document.querySelector("#confirm-delete-checkbox")
         .addEventListener("change", setConfirmDeleteState);
 
-    document.querySelector("#train-btn").addEventListener("click", visitSelectedTrainees);
+    document.querySelector("#train-btn").addEventListener("click", () => visitSelectedTrainees());
 });
