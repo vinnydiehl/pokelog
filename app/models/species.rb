@@ -1,6 +1,13 @@
 class Species < ActiveYaml::Base
   set_root_path Rails.root.join("data")
 
+  # @return the JSON data to be passed into Materialize autocomplete
+  def self.autocomplete_data
+    @@autocomplete_data ||= Species.all.map do |pkmn|
+      {pkmn.display_name => pkmn.sprite(format: :path)}
+    end.reduce(&:merge).to_json
+  end
+
   # @return [Integer] National Dex ID
   def int_id
     self[:id].match(/\d+/).to_s.to_i
@@ -27,9 +34,10 @@ class Species < ActiveYaml::Base
   end
 
   # @return [String] HTML image tag for the sprite
-  def sprite
-    ActionController::Base.helpers.image_tag "/images/sprites/#{self[:id]}.png",
-      class: "sprite"
+  def sprite(**args)
+    path = "/images/sprites/#{self[:id]}.png"
+    return args[:format] == :path ? path :
+      ActionController::Base.helpers.image_tag(path, class: "sprite")
   end
 
   # See app/assets/stylesheets/types.scss

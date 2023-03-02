@@ -9,7 +9,6 @@
 = javascript_include_tag "sidenav_init"
 = javascript_include_tag "slip"
 = javascript_include_tag "slip_init"
-= javascript_include_tag "species_autocomplete"
 = javascript_include_tag "tooltip_init"
 = javascript_include_tag "trainee"
 = javascript_include_tag "update_evs"
@@ -49,3 +48,9 @@
           - ev_string = species.ev_yield.values.join ","
           = render species, attrs: { class: "waves-effect waves-teal",
                    onclick: "killButton(#{ev_string})", "data-ev-yield": "#{ev_string}" }
+
+:javascript
+  runOnLoad(() => {
+    M.Autocomplete.init(document.querySelectorAll(".autocomplete"),
+                        { data: #{Species.autocomplete_data} });
+  });
