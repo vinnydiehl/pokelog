@@ -88,7 +88,8 @@ end
 def set_ev(stat, value, **args)
   stat = :"#{stat.to_s.sub /_(ev|goal)/, ""}_#{args[:suffix] ||= "ev"}"
 
-  fill_in "trainee_#{stat}", with: value
+  find("#{args[:attrs] ? "#trainee_#{find_id args[:attrs]} " : ''}#trainee_#{stat}").set value
+
   wait_for stat, value, attrs: args[:attrs]
 end
 
