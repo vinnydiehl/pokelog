@@ -184,7 +184,7 @@ RSpec.feature "trainees#show:", type: :feature do
             end
 
             @original_path = current_path
-            find("#add-action-btn").hover
+            find("#add-action-btn").click
             find("#new-trainee-btn").click
             sleep 0.5
           end
@@ -221,7 +221,7 @@ RSpec.feature "trainees#show:", type: :feature do
               sleep 0.5
             end
 
-            find("#add-action-btn").hover
+            find("#add-action-btn").click
             find("#add-to-party-btn").click
           end
 
@@ -229,7 +229,7 @@ RSpec.feature "trainees#show:", type: :feature do
             context "when you select #{attrs[:nickname]}" do
               before :each do
                 @id = find_id attrs
-                find("#check-trainee_#{@id}").click
+                find("#check-trainee_#{@id}").hover_and_click
                 find("#confirm-add-to-party").click
               end
 
@@ -248,7 +248,7 @@ RSpec.feature "trainees#show:", type: :feature do
           context "when you select all trainees" do
             before :each do
               other_trainees.each do |_, attrs|
-                find("#check-trainee_#{find_id attrs}").click
+                find("#check-trainee_#{find_id attrs}").hover_and_click
               end
               find("#confirm-add-to-party").click
             end

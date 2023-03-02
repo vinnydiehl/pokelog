@@ -279,7 +279,7 @@ def test_server_interaction
 
     it "updates the nature" do
       find("input.select-dropdown").click
-      find("span", text: SINGLE_ATTRS[:nature].capitalize).click
+      find("span", text: SINGLE_ATTRS[:nature].capitalize).hover_and_click
       wait_for :nature, SINGLE_ATTRS[:nature]
 
       expect(Trainee.first.nature).to eq SINGLE_ATTRS[:nature]

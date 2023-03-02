@@ -22,7 +22,9 @@ end
 
 # Ticks the check boxes for the specified filters. Must have modal open.
 def check_filter(*names)
-  names.each { |name| find("span", text: name).click }
+  names.each do |name|
+    find("span", text: name).hover_and_click
+  end
 
   # Refreshing shouldn't be necessary, but Selenium gets upset
   # at the page reload behind the modal.
