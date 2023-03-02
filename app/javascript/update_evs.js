@@ -192,7 +192,13 @@ function checkGoals(onlyDisplayFor=null) {
                 if (traineeInfo.querySelector("#trainee_pokerus").checked)
                     alertOffset *= 2;
 
-                const data = {name: traineeTitle, stat: point.dataset.formatStat, evs: evs, goal: goal}
+                const data = {
+                    name: traineeTitle,
+                    cookieName: `${traineeInfo.id}_${stat}`,
+                    stat: point.dataset.formatStat,
+                    evs: evs,
+                    goal: goal
+                }
 
                 if (offset < 0) {
                     over.push(data);
@@ -203,6 +209,9 @@ function checkGoals(onlyDisplayFor=null) {
                 } else if (offset <= alertOffset) {
                     approaching.push(data);
                     inputTextColor = "darkgoldenrod";
+                } else {
+                    // If we're in here, there was no alert, delete any existing cookie
+                    deleteCookie(data.cookieName);
                 }
             }
 
@@ -213,15 +222,28 @@ function checkGoals(onlyDisplayFor=null) {
     // This check allows you to narrow down the trainee whose actions trigger the modal,
     // i.e. changing the input of a trainee with no alerts wont display an alert that
     // pertains to a different trainee.
-    let narrowTraineeCheck = !onlyDisplayFor || [approaching, onGoal, over].some(arr => arr.some(entry => {
-        return entry.name ==
-            onlyDisplayFor.closest(".trainee-info").querySelector(".trainee-title").innerHTML
-    }));
+    // let narrowTraineeCheck = !onlyDisplayFor || [approaching, onGoal, over].some(arr => arr.some(entry => {
+    //     return entry.name ==
+    //         onlyDisplayFor.closest(".trainee-info").querySelector(".trainee-title").innerHTML
+    // }));
+
+    const goalData = [["approaching-goal", approaching],
+                      ["on-goal", onGoal],
+                      ["over-goal", over]];
+
+    let cookieCheck = false;
+
+    goalData.flatMap(arr => arr[1]).forEach(dataSet => {
+        if (parseInt(getCookie(dataSet.cookieName)) != dataSet.evs) {
+            setCookie(dataSet.cookieName, dataSet.evs);
+            cookieCheck = true;
+        }
+    });
 
     // If any data has been collected, generate the contents of the alert modal and display it
     const nAlerts = approaching.length + onGoal.length + over.length;
 
-    if (nAlerts > 0 && narrowTraineeCheck) {
+    if (nAlerts > 0 && cookieCheck) {
         // Title varies based on number/type of alerts
         document.getElementById("goal-alerts-title").innerHTML =
             nAlerts > 1 ? "You have alerts!" :
@@ -239,12 +261,10 @@ function checkGoals(onlyDisplayFor=null) {
         });
 
         const tableBody = table.createTBody();
-        [["approaching-goal", approaching],
-         ["on-goal", onGoal],
-         ["over-goal", over]].forEach(([klass, dataSet]) => {
+        goalData.forEach(([klass, dataSet]) => {
             if (dataSet.length > 0) {
                 dataSet.forEach(entry => {
-                    const { name, stat, evs, goal } = entry;
+                    const { name, cookieName, stat, evs, goal } = entry;
 
                     const row = tableBody.insertRow();
                     row.classList.add(klass);

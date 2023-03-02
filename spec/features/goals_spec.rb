@@ -232,7 +232,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
 
             context "you change a previously alerted EV to trigger another alert" do
               before :each do
-                set_ev :atk, 47, attrs: trainee_attrs
+                set_ev :atk, 48, attrs: trainee_attrs
                 click_away
               end
 
