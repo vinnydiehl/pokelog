@@ -167,10 +167,13 @@ function checkGoals(onlyDisplayFor=null) {
         // Each stat is in a .point div. This div also has a class with the name
         // of the stat which we will grab in a minute
         traineeInfo.querySelectorAll(".point").forEach(point => {
-            let goal = parseInt(point.querySelector(".goal-input").value);
+            const inputs = [".goal-input", ".ev-input"].map(klass => point.querySelector(klass));
+            let inputTextColor = "black";
+
+            let goal = parseInt(inputs[0].value);
             if (goal) {
                 const stat = point.classList[1];
-                const evs = parseInt(point.querySelector(".ev-input").value) || 0;
+                const evs = parseInt(inputs[1].value) || 0;
                 const selectedItem = itemStat(traineeInfo);
                 const offset = goal - evs;
 
@@ -191,13 +194,19 @@ function checkGoals(onlyDisplayFor=null) {
 
                 const data = {name: traineeTitle, stat: point.dataset.formatStat, evs: evs, goal: goal}
 
-                if (offset < 0)
+                if (offset < 0) {
                     over.push(data);
-                else if (offset == 0)
+                    inputTextColor = "darkred";
+                } else if (offset == 0) {
                     onGoal.push(data);
-                else if (offset <= alertOffset)
+                    inputTextColor = "darkgreen";
+                } else if (offset <= alertOffset) {
                     approaching.push(data);
+                    inputTextColor = "darkgoldenrod";
+                }
             }
+
+            inputs.forEach(input => {input.style.color = inputTextColor});
         });
     });
 

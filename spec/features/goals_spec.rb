@@ -18,9 +18,13 @@ def modal_should_not_display
   end
 end
 
+def text_color_of(element)
+  element.style("color").values.first
+end
+
 RSpec.feature "EV goals:", type: :feature, js: true do
   context "with a single trainee" do
-before :each do
+    before :each do
       launch_new_blank_trainee
     end
 
@@ -130,9 +134,39 @@ before :each do
 
       modal_should_display
     end
+
+    %w[.ev-input .goal-input].each do |klass|
+      it "changes color of the #{klass.titleize.downcase[1..-1]} with each stage" do
+        input = find(".hp #{klass}")
+
+        # Find initial color, as they change they will be loaded into this array. We can check
+        # against the array to see if it has changed to a new color, and at the end we will
+        # make sure it turns back to this first one:
+        colors = [text_color_of(input)]
+
+        set_goal :hp, 50
+
+        # Check yellow, green, and red respectively (not the specific colors, just that
+        # they change and are unique)
+        [47, 50, 51].each do |evs|
+          set_ev :hp, evs
+          click_away
+          find("#close-goal-alert").click
+
+          new_color = text_color_of input
+          expect(colors).not_to include new_color
+          colors << new_color
+        end
+
+        # Make sure it turns back to black
+        set_goal :hp, 0
+        click_away
+        expect(text_color_of input).to eq colors.first
+      end
+    end
   end
 
-  context "with multiple trainees", focus: true do
+  context "with multiple trainees" do
     trainee_name, trainee_attrs = TEST_TRAINEES.first
     other_name, other_attrs = TEST_TRAINEES.to_a.last
 
