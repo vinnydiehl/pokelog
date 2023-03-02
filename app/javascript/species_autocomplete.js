@@ -1135,6 +1135,8 @@ runOnLoad(() => {
         "Roaring Moon": "/images/sprites/1005.png",
         "Iron Valiant": "/images/sprites/1006.png",
         "Koraidon": "/images/sprites/1007.png",
-        "Miraidon": "/images/sprites/1008.png"
+        "Miraidon": "/images/sprites/1008.png",
+        "Walking Wake": "/images/sprites/1009.png",
+        "Iron Leaves": "/images/sprites/1010.png"
     }});
 });

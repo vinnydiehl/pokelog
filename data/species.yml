@@ -29747,3 +29747,49 @@
     :spe: 0
   :generations:
   - 9
+- :id: '1009'
+  :name: Walking Wake
+  :form:
+  :form_desc:
+  :types:
+  - :water
+  - :dragon
+  :base_stats:
+    :hp: 99
+    :atk: 83
+    :def: 91
+    :spa: 125
+    :spd: 83
+    :spe: 109
+  :ev_yield:
+    :hp: 0
+    :atk: 0
+    :def: 0
+    :spa: 3
+    :spd: 0
+    :spe: 0
+  :generations:
+  - 9
+- :id: '1010'
+  :name: Iron Leaves
+  :form:
+  :form_desc:
+  :types:
+  - :grass
+  - :psychic
+  :base_stats:
+    :hp: 90
+    :atk: 130
+    :def: 88
+    :spa: 70
+    :spd: 108
+    :spe: 104
+  :ev_yield:
+    :hp: 0
+    :atk: 3
+    :def: 0
+    :spa: 0
+    :spd: 0
+    :spe: 0
+  :generations:
+  - 9
