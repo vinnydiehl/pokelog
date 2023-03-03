@@ -165,13 +165,16 @@ function checkGoals(onlyDisplayFor=null) {
     document.querySelectorAll(".trainee-info").forEach(traineeInfo => {
         const traineeTitle = traineeInfo.querySelector(".trainee-title").innerHTML;
 
+        const usingGoals = Array.from(traineeInfo.querySelectorAll(".goal-input")).
+            some(input => parseInt(input.value));
+
         // Each stat is in a .point div. This div also has a class with the name
         // of the stat which we will grab in a minute
         traineeInfo.querySelectorAll(".point").forEach(point => {
-            const inputs = [".goal-input", ".ev-input"].map(klass => point.querySelector(klass));
+            const inputs = [".ev-input", ".goal-input"].map(klass => point.querySelector(klass));
             const stat = point.classList[1];
-            const evs = parseInt(inputs[1].value) || 0;
-            const goal = parseInt(inputs[0].value);
+            const evs = parseInt(inputs[0].value) || 0;
+            const goal = parseInt(inputs[1].value) || 0;
             const selectedItem = itemStat(traineeInfo);
             const offset = goal - evs;
 
@@ -186,7 +189,7 @@ function checkGoals(onlyDisplayFor=null) {
             let inputTextColor = "black";
             let hasAlert = false;
 
-            if (goal) {
+            if (usingGoals) {
                 // The expected offset starts at 3 and will be built upon based
                 // on item and Pokérus
                 let alertOffset = 3;
@@ -206,11 +209,11 @@ function checkGoals(onlyDisplayFor=null) {
                     over.push(data);
                     inputTextColor = "darkred";
                     hasAlert = true;
-                } else if (offset == 0) {
+                } else if (offset == 0 && goal > 0) {
                     onGoal.push(data);
                     inputTextColor = "darkgreen";
                     hasAlert = true;
-                } else if (offset <= alertOffset) {
+                } else if (offset <= alertOffset && goal > 0) {
                     approaching.push(data);
                     inputTextColor = "darkgoldenrod";
                     hasAlert = true;
@@ -223,20 +226,15 @@ function checkGoals(onlyDisplayFor=null) {
         });
     });
 
-    // This check allows you to narrow down the trainee whose actions trigger the modal,
-    // i.e. changing the input of a trainee with no alerts wont display an alert that
-    // pertains to a different trainee.
-    // let narrowTraineeCheck = !onlyDisplayFor || [approaching, onGoal, over].some(arr => arr.some(entry => {
-    //     return entry.name ==
-    //         onlyDisplayFor.closest(".trainee-info").querySelector(".trainee-title").innerHTML
-    // }));
+    // Now to generate the contents of the modal and display it
+    // if conditions are met
 
     const goalData = [["approaching-goal", approaching],
                       ["on-goal", onGoal],
                       ["over-goal", over]];
 
+    // Cookies prevent the same alert from the same stat from displaying twice
     let cookieCheck = false;
-
     goalData.flatMap(arr => arr[1]).forEach(dataSet => {
         if (parseInt(getCookie(dataSet.cookieName)) != dataSet.evs) {
             setCookie(dataSet.cookieName, dataSet.evs);
@@ -244,7 +242,6 @@ function checkGoals(onlyDisplayFor=null) {
         }
     });
 
-    // If any data has been collected, generate the contents of the alert modal and display it
     const nAlerts = approaching.length + onGoal.length + over.length;
 
     if (nAlerts > 0 && cookieCheck) {

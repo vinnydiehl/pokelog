@@ -90,15 +90,27 @@ RSpec.feature "EV goals:", type: :feature, js: true do
         end
       end
 
-      context "and a different EV approaches/passes it" do
+      context "and a different EV approaches/passes it but doesn't reach its own goal" do
         before :each do
           set_goal :spa, 50
+          set_goal :atk, 150
           set_ev :atk, 49
+          click_away
           set_ev :atk, 51
           click_away
         end
 
         modal_should_not_display
+      end
+
+      context "and a stat with no goal breaks 0" do
+        before :each do
+          set_goal :spa, 50
+          set_ev :def, 1
+          click_away
+        end
+
+        modal_should_display
       end
     end
 
@@ -176,6 +188,10 @@ RSpec.feature "EV goals:", type: :feature, js: true do
 
     before :each do
       launch_multi_trainee
+
+      %w[.ev-input .goal-input].each do |klass|
+        find_all(klass).each { |goal| goal.set 0 }
+      end
     end
 
     context "when #{trainee_name} is put within alert range via the EV input" do
@@ -201,13 +217,13 @@ RSpec.feature "EV goals:", type: :feature, js: true do
           modal_should_not_display
         end
 
-        context "you edit a different stat with no alert set" do
+        context "you edit a different stat to break 0" do
           before :each do
             set_ev :hp, 47, attrs: trainee_attrs
             click_away
           end
 
-          modal_should_not_display
+          modal_should_display
         end
 
         context "you edit an input of #{other_name} with no goal set" do
@@ -253,13 +269,13 @@ RSpec.feature "EV goals:", type: :feature, js: true do
               modal_should_display
             end
 
-            context "you edit a different stat with no alert set" do
+            context "you edit a different stat to break 0" do
               before :each do
                 set_ev :spd, 47, attrs: trainee_attrs
                 click_away
               end
 
-              modal_should_not_display
+              modal_should_display
             end
 
             context "you edit an input of #{other_name} with no goal set" do
