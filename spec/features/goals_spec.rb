@@ -60,6 +60,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
                 context "when the EV is #{offset + 1} away" do
                   before :each do
                     set_ev :def, @goal - @offset - 1
+                    click_away
                   end
 
                   modal_should_not_display
@@ -68,6 +69,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
                 context "when the EV is #{offset} away" do
                   before :each do
                     set_ev :def, @goal - @offset
+                    click_away
                   end
 
                   modal_should_display
@@ -93,6 +95,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
           set_goal :spa, 50
           set_ev :atk, 49
           set_ev :atk, 51
+          click_away
         end
 
         modal_should_not_display
@@ -101,7 +104,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
 
     context "when an item change will cause an overshoot" do
       before :each do
-        set_goal :spe, 10
+        set_goal :spe, 11
         find("span", text: "Power Anklet").click
       end
 
@@ -110,7 +113,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
 
     context "when an item change will not cause an overshoot" do
       before :each do
-        set_goal :spe, 11
+        set_goal :spe, 12
         find("span", text: "Power Anklet").click
       end
 
@@ -130,6 +133,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
       before :each do
         set_goal :spd, 50
         set_ev :spd, 51
+        click_away
       end
 
       modal_should_display
