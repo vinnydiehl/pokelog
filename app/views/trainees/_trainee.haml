@@ -61,7 +61,7 @@
               = f.text_field attr_name.to_sym, **maxlength(3, "setEvInputColor()"),
                   class: klass, type: "number", placeholder: 0, min: 0, disabled: not_yours?(trainee),
                   max: max_per_stat, value: ((v = trainee.send(attr_name)).zero? ? nil : v),
-                  onblur: "checkGoals(this)", data: {action: "input->form-submission#searchSubmit"}
+                  onblur: "checkGoals()", data: {action: "input->form-submission#searchSubmit"}
 
       .pokerus.switch{class: not_yours?(trainee) ? "disabled" : ""}
         %label
@@ -84,7 +84,7 @@
           - @items_options.each do |item|
             %label
               = f.radio_button :item, item, value: trainee.item == item,
-                "data-action": "click->form-submission#submit", onclick: "checkGoals(this)",
+                "data-action": "click->form-submission#submit", onclick: "checkGoals()",
                 disabled: not_yours?(trainee) || (@generation < 4 && item =~ /power/) || ([1, 2, 7].include?(@generation) && item == "macho_brace")
               %span.tooltipped{data: {tooltip: item_tooltip(item, @generation), position: "top"}}
                 = image_tag "/images/items/held/#{item}.png"

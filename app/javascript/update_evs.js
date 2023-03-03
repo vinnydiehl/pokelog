@@ -151,10 +151,7 @@ function setEvInputColor() {
 }
 
 // Displays an alert if the user's EV goals have been or are about to be exceeded
-//
-// @param onlyDisplayFor [Element within .trainee-info] only display if alert involves
-//                                                       a specific trainee
-function checkGoals(onlyDisplayFor=null) {
+function checkGoals() {
     const generation = getGeneration();
 
     // As the trainees' stats get iterated over, any that need an alert are added to
@@ -206,6 +203,8 @@ function checkGoals(onlyDisplayFor=null) {
                 if (traineeInfo.querySelector("#trainee_pokerus").checked)
                     alertOffset *= 2;
 
+                // Populate the data arrays based on offset's relationship w/ 0,
+                // preventing 0/0 from triggering alerts
                 if (offset < 0) {
                     over.push(data);
                     inputTextColor = "darkred";
@@ -221,7 +220,11 @@ function checkGoals(onlyDisplayFor=null) {
                 }
             }
 
-            inputs.forEach(input => {input.style.color = inputTextColor});
+            inputs.forEach(input => {
+                input.style.color = inputTextColor;
+                input.style.setProperty("--c", inputTextColor);
+            });
+
             if (!hasAlert)
                 deleteCookie(data.cookieName);
         });
@@ -283,3 +286,6 @@ function checkGoals(onlyDisplayFor=null) {
         openModal("goal-alert");
     }
 }
+
+// In most cases all alerts will be shown, but this sets the colors
+runOnLoad(checkGoals);

@@ -317,11 +317,11 @@ $small_radar_size: 250px;
             // (actually just a black placeholder
             //  that disappears on focus)
             &::placeholder {
-              color: black;
+              color: var(--c, black);
               opacity: 1;
             }
-            &:-ms-input-placeholder { color: black; }
-            &::-ms-input-placeholder { color: black; }
+            &:-ms-input-placeholder { color: var(--c, black); }
+            &::-ms-input-placeholder { color: var(--c, black); }
             &:focus {
               &::placeholder {
                 color: transparent;

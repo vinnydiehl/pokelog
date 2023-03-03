@@ -132,7 +132,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
       modal_should_not_display
     end
 
-    context "when an item change is irrelevant" do
+    context "when a power item is equipped for a stat with a 0 goal" do
       before :each do
         set_goal :spe, 10
         find("span", text: "Power Band").click
@@ -167,6 +167,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
         [47, 50, 51].each do |evs|
           set_ev :hp, evs
           click_away
+          sleep 0.5
           find("#close-goal-alert").click
 
           new_color = text_color_of input
@@ -205,6 +206,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
 
       context "and then" do
         before :each do
+          sleep 0.5
           find("#close-goal-alert").click
         end
 
@@ -247,6 +249,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
           # We now have 2 alerts sent, from Atk and Spe from trainee 1
           context "and then" do
             before :each do
+              sleep 0.5
               find("#close-goal-alert").click
             end
 
