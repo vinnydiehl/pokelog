@@ -57,7 +57,7 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
             // Use the class of the input box to get the stat we're adding
             // (hp, atk, etc.) which is the name of the number we need
             let addend = stats[input.closest(".point").classList[1]];
-            let intValue = input.value == "" ? 0 : parseInt(input.value);
+            let intValue = parseInt(input.value) || 0;
             let newValue = intValue + addend;
 
             let evSum = getInputSum(traineeInfo, ".ev-input");
@@ -93,8 +93,9 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
     // Grab the final values from the inputs and use them
     // to update the radar chart
     if (getInputSum(traineeInfo, ".ev-input") <= 510) {
-        final = [...inputs].map(input => input.value);
-        drawRadarChart("radar-chart-trainee_" + id, ...final);
+        drawRadarChart("radar-chart-trainee_" + id,
+            ...[...inputs].map(input => parseInt(input.value) || 0),
+            ...[...traineeInfo.querySelectorAll(".goal-input")].map(input => parseInt(input.value) || 0));
     }
 
     setEvInputColor();
@@ -168,15 +169,24 @@ function checkGoals(onlyDisplayFor=null) {
         // of the stat which we will grab in a minute
         traineeInfo.querySelectorAll(".point").forEach(point => {
             const inputs = [".goal-input", ".ev-input"].map(klass => point.querySelector(klass));
+            const stat = point.classList[1];
+            const evs = parseInt(inputs[1].value) || 0;
+            const goal = parseInt(inputs[0].value);
+            const selectedItem = itemStat(traineeInfo);
+            const offset = goal - evs;
+
+            const data = {
+                name: traineeTitle,
+                cookieName: `${traineeInfo.id}_${stat}`,
+                stat: point.dataset.formatStat,
+                evs: evs,
+                goal: goal
+            }
+
             let inputTextColor = "black";
+            let hasAlert = false;
 
-            let goal = parseInt(inputs[0].value);
             if (goal) {
-                const stat = point.classList[1];
-                const evs = parseInt(inputs[1].value) || 0;
-                const selectedItem = itemStat(traineeInfo);
-                const offset = goal - evs;
-
                 // The expected offset starts at 3 and will be built upon based
                 // on item and Pokérus
                 let alertOffset = 3;
@@ -192,30 +202,24 @@ function checkGoals(onlyDisplayFor=null) {
                 if (traineeInfo.querySelector("#trainee_pokerus").checked)
                     alertOffset *= 2;
 
-                const data = {
-                    name: traineeTitle,
-                    cookieName: `${traineeInfo.id}_${stat}`,
-                    stat: point.dataset.formatStat,
-                    evs: evs,
-                    goal: goal
-                }
-
                 if (offset < 0) {
                     over.push(data);
                     inputTextColor = "darkred";
+                    hasAlert = true;
                 } else if (offset == 0) {
                     onGoal.push(data);
                     inputTextColor = "darkgreen";
+                    hasAlert = true;
                 } else if (offset <= alertOffset) {
                     approaching.push(data);
                     inputTextColor = "darkgoldenrod";
-                } else {
-                    // If we're in here, there was no alert, delete any existing cookie
-                    deleteCookie(data.cookieName);
+                    hasAlert = true;
                 }
             }
 
             inputs.forEach(input => {input.style.color = inputTextColor});
+            if (!hasAlert)
+                deleteCookie(data.cookieName);
         });
     });
 

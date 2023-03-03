@@ -1,5 +1,5 @@
 .radar-chart{id: id ||= "radar-chart"}
 :javascript
   anychart.onDocumentReady(() => {
-    drawRadarChart("#{id}", #{stats.values.join ","});
+    drawRadarChart("#{id}", #{stats.values.join ","}, #{goals.values.join ","});
   });

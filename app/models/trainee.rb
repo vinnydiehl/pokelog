@@ -51,4 +51,15 @@ class Trainee < ApplicationRecord
       spe: spe_ev
     })
   end
+
+  def goals
+    PokeLog::Stats.new({
+      hp: hp_goal,
+      atk: atk_goal,
+      def: def_goal,
+      spa: spa_goal,
+      spd: spd_goal,
+      spe: spe_goal
+    })
+  end
 end

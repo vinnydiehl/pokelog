@@ -50,7 +50,7 @@
           %a{id: "close-#{dom_id trainee}", onclick: "closeTrainee(#{trainee.id})"}
             %i.material-icons close
       #stats-chart
-        = render "shared/radar_chart", stats: trainee.evs, id: "radar-chart-#{dom_id trainee}"
+        = render "shared/radar_chart", stats: trainee.evs, goals: trainee.goals, id: "radar-chart-#{dom_id trainee}"
       - PokeLog::Stats.stats.each do |stat|
         .point{class: stat, "data-format-stat": format_stat(stat)}
           - attr_name, goal_attr_name = "#{stat}_ev", "#{stat}_goal"

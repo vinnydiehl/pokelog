@@ -103,7 +103,8 @@ class TraineesController < ApplicationController
             turbo_stream.update("artwork-#{dom_id}",
                                 partial: "trainees/artwork", locals: {trainee: @trainee}),
             turbo_stream.update(radar_id, partial: "shared/radar_chart",
-                                locals: {stats: @trainee.evs, id: radar_id}),
+                                locals: {stats: @trainee.evs, goals: @trainee.goals,
+                                         id: radar_id}),
             turbo_stream.update("mobile-sprite-#{dom_id}", html:
                                 @trainee.species ? @trainee.species.sprite : nil),
             turbo_stream.update(
