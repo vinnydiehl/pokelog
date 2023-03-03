@@ -10,7 +10,13 @@ TEST_TRAINEES = {
     def_ev: 3,
     spa_ev: 4,
     spd_ev: 5,
-    spe_ev: 6
+    spe_ev: 6,
+    hp_goal: 0,
+    atk_goal: 0,
+    def_goal: 0,
+    spa_goal: 0,
+    spd_goal: 0,
+    spe_goal: 0
   },
   "Voltorb" => {
     species_id: "100",
@@ -23,7 +29,13 @@ TEST_TRAINEES = {
     def_ev: 4,
     spa_ev: 3,
     spd_ev: 2,
-    spe_ev: 1
+    spe_ev: 1,
+    hp_goal: 0,
+    atk_goal: 0,
+    def_goal: 0,
+    spa_goal: 0,
+    spd_goal: 0,
+    spe_goal: 0
   },
   "Voltorb (Hisuian)" => {
     species_id: "100-h",
@@ -31,12 +43,18 @@ TEST_TRAINEES = {
     level: 1,
     nature: "rash",
     item: "macho_brace",
-    hp_ev: 10,
+    hp_ev: 2,
     atk_ev: 0,
     def_ev: 0,
     spa_ev: 150,
     spd_ev: 0,
-    spe_ev: 150
+    spe_ev: 150,
+    hp_goal: 0,
+    atk_goal: 0,
+    def_goal: 0,
+    spa_goal: 0,
+    spd_goal: 0,
+    spe_goal: 0
   }
 }
 SINGLE_DISPLAY_NAME, SINGLE_ATTRS = TEST_TRAINEES.to_a.last
@@ -66,9 +84,18 @@ def launch_multi_trainee
 end
 
 # Set a trainee's EV to a certain value. Works with or without _ev suffix.
+# Supports _goal with args[:suffix] but it's really hacky
 def set_ev(stat, value, **args)
-  fill_in "trainee_#{stat = stat.to_s.sub(/_ev/, "")}_ev", with: value
-  wait_for :"#{stat}_ev", value, attrs: args[:attrs]
+  stat = :"#{stat.to_s.sub /_(ev|goal)/, ""}_#{args[:suffix] ||= "ev"}"
+
+  find("#{args[:attrs] ? "#trainee_#{find_id args[:attrs]} " : ''}#trainee_#{stat}").set value
+
+  wait_for stat, value, attrs: args[:attrs]
+end
+
+# Makes the above feel less hacky in use
+def set_goal(stat, value, **args)
+  set_ev stat, value, **args.merge(suffix: "goal")
 end
 
 # Find a trainee by the value (Hash) of the test cases above
@@ -85,8 +112,10 @@ def find_id(attrs)
 end
 
 STATS = PokeLog::Stats.stats.map { |s| :"#{s}_ev" }
+GOALS = PokeLog::Stats.stats.map { |s| :"#{s}_goal" }
 
 ITEMS = YAML.load_file("data/items.yml").keys
+POWER_ITEMS = ITEMS[1..-1]
 
 # Test cases for kill buttons. These selections cover a good range of cases;
 # each stat is tested, some affect multiple stats, increase stats by different
@@ -149,11 +178,13 @@ def test_trainee_ui(display_name, attrs)
         end
       end
 
-      STATS.each do |stat|
-        expected_value = attrs[stat].zero? ? nil : attrs[stat].to_s
-        it "#{stat}: #{expected_value || 'blank'}" do
-          within "#trainee_#{find_id attrs}" do
-            expect(find_field("trainee_#{stat}").value).to eq expected_value
+      [STATS, GOALS].each do |attr_array|
+        attr_array.each do |attr|
+          expected_value = attrs[attr].zero? ? nil : attrs[attr].to_s
+          it "#{attr}: #{expected_value || 'blank'}" do
+            within "#trainee_#{find_id attrs}" do
+              expect(find_field("trainee_#{attr}").value).to eq expected_value
+            end
           end
         end
       end
@@ -179,6 +210,20 @@ def test_max_evs_per_stat(max)
         expect(Trainee.first.hp_ev).to eq max
       end
     end
+  end
+end
+
+def check_border_color(element, color)
+  expect(element.style("border-color").values.first).to eq "rgb(#{{
+    red: "255, 0, 0",
+    green: "0, 128, 0",
+    black: "0, 0, 0"
+  }[color]})"
+end
+
+def check_all_border_colors(color)
+  find_all(".ev-container").each do |input|
+    check_border_color input, color
   end
 end
 
@@ -247,6 +292,10 @@ def test_server_interaction
           expect(find ".sprite-and-types").to have_css ".#{type}"
         end
       end
+
+      it "changes the trainee's hidden title" do
+        expect(find(".trainee-title", visible: false).text(:all)).to eq Trainee.first.title
+      end
     end
 
     context "when changing the nickname" do
@@ -266,6 +315,10 @@ def test_server_interaction
 
       it "changes the page title" do
         expect(find("#title").text).to eq Trainee.first.title
+      end
+
+      it "changes the trainee's hidden title" do
+        expect(find(".trainee-title", visible: false).text(:all)).to eq Trainee.first.title
       end
     end
 
@@ -320,6 +373,16 @@ def test_server_interaction
           set_ev stat, SINGLE_ATTRS[stat]
 
           expect(Trainee.first.send stat).to eq SINGLE_ATTRS[stat]
+        end
+      end
+    end
+
+    context "when changing EV goals" do
+      GOALS.each do |goal|
+        it "updates #{goal}" do
+          set_goal goal, (value = 1)
+
+          expect(Trainee.first.send goal).to eq value
         end
       end
     end

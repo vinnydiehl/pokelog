@@ -1,11 +1,26 @@
-function radarYValue(value, y_max) {
-    const offset = y_max / 35.0;
+function radarYValue(value, yMax) {
+    const offset = yMax / 35.0;
     return value <= offset ? offset : value;
 }
 
-function drawRadarChart(id, hp, atk, def, spa, spd, spe) {
+function chartValues(yMax, hp, atk, def, spa, spd, spe) {
+    return [
+        {x: "HP", value: radarYValue(hp, yMax)},
+        {x: "Atk", value: radarYValue(atk, yMax)},
+        {x: "Def", value: radarYValue(def, yMax)},
+        {x: "Spe", value: radarYValue(spe, yMax)},
+        {x: "Sp.D", value: radarYValue(spd, yMax)},
+        {x: "Sp.A", value: radarYValue(spa, yMax)},
+    ];
+}
+
+function drawRadarChart(id, hp, atk, def, spa, spd, spe,
+                        hpGoal=0, atkGoal=0, defGoal=0, spaGoal=0, spdGoal=0, speGoal=0) {
+    const usingGoals = (hpGoal + atkGoal + defGoal + spaGoal + spdGoal + speGoal) > 0;
+
     // Display a zoomed chart
-    let y_max = Math.max(hp, atk, def, spa, spd, spe);
+    let yMax = Math.max(hp, atk, def, spa, spd, spe,
+        ...(usingGoals ? [hpGoal, atkGoal, defGoal, spaGoal, spdGoal, speGoal] : []));
 
     let chart = anychart.radar();
 
@@ -20,21 +35,17 @@ function drawRadarChart(id, hp, atk, def, spa, spd, spe) {
 
     chart.yAxis().ticks().enabled(false);
 
-    chart.area([
-        {x: "HP", value: radarYValue(hp, y_max)},
-        {x: "Atk", value: radarYValue(atk, y_max)},
-        {x: "Def", value: radarYValue(def, y_max)},
-        {x: "Spe", value: radarYValue(spe, y_max)},
-        {x: "Sp.D", value: radarYValue(spd, y_max)},
-        {x: "Sp.A", value: radarYValue(spa, y_max)},
-    ]);
+    chart.area(chartValues(yMax, hp, atk, def, spa, spd, spe));
 
-    // y_max needs to be positive or else the chart will
+    if (usingGoals)
+        chart.line(chartValues(yMax, hpGoal, atkGoal, defGoal, spaGoal, spdGoal, speGoal));
+
+    // yMax needs to be positive or else the chart will
     // be filled when there are no EVs to show
-    if (y_max <= 0)
-        y_max++;
+    if (yMax <= 0)
+        yMax++;
 
-    chart.yScale().maximum(y_max).ticks({"interval": y_max / 4});
+    chart.yScale().maximum(yMax).ticks({"interval": yMax / 4});
 
     // If the chart already exists due to it being cached, delete the existing
     // one before loading the new one

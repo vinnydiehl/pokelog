@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_21_190321) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_27_065525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
@@ -44,6 +44,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_21_190321) do
     t.integer "spe_ev", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "hp_goal", default: 0
+    t.integer "atk_goal", default: 0
+    t.integer "def_goal", default: 0
+    t.integer "spa_goal", default: 0
+    t.integer "spd_goal", default: 0
+    t.integer "spe_goal", default: 0
     t.index ["user_id"], name: "index_trainees_on_user_id"
   end
 

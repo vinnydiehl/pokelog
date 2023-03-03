@@ -3,6 +3,7 @@
 
 = javascript_include_tag "add_to_party"
 = javascript_include_tag "character_counter"
+= javascript_include_tag "cookies"
 = javascript_include_tag "fixed_action_init"
 = javascript_include_tag "open_modal"
 = javascript_include_tag "select_init"
@@ -31,6 +32,13 @@
         -# This button's href is set on click by JavaScript
         %a#new-trainee-btn.btn-floating.red
           %i.material-icons add
+
+  #goal-alert.modal
+    .modal-content
+      %h4#goal-alerts-title
+      #goal-table
+    .modal-footer
+      %a#close-goal-alert.modal-close.waves-effect.waves-teal.btn-flat OK
 
   #add-to-party-modal.modal
     .modal-content

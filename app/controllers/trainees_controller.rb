@@ -93,19 +93,22 @@ class TraineesController < ApplicationController
 
         titles = helpers.trainees_show_title(JSON.parse params[:trainees])
         radar_id = "radar-chart-#{helpers.dom_id @trainee}"
+        dom_id = helpers.dom_id @trainee
 
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update("title", html: titles[:title]),
             turbo_stream.update("title-mobile", html: titles[:mobile_title]),
-            turbo_stream.update("artwork-#{helpers.dom_id @trainee}",
+            turbo_stream.update("trainee-title-#{dom_id}", html: @trainee.title),
+            turbo_stream.update("artwork-#{dom_id}",
                                 partial: "trainees/artwork", locals: {trainee: @trainee}),
             turbo_stream.update(radar_id, partial: "shared/radar_chart",
-                                locals: {stats: @trainee.evs, id: radar_id}),
-            turbo_stream.update("mobile-sprite-#{helpers.dom_id @trainee}", html:
+                                locals: {stats: @trainee.evs, goals: @trainee.goals,
+                                         id: radar_id}),
+            turbo_stream.update("mobile-sprite-#{dom_id}", html:
                                 @trainee.species ? @trainee.species.sprite : nil),
             turbo_stream.update(
-              "types-#{helpers.dom_id @trainee}",
+              "types-#{dom_id}",
               html: @trainee.species ? @trainee.species.type_badges(size: :large) : nil
             )
           ]
