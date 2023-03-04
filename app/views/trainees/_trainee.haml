@@ -63,12 +63,13 @@
                   max: max_per_stat, value: ((v = trainee.send(attr_name)).zero? ? nil : v),
                   onblur: "checkGoals()", data: {action: "input->form-submission#searchSubmit"}
 
-      .pokerus.switch{class: not_yours?(trainee) ? "disabled" : ""}
-        %label
-          = f.check_box :pokerus, value: trainee.pokerus, disabled: not_yours?(trainee),
-                                  data: {action: "input->form-submission#submit"}
-          %span.lever
-          Pokérus
+      - if cookies[:generation].blank? || @generation != 9
+        .pokerus.switch{class: not_yours?(trainee) ? "disabled" : ""}
+          %label
+            = f.check_box :pokerus, value: trainee.pokerus, disabled: not_yours?(trainee),
+                                    data: {action: "input->form-submission#submit"}
+            %span.lever
+            Pokérus
 
   -# Items Menu
   %ul.collapsible.items-menu

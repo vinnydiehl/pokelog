@@ -11,6 +11,28 @@ RSpec.feature "generations:", type: :feature, js: true do
       launch_new_blank_trainee
     end
 
+    # Basic funtionality tests to ensure that a feature isn't broken in any generation
+    (3..9).each do |gen|
+      context "generation #{gen}:", focus: true do
+        it "kill buttons work" do
+          fill_in "Search", with: "Shellder" # 1 Def
+          find("#species_090").click
+          wait_for :def_ev, 1
+
+          expect(Trainee.first.def_ev).to eq 1
+        end
+
+        it "goals work" do
+          set_goal :hp, 150
+          set_ev :hp, 149
+          click_away
+          sleep 0.5
+
+          expect(page).to have_selector "#goal-alert", visible: true
+        end
+      end
+    end
+
     # Unavailable items
     {3 => POWER_ITEMS, 7 => [:macho_brace]}.each do |gen, items|
       context "generation #{gen}:" do
@@ -55,11 +77,32 @@ RSpec.feature "generations:", type: :feature, js: true do
      [(6..9), 252]].each do |range, max_evs|
       range.each do |gen|
         context "generation #{gen}:" do
-          before(:each) do
+          before :each do
             set_generation gen
           end
 
           test_max_evs_per_stat max_evs
+        end
+      end
+    end
+
+    # Pokérus
+    [[(3..8), true ],
+     [[9],    false]].each do |range, pokerus_available|
+      range.each do |gen|
+        context "generation #{gen}:" do
+          before :each do
+            set_generation gen
+            open_consumables_menu
+          end
+
+          it "the Pokérus switch is#{pokerus_available ? '' : ' not'} available" do
+            if pokerus_available
+              expect(page).to have_selector ".pokerus.switch"
+            else
+              expect(page).not_to have_selector ".pokerus.switch"
+            end
+          end
         end
       end
     end
@@ -69,7 +112,7 @@ RSpec.feature "generations:", type: :feature, js: true do
      [(7..9), 8]].each do |range, boost|
       range.each do |gen|
         context "generation #{gen}:" do
-          before(:each) do
+          before :each do
             set_generation gen
             open_consumables_menu
           end
@@ -87,7 +130,7 @@ RSpec.feature "generations:", type: :feature, js: true do
                [250, 252]]]].each do |range, test_cases|
       range.each do |gen|
         context "generation #{gen}:" do
-          before(:each) do
+          before :each do
             set_generation gen
             open_consumables_menu
           end
@@ -102,7 +145,7 @@ RSpec.feature "generations:", type: :feature, js: true do
      [(5..9), true ]].each do |range, availability|
       range.each do |gen|
         context "generation #{gen}:" do
-          before(:each) do
+          before :each do
             set_generation gen
             open_consumables_menu
           end
@@ -120,7 +163,7 @@ RSpec.feature "generations:", type: :feature, js: true do
      [(8..9), "Feathers"]].each do |range, name|
       range.each do |gen|
         context "generation #{gen}:" do
-          before(:each) do
+          before :each do
             set_generation gen
             open_consumables_menu
           end
@@ -142,7 +185,7 @@ RSpec.feature "generations:", type: :feature, js: true do
                          [  5, 0  ]]]].each do |range, test_cases|
       range.each do |gen|
         context "generation #{gen}:" do
-          before(:each) do
+          before :each do
             set_generation gen
             open_consumables_menu
           end
@@ -162,7 +205,7 @@ RSpec.feature "generations:", type: :feature, js: true do
        [8, "Enamorus", "Sprigatito"],
        [9, "Sprigatito", "Enamorus"]].each do |gen, included, not_included|
           context "generation #{gen}:" do
-            before(:each) do
+            before :each do
               set_generation gen
             end
 

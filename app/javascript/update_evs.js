@@ -41,8 +41,9 @@ function updateEvs(traineeInfo, iHp, iAtk, iDef, iSpA, iSpD, iSpe,
         else if (selectedItem)
             stats[selectedItem] += generation > 6 ? 8 : 4;
 
-        // Apply Pokérus last
-        if (traineeInfo.querySelector("#trainee_pokerus").checked)
+        // Apply Pokérus last. The switch might not be there so check
+        const pkrsSwitch = traineeInfo.querySelector("#trainee_pokerus");
+        if (pkrsSwitch && pkrsSwitch.checked)
             for (const stat in stats)
                 stats[stat] *= 2;
     }
@@ -199,8 +200,9 @@ function checkGoals() {
                 else if (selectedItem == stat)
                     alertOffset += generation > 6 ? 8 : 4;
 
-                // Apply Pokérus last
-                if (traineeInfo.querySelector("#trainee_pokerus").checked)
+                // Apply Pokérus last. The switch might not be there so check
+                const pkrsSwitch = traineeInfo.querySelector("#trainee_pokerus");
+                if (pkrsSwitch && pkrsSwitch.checked)
                     alertOffset *= 2;
 
                 // Populate the data arrays based on offset's relationship w/ 0,

@@ -31,7 +31,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
     context "when a goal is set:" do
       [[nil,           nil, 3],
        [:macho_brace,  nil, 6],
-       [:power_belt,   nil, 11],
+       [:power_belt,   9,  11],
        [:power_belt,   6,   7],
        [:power_bracer, nil, 3]].each do |item, generation, offset|
         context "generation: #{generation || 'none'} |" do
@@ -45,44 +45,47 @@ RSpec.feature "EV goals:", type: :feature, js: true do
             end
 
             [true, false].each do |pokerus|
-              context "pokerus: #{pokerus} |" do
-                before :each do
-                  @offset = offset
-
-                  if pokerus
-                    find(".pokerus label").click
-                    @offset *= 2
-                  end
-
-                  set_goal :def, (@goal = 150)
-                end
-
-                context "when the EV is #{offset + 1} away" do
+              # There is no Pokérus switch in gen 9 so don't run those 3 cases
+              unless pokerus && generation == 9
+                context "pokerus: #{pokerus && generation != 9} |" do
                   before :each do
-                    set_ev :def, @goal - @offset - 1
-                    click_away
+                    @offset = offset
+
+                    if pokerus
+                      find(".pokerus label").click
+                      @offset *= 2
+                    end
+
+                    set_goal :def, (@goal = 150)
                   end
 
-                  modal_should_not_display
-                end
+                  context "when the EV is #{offset + 1} away" do
+                    before :each do
+                      set_ev :def, @goal - @offset - 1
+                      click_away
+                    end
 
-                context "when the EV is #{offset} away" do
-                  before :each do
-                    set_ev :def, @goal - @offset
-                    click_away
+                    modal_should_not_display
                   end
 
-                  modal_should_display
-                end
+                  context "when the EV is #{offset} away" do
+                    before :each do
+                      set_ev :def, @goal - @offset
+                      click_away
+                    end
 
-                context "when you use a kill button to enter alert range" do
-                  before :each do
-                    set_ev :def, @goal - @offset - 1
-                    fill_in "Search", with: "Squirtle" # 1 Def
-                    find("#species_007").click
+                    modal_should_display
                   end
 
-                  modal_should_display
+                  context "when you use a kill button to enter alert range" do
+                    before :each do
+                      set_ev :def, @goal - @offset - 1
+                      fill_in "Search", with: "Shellder" # 1 Def
+                      find("#species_090").click
+                    end
+
+                    modal_should_display
+                  end
                 end
               end
             end
