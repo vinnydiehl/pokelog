@@ -17,6 +17,10 @@
       z-index: 0;
     }
 
+    a {
+      color: black;
+    }
+
     &.sprite, &.check {
       width: 0;
       min-width: fit-content;
