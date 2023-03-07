@@ -47,7 +47,7 @@
                        oninput: "updatePaste()"
     .input-field.paste
       %label PokéPaste
-      %textarea#paste.materialize-textarea{oninput: "enablePasteButton()"}
+      %textarea#paste.materialize-textarea{maxlength: 5000, oninput: "enablePasteButton()"}
   .modal-footer
     %a#cancel-pokepaste.modal-close.waves-effect.waves-teal.btn-flat Cancel
     %a#confirm-pokepaste.modal-close.waves-effect.waves-teal.btn-flat.disabled{onclick: "submitPaste()"} Add

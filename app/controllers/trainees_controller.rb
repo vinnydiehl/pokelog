@@ -145,12 +145,17 @@ class TraineesController < ApplicationController
   # GET /trainees/paste
   def paste
     if helpers.logged_in?
+      if params[:paste].size > 5000
+        flash[:notice] = "Max paste length is 5000 characters."
+        return redirect_back fallback_location: root_path
+      end
+
       begin
         team = PokePaste.parse(params[:paste])
       rescue
         flash[:notice] =
           "There was a problem parsing your PokéPaste. Double-check your formatting."
-        redirect_back fallback_location: root_path
+        return redirect_back fallback_location: root_path
       end
 
       team = team.map do |pkmn|
