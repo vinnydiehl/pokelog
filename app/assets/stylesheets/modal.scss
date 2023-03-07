@@ -1,3 +1,5 @@
+@import "include/variables";
+
 .modal-footer {
   // Form elements disguised as modal buttons
   input {
@@ -13,7 +15,30 @@
 
 // PokéPaste modal
 #add-pokepaste.modal {
+  overflow-y: none;
+
+  @media (max-width: #{$species-breakpoint}) {
+    h4 {
+      font-size: 2rem;
+    }
+
+    input, textarea {
+      font-size: 0.75rem;
+    }
+  }
+
   .input-field.url {
     margin-top: 1.75rem;
+  }
+
+  .input-field.paste textarea {
+    overflow-y: auto;
+    max-height: 50vh;
+    margin: 0.5rem 0 2rem 0;
+  }
+
+  .modal-footer {
+    position: absolute;
+    bottom: 0;
   }
 }

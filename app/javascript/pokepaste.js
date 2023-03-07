@@ -10,6 +10,8 @@ function enablePasteButton() {
     M.textareaAutoResize(pasteField);
 }
 
+runOnLoad(enablePasteButton);
+
 // Fetch paste from https://pokepast.es and insert it into paste field
 function updatePaste() {
     // 200ms timeout between input and update

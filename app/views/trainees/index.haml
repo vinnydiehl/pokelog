@@ -44,8 +44,8 @@
     .input-field.url
       = label_tag :url, "URL (optional)"
       = text_field_tag :url, nil, placeholder: "https://pokepast.es/",
-                       form: "dummy", oninput: "updatePaste()"
-    .input-field
+                       oninput: "updatePaste()"
+    .input-field.paste
       %label PokéPaste
       %textarea#paste.materialize-textarea{oninput: "enablePasteButton()"}
   .modal-footer
