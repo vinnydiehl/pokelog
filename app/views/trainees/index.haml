@@ -41,13 +41,15 @@
 #add-pokepaste.modal
   .modal-content
     %h4 Add from PokéPaste
-    .input-field.url
-      = label_tag :url, "URL (optional)"
-      = text_field_tag :url, nil, placeholder: "https://pokepast.es/",
-                       oninput: "updatePaste()"
-    .input-field.paste
-      %label PokéPaste
-      %textarea#paste.materialize-textarea{maxlength: 5000, oninput: "enablePasteButton()"}
+    .input-container
+      .input-field.url
+        = label_tag :url, "URL (optional)"
+        = text_field_tag :url, nil, placeholder: "https://pokepast.es/",
+                         oninput: "updatePaste()"
+      .input-field.paste
+        %label PokéPaste
+        %textarea#paste.materialize-textarea{maxlength: 5000, oninput: "enablePasteButton()"}
+      .footer-spacer
   .modal-footer
     %a#cancel-pokepaste.modal-close.waves-effect.waves-teal.btn-flat Cancel
     %a#confirm-pokepaste.modal-close.waves-effect.waves-teal.btn-flat.disabled{onclick: "submitPaste()"} Add

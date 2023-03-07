@@ -27,17 +27,21 @@
     }
   }
 
-  .input-field.url {
-    margin-top: 1.75rem;
-  }
+  .modal-content {
+    // Make textarea scrollable
+    .input-container {
+      overflow-y: auto;
+      max-height: 50vh;
 
-  .input-field.paste textarea {
-    margin: 0.5rem 0 2rem 0;
-    overflow-y: auto;
+      .input-field.url {
+        margin-top: 1.75rem;
+      }
+    }
 
-    max-height: 50vh;
-    @media (max-width: #{$species-breakpoint}) {
-      max-height: 40vh;
+    // Hack to prevent bottom of textarea from getting clipped by the footer
+    padding-bottom: 0;
+    .footer-spacer {
+      height: 64px;
     }
   }
 
