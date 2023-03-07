@@ -20,11 +20,11 @@ class TraineesController < ApplicationController
     render "errors/not_found", status: 404 if @party.empty?
 
     @nil_nature_option = ["Nature", ""]
-    @nature_options = YAML.load_file("data/natures.yml").keys.sort.map do |n|
+    @nature_options = PokeLog::NATURES.keys.sort.map do |n|
       [n.capitalize, n]
     end
 
-    @items_options = YAML.load_file("data/items.yml").keys
+    @items_options = PokeLog::ITEMS.keys
 
     # The behavior defaults to gen 9 throughout most of the UI
     @generation = cookies[:generation] ? cookies[:generation].to_i : 9
@@ -142,8 +142,49 @@ class TraineesController < ApplicationController
     end
   end
 
-  # POST /trainees/paste
+  # GET /trainees/paste
   def paste
+    if helpers.logged_in?
+      begin
+        team = PokePaste.parse(params[:paste])
+      rescue
+        flash[:notice] =
+          "There was a problem parsing your PokéPaste. Double-check your formatting."
+        redirect_back fallback_location: root_path
+      end
+
+      team = team.map do |pkmn|
+        # Species and form are separated by "-". Some species names have "-" in
+        # them, though, so tokenize the name, shift off as many as we need
+        species_tokens = pkmn.species.split "-"
+        name = Species.all.select { |s| s.name =~ /-/ }.any? { |s| pkmn.species.starts_with? s.name } ? species_tokens.shift(2).join("-") : species_tokens.shift
+
+        # Now we're left with the form.
+        form = species_tokens.join "-"
+
+        species = Species.all.find do |species|
+          species.name.downcase ==
+            name.downcase &&
+            ((!form.present? && !species.form) ||
+             species.form.downcase.starts_with?(form.downcase[0..2]))
+        end
+
+        trainee = Trainee.new(
+          user: @current_user,
+          # The above should work for every species but if ever there's trouble,
+          # put the species into the nickname as a backup
+          species_id: (species.present? ? species.id : nil),
+          nickname: (species.blank? ? pkmn.species : pkmn.nickname),
+          level: pkmn.level,
+          nature: PokeLog::NATURES.keys.include?(pkmn.nature.to_s) ? pkmn.nature : nil,
+          **PokeLog::Stats.stats.map { |stat| {"#{stat}_goal": pkmn.evs[stat]} }.reduce(&:merge)
+        )
+        trainee.save!
+        trainee
+      end
+
+      redirect_to helpers.multi_trainees_path(team)
+    end
   end
 
   # POST /trainees/paste/fetch
@@ -157,18 +198,19 @@ class TraineesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_trainee
-      @trainee = Trainee.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def trainee_params
-      params.require(:trainee).permit(:user_id, :team_id, :species_id, :level, :pokerus, :start_stats, :trained_stats, :kills, :nature, :evs)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_trainee
+    @trainee = Trainee.find(params[:id])
+  end
 
-    # Authentication for trainee modification
-    def allowed_to_edit?(trainee)
-      !@current_user.blank? && @current_user == trainee.user
-    end
+  # Only allow a list of trusted parameters through.
+  def trainee_params
+    params.require(:trainee).permit(:user_id, :team_id, :species_id, :level, :pokerus, :start_stats, :trained_stats, :kills, :nature, :evs)
+  end
+
+  # Authentication for trainee modification
+  def allowed_to_edit?(trainee)
+    !@current_user.blank? && @current_user == trainee.user
+  end
 end

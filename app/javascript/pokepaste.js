@@ -2,8 +2,10 @@
 function enablePasteButton() {
     const pasteField = document.querySelector("#add-pokepaste #paste");
 
-    document.getElementById("confirm-pokepaste").disabled =
-        pasteField.value.trim() === "";
+    if (pasteField.value.trim() === "")
+        document.getElementById("confirm-pokepaste").classList.add("disabled");
+    else
+        document.getElementById("confirm-pokepaste").classList.remove("disabled");
 
     M.textareaAutoResize(pasteField);
 }
@@ -13,12 +15,11 @@ function updatePaste() {
     // 200ms timeout between input and update
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-        const urlField = document.querySelector("#add-pokepaste #url");
         const pasteField = document.querySelector("#add-pokepaste #paste");
-        const urlValue = urlField.value.trim();
+        const url = document.querySelector("#add-pokepaste #url").value.trim();
 
         // Only fetch the paste if the URL field is not empty
-        if (urlValue !== "") {
+        if (url !== "") {
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "/trainees/paste/fetch", true);
 
@@ -35,7 +36,16 @@ function updatePaste() {
                     enablePasteButton();
                 }
             };
-            xhr.send("url=" + encodeURIComponent(urlValue));
+
+            xhr.send("url=" + encodeURIComponent(url));
         }
     }, 200);
+}
+
+// GET /paste
+function submitPaste() {
+    Turbo.visit(
+        `/trainees/paste?paste=${encodeURIComponent(document.querySelector('#add-pokepaste #paste').value)}`,
+        {action: 'replace'}
+    );
 }

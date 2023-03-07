@@ -36,8 +36,8 @@ TEST_PASTE_ID = "e3cf76c6eca678f6"
 TEST_PASTE_ATTRS = {
   "122-g" => {
     nickname: "Test Mime",
-    nature: :careful,
-    level: nil,
+    nature: "careful",
+    level: 50,
     hp_ev: 0,
     atk_ev: 0,
     def_ev: 0,
@@ -53,7 +53,7 @@ TEST_PASTE_ATTRS = {
   },
   "184" => {
     nickname: nil,
-    nature: nil,
+    nature: "hardy",
     level: 75,
     hp_ev: 0,
     atk_ev: 0,
@@ -70,8 +70,8 @@ TEST_PASTE_ATTRS = {
   },
   "998" => {
     nickname: nil,
-    nature: nil,
-    level: nil,
+    nature: "hardy",
+    level: 50,
     hp_ev: 0,
     atk_ev: 0,
     def_ev: 0,
@@ -108,7 +108,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
         end
 
         it "enables the add button" do
-          expect(page).to have_selector "#confirm-pokepaste:not([disabled])"
+          expect(page).to have_selector "#confirm-pokepaste:not(.disabled)"
         end
 
         if name == :URL
@@ -137,7 +137,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
       end
 
       it "keeps the add button disabled" do
-        expect(page).to have_selector "#confirm-pokepaste[disabled]"
+        expect(page).to have_selector "#confirm-pokepaste.disabled"
       end
     end
   end
@@ -148,16 +148,17 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
     end
 
     it "enables the add button" do
-      expect(page).to have_selector "#confirm-pokepaste:not([disabled])"
+      expect(page).to have_selector "#confirm-pokepaste:not(.disabled)"
     end
 
     context "when you click the add button" do
       before :each do
         find("#confirm-pokepaste").click
+        sleep 0.5
       end
 
       it "creates the new trainees" do
-        expect(Trainee.all.size).to eq 3
+        expect(Trainee.all.size).to eq TEST_PASTE_ATTRS.size
       end
 
       TEST_PASTE_ATTRS.each_with_index do |(species_id, attrs), index|
@@ -187,7 +188,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
       end
 
       it "disables the add button" do
-        expect(page).to have_selector "#confirm-pokepaste[disabled]"
+        expect(page).to have_selector "#confirm-pokepaste.disabled"
       end
     end
   end
