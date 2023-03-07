@@ -1,6 +1,7 @@
 - provide :title, "Trainees"
 
 = javascript_include_tag "open_modal"
+= javascript_include_tag "pokepaste"
 = javascript_include_tag "sidenav_init"
 = javascript_include_tag "trainees_index"
 
@@ -19,8 +20,11 @@
       Delete
 
   -# + button
-  = link_to new_trainee_path, id: "new-trainee", class: "btn-floating btn-large waves-effect waves-light red" do
-    %i.material-icons add
+  .add-buttons
+    %a#add-pokepaste-btn.btn-floating.waves-effect.waves-light.red{onclick: "openModal('add-pokepaste')"}
+      %i.material-icons content_paste
+    = link_to new_trainee_path, id: "new-trainee", class: "btn-floating btn-large waves-effect waves-light red" do
+      %i.material-icons add
 
 #delete-multi.modal
   .modal-content
@@ -33,3 +37,17 @@
     %a#cancel-delete.modal-close.waves-effect.waves-teal.btn-flat Cancel
     %a#confirm-delete.modal-close.waves-effect.waves-teal.btn-flat.disabled{onclick: "visitSelectedTrainees('/delete')"}
       Delete
+
+#add-pokepaste.modal
+  .modal-content
+    %h4 Add from PokéPaste
+    .input-field.url
+      = label_tag :url, "URL (optional)"
+      = text_field_tag :url, nil, placeholder: "https://pokepast.es/",
+                       oninput: "updatePaste()"
+    .input-field.paste
+      %label PokéPaste
+      %textarea#paste.materialize-textarea{maxlength: 5000, oninput: "enablePasteButton()"}
+  .modal-footer
+    %a#cancel-pokepaste.modal-close.waves-effect.waves-teal.btn-flat Cancel
+    %a#confirm-pokepaste.modal-close.waves-effect.waves-teal.btn-flat.disabled{onclick: "submitPaste()"} Add

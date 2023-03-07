@@ -1,3 +1,5 @@
+@import "include/variables";
+
 #new-trainee {
   margin-top: 10px;
 }
@@ -33,7 +35,28 @@
   align-items: center;
   justify-content: space-between;
 
-  #delete-btn {
-    margin-left: 0.5rem;
+  .train-and-delete {
+    display: flex;
+    gap: 0.5rem;
+
+    @media (max-width: #{$species-breakpoint}) {
+      a {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  .add-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    #add-pokepaste-btn {
+      margin-top: 10px;
+
+      i {
+        font-size: 1.5rem;
+      }
+    }
   }
 }
