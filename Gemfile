@@ -57,6 +57,7 @@ end
 gem "active_hash", "~> 3.1"
 gem "email_validator", "~> 2.2"
 gem "google_sign_in", "~> 1.2"
+gem "pokepaste", "~> 0.1"
 
 # HAML/SCSS Preprocessors
 gem "haml", "~> 6.1"

@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get "/trainees/:ids/delete", to: "trainees#delete_multi"
   resources :trainees
 
+  post "/trainees/paste", to: "trainees#paste"
+  post "/trainees/paste/fetch", to: "trainees#fetch"
+
   post "/login/submit", to: "users#login"
   post "/register", to: "users#register"
   post "/register/submit", to: "users#create"

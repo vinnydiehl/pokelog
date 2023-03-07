@@ -1,6 +1,7 @@
 - provide :title, "Trainees"
 
 = javascript_include_tag "open_modal"
+= javascript_include_tag "pokepaste"
 = javascript_include_tag "sidenav_init"
 = javascript_include_tag "trainees_index"
 
@@ -43,10 +44,11 @@
       %h4 Add from PokéPaste
       .input-field.url
         = label_tag :url, "URL (optional)"
-        = text_field_tag :url, nil, placeholder: "https://pokepast.es/", form: "dummy"
+        = text_field_tag :url, nil, placeholder: "https://pokepast.es/",
+                         form: "dummy", oninput: "updatePaste()"
       .input-field
         = f.label :paste, "PokéPaste"
-        = f.text_area :paste, class: "materialize-textarea"
+        = f.text_area :paste, class: "materialize-textarea", oninput: "enablePasteButton()"
     .modal-footer
       %a#cancel-pokepaste.modal-close.waves-effect.waves-teal.btn-flat Cancel
       = f.submit "Add", id: "confirm-pokepaste", disabled: true,
