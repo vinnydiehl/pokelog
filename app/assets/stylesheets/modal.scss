@@ -3,5 +3,17 @@
   input {
     color: #343434;
     cursor: pointer;
+
+    &:disabled {
+      color: grey;
+      cursor: auto;
+    }
+  }
+}
+
+// PokéPaste modal
+#add-pokepaste.modal {
+  .input-field.url {
+    margin-top: 1.75rem;
   }
 }

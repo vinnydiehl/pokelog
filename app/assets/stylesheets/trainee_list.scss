@@ -36,4 +36,18 @@
   #delete-btn {
     margin-left: 0.5rem;
   }
+
+  .add-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    #add-pokepaste-btn {
+      margin-top: 10px;
+
+      i {
+        font-size: 1.5rem;
+      }
+    }
+  }
 }
