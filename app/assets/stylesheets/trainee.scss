@@ -164,7 +164,7 @@ $small_radar_size: 250px;
     $point_offset: $radar_size / 2 + 25px;
     $side_offset: $radar_size / 2 + 50px;
     $small_offset: $point_offset / 2;
-    $small_side_offset: $side_offset / 2;
+    $small_side_offset: $side_offset / 2 + 5px;;
 
     .ev-info {
       position: relative;
@@ -224,6 +224,9 @@ $small_radar_size: 250px;
 
         // Correct enigmatic diagonal misalignment
         margin: -2.4em 0 0 -3.66em;
+        @media (max-width: #{$species-breakpoint}) {
+          margin-left: -3.82em;
+        }
 
         text-align: center;
 
