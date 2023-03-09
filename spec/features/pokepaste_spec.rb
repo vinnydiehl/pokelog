@@ -93,6 +93,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
     log_in
     visit trainees_path
     find("#add-pokepaste-btn").click
+    sleep 0.5
   end
 
   context "when entering a URL" do
