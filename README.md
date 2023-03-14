@@ -1,4 +1,4 @@
-# PokéLog [![vinnydiehl](https://circleci.com/gh/vinnydiehl/pokelog.svg?style=shield)](https://app.circleci.com/pipelines/github/vinnydiehl/pokelog)
+# PokéLog [![vinnydiehl](https://circleci.com/gh/vinnydiehl/pokelog/tree/trunk.svg?style=shield)](https://app.circleci.com/pipelines/github/vinnydiehl/pokelog/?branch=trunk)
 
 http://www.pokelog.net/
 
