@@ -46,7 +46,7 @@ jobs:
           command: |
             mkdir ~/test_reports
             TEST_FILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-            bin/rspec --fail-fast --out ~/test_reports/rspec.xml $TEST_FILES
+            bin/rspec --fail-fast --format RspecJunitFormatter --out ~/test_reports/rspec.xml $TEST_FILES
       # Save test results for timing analysis
       - store_test_results:
           path: ~/test_reports

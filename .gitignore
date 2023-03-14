@@ -13,6 +13,7 @@ pickle-email-*.html
 /spec/tmp
 /spec/examples.txt
 specs.out
+rspec.xml
 
 # Ignore all logfiles and tempfiles.
 /log/*
