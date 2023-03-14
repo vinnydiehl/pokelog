@@ -2,9 +2,10 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@2.0
+  browser-tools: circleci/browser-tools@1.4.1
 
-references:
-  container_setup: &container_setup
+jobs:
+  test:
     docker:
       - image: cimg/ruby:3.2.1
         environment:
@@ -16,11 +17,9 @@ references:
           POSTGRES_USER: vinny
           POSTGRES_DB: pokelog_test
           POSTGRES_PASSWORD: ""
-
-jobs:
-  test:
-    <<: *container_setup
     steps:
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       - checkout
       - restore_cache:
           keys:
@@ -55,7 +54,6 @@ jobs:
     parallelism: 2
 
   deploy:
-    <<: *container_setup
     executor: heroku/default
     steps:
       - checkout
