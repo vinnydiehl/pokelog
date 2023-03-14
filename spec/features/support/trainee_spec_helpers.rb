@@ -193,7 +193,7 @@ def test_trainee_ui(display_name, attrs)
 end
 
 def test_max_evs_per_stat(max)
-  context "with #{max - 1} HP EVs", js: true, focus: true do
+  context "with #{max - 1} HP EVs", js: true do
     before :each do
       set_ev :hp, max - 1
     end

@@ -13,6 +13,7 @@ jobs:
           PGUSER: postgres
           RAILS_ENV: test
           TEST_ENV: ci
+          DBUS_SESSION_BUS_ADDRESS: /dev/null
       - image: cimg/postgres:14.0
         environment:
           POSTGRES_USER: vinny
@@ -45,14 +46,13 @@ jobs:
           name: Run tests
           command: |
             TEST_FILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-            echo $TEST_FILES
             bin/rspec --out ~/test_reports/rspec.xml $TEST_FILES
       # Save test results for timing analysis
       - store_test_results:
           path: ~/test_reports
       - store_artifacts:
           path: ~/test_reports
-    parallelism: 1
+    parallelism: 4
 
   deploy:
     executor: heroku/default
