@@ -1,32 +1,66 @@
-- provide :title, "PokéLog Beta"
+- provide :title, "PokéLog"
 
 = javascript_include_tag "sidenav_init"
 
 :markdown
-  Welcome to the beta for PokéLog! This app is in very early development, please don't
-  hesitate to [open an issue on GitHub](https://github.com/vinnydiehl/pokelog/issues)
-  if you encounter any problems or have any recommendations.
+  Welcome to PokéLog! This tool strives to make it easy for anyone to
+  simultaneously EV train multiple Pokémon at a time. No notebooks full of
+  scribbles, no spreadsheets, no mistakes. Look up what Pokémon you should
+  seek out to train on, and keep track of your progress as you defeat them,
+  all on one page. To get started, see the sidebar to make an account. Once
+  you're signed in, you will have a homepage like this, but it won't have
+  any trainees yet:
 
-  PokéLog is an EV training tool/logbook for hardcore Pokémon enthusaists. The first
-  feature that I'm refining is a page where you can search for Pokémon as you defeat
-  them, clicking the button to adjust your trainee's EVs, taking into account EV-boosting
-  items and Pokérus. Here is a demo (much progress has been made since recording):
-
-.center{style: "margin: 30px 0; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;"}
-  %iframe{width: 560, height: 315, src: "https://www.youtube.com/embed/cxYJr_4hQwg",
-    title: "PokéLog Demo", frameborder: "0", allowfullscreen: true,
-    allow: "accelerometer; autoplay; clipboard-write; encrypted-media;
-            gyroscope; picture-in-picture; web-share"}
-  %iframe{width: 560, height: 315, src: "https://www.youtube.com/embed/AfeNpnyfDIY",
-    title: "PokéLog Responsive Design", frameborder: "0", allowfullscreen: true,
-    allow: "accelerometer; autoplay; clipboard-write; encrypted-media;
-            gyroscope; picture-in-picture; web-share"}
+= tutorial_image "trainees_index.png"
 
 :markdown
-  #### Multi-Pokémon Training
+  Click the + button to create a new trainee (or the clipboard icon to create
+  a team from a PokéPaste), which will take you to a page with this interface
+  repeated for each trainee:
 
-  You can now train multiple Pokémon at a time! On the [trainees page](#{trainees_path}),
-  check off one or more of your trainees, hit the "Train" button and as you defeat
-  Pokémon, changes will be applied to all of the trainees displayed. Keep in mind that
-  every Pokémon in your party that gains EXP also gains EVs, with boosts from their own
-  items and Pokérus, even if they were never sent out.
+= tutorial_image "trainee.png"
+
+:markdown
+  At the bottom-right of this page there will be another + button which will
+  pop out a menu with buttons to create more trainees, or add trainees to your
+  party that were not selected on the previous page.
+
+  You can edit the EVs directly, and on the right side of each input you can enter
+  your desired goal EVs. Your goals will be shown as a dark outline, as pictured
+  above, and this will become filled in as you train.
+
+  In the upper right corner are buttons to delete the trainee, or remove it from
+  your party.
+
+  Beneath each trainee is a menu where you may select one of the held items that
+  affect EV gains, and the menu is expandable to show EV-affecting consumables:
+
+= tutorial_image "items.png"
+
+:markdown
+  At the bottom of the page you will find a search bar:
+
+= tutorial_image "search_bar.png"
+
+:markdown
+  Click the cog icon to pop up a menu:
+
+= tutorial_image "filters.png"
+
+:markdown
+  Select the generation that you're playing; this affects how EVs behave as well as
+  the search results you are shown. Select any other desired filters, or use the
+  search bar to look for the species you want. Click (or swipe, on mobile) on one of
+  these buttons to apply their EV yield to all of the trainees in your party.
+
+= tutorial_image "kill_button.webm"
+
+:markdown
+  Eventually you will get alerts, color-coded based on whether they are approaching,
+  right on, or over the goal:
+
+= tutorial_image "alert.png"
+
+:markdown
+  I hope you find this tool as useful as I do. Suggestions, bug reports, and
+  contributions are welcome. See the [about page](/about) for more information.
