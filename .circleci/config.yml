@@ -71,13 +71,11 @@ workflows:
           filters:
             branches:
               only:
-                - circleci-project-setup
+                - trunk
                 - production
       - deploy:
           requires:
             - test
           filters:
             branches:
-              only:
-                - circleci-project-setup
-                - production
+              only: production
