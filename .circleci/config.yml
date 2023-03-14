@@ -12,6 +12,7 @@ jobs:
           PGHOST: 127.0.0.1
           PGUSER: postgres
           RAILS_ENV: test
+          TEST_ENV: ci
       - image: cimg/postgres:14.0
         environment:
           POSTGRES_USER: vinny
@@ -51,7 +52,7 @@ jobs:
           path: ~/test_reports
       - store_artifacts:
           path: ~/test_reports
-    parallelism: 2
+    parallelism: 4
 
   deploy:
     executor: heroku/default

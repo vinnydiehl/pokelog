@@ -14,9 +14,13 @@ RSpec.configure do |config|
   config.example_status_persistence_file_path = "spec/examples.txt"
   config.disable_monkey_patching!
 
-  # Fuubar
-  config.add_formatter "Fuubar"
-  config.fuubar_progress_bar_options = { format: "  %c/%C |%b>%i|%e " }
+  if ENV["TEST_ENV"] == "ci"
+    config.formatter = :documentation
+  else
+    # Fuubar
+    config.add_formatter "Fuubar"
+    config.fuubar_progress_bar_options = { format: "  %c/%C |%b>%i|%e " }
+  end
 
   # More verbose output if only running one spec
   config.default_formatter = "doc" if config.files_to_run.one?
