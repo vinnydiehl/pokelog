@@ -87,7 +87,7 @@ database is automatically wiped in between each test, so each test is
 essentially acting on a freshly installed version of the app.
 
 The test suite bypasses Google sign in by patching the GSI gem
-[here](/https://github.com/vinnydiehl/pokelog/blob/develop/spec/support/gsi_patch.rb);
+[here](/https://github.com/vinnydiehl/pokelog/blob/trunk/spec/support/gsi_patch.rb);
 no internet connection or Google account is required to pass.
 
 For more information, see the docs for [RSpec](https://rspec.info/documentation/)
@@ -118,35 +118,44 @@ depends entirely on the context. `foo(bar(baz))` is generally frowned upon.
 Use `"` for quotes universally. Only exceptions are when nesting gets weird and
 it would increase readability, such as `"foo #{bar ? 'baz' : 'bat'}"`.
 
-### Git Flow
+### Release Model
 
-PokéLog uses the git flow branching model for managing development. This 
-means that the HEAD of the `master` branch should always contain the version
-that is running live, and that new features should be developed on a separate
-branch.
+PokéLog uses a trunk-based release model. This means that work is done directly
+on the `trunk` branch and this branch is frequently merged with the
+`production` branch, the HEAD of which is live; the current live commit is
+displayed on [the about page](https://www.pokelog.net/about).
 
-The `develop` branch is the main branch that all work gets merged into, and it
-is frequently merged into `master` as those features are released. At least,
-this will be the case post-1.0; while the website is in beta the code
-that is running live will be whatever we are currently testing. The current
-live commit is displayed on [the about page](https://www.pokelog.net/about).
+With each release will be a version number and a tag, the version number in the
+format of `major.minor.patch`. The patch is bumped for bugfixes, cosmetic changes,
+and the like, the minor is bumped for new features and large changes to
+functionality, and the major version is for large site overhauls. At some
+point, when I feel that the website is sufficiently polished, it will bump to
+major version 1.0. Each version will be accompanied by an entry in
+[`CHANGELOG.md`](https://github.com/vinnydiehl/pokelog/blob/trunk/CHANGELOG.md).
 
-When starting work on a new feature, create a new branch off of `develop` 
-with a name that describes the feature you're working on, like 
-`feature/really-cool-thing`.
+Working directly on `trunk` is permitted. All commits/merges to `trunk` must have
+passing tests, and new tests for any functionality changes introduced in the
+commit. For work that will require multiple commits, start a branch.
+
+When starting a new branch, create a new branch off of `trunk` with a name that
+describes the feature you're working on, prepended with `feature/` or `bugfix/`,
+like `feature/really-cool-thing`.
 
 Make your changes on this branch, committing them as you go. Once you're 
-finished, open a pull request to merge your feature branch into `develop`.
+finished, open a pull request to merge your feature branch into `trunk`.
 
 Here's an example of how you might add a new feature to PokéLog:
 
-1. Check out the `develop` branch: `git checkout develop`
+1. Check out the `trunk` branch if you're not already on it: `git checkout trunk`
 2. Create a new branch for your feature: `git checkout -b feature/really-cool-thing`
 3. Make your changes, write tests, and commit them: `git commit -am "Add awesome feature"`
 4. Make sure all tests pass: `bin/rspec`
 4. Push your branch to GitHub: `git push origin feature/really-cool-thing`
-5. Open a pull request to merge your feature branch into `develop`
+5. Open a pull request to merge your feature branch into `trunk`
 
 If your commits are neat and tidy, they'll be preserved; otherwise, they'll be
-squashed before merge. It doesn't really matter. I don't care if it's all in
-one giant commit as long as the tests are green and I like your feature.
+squashed before merge. Please write nice commit messages; the first line should
+be limited to 50 characters and succinctly describe what the commit does in the
+form of a command; "Add this" or "Fix that", rather than "Added this" or "Fixed
+that". The commit body should be thought out and describe the reasoning for the
+changes and any caveats or concerns surrounding your implementation.

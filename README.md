@@ -50,7 +50,7 @@ pick something that interests you. If you have a new idea, please open a ticket
 and we can discuss it.
 
 See
-[`CONTRIBUTING.md`](https://github.com/vinnydiehl/pokelog/blob/develop/CONTRIBUTING.md)
+[`CONTRIBUTING.md`](https://github.com/vinnydiehl/pokelog/blob/trunk/CONTRIBUTING.md)
 for more information on getting a development environment set up.
 
 ### So PokéLog is open source?
@@ -59,5 +59,5 @@ Not quite. PokéLog has a [fair-code](https://faircode.io/) distribution model,
 where its source code will always be available, and you're welcome to fork and
 contribute, and even run your own copy locally, but you are restricted from using
 the software commercially. See
-[`LICENSE.md`](https://github.com/vinnydiehl/pokelog/blob/develop/LICENSE.md)
+[`LICENSE.md`](https://github.com/vinnydiehl/pokelog/blob/trunk/LICENSE.md)
 for all the fine print.
