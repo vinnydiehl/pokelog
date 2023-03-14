@@ -1,0 +1,15 @@
+- provide :title, "Donate"
+
+= javascript_include_tag "sidenav_init"
+
+:markdown
+  Thank you for considering a donation! PokéLog is developed by fans, for fans.
+  Server costs are expensive for an average Joe like me, so any support is
+  greatly appreciated! The button below will take you to PayPal.
+
+.center
+  %form{:action => "https://www.paypal.com/donate", :method => "post", :target => "_top"}
+    %input{:name => "hosted_button_id", :type => "hidden", :value => "3CHMLK9SU9ERS"}/
+    %input{:alt => "Donate with PayPal button", :border => "0", :name => "submit", :src => "https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif", :title => "PayPal - The safer, easier way to pay online!", :type => "image"}/
+    %img{:alt => "", :border => "0", :height => "1", :src => "https://www.paypal.com/en_US/i/scr/pixel.gif", :width => "1"}/
+

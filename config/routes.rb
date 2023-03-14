@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   end
 
   get "/about", to: "pages#about"
+  get "/donate", to: "pages#donate"
+  get "/donate/thankyou", to: "pages#thankyou"
 
   if Rails.env.test?
     get "/login/submit", to: "users#login"
