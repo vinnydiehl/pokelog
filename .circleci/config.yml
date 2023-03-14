@@ -1,0 +1,84 @@
+version: 2.1
+
+orbs:
+  heroku: circleci/heroku@2.0
+
+references:
+  container_setup: &container_setup
+    docker:
+      - image: cimg/ruby:3.2.1
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
+          RAILS_ENV: test
+      - image: cimg/postgres:14.0
+        environment:
+          POSTGRES_USER: vinny
+          POSTGRES_DB: pokelog_test
+          POSTGRES_PASSWORD: ""
+
+jobs:
+  test:
+    <<: *container_setup
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - pokelog-bundle-{{ checksum "Gemfile.lock" }}
+            - pokelog-bundle
+      - run: bundle config --local path vendor/bundle
+      - run:
+          name: Install Ruby dependencies
+          command: bundle check || bundle install --full-index
+      - save_cache:
+          key: pokelog-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: Wait for database
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bin/rails db:create db:migrate
+      - run: mkdir ~/test_reports
+      - run:
+          name: Run tests
+          command: |
+            TEST_FILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            echo $TEST_FILES
+            bin/rspec --out ~/test_reports/rspec.xml $TEST_FILES
+      # Save test results for timing analysis
+      - store_test_results:
+          path: ~/test_reports
+      - store_artifacts:
+          path: ~/test_reports
+    parallelism: 2
+
+  deploy:
+    <<: *container_setup
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git
+      - run:
+          name: Migrate database
+          command: heroku run bin/rake db:migrate --app $HEROKU_APP_NAME
+
+workflows:
+  test-deploy:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - circleci-project-setup
+                - production
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - circleci-project-setup
+                - production
