@@ -1,0 +1,81 @@
+version: 2.1
+
+orbs:
+  heroku: circleci/heroku@2.0
+  browser-tools: circleci/browser-tools@1.4.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/ruby:3.2.1
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
+          RAILS_ENV: test
+          TEST_ENV: ci
+          DBUS_SESSION_BUS_ADDRESS: /dev/null
+      - image: cimg/postgres:14.0
+        environment:
+          POSTGRES_USER: vinny
+          POSTGRES_DB: pokelog_test
+          POSTGRES_PASSWORD: ""
+    steps:
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+      - checkout
+      - restore_cache:
+          keys:
+            - pokelog-bundle-{{ checksum "Gemfile.lock" }}
+            - pokelog-bundle
+      - run: bundle config --local path vendor/bundle
+      - run:
+          name: Install Ruby dependencies
+          command: bundle check || bundle install
+      - save_cache:
+          key: pokelog-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: Wait for database
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bin/rails db:create db:migrate
+      - run:
+          name: Run tests
+          command: |
+            mkdir ~/test_reports
+            TEST_FILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            bin/rspec --fail-fast --format RspecJunitFormatter --out ~/test_reports/rspec.xml $TEST_FILES
+      # Save test results for timing analysis
+      - store_test_results:
+          path: ~/test_reports
+      - store_artifacts:
+          path: ~/test_reports
+    parallelism: 4
+
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git
+      - run:
+          name: Migrate database
+          command: heroku run bin/rake db:migrate --app $HEROKU_APP_NAME
+
+workflows:
+  test-deploy:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - trunk
+                - production
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: production

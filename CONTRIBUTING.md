@@ -159,3 +159,18 @@ be limited to 50 characters and succinctly describe what the commit does in the
 form of a command; "Add this" or "Fix that", rather than "Added this" or "Fixed
 that". The commit body should be thought out and describe the reasoning for the
 changes and any caveats or concerns surrounding your implementation.
+
+### Continuous Integration [![CircleCI](https://circleci.com/gh/vinnydiehl/pokelog/tree/trunk.svg?style=shield)](https://app.circleci.com/pipelines/github/vinnydiehl/pokelog/?branch=trunk)
+
+PokéLog uses CircleCI for continuous integration. The following branches on
+GitHub are monitored:
+
+ * All pushes to `trunk` are automatically tested unless `[ci skip]` is
+   included in the commit message (use for documentation updates, etc. that
+   don't affect the behavior of the code)
+ * Pushes to `production` are tested, then deployed to Heroku upon success.
+
+The badge in the
+[`README.md`](https://github.com/vinnydiehl/pokelog/blob/trunk/README.md) as
+well as the header of this section show the test status for the latest push to
+`trunk`.

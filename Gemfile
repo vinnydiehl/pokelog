@@ -36,7 +36,7 @@ group :production do
 end
 
 group :development, :test do
-  gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "debug", "1.6.1", platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
@@ -52,6 +52,8 @@ group :test do
   gem "capybara", "~> 3.38"
   gem "capybara-selenium", "~> 0.0.6"
   gem "selenium-webdriver", "4.8.0"
+
+  gem "rspec_junit_formatter", "~> 0.6", require: false
 end
 
 gem "active_hash", "~> 3.1"
