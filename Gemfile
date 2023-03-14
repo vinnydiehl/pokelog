@@ -36,7 +36,7 @@ group :production do
 end
 
 group :development, :test do
-  gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "debug", "1.6.1", platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
