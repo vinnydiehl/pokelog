@@ -1,0 +1,62 @@
+@import "include/variables";
+
+@media (min-width: #{$sidenav-breakpoint}) {
+  // Offset content from sidebar
+  header, main, footer {
+    padding-left: 300px;
+  }
+}
+
+@media (max-width: #{$sidenav-breakpoint}) {
+  // Stop the open navbar from flashing on pageload on mobile.
+  // This will be set back to block with JS once initialized
+  #sidenav {
+    display: none;
+  }
+}
+
+.sidenav {
+  background-color: $dark_red;
+
+  #profile-widget .collapsible-header {
+    text-align: center;
+  }
+
+  // Icon/text colors
+  li>a {
+    color: white;
+    >i.material-icons {
+      color: grey;
+    }
+  }
+  .collapsible li:not(.active)>a {
+    background-color: $dark_red;
+    &:hover {
+      background-color: #5e0606;
+    }
+  }
+
+  // Sign in button
+  li>a.sign-in {
+    text-align: center;
+    width: fit-content;
+    padding: initial;
+    margin: auto;
+    margin-bottom: 5px;
+  }
+
+  // Line beneath login button/profile widget
+  hr {
+    border-color: darkred;
+    margin: 0 15px 0 15px;
+  }
+}
+
+// Elements
+
+#logo-container {
+  text-align: center;
+  vertical-align: center;
+  height: fit-content;
+  padding-top: 32px;
+}

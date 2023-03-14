@@ -1,0 +1,10 @@
+- provide :title, "EV Yields"
+
+= javascript_include_tag "open_modal"
+= javascript_include_tag "select_init"
+= javascript_include_tag "sidenav_init"
+
+= render "search_bar"
+.results
+  = turbo_frame_tag :results do
+    = render @search_results

@@ -1,0 +1,66 @@
+@import "include/variables";
+
+.species-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .input-field {
+    flex: 1;
+  }
+
+  #filters-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    i {
+      font-size: 1.5rem;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+#species-filters {
+  overflow-x: hidden;
+  max-width: 60em;
+
+  h6:not(.no-bottom-margin) {
+    margin-bottom: 1rem;
+  }
+
+  // Grey out None (it's not disabled)
+  .select-wrapper>ul>li:first-child span {
+    color: grey;
+  }
+
+  .checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  #evs-yielded-filters {
+    @media (max-width: #{$sidenav-breakpoint}) {
+      display: flex;
+      justify-content: center;
+    }
+
+    // Wrap half at a time
+    @media (max-width: 588px) {
+      .checkboxes {
+        width: 16rem;
+        justify-content: center;
+      }
+    }
+  }
+
+  #amount-yielded-slider {
+    margin: 1.5rem 1rem;
+  }
+
+  .types {
+    justify-content: center;
+  }
+}

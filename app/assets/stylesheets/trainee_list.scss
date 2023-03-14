@@ -1,0 +1,62 @@
+@import "include/variables";
+
+#new-trainee {
+  margin-top: 10px;
+}
+
+#trainee-list {
+  td {
+    position: relative;
+
+    // Make entire area of td clickable
+    >a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+    }
+
+    a {
+      color: black;
+    }
+
+    &.sprite, &.check {
+      width: 0;
+      min-width: fit-content;
+    }
+  }
+}
+
+.align-opposite {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .train-and-delete {
+    display: flex;
+    gap: 0.5rem;
+
+    @media (max-width: #{$species-breakpoint}) {
+      a {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  .add-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    #add-pokepaste-btn {
+      margin-top: 10px;
+
+      i {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

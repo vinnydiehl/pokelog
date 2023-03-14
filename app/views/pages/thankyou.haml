@@ -1,0 +1,10 @@
+- provide :title, "Thank You!"
+
+= javascript_include_tag "sidenav_init"
+
+:markdown
+  Thank you for your donation! You made Pikachu happy. :)
+
+.center
+  -# Cache buster so the gif always plays
+  = image_tag "/images/donate/pikachu_hearts.gif?time=#{Time.now.to_i}"

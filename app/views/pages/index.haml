@@ -1,0 +1,66 @@
+- provide :title, "PokéLog"
+
+= javascript_include_tag "sidenav_init"
+
+:markdown
+  Welcome to PokéLog! This tool strives to make it easy for anyone to
+  simultaneously EV train multiple Pokémon at a time. No notebooks full of
+  scribbles, no spreadsheets, no mistakes. Look up what Pokémon you should
+  seek out to train on, and keep track of your progress as you defeat them,
+  all on one page. To get started, see the sidebar to make an account. Once
+  you're signed in, you will have a homepage like this, but it won't have
+  any trainees yet:
+
+= tutorial_image "trainees_index.png"
+
+:markdown
+  Click the + button to create a new trainee (or the clipboard icon to create
+  a team from a PokéPaste), which will take you to a page with this interface
+  repeated for each trainee:
+
+= tutorial_image "trainee.png"
+
+:markdown
+  At the bottom-right of this page there will be another + button which will
+  pop out a menu with buttons to create more trainees, or add trainees to your
+  party that were not selected on the previous page.
+
+  You can edit the EVs directly, and on the right side of each input you can enter
+  your desired goal EVs. Your goals will be shown as a dark outline, as pictured
+  above, and this will become filled in as you train.
+
+  In the upper right corner are buttons to delete the trainee, or remove it from
+  your party.
+
+  Beneath each trainee is a menu where you may select one of the held items that
+  affect EV gains, and the menu is expandable to show EV-affecting consumables:
+
+= tutorial_image "items.png"
+
+:markdown
+  At the bottom of the page you will find a search bar:
+
+= tutorial_image "search_bar.png"
+
+:markdown
+  Click the cog icon to pop up a menu:
+
+= tutorial_image "filters.png"
+
+:markdown
+  Select the generation that you're playing; this affects how EVs behave as well as
+  the search results you are shown. Select any other desired filters, or use the
+  search bar to look for the species you want. Click (or swipe, on mobile) on one of
+  these buttons to apply their EV yield to all of the trainees in your party.
+
+= tutorial_image "kill_button.webm"
+
+:markdown
+  Eventually you will get alerts, color-coded based on whether they are approaching,
+  right on, or over the goal:
+
+= tutorial_image "alert.png"
+
+:markdown
+  I hope you find this tool as useful as I do. Suggestions, bug reports, and
+  contributions are welcome. See the [about page](/about) for more information.

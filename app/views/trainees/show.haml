@@ -1,0 +1,64 @@
+- trainees_show_title(@party).each do |size, title|
+  - provide size, title
+
+= javascript_include_tag "add_to_party"
+= javascript_include_tag "character_counter"
+= javascript_include_tag "cookies"
+= javascript_include_tag "fixed_action_init"
+= javascript_include_tag "open_modal"
+= javascript_include_tag "select_init"
+= javascript_include_tag "sidenav_init"
+= javascript_include_tag "slip"
+= javascript_include_tag "slip_init"
+= javascript_include_tag "tooltip_init"
+= javascript_include_tag "trainee"
+= javascript_include_tag "update_evs"
+
+#trainees
+  -# We're listing this way so they appear in order specified by URL
+  - @ids.each do |id|
+    - if (trainee = @party.find_by id: id)
+      = render trainee
+
+-if @party.any? { |trainee| yours? trainee }
+  .fixed-action-btn
+    %a#add-action-btn.btn-floating.btn-large.red
+      %i.material-icons.large add
+    %ul
+      %li
+        %a#add-to-party-btn.btn-floating.red{onclick: "openModal('add-to-party-modal')"}
+          %i.material-icons list
+      %li
+        -# This button's href is set on click by JavaScript
+        %a#new-trainee-btn.btn-floating.red
+          %i.material-icons add
+
+  #goal-alert.modal
+    .modal-content
+      %h4#goal-alerts-title
+      #goal-table
+    .modal-footer
+      %a#close-goal-alert.modal-close.waves-effect.waves-teal.btn-flat OK
+
+  #add-to-party-modal.modal
+    .modal-content
+      %h4 Add to party
+      = render "list", trainees: @other_trainees
+    .modal-footer
+      %a#cancel-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Cancel
+      %a#confirm-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Add
+
+  #kill-search
+    = render "species/search_bar"
+    .results
+      = turbo_frame_tag :results do
+        - @search_results.each do |species|
+          - ev_string = species.ev_yield.values.join ","
+          = render species, attrs: { class: "waves-effect waves-teal",
+                   onclick: "killButton(#{ev_string})", "data-ev-yield": "#{ev_string}" }
+
+:javascript
+  runOnLoad(() => {
+    M.Autocomplete.init(document.querySelectorAll(".autocomplete"),
+                        { data: #{Species.autocomplete_data} });
+  });

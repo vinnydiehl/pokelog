@@ -1,0 +1,43 @@
+- provide :title, "About PokéLog"
+
+= javascript_include_tag "sidenav_init"
+
+#about-data
+  #version
+    %div Version: #{version}
+    - if Rails.env.development?
+      %div Running in development mode.
+  #uptime
+    %div Uptime: #{uptime}
+    %div Last deploy: #{time_since_deploy} ago
+
+:markdown
+  Thank you for checking out PokéLog!
+
+  #### Recent Changes
+
+  See the
+  [`CHANGELOG.md`](https://github.com/vinnydiehl/pokelog/blob/trunk/CHANGELOG.md)
+  file on GitHub to see what's been going on in development.
+
+  #### Report a Bug
+
+  If you encounter any problems, I'd love to know about it! Make sure that it isn't
+  already on the [issue tracker](https://github.com/vinnydiehl/pokelog/issues), and
+  open an issue describing your problem and how to reproduce it.
+
+  #### Source Code
+
+  The source code for PokéLog is available on
+  [GitHub](https://github.com/vinnydiehl/pokelog), and the currently live commit is
+  [`#{@commit.first(7)}`](https://github.com/vinnydiehl/pokelog/commit/#{@commit}).
+  If you are interested on contributing to PokéLog, see
+  [this document](https://github.com/vinnydiehl/pokelog/blob/trunk/CONTRIBUTING.md)
+  for more information.
+
+  #### Legal Disclaimer
+
+  PokéLog is in **no way** affiliated with Nintendo, The Pokémon Company, or any of
+  their subsidiaries. This is an independent project made by fans, for fans. The
+  name "Pokémon", all represented characters, their images, and their names are
+  copyright of their respective owners.

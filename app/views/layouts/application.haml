@@ -1,0 +1,47 @@
+!!! 5
+
+%html
+  %head
+    - if Rails.env.production?
+      -# Analytics
+      %script{src: "https://www.googletagmanager.com/gtag/js?id=G-WWY908Y1Q0", async: true}
+      :javascript
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag("js", new Date());
+        gtag("config", "G-WWY908Y1Q0");
+      -# AdSense
+      %script{src:"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411926405139648", crossorigin: "anonymous", async: true}
+
+    %title= build_title yield(:title), request.path
+    = favicon_link_tag asset_path "favicon.ico"
+
+    %meta{name: "viewport", content: "width=device-width,initial-scale=1"}
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+
+    = javascript_importmap_tags
+    = javascript_include_tag "run_on_load"
+
+    -# We need to include this application-wide so the charts load properly
+    -# as you navigate with Turbo frames
+    = javascript_include_tag "anychart_radar.min.js"
+    = javascript_include_tag "radar_chart"
+
+  %body
+    %header
+      = render "layouts/topnav"
+      = render "layouts/sidenav"
+    %main
+      .container
+        - if notice
+          = render "layouts/notice"
+        .row
+          = yield
+    %footer.page-footer
+      = render "layouts/footer"
+
+    // Material UI JS
+    %script{src: "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"}

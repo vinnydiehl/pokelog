@@ -1,0 +1,127 @@
+= form_with model: trainee, id: dom_id(trainee), class: "trainee-info",
+            html: {autocomplete: "off"}, data: {controller: "form-submission"} do |f|
+  = hidden_field_tag :trainees, @party.to_json
+  -# This hidden div is to communicate the title w/ JavaScript (for writing goal alerts etc.)
+  .trainee-title{id: "trainee-title-#{dom_id trainee}", hidden: true}= trainee.title
+  .trainee-info-top
+    -# Left section, with artwork, text inputs etc. at full size
+    .species-info
+      .nickname-species.side-by-side
+        .input-field.nickname
+          = f.label :nickname, "Nickname"
+          = f.text_field :nickname, class: "counter", maxlength: 12, disabled: not_yours?(trainee),
+                         data: {length: 12, action: "blur->form-submission#submit"},
+                         onblur: "hideCounter()", value: trainee.nickname
+        .input-field.species
+          = f.label :species, "Species"
+          = f.text_field :species, class: "autocomplete", disabled: not_yours?(trainee),
+                         data: {action: "change->form-submission#submit"},
+              value: trainee.species.nil? ? nil : trainee.species.display_name
+      .trainee-artwork{id: "artwork-#{dom_id trainee}"}
+        = render "trainees/artwork", trainee: trainee
+      .side-by-side
+        .input-field
+          = f.select :nature,
+              options_for_select([@nil_nature_option] + @nature_options,
+                disabled: @nil_nature_option,
+                selected: @nature_options.find { |o| o.last == trainee.nature } || @nil_nature_option),
+              {}, {data: {action: "change->form-submission#submit"}, disabled: not_yours?(trainee)}
+          = f.label :nature, "Nature"
+        .input-field
+          = f.label :level, "Level"
+          = f.text_field :level, class: "validate", type: "number", **maxlength(3),
+                         min: 1, max: 100, value: trainee.level, disabled: not_yours?(trainee),
+                         data: {action: "change->form-submission#submit"}
+
+    -# Right section, with stat chart, Pokérus switch, types etc.
+    .ev-info
+      .sprite-and-types
+        %div{id: "mobile-sprite-#{dom_id trainee}"}
+          - if trainee.species
+            = trainee.species.sprite
+        .trainee-types{id: "types-#{dom_id trainee}"}
+          - if trainee.species
+            = trainee.species.type_badges size: :large
+      .corner-buttons
+        - if yours?(trainee)
+          %a.delete-btn{id: "delete-#{dom_id trainee}", onclick: "openModal('delete-modal-#{dom_id trainee}')"}
+            %i.material-icons delete
+        - if @party.size > 1
+          %a{id: "close-#{dom_id trainee}", onclick: "closeTrainee(#{trainee.id})"}
+            %i.material-icons close
+      #stats-chart
+        = render "shared/radar_chart", stats: trainee.evs, goals: trainee.goals, id: "radar-chart-#{dom_id trainee}"
+      - PokeLog::Stats.stats.each do |stat|
+        .point{class: stat, "data-format-stat": format_stat(stat)}
+          - attr_name, goal_attr_name = "#{stat}_ev", "#{stat}_goal"
+          - max_per_stat = @generation > 7 ? 252 : 255
+          .ev-container{style: "border-color: #{trainee.evs.values.inject(:+) == 510 ? 'green' : 'black'}"}
+            - [["ev-input",   "#{stat}_ev"],
+               ["goal-input", "#{stat}_goal"]].each do |klass, attr_name|
+              = f.text_field attr_name.to_sym, **maxlength(3, "setEvInputColor()"),
+                  class: klass, type: "number", placeholder: 0, min: 0, disabled: not_yours?(trainee),
+                  max: max_per_stat, value: ((v = trainee.send(attr_name)).zero? ? nil : v),
+                  onblur: "checkGoals()", data: {action: "input->form-submission#searchSubmit"}
+
+      - if cookies[:generation].blank? || @generation != 9
+        .pokerus.switch{class: not_yours?(trainee) ? "disabled" : ""}
+          %label
+            = f.check_box :pokerus, value: trainee.pokerus, disabled: not_yours?(trainee),
+                                    data: {action: "input->form-submission#submit"}
+            %span.lever
+            Pokérus
+
+  -# Items Menu
+  %ul.collapsible.items-menu
+    %li
+      .collapsible-header
+        .held-items
+          %label
+            = f.radio_button :item, nil, value: trainee.item.nil?, disabled: not_yours?(trainee),
+                                         data: {action: "click->form-submission#submit"}
+            %span.no-item
+              %i.material-icons.no-item-icon do_not_disturb_alt
+              None
+          - @items_options.each do |item|
+            %label
+              = f.radio_button :item, item, value: trainee.item == item,
+                "data-action": "click->form-submission#submit", onclick: "checkGoals()",
+                disabled: not_yours?(trainee) || (@generation < 4 && item =~ /power/) || ([1, 2, 7].include?(@generation) && item == "macho_brace")
+              %span.tooltipped{data: {tooltip: item_tooltip(item, @generation), position: "top"}}
+                = image_tag "/images/items/held/#{item}.png"
+                = item.titleize
+        - if yours?(trainee)
+          %i.material-icons.expand more_vert
+
+      -# Consumables (collapsible)
+      - if yours?(trainee)
+        .collapsible-body.consumables.row
+          - %w[vitamins feathers berries].each do |item_type|
+            .col.s4
+              %h5= item_type == "feathers" && @generation < 8 ? "Wings" : item_type.capitalize
+              .consumables-buttons{class: item_type}
+                - PokeLog::Stats.stats.each do |stat|
+                  - item = PokeLog::Stats.consumables_for(stat)[item_type.singularize.to_sym]
+                  %a.waves-effect.waves-light.btn{
+                    class: "#{item} #{(item_type == "feathers" && @generation < 5) ? 'disabled' : ''}",
+                    onclick: "useConsumable(this.closest('.trainee-info'), '#{item_type}', '#{stat}')"}
+                    .stat-label= format_stat stat
+                    .item-sprite-and-name
+                      = image_tag "/images/items/#{item_type}/#{item}.png"
+                      .item-name= item.to_s.sub("_", " ")
+
+-# Each trainee has its own modal to delete it. The footer is a
+-# form that sends a DELETE request for the trainee
+- if yours?(trainee)
+  .modal.delete{id: "delete-modal-#{dom_id trainee}"}
+    .modal-content
+      %h4 Confirm delete
+      %p Are you sure? This will delete #{trainee.title} permanently.
+    .modal-footer
+      = form_with model: trainee, method: :delete, data: {turbo: false} do |f|
+        = hidden_field_tag "redirect_path", request.path
+        -# Params are updated by JavaScript on form submit
+        = hidden_field_tag "redirect_params"
+        %a#cancel-delete.modal-close.waves-effect.waves-teal.btn-flat Cancel
+        = f.submit "Delete", id: "confirm-delete",
+            class: "modal-close waves-effect waves-teal btn-flat"
