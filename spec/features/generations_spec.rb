@@ -211,11 +211,13 @@ RSpec.feature "generations:", type: :feature, js: true do
 
             it "includes #{included}" do
               fill_in "Search", with: included
+
               expect(find ".results").to have_content included
             end
 
             it "does not include #{not_included}" do
               fill_in "Search", with: not_included
+
               expect(find ".results").not_to have_content not_included
             end
           end
