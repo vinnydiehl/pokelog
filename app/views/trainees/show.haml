@@ -1,6 +1,5 @@
 - trainees_show_title(@party).each do |size, title|
   - provide size, title
-- provide :ads, true
 
 = javascript_include_tag "add_to_party"
 = javascript_include_tag "character_counter"
@@ -14,6 +13,8 @@
 = javascript_include_tag "tooltip_init"
 = javascript_include_tag "trainee"
 = javascript_include_tag "update_evs"
+
+= render "shared/ads"
 
 #trainees
   -# We're listing this way so they appear in order specified by URL

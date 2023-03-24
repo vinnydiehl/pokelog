@@ -1,0 +1,11 @@
+- if Rails.env.production?
+  %script{src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411926405139648", async: true, crossorigin: "anonymous"}
+
+  %ins.adsbygoogle{style: "display:block", data: {
+    "ad-client": "ca-pub-6411926405139648",
+    "ad-slot": "5059395537",
+    "ad-format": "auto",
+    "full-width-responsive": "true"}}
+
+  :javascript
+    (adsbygoogle = window.adsbygoogle || []).push({});

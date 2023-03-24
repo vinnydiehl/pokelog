@@ -7,7 +7,11 @@ Brief summary of the changes in each version. For more details, see the
 
  * Mainly a test for the newly configured [CI deployment
    flow](https://github.com/vinnydiehl/pokelog/blob/44e3e37b32997435b4c51cf0c14678d8088c42af/CONTRIBUTING.md#continuous-integration-).
- * Include ad code on less pages.
+ * Include ad code on fewer pages.
+
+### [0.1.1.1](https://github.com/vinnydiehl/pokelog/tree/0.1.1.1) - 24 March 2023
+
+ * At least, I thought I had ad code on fewer pages. It's fixed.
 
 ## [0.1](https://github.com/vinnydiehl/pokelog/tree/0.1) - 14 March 2023
 
