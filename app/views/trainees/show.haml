@@ -14,8 +14,6 @@
 = javascript_include_tag "trainee"
 = javascript_include_tag "update_evs"
 
-= render "shared/ads"
-
 #trainees
   -# We're listing this way so they appear in order specified by URL
   - @ids.each do |id|
@@ -58,6 +56,8 @@
           - ev_string = species.ev_yield.values.join ","
           = render species, attrs: { class: "waves-effect waves-teal",
                    onclick: "killButton(#{ev_string})", "data-ev-yield": "#{ev_string}" }
+
+= render "shared/ads"
 
 :javascript
   runOnLoad(() => {

@@ -4,9 +4,9 @@
 = javascript_include_tag "select_init"
 = javascript_include_tag "sidenav_init"
 
-= render "shared/ads"
-
 = render "search_bar"
 .results
   = turbo_frame_tag :results do
     = render @search_results
+
+= render "shared/ads"
