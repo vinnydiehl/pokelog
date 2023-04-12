@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.1"
+ruby "3.2.2"
 gem "rails", "~> 7.0.4"
 
 # The original asset pipeline for Rails
@@ -31,7 +31,7 @@ group :production do
   gem "mini_racer", "~> 0.6"
   gem "terser", "~> 1.1"
 
-  # Force domain name
+  # Force domain name rather than xxx.herokuapp.com
   gem "rack-canonical-host", "~> 1.1"
 end
 
@@ -51,7 +51,7 @@ group :test do
 
   gem "capybara", "~> 3.38"
   gem "capybara-selenium", "~> 0.0.6"
-  gem "selenium-webdriver", "4.8.0"
+  gem "selenium-webdriver", "~> 4.8"
 
   gem "rspec_junit_formatter", "~> 0.6", require: false
 end
@@ -68,5 +68,5 @@ gem "sassc-rails", "~> 2.1"
 # Markdown processor for HAML
 gem "kramdown", "~> 2.4"
 
-# redirect_post
+# #redirect_post helper
 gem "repost", "~> 0.4"
