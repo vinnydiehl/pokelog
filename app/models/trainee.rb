@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Trainee < ApplicationRecord
   belongs_to :user
   has_many :kills

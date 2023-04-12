@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def open_consumables_menu
   find(".collapsible-header .expand").click
   sleep 0.5

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TraineesController < ApplicationController
   before_action :set_trainee, only: %i[update destroy]
 

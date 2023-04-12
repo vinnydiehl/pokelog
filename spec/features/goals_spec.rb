@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # With no goal set in any given input, it will have no effect. This behavior is
 # tested throughout the rest of the suite; this file pertains only to behaviors
 # that happen when goals are set.

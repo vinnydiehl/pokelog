@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PokeLog
   class Types
     def self.types

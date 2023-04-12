@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PokeLog
   class Stats < Hash
     def initialize(hash=nil)

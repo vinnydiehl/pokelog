@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 TEST_PASTE = <<~EOS.strip
@@ -85,7 +87,7 @@ TEST_PASTE_ATTRS = {
     spd_goal: 5,
     spe_goal: 6
   }
-}
+}.freeze
 
 RSpec.feature "PokéPaste support:", type: :feature, js: true do
   before :each do

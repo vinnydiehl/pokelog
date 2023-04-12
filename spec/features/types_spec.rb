@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 TYPE_TEST_CASES = {
@@ -6,7 +8,7 @@ TYPE_TEST_CASES = {
   "249" => %w[psychic flying],  # Lugia
   "861" => %w[dark fairy],      # Grimmsnarl
   "1008" => %w[electric dragon] # Miraidon
-}
+}.freeze
 
 RSpec.feature "types:", type: :feature do
   describe "the species partial" do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def set_generation(gen)
   find("#filters-btn").click
   find("#species-filters .select-wrapper").click

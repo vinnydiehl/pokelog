@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FiltersHelper
   # Gets the value of the desired filter. Returns nil if the filter does
   # not exist, or if there are no filters set.

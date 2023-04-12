@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   # Using Google API token verification
   skip_before_action :verify_authenticity_token, only: %i[login register]

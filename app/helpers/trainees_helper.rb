@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TraineesHelper
   # Helper for the trainee#show view that takes multiple Trainee objects
   # and renders a path to view them e.g. /trainees/1,2,3

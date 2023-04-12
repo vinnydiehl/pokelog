@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   # Gets the current PokéLog version
   #
@@ -37,9 +39,7 @@ module ApplicationHelper
   # @param text [String] text (for wide sidebar)
   # @return [String] HTML for the sidenav li element
   def nav_link(icon, path, text = "")
-    attrs = { class: "bold" }
-
-    attrs[:class] << " active" if request.path.starts_with? path
+    attrs = { class: "bold#{request.path.starts_with?(path) ? ' active' : ''}" }
 
     content_tag(:li, attrs) do
       content_tag(:a, onclick: nav_link_js(path), class: "waves-effect") do

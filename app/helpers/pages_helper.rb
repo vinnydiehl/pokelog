@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PagesHelper
   def tutorial_image(name)
     if name.ends_with?(".webm")

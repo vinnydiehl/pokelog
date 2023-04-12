@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 TEST_TRAINEES = {
   "Bulbasaur" => {
     species_id: "001",
@@ -56,7 +58,7 @@ TEST_TRAINEES = {
     spd_goal: 0,
     spe_goal: 0
   }
-}
+}.freeze
 SINGLE_DISPLAY_NAME, SINGLE_ATTRS = TEST_TRAINEES.to_a.last
 
 # For tests which require a blank trainee and nothing more. To be run at the

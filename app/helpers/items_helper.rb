@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ItemsHelper
   # Table of tooltips for the items on trainees#show
   #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 TEST_G_ID = "1234567890"
 TOKEN_EMAIL = "test@test.com"
 
