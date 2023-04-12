@@ -1,7 +1,6 @@
 class Trainee < ApplicationRecord
   belongs_to :user
   has_many :kills
-  attr_accessor :species
 
   PokeLog::Stats.stats.each do |stat|
     validates :"#{stat}_ev", numericality: {in: 0..255}

@@ -86,7 +86,7 @@ end
 # Set a trainee's EV to a certain value. Works with or without _ev suffix.
 # Supports _goal with args[:suffix] but it's really hacky
 def set_ev(stat, value, **args)
-  stat = :"#{stat.to_s.sub /_(ev|goal)/, ""}_#{args[:suffix] ||= "ev"}"
+  stat = :"#{stat.to_s.sub(/_(ev|goal)/, "")}_#{args[:suffix] ||= "ev"}"
 
   find("#{args[:attrs] ? "#trainee_#{find_id args[:attrs]} " : ''}#trainee_#{stat}").set value
 

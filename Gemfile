@@ -53,7 +53,13 @@ group :test do
   gem "capybara-selenium", "~> 0.0.6"
   gem "selenium-webdriver", "~> 4.8"
 
+  # For CircleCI
   gem "rspec_junit_formatter", "~> 0.6", require: false
+
+  gem "rubocop", "~> 1.50"
+  gem "rubocop-rails", "~> 2.19"
+  gem "rubocop-rspec", "~> 2.19"
+  gem "rubocop-capybara", "~> 2.17"
 end
 
 gem "active_hash", "~> 3.1"

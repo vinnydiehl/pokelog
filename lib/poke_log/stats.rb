@@ -1,6 +1,8 @@
 module PokeLog
   class Stats < Hash
     def initialize(hash=nil)
+      super
+
       hash ||= {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0}
 
       Stats.verify(hash)

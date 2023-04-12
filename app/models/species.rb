@@ -104,7 +104,7 @@ class Species < ActiveYaml::Base
 
       # EVs yielded
       if filters[:yielded]
-        filters[:yielded].map! &:to_sym
+        filters[:yielded].map!(&:to_sym)
         results.select! do |pkmn|
           pkmn.yields.keys.any? { |stat| filters[:yielded].include? stat }
         end
@@ -112,7 +112,7 @@ class Species < ActiveYaml::Base
 
       # Types
       if filters[:types]
-        filters[:types].map! &:to_sym
+        filters[:types].map!(&:to_sym)
         results.select! do |pkmn|
           filters[:types].all? { |type| pkmn.types.include? type }
         end
@@ -120,7 +120,7 @@ class Species < ActiveYaml::Base
 
       # Weak to
       if filters[:weak_to]
-        filters[:weak_to].map! &:to_sym
+        filters[:weak_to].map!(&:to_sym)
         results.select! do |pkmn|
           filters[:weak_to].any? { |type| PokeLog::Types.multiplier(type, pkmn.types) > 1 }
         end

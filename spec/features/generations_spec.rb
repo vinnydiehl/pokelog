@@ -47,11 +47,11 @@ RSpec.feature "generations:", type: :feature, js: true do
         end
       end
 
-      (3..9).except(gen).each do |gen|
-        context "generation #{gen}:" do
+      (3..9).except(gen).each do |available_gen|
+        context "generation #{available_gen}:" do
           items.each do |item|
             it "the #{item.to_s.humanize.downcase} is enabled" do
-              set_generation gen
+              set_generation available_gen
 
               check_with_refresh do
                 expect(page).to have_field "trainee_item_#{item}", visible: false, disabled: false

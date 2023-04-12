@@ -66,10 +66,10 @@ RSpec.feature "species:", type: :feature do
       end
 
       {
-        "bee": %w[Beedrill Combee Ribombee Orbeetle],
-        "ven": %w[Venusaur Venonat Venomoth Venipede Trevenant],
+        "bee" => %w[Beedrill Combee Ribombee Orbeetle],
+        "ven" => %w[Venusaur Venonat Venomoth Venipede Trevenant],
         # Test case insensitivity
-        "VENUSaur": %w[Venusaur]
+        "VENUSaur" => %w[Venusaur]
       }.each do |query, expected_results|
         context %[with query "#{query}"], js: true do
           before :each do

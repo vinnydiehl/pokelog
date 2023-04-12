@@ -1,0 +1,20 @@
+require: rubocop-rails
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/FormatString:
+  Enabled: false
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+# I like the idea but this is too strict
+Style/GuardClause:
+  Enabled: false
+
+AllCops:
+  NewCops: enable

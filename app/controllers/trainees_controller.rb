@@ -13,7 +13,7 @@ class TraineesController < ApplicationController
 
   # GET /trainees/1 or /trainees/1,2,3
   def show
-    @ids = params[:ids].split(",").map &:to_i
+    @ids = params[:ids].split(",").map(&:to_i)
     @party = Trainee.where(id: @ids)
     @other_trainees = Trainee.where(user: @current_user).where.not(id: @ids)
 
@@ -162,19 +162,18 @@ class TraineesController < ApplicationController
         # Species and form are separated by "-". Some species names have "-" in
         # them, though, so tokenize the name, shift off as many as we need
         species_tokens = pkmn.species.split "-"
-        name = Species.all.select { |s| s.name =~ /-/ }.any? { |s| pkmn.species.starts_with? s.name } ? species_tokens.shift(2).join("-") : species_tokens.shift
+        name = Species.all.select { |s| s.name =~ /-/ }.any? { |s| pkmn.species.starts_with? s.name } ?
+          species_tokens.shift(2).join("-") : species_tokens.shift
 
         # Now we're left with the form.
         form = species_tokens.join "-"
 
-        species = Species.all.find do |species|
-          species.name.downcase ==
-            name.downcase &&
-            ((!form.present? && !species.form) ||
-             species.form.downcase.starts_with?(form.downcase[0..2]))
+        species = Species.all.find do |s|
+          s.name.downcase == name.downcase &&
+            ((!form.present? && !s.form) || s.form.downcase.starts_with?(form.downcase[0..2]))
         end
 
-        trainee = Trainee.new(
+        Trainee.new(
           user: @current_user,
           # The above should work for every species but if ever there's trouble,
           # put the species into the nickname as a backup
@@ -183,9 +182,7 @@ class TraineesController < ApplicationController
           level: pkmn.level,
           nature: PokeLog::NATURES.keys.include?(pkmn.nature.to_s) ? pkmn.nature : nil,
           **PokeLog::Stats.stats.map { |stat| {"#{stat}_goal": pkmn.evs[stat]} }.reduce(&:merge)
-        )
-        trainee.save!
-        trainee
+        ).tap(&:save!)
       end
 
       redirect_to helpers.multi_trainees_path(team)

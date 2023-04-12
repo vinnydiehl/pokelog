@@ -145,7 +145,7 @@ RSpec.feature "filters:", type: :feature, js: true do
 
           describe "the Clear All button" do
             before :each do
-              within("#species-filters") { find_all("span").each &:click }
+              within("#species-filters") { find_all("span").each(&:click) }
               sleep 0.5
               find("#clear-filters-btn").click
               sleep 0.5
@@ -197,7 +197,7 @@ RSpec.feature "filters:", type: :feature, js: true do
             before :each do
               @test_filters = %w[HP Atk Def]
 
-              check_filter *@test_filters
+              check_filter(*@test_filters)
             end
 
             it "displays species that yield any of the selected EVs" do
@@ -249,7 +249,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               @test_types = %w[Rock Ground]
 
               within "#types_filters" do
-                check_filter *@test_types
+                check_filter(*@test_types)
               end
             end
 
@@ -304,7 +304,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               @test_types = %w[Fighting Ground Dragon]
 
               within "#weak_to_filters" do
-                check_filter *@test_types
+                check_filter(*@test_types)
               end
             end
 

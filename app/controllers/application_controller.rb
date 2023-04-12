@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action *%i[init_globals set_current_user turbo_request_variant clean_cookies]
+  before_action(*%i[init_globals set_current_user turbo_request_variant clean_cookies])
 
   private
 
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   def clean_cookies
     if helpers.logged_in?
       # Detect and remove old trainee EV goal cookies
-      cookies.each do |name, value|
+      cookies.each do |name, _|
         if name.starts_with?("trainee_") &&
            @current_user.trainees.where(id: name.split("_")[1].to_i).none?
           cookies.delete name

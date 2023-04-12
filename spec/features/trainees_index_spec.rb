@@ -85,7 +85,7 @@ RSpec.feature "trainees:", type: :feature do
         describe "the Train button", js: true do
           context "when you check off all trainees and press it" do
             before :each do
-              all(".trainee-checkbox").each &:click
+              all(".trainee-checkbox").each(&:click)
               find("#train-btn").click
             end
 
@@ -98,7 +98,7 @@ RSpec.feature "trainees:", type: :feature do
         describe "the Delete button", js: true do
           context "when you check off all trainees and press it" do
             before :each do
-              all(".trainee-checkbox").each &:click
+              all(".trainee-checkbox").each(&:click)
               find("#delete-btn").click
             end
 
