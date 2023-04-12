@@ -5,8 +5,6 @@
 = javascript_include_tag "sidenav_init"
 = javascript_include_tag "trainees_index"
 
-= render "shared/ads"
-
 - if @trainees.blank?
   %p.grey-text Nothing to show here. Click the + below to get started!
 - else
@@ -55,3 +53,5 @@
   .modal-footer
     %a#cancel-pokepaste.modal-close.waves-effect.waves-teal.btn-flat Cancel
     %a#confirm-pokepaste.modal-close.waves-effect.waves-teal.btn-flat.disabled{onclick: "submitPaste()"} Add
+
+= render "shared/ads"

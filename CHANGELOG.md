@@ -13,6 +13,10 @@ Brief summary of the changes in each version. For more details, see the
 
  * At least, I thought I had ad code on fewer pages. It's fixed.
 
+### [0.1.1.2](https://github.com/vinnydiehl/pokelog/tree/0.1.1.2) - 12 April 2023
+
+ * Ruby and dependency update.
+
 ## [0.1](https://github.com/vinnydiehl/pokelog/tree/0.1) - 14 March 2023
 
  * First tagged release. The
