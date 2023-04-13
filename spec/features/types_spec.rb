@@ -12,7 +12,7 @@ TYPE_TEST_CASES = {
 
 RSpec.feature "types:", type: :feature do
   describe "the species partial" do
-    before :each do
+    before do
       visit species_path
     end
 
@@ -28,7 +28,7 @@ RSpec.feature "types:", type: :feature do
   end
 
   describe "the trainee partial" do
-    before :each do
+    before do
       create_user
 
       TYPE_TEST_CASES.each do |id, _|
@@ -38,7 +38,7 @@ RSpec.feature "types:", type: :feature do
 
     TYPE_TEST_CASES.each do |id, types|
       describe "species ##{id}" do
-        before :each do
+        before do
           visit trainee_path(Trainee.find_by species_id: id)
         end
 

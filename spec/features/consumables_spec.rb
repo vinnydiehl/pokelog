@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.feature "consumables:", type: :feature, js: true do
   context "with a blank trainee" do
-    before :each do
+    before do
       launch_new_blank_trainee
       open_consumables_menu
     end
@@ -42,7 +42,7 @@ RSpec.feature "consumables:", type: :feature, js: true do
 
   context "with multiple trainees in the party" do
     describe "the consumables buttons" do
-      before :each do
+      before do
         launch_multi_trainee
 
         attrs = TEST_TRAINEES.first.last

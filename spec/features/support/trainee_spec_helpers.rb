@@ -196,12 +196,12 @@ end
 
 def test_max_evs_per_stat(max)
   context "with #{max - 1} HP EVs", js: true do
-    before :each do
+    before do
       set_ev :hp, max - 1
     end
 
     describe "a 2 HP kill button" do
-      before :each do
+      before do
         fill_in "Search", with: "Jigglypuff"
         find("#species_039").click
         wait_for :hp_ev, max
@@ -273,7 +273,7 @@ end
 def test_server_interaction
   describe "server interaction:", js: true do
     context "when changing the species" do
-      before :each do
+      before do
         fill_in "trainee_species", with: SINGLE_DISPLAY_NAME
         click_away
         wait_for :species, Species.find_by_display_name(SINGLE_DISPLAY_NAME)
@@ -303,7 +303,7 @@ def test_server_interaction
     context "when changing the nickname" do
       value = SINGLE_ATTRS[:nickname]
 
-      before :each do
+      before do
         fill_in "trainee_nickname", with: value
         click_away
         wait_for :nickname, value
@@ -390,13 +390,13 @@ def test_server_interaction
     end
 
     describe "the delete button modal" do
-      before :each do
+      before do
         find(".delete-btn").click
         sleep 0.5
       end
 
       context "when accepted" do
-        before :each do
+        before do
           find("#confirm-delete").click
           sleep 0.5
         end
@@ -415,7 +415,7 @@ def test_server_interaction
       end
 
       context "when declined" do
-        before :each do
+        before do
           find("#cancel-delete").click
         end
 

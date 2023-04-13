@@ -2,3 +2,11 @@ inherit_from: ../.rubocop.yml
 
 RSpec/Capybara/FeatureMethods:
   Enabled: false
+
+RSpec/Rails/InferredSpecType:
+  Enabled: false
+
+# More readable in this case
+RSpec/DescribedClass:
+  Exclude:
+    - users_spec.rb

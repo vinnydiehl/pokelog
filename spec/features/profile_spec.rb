@@ -19,7 +19,7 @@ RSpec.feature "users:", type: :feature do
   end
 
   describe "/users/:username" do
-    before :each do
+    before do
       create_user
 
       TEST_TRAINEES.each do |_, attrs|
@@ -38,7 +38,7 @@ RSpec.feature "users:", type: :feature do
 
     context "if the user exists" do
       context "while logged out" do
-        before :each do
+        before do
           visit "/users/#{TEST_USERNAME}"
         end
 
@@ -66,7 +66,7 @@ RSpec.feature "users:", type: :feature do
       end
 
       context "while logged in" do
-        before :each do
+        before do
           log_in
 
           visit user_path User.first
@@ -80,12 +80,12 @@ RSpec.feature "users:", type: :feature do
           context "when the email is changed", js: true do
             # Running this before the invalid change- that way it changes
             # to a valid input, and then back.
-            before :each do
+            before do
               fill_in "user_email", with: TEST_CHANGED_EMAIL
             end
 
             context "to a valid input and pressed" do
-              before :each do
+              before do
                 find("#edit-btn").click
                 sleep 0.5
               end

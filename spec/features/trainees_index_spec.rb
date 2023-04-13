@@ -14,7 +14,7 @@ RSpec.feature "trainees:", type: :feature do
     end
 
     context "while logged in" do
-      before :each do
+      before do
         create_user
         log_in
 
@@ -28,7 +28,7 @@ RSpec.feature "trainees:", type: :feature do
       end
 
       context "with existing trainees" do
-        before :each do
+        before do
           @current_user = User.first
 
           # Create a second test user, and 5 trainee entries for each user
@@ -66,7 +66,7 @@ RSpec.feature "trainees:", type: :feature do
             end
 
             context "when you check off a trainee" do
-              before :each do
+              before do
                 first(".trainee-checkbox").click
               end
 
@@ -86,7 +86,7 @@ RSpec.feature "trainees:", type: :feature do
 
         describe "the Train button", js: true do
           context "when you check off all trainees and press it" do
-            before :each do
+            before do
               all(".trainee-checkbox").each(&:click)
               find("#train-btn").click
             end
@@ -99,7 +99,7 @@ RSpec.feature "trainees:", type: :feature do
 
         describe "the Delete button", js: true do
           context "when you check off all trainees and press it" do
-            before :each do
+            before do
               all(".trainee-checkbox").each(&:click)
               find("#delete-btn").click
             end
@@ -110,12 +110,12 @@ RSpec.feature "trainees:", type: :feature do
               end
 
               context "when you check the confirmation checkbox" do
-                before :each do
+                before do
                   find("#delete-multi label span").click
                 end
 
                 context "and then click the confirm (Delete) button" do
-                  before :each do
+                  before do
                     find("#confirm-delete").click
                     sleep 0.5
                   end
@@ -150,7 +150,7 @@ RSpec.feature "trainees:", type: :feature do
       end
 
       describe "the + button" do
-        before :each do
+        before do
           find("#new-trainee").click
         end
 

@@ -90,7 +90,7 @@ TEST_PASTE_ATTRS = {
 }.freeze
 
 RSpec.feature "PokéPaste support:", type: :feature, js: true do
-  before :each do
+  before do
     create_user
     log_in
     visit trainees_path
@@ -101,7 +101,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
   context "when entering a URL" do
     {URL: TEST_PASTE_URL, ID: TEST_PASTE_ID}.each do |name, data|
       context "if it is a valid PokéPaste #{name}" do
-        before :each do
+        before do
           find("#url").set data
           sleep 1
         end
@@ -116,7 +116,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
 
         if name == :URL
           context "and then you make it invalid" do
-            before :each do
+            before do
               find("#url").set "invalid data"
               sleep 1
             end
@@ -130,7 +130,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
     end
 
     context "if it is an invalid URL/ID" do
-      before :each do
+      before do
         find("#url").set "invalid"
         sleep 1
       end
@@ -146,7 +146,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
   end
 
   context "when entering a valid paste" do
-    before :each do
+    before do
       find("#paste").set TEST_PASTE
     end
 
@@ -155,7 +155,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
     end
 
     context "when you click the add button" do
-      before :each do
+      before do
         find("#confirm-pokepaste").click
         sleep 0.5
       end
@@ -186,7 +186,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
     end
 
     context "if you remove the paste" do
-      before :each do
+      before do
         find("#paste").set ""
       end
 

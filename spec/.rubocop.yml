@@ -1,13 +1,40 @@
 inherit_from: ../.rubocop.yml
 
-require:
-  - rubocop-rspec
-  - rubocop-capybara
-
-# This will possibly be removed when all cops are passing; for now I'd like
-# these to be easy to see.
+# This will possibly be removed when all cops are passing;
+# for now I'd like these to be easy to see.
 RSpec/Focus:
   Severity: warning
 
 Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+################################################################################
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/NoExpectationExample:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/SortMetadata:
+  Enabled: false
+
+################################################################################
+
+Capybara/SpecificFinders:
   Enabled: false

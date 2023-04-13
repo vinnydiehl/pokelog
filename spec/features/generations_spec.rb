@@ -9,7 +9,7 @@ require "rails_helper"
 
 RSpec.feature "generations:", type: :feature, js: true do
   context "with one trainee" do
-    before :each do
+    before do
       launch_new_blank_trainee
     end
 
@@ -30,7 +30,7 @@ RSpec.feature "generations:", type: :feature, js: true do
           click_away
           sleep 0.5
 
-          expect(page).to have_selector "#goal-alert", visible: true
+          expect(page).to have_selector "#goal-alert", visible: :visible
         end
       end
     end
@@ -43,7 +43,7 @@ RSpec.feature "generations:", type: :feature, js: true do
             set_generation gen
 
             check_with_refresh do
-              expect(page).to have_field "trainee_item_#{item}", visible: false, disabled: true
+              expect(page).to have_field "trainee_item_#{item}", visible: :hidden, disabled: true
             end
           end
         end
@@ -56,7 +56,7 @@ RSpec.feature "generations:", type: :feature, js: true do
               set_generation available_gen
 
               check_with_refresh do
-                expect(page).to have_field "trainee_item_#{item}", visible: false, disabled: false
+                expect(page).to have_field "trainee_item_#{item}", visible: :hidden, disabled: false
               end
             end
           end
@@ -69,7 +69,7 @@ RSpec.feature "generations:", type: :feature, js: true do
           set_generation gen
           wait_for :item, nil
 
-          expect(Trainee.first.item).to be nil
+          expect(Trainee.first.item).to be_nil
         end
       end
     end
@@ -79,7 +79,7 @@ RSpec.feature "generations:", type: :feature, js: true do
      [(6..9), 252]].each do |range, max_evs|
       range.each do |gen|
         context "generation #{gen}:" do
-          before :each do
+          before do
             set_generation gen
           end
 
@@ -93,7 +93,7 @@ RSpec.feature "generations:", type: :feature, js: true do
      [[9],    false]].each do |range, pokerus_available|
       range.each do |gen|
         context "generation #{gen}:" do
-          before :each do
+          before do
             set_generation gen
             open_consumables_menu
           end
@@ -114,7 +114,7 @@ RSpec.feature "generations:", type: :feature, js: true do
      [(7..9), 8]].each do |range, boost|
       range.each do |gen|
         context "generation #{gen}:" do
-          before :each do
+          before do
             set_generation gen
             open_consumables_menu
           end
@@ -132,7 +132,7 @@ RSpec.feature "generations:", type: :feature, js: true do
                [250, 252]]]].each do |range, test_cases|
       range.each do |gen|
         context "generation #{gen}:" do
-          before :each do
+          before do
             set_generation gen
             open_consumables_menu
           end
@@ -147,7 +147,7 @@ RSpec.feature "generations:", type: :feature, js: true do
      [(5..9), true ]].each do |range, availability|
       range.each do |gen|
         context "generation #{gen}:" do
-          before :each do
+          before do
             set_generation gen
             open_consumables_menu
           end
@@ -165,7 +165,7 @@ RSpec.feature "generations:", type: :feature, js: true do
      [(8..9), "Feathers"]].each do |range, name|
       range.each do |gen|
         context "generation #{gen}:" do
-          before :each do
+          before do
             set_generation gen
             open_consumables_menu
           end
@@ -187,7 +187,7 @@ RSpec.feature "generations:", type: :feature, js: true do
                          [  5, 0  ]]]].each do |range, test_cases|
       range.each do |gen|
         context "generation #{gen}:" do
-          before :each do
+          before do
             set_generation gen
             open_consumables_menu
           end
@@ -207,7 +207,7 @@ RSpec.feature "generations:", type: :feature, js: true do
        [8, "Enamorus", "Sprigatito"],
        [9, "Sprigatito", "Enamorus"]].each do |gen, included, not_included|
           context "generation #{gen}:" do
-            before :each do
+            before do
               set_generation gen
             end
 
@@ -228,7 +228,7 @@ RSpec.feature "generations:", type: :feature, js: true do
   end
 
   context "with multiple trainees" do
-    before :each do
+    before do
       launch_multi_trainee
     end
 

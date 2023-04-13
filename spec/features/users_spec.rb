@@ -19,7 +19,7 @@ end
 RSpec.feature "users:", type: :feature do
   describe "/" do
     context "while logged out" do
-      before :each do
+      before do
         visit root_path
       end
 
@@ -29,7 +29,7 @@ RSpec.feature "users:", type: :feature do
     end
 
     context "while logged in" do
-      before :each do
+      before do
         create_user
         log_in
 
@@ -53,7 +53,7 @@ RSpec.feature "users:", type: :feature do
   end
 
   describe "a brand new user" do
-    before :each do
+    before do
       visit root_path
     end
 
@@ -64,7 +64,7 @@ RSpec.feature "users:", type: :feature do
 
   describe ENDPOINT do
     context "with a new user" do
-      before :each do
+      before do
         visit "#{ENDPOINT}?credential=#{TEST_CREDENTIAL}"
       end
 
@@ -86,7 +86,7 @@ RSpec.feature "users:", type: :feature do
         end
 
         context "if you put text into the username field" do
-          before :each do
+          before do
             fill_in "username", with: "-"
           end
 
@@ -112,7 +112,7 @@ RSpec.feature "users:", type: :feature do
 
         context "on submission" do
           context "with a unique username" do
-            before :each do
+            before do
               use_register_form
               @user = User.find_by_google_id TEST_G_ID
             end
@@ -147,7 +147,7 @@ RSpec.feature "users:", type: :feature do
           end
 
           context "with a username that is taken" do
-            before :each do
+            before do
               create_user
               use_register_form
             end
@@ -177,7 +177,7 @@ RSpec.feature "users:", type: :feature do
     end
 
     context "existing user" do
-      before :each do
+      before do
         create_user
         log_in
       end
@@ -198,7 +198,7 @@ RSpec.feature "users:", type: :feature do
   end
 
   describe "/logout", js: true do
-    before :each do
+    before do
       create_user
       log_in
 

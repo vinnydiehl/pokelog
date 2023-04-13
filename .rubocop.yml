@@ -1,4 +1,7 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
 
 Style/StringLiterals:
   Enabled: false
