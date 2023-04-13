@@ -36,7 +36,7 @@ end
 
 # Get types of a .data-entry as symbols
 def get_types(data_entry)
-  data_entry.find('.types').all('.type').map do |elem|
+  data_entry.find(".types").all(".type").map do |elem|
     elem[:class].gsub(/\s*type\s*/, "").to_sym
   end
 end
@@ -121,7 +121,7 @@ RSpec.feature "filters:", type: :feature, js: true do
             context "when set #{range}" do
               before do
                 visit trainee_path(Trainee.first) +
-                  "?q=#{using_query ? QUERY : ""}&filters[min]=#{range.min}&filters[max]=#{range.max}"
+                  "?q=#{using_query ? QUERY : ''}&filters[min]=#{range.min}&filters[max]=#{range.max}"
               end
 
               results_should_contain_query if using_query
@@ -129,7 +129,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               it "only displays the species if either yield is in-range" do
                 data_entry_sample.each do |data_entry|
                   # Get yields of the data entry as integers
-                  yields = data_entry.find('.yields').all('.stat').map do |elem|
+                  yields = data_entry.find(".yields").all(".stat").map do |elem|
                     elem.text.slice(/\d/).to_i
                   end
 
@@ -158,7 +158,7 @@ RSpec.feature "filters:", type: :feature, js: true do
 
             it "clears all inputs" do
               expect(page).to have_current_path trainee_path(Trainee.first) +
-                "?q=#{using_query ? QUERY : ""}"
+                "?q=#{using_query ? QUERY : ''}"
             end
           end
 
@@ -173,7 +173,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               it "sets the query string" do
                 # Indicates the form was successfully submitted by Stimulus
                 expect(page).to have_current_path trainee_path(Trainee.first) +
-                  "?q=#{using_query ? QUERY : ""}&filters[yielded][]=#{stat}"
+                  "?q=#{using_query ? QUERY : ''}&filters[yielded][]=#{stat}"
               end
 
               describe "the results" do
@@ -224,7 +224,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               it "sets the query string" do
                 # Indicates the form was successfully submitted by Stimulus
                 expect(page).to have_current_path trainee_path(Trainee.first) +
-                  "?q=#{using_query ? QUERY : ""}&filters[types][]=#{type}"
+                  "?q=#{using_query ? QUERY : ''}&filters[types][]=#{type}"
               end
 
               describe "the results" do
@@ -277,7 +277,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               it "sets the query string" do
                 # Indicates the form was successfully submitted by Stimulus
                 expect(page).to have_current_path trainee_path(Trainee.first) +
-                  "?q=#{using_query ? QUERY : ""}&filters[weak_to][]=#{type}"
+                  "?q=#{using_query ? QUERY : ''}&filters[weak_to][]=#{type}"
               end
 
               describe "the results" do

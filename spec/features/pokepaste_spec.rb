@@ -99,7 +99,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
   end
 
   context "when entering a URL" do
-    {URL: TEST_PASTE_URL, ID: TEST_PASTE_ID}.each do |name, data|
+    { URL: TEST_PASTE_URL, ID: TEST_PASTE_ID }.each do |name, data|
       context "if it is a valid PokéPaste #{name}" do
         before do
           find("#url").set data
@@ -181,7 +181,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
       end
 
       it "takes you to the page for the new trainees" do
-        expect(page).to have_current_path "/trainees/#{Trainee.all.map { |trn| trn.id }.join ','}"
+        expect(page).to have_current_path "/trainees/#{Trainee.all.map(&:id).join ','}"
       end
     end
 

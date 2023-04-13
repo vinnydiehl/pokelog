@@ -32,9 +32,9 @@ end
                enable-features=NetworkService,NetworkServiceInProcess])
 
     # iPhone 8 specs. 375px is the smallest width supported before scrolling begins.
-    options.add_emulation(device_metrics: {width: width, height: height, pixelRatio: 3, touch: true})
+    options.add_emulation(device_metrics: { width:, height:, pixelRatio: 3, touch: true })
 
-    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
   end
 end
 
@@ -45,7 +45,7 @@ Capybara.server = :puma, { Silent: true }
 # Capybara.javascript_driver = :selenium_chrome
 
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!

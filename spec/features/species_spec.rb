@@ -11,9 +11,9 @@ RESULTS_DIV = ".results"
 # @return true if all Pokémon checked are present, false otherwise
 def check_every_50(except: nil)
   (table = find RESULTS_DIV).has_content?(Species.all.first.name) &&
-  Species.all.each_slice(50).map(&:last).all? do |pkmn|
-    (except && except.include?(pkmn.name)) || table.has_content?(pkmn.name)
-  end
+    Species.all.each_slice(50).map(&:last).all? do |pkmn|
+      except&.include?(pkmn.name) || table.has_content?(pkmn.name)
+    end
 end
 
 def exec_check_every_50

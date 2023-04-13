@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @user.email = params[:user][:email]
 
     notice = @user.save ? "Email updated." : "There was a problem updating your email."
-    redirect_to user_path(@user), notice: notice
+    redirect_to user_path(@user), notice:
   end
 
   # DELETE /users/:username
@@ -82,7 +82,7 @@ class UsersController < ApplicationController
       return redirect_to root_url, notice: "Authentication failed."
     end
 
-    @found_user = User.find_by_google_id @token.user_id
+    @found_user = User.find_by google_id: @token.user_id
   end
 
   # Log in the user from @token (must be loaded from params w/ parse_token)

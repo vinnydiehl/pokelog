@@ -104,7 +104,7 @@ end
 def find_trainee(attrs)
   # Falls back on species, this could break if more test cases are added with
   # redundant species
-  Trainee.find_by_nickname(attrs[:nickname]) ||
+  Trainee.find_by(nickname: attrs[:nickname]) ||
     Trainee.find_by(species_id: attrs[:species_id])
 end
 
@@ -117,7 +117,7 @@ STATS = PokeLog::Stats.stats.map { |s| :"#{s}_ev" }
 GOALS = PokeLog::Stats.stats.map { |s| :"#{s}_goal" }
 
 ITEMS = YAML.load_file("data/items.yml").keys
-POWER_ITEMS = ITEMS[1..-1]
+POWER_ITEMS = ITEMS[1..]
 
 # Test cases for kill buttons. These selections cover a good range of cases;
 # each stat is tested, some affect multiple stats, increase stats by different
@@ -128,7 +128,7 @@ POWER_ITEMS = ITEMS[1..-1]
 #   ...
 # }
 TEST_KILL_BUTTONS = %w[003 004 011 034 590 797].map do |id|
-  { "species_#{id}": {name: (s = Species.find(id)).name}.merge(s.yields) }
+  { "species_#{id}": { name: (s = Species.find(id)).name }.merge(s.yields) }
 end.inject(:merge)
 
 def click_away(**args)
@@ -143,9 +143,9 @@ end
 # Checks Trainee.first unless you send the TEST_TRAINEES item attrs in.
 def wait_for(attr, value, **args)
   timeout = args[:timeout] || 5
-  t = Time.now
+  t = Time.current
   until (args[:attrs] ? find_trainee(args[:attrs]) : Trainee.first).send(attr) == value
-    break if Time.now - t > timeout
+    break if Time.current - t > timeout
   end
 end
 
@@ -172,7 +172,7 @@ def test_trainee_ui(display_name, attrs)
       end
 
       %w[nickname level nature].each do |field|
-        expected_value = attrs[field.to_sym] ? attrs[field.to_sym].to_s : nil
+        expected_value = attrs[field.to_sym]&.to_s
         it "#{field}: #{expected_value || 'none'}" do
           within "#trainee_#{find_id attrs}" do
             expect(find_field("trainee_#{field}").value).to eq expected_value
@@ -217,9 +217,9 @@ end
 
 def check_border_color(element, color)
   expect(element.style("border-color").values.first).to eq "rgb(#{{
-    red: "255, 0, 0",
-    green: "0, 128, 0",
-    black: "0, 0, 0"
+    red: '255, 0, 0',
+    green: '0, 128, 0',
+    black: '0, 0, 0'
   }[color]})"
 end
 
@@ -276,7 +276,7 @@ def test_server_interaction
       before do
         fill_in "trainee_species", with: SINGLE_DISPLAY_NAME
         click_away
-        wait_for :species, Species.find_by_display_name(SINGLE_DISPLAY_NAME)
+        wait_for :species, Species.find_by(display_name: SINGLE_DISPLAY_NAME)
         # The server updates before the page, sleep just to be safe
         sleep 0.2
       end

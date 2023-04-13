@@ -6,7 +6,7 @@ class Species < ActiveYaml::Base
   # @return the JSON data to be passed into Materialize autocomplete
   def self.autocomplete_data
     @@autocomplete_data ||= Species.all.map do |pkmn|
-      {pkmn.display_name => pkmn.sprite(format: :path)}
+      { pkmn.display_name => pkmn.sprite(format: :path) }
     end.reduce(&:merge).to_json
   end
 
@@ -26,7 +26,7 @@ class Species < ActiveYaml::Base
   #
   # @return [String] display name for the species
   def display_name
-    "#{self[:name]}#{[nil, "Normal"].include?(self[:form]) ? "" : " (#{self[:form]})"}"
+    "#{self[:name]}#{[nil, 'Normal'].include?(self[:form]) ? '' : " (#{self[:form]})"}"
   end
 
   # @return [String] HTML image tag for the artwork

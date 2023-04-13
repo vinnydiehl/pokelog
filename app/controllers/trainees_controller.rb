@@ -54,7 +54,7 @@ class TraineesController < ApplicationController
     @trainee = Trainee.new(user: @current_user)
 
     notice = @trainee.save ? nil : PROBLEM_CREATING_NOTICE
-    redirect_to trainee_path(@trainee), notice: notice
+    redirect_to trainee_path(@trainee), notice:
   end
 
   # GET /trainees/:ids/new
@@ -103,10 +103,10 @@ class TraineesController < ApplicationController
             turbo_stream.update("title-mobile", html: titles[:mobile_title]),
             turbo_stream.update("trainee-title-#{dom_id}", html: @trainee.title),
             turbo_stream.update("artwork-#{dom_id}",
-                                partial: "trainees/artwork", locals: {trainee: @trainee}),
+                                partial: "trainees/artwork", locals: { trainee: @trainee }),
             turbo_stream.update(radar_id, partial: "shared/radar_chart",
-                                locals: {stats: @trainee.evs, goals: @trainee.goals,
-                                         id: radar_id}),
+                                locals: { stats: @trainee.evs, goals: @trainee.goals,
+                                          id: radar_id }),
             turbo_stream.update("mobile-sprite-#{dom_id}", html:
                                 @trainee.species ? @trainee.species.sprite : nil),
             turbo_stream.update(
@@ -183,7 +183,7 @@ class TraineesController < ApplicationController
           nickname: (species.blank? ? pkmn.species : pkmn.nickname),
           level: pkmn.level,
           nature: PokeLog::NATURES.keys.include?(pkmn.nature.to_s) ? pkmn.nature : nil,
-          **PokeLog::Stats.stats.map { |stat| {"#{stat}_goal": pkmn.evs[stat]} }.reduce(&:merge)
+          **PokeLog::Stats.stats.map { |stat| { "#{stat}_goal": pkmn.evs[stat] } }.reduce(&:merge)
         ).tap(&:save!)
       end
 
@@ -210,7 +210,8 @@ class TraineesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def trainee_params
-    params.require(:trainee).permit(:user_id, :team_id, :species_id, :level, :pokerus, :start_stats, :trained_stats, :kills, :nature, :evs)
+    params.require(:trainee).permit(:user_id, :team_id, :species_id, :level, :pokerus,
+                                    :start_stats, :trained_stats, :kills, :nature, :evs)
   end
 
   # Authentication for trainee modification

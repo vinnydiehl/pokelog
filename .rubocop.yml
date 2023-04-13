@@ -3,21 +3,49 @@ require:
   - rubocop-rspec
   - rubocop-capybara
 
-Style/StringLiterals:
-  Enabled: false
+AllCops:
+  NewCops: enable
 
-Style/FormatString:
+# False positives- not actually getters/setters
+Naming/AccessorMethodName:
+  Exclude:
+    - app/models/trainee.rb
+    - spec/features/support/generations_spec_helpers.rb
+
+Rails/DynamicFindBy:
+  Exclude:
+    - app/models/trainee.rb
+
+Layout/ExtraSpacing:
   Enabled: false
 
 Layout/SpaceAroundEqualsInParameterDefault:
   Enabled: false
 
-Style/NumericPredicate:
+Metrics:
+  Enabled: false
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Style/FormatString:
   Enabled: false
 
 # I like the idea but this is too strict
 Style/GuardClause:
   Enabled: false
 
-AllCops:
-  NewCops: enable
+Style/NestedParenthesizedCalls:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Rails/I18nLocaleTexts:
+  Enabled: false

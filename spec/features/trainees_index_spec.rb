@@ -40,7 +40,7 @@ RSpec.feature "trainees:", type: :feature do
           @other_user.save!
 
           User.all.each do |user|
-            5.times { Trainee.new(user: user).save! }
+            5.times { Trainee.new(user:).save! }
           end
 
           visit trainees_path

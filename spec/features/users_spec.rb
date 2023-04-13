@@ -114,7 +114,7 @@ RSpec.feature "users:", type: :feature do
           context "with a unique username" do
             before do
               use_register_form
-              @user = User.find_by_google_id TEST_G_ID
+              @user = User.find_by google_id: TEST_G_ID
             end
 
             it "creates a new user" do

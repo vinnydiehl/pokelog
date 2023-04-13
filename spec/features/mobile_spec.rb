@@ -16,7 +16,7 @@ end
 
 def click_nav_link(text)
   find("#sidenav-expand").click
-  find("#sidenav div", text: text).click
+  find("#sidenav div", text:).click
 end
 
 RSpec.feature "mobile UI:", type: :feature, driver: :chrome_mobile do

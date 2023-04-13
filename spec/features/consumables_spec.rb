@@ -25,7 +25,7 @@ RSpec.feature "consumables:", type: :feature, js: true do
       describe "a vitamin button" do
         it "adds 1 EV" do
           # Set everything except HP to 100
-          STATS[1..-1].each do |stat|
+          STATS[1..].each do |stat|
             fill_in "trainee_#{stat}", with: 100
           end
           wait_for STATS.last, 100
@@ -52,7 +52,7 @@ RSpec.feature "consumables:", type: :feature, js: true do
 
         within "#trainee_#{Trainee.first.id}" do
           [".expand", ".hp_up"].each { |klass| find(klass).click }
-          wait_for :hp_ev, @expected_value, attrs: attrs
+          wait_for :hp_ev, @expected_value, attrs:
         end
       end
 

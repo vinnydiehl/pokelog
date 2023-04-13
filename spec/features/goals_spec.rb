@@ -157,7 +157,7 @@ RSpec.feature "EV goals:", type: :feature, js: true do
     end
 
     %w[.ev-input .goal-input].each do |klass|
-      it "changes color of the #{klass.titleize.downcase[1..-1]} with each stage" do
+      it "changes color of the #{klass.titleize.downcase[1..]} with each stage" do
         input = find(".hp #{klass}")
 
         # Find initial color, as they change they will be loaded into this array. We can check

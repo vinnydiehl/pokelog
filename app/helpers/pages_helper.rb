@@ -4,7 +4,7 @@ module PagesHelper
   def tutorial_image(name)
     if name.ends_with?(".webm")
       method = :video_tag
-      attrs = {autoplay: true, loop: true}
+      attrs = { autoplay: true, loop: true }
     else
       method = :image_tag
       attrs = {}

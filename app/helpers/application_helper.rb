@@ -29,7 +29,10 @@ module ApplicationHelper
   # @param path [String] the path to link to
   # @return [String] JavaScript to close the sidenav and redirect to the path
   def nav_link_js(path)
-    "if (window.innerWidth <= 992) { M.Sidenav.getInstance(document.querySelector('#sidenav')).close(); window.location.href = '#{path}' } else Turbo.visit('#{path}')"
+    "if (window.innerWidth <= 992) {" \
+      "M.Sidenav.getInstance(document.querySelector('#sidenav')).close();" \
+      "window.location.href = '#{path}'" \
+    "} else Turbo.visit('#{path}')"
   end
 
   # Generates a nav link for the sidenav, with an icon and optional text.
@@ -69,7 +72,7 @@ module ApplicationHelper
   # @return title formatted for the browser
   def build_title(title, path)
     "PokéLog#{
-      (title.blank? || %w[/ /home /index].include?(path)) ? "" : " | #{title}"
+      (title.blank? || %w[/ /home /index].include?(path)) ? '' : " | #{title}"
     }"
   end
 end

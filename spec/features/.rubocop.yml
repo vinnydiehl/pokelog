@@ -10,3 +10,13 @@ RSpec/Rails/InferredSpecType:
 RSpec/DescribedClass:
   Exclude:
     - users_spec.rb
+
+Layout/MultilineOperationIndentation:
+  Exclude:
+    - filters_spec.rb
+
+# Exceptions for stylistic spacing
+Layout/SpaceInsideArrayLiteralBrackets:
+  Exclude:
+    - consumables_spec.rb
+    - generations_spec.rb

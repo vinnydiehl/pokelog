@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 
 module PokeLog
   # For dynamic uptime info
-  BOOTED_AT = Time.now
+  BOOTED_AT = Time.current
 
   NATURES = YAML.load_file("data/natures.yml")
   ITEMS = YAML.load_file("data/items.yml")

@@ -5,12 +5,12 @@ class Trainee < ApplicationRecord
   has_many :kills
 
   PokeLog::Stats.stats.each do |stat|
-    validates :"#{stat}_ev", numericality: {in: 0..255}
+    validates :"#{stat}_ev", numericality: { in: 0..255 }
   end
-  validates :level, numericality: {in: 1..100}, allow_nil: true
+  validates :level, numericality: { in: 1..100 }, allow_nil: true
 
   def set_attributes(data)
-    if (species = Species.find_by_display_name data["species"])
+    if (species = Species.find_by_display_name(data["species"]))
       self.species_id = species.id
     elsif data["species"].blank?
       self.species_id = nil
@@ -39,7 +39,7 @@ class Trainee < ApplicationRecord
   end
 
   def species
-    Species.find_by_id species_id
+    Species.find_by id: species_id
   end
 
   def evs

@@ -36,7 +36,7 @@ RSpec.feature "generations:", type: :feature, js: true do
     end
 
     # Unavailable items
-    {3 => POWER_ITEMS, 7 => [:macho_brace]}.each do |gen, items|
+    { 3 => POWER_ITEMS, 7 => [:macho_brace] }.each do |gen, items|
       context "generation #{gen}:" do
         items.each do |item|
           it "the #{item.to_s.humanize.downcase} is disabled" do

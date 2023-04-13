@@ -55,7 +55,8 @@ RSpec.feature "users:", type: :feature do
         it "displays artwork linking to the user's trainees" do
           User.first.trainees.each do |trainee|
             if trainee.species
-              expect(page).to have_xpath("//a[contains(@href,'#{trainee_path trainee}')]//img[contains(@src,'artwork/#{trainee.species.id}.png')]")
+              expect(page).to have_xpath("//a[contains(@href,'#{trainee_path trainee}')]" \
+                                         "//img[contains(@src,'artwork/#{trainee.species.id}.png')]")
             end
           end
         end

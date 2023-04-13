@@ -30,7 +30,7 @@ Rails.application.configure do
 
   # Logging
   config.log_level = :info
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   config.action_mailer.perform_caching = false
 
@@ -42,7 +42,7 @@ Rails.application.configure do
   config.active_support.report_deprecations = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+  config.log_formatter = Logger::Formatter.new
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)

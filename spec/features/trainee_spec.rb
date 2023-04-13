@@ -19,7 +19,7 @@ RSpec.feature "trainees#show:", type: :feature do
       context "with 509 total EVs", js: true do
         before do
           # Set everything except HP to 100
-          STATS[1..-1].each do |stat|
+          STATS[1..].each do |stat|
             fill_in "trainee_#{stat}", with: 100
           end
           wait_for STATS.last, 100
@@ -67,7 +67,7 @@ RSpec.feature "trainees#show:", type: :feature do
         end
       end
 
-      {ev: STATS, goal: GOALS}.each do |name, attrs|
+      { ev: STATS, goal: GOALS }.each do |name, attrs|
         describe "the #{name.capitalize} inputs", js: true do
           context "with 253 EVs in a single stat" do
             before do
@@ -97,7 +97,7 @@ RSpec.feature "trainees#show:", type: :feature do
           context "with 510 total EVs" do
             before do
               # Set everything except HP to 100
-              attrs[1..-1].each do |stat|
+              attrs[1..].each do |stat|
                 fill_in "trainee_#{stat}", with: 100
               end
               wait_for attrs.last, 100
@@ -232,9 +232,9 @@ RSpec.feature "trainees#show:", type: :feature do
       end
 
       TEST_KILL_BUTTONS.each do |id, data|
-        context "when using the #{(name = data[:name])} kill button", js: true do
+        context "when using the #{name = data[:name]} kill button", js: true do
           [true, false].each do |pokerus|
-            context "with#{pokerus ? "" : "out"} Pokérus" do
+            context "with#{pokerus ? '' : 'out'} Pokérus" do
               ([nil] + ITEMS).each do |item|
                 item_name = (item || "None").titleize
 
