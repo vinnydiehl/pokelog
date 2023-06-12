@@ -37,7 +37,7 @@ jobs:
             - vendor/bundle
       - run:
           name: RuboCop warning check
-          command: bundle exec rubocop --fail-level warning --display-only-fail-level-offenses
+          command: bundle exec rubocop
       - run:
           name: Wait for database
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
