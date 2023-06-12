@@ -10,9 +10,7 @@ RSpec.feature "trainees#show:", type: :feature do
 
     TEST_TRAINEES.each do |display_name, attrs|
       test_trainee_ui display_name, attrs
-    end
 
-    TEST_TRAINEES.each do |_, attrs|
       context "if you clear all inputs for #{attrs[:nickname]}" do
         before do
           @id = find_id attrs

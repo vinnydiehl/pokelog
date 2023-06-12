@@ -9,6 +9,7 @@ QUERY = "b"
 def data_entry_sample
   results = find_all(".data-entry")
   return results if results.length <= 5
+
   step = results.length / 5
   (0...5).map { |i| results[i * step] }
 end

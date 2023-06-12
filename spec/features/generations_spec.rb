@@ -154,7 +154,8 @@ RSpec.feature "generations:", type: :feature, js: true do
 
           it "feathers are#{availability ? '' : ' not'} available" do
             expect(page).to have_selector(
-              ".consumables-buttons .btn#{availability ? '' : '.disabled'}")
+              ".consumables-buttons .btn#{availability ? '' : '.disabled'}"
+            )
           end
         end
       end
@@ -206,24 +207,24 @@ RSpec.feature "generations:", type: :feature, js: true do
        [7, "Melmetal", "Grookey"],
        [8, "Enamorus", "Sprigatito"],
        [9, "Sprigatito", "Enamorus"]].each do |gen, included, not_included|
-          context "generation #{gen}:" do
-            before do
-              set_generation gen
-            end
-
-            it "includes #{included}" do
-              fill_in "Search", with: included
-
-              expect(find ".results").to have_content included
-            end
-
-            it "does not include #{not_included}" do
-              fill_in "Search", with: not_included
-
-              expect(find ".results").not_to have_content not_included
-            end
+        context "generation #{gen}:" do
+          before do
+            set_generation gen
           end
-       end
+
+          it "includes #{included}" do
+            fill_in "Search", with: included
+
+            expect(find ".results").to have_content included
+          end
+
+          it "does not include #{not_included}" do
+            fill_in "Search", with: not_included
+
+            expect(find ".results").not_to have_content not_included
+          end
+        end
+      end
     end
   end
 

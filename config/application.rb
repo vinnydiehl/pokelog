@@ -17,7 +17,7 @@ module PokeLog
   class Application < Rails::Application
     config.load_defaults 7.0
     config.eager_load_paths += [Rails.root.join("lib")]
-    config.exceptions_app = self.routes
+    config.exceptions_app = routes
     config.time_zone = "Eastern Time (US & Canada)"
 
     # Don't generate specs

@@ -3,33 +3,33 @@
 require "rails_helper"
 
 TEST_PASTE = <<~EOS.strip
-Test Mime (Mr. Mime-Galar) @ Assault Vest
-Ability: Ice Body
-Tera Type: Ice
-EVs: 248 HP / 252 SpA / 8 Spe
-Careful Nature
-IVs: 0 Atk
-- Dark Pulse
-- Acid Spray
-- Fairy Wind
-- Earth Power
+  Test Mime (Mr. Mime-Galar) @ Assault Vest
+  Ability: Ice Body
+  Tera Type: Ice
+  EVs: 248 HP / 252 SpA / 8 Spe
+  Careful Nature
+  IVs: 0 Atk
+  - Dark Pulse
+  - Acid Spray
+  - Fairy Wind
+  - Earth Power
 
-Azumarill
-Ability: Thick Fat
-Level: 75
-Tera Type: Water
-- Aqua Jet
-- Encore
-- Body Slam
-- Grass Knot
+  Azumarill
+  Ability: Thick Fat
+  Level: 75
+  Tera Type: Water
+  - Aqua Jet
+  - Encore
+  - Body Slam
+  - Grass Knot
 
-Baxcalibur
-Ability: Thermal Exchange
-Tera Type: Dragon
-EVs: 1 HP / 2 Atk / 3 Def / 4 SpA / 5 SpD / 6 Spe
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Blizzard
-- Brick Break
+  Baxcalibur
+  Ability: Thermal Exchange
+  Tera Type: Dragon
+  EVs: 1 HP / 2 Atk / 3 Def / 4 SpA / 5 SpD / 6 Spe
+  IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+  - Blizzard
+  - Brick Break
 EOS
 
 TEST_PASTE_URL = "https://pokepast.es/e3cf76c6eca678f6"

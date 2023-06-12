@@ -29,7 +29,8 @@ end
   Capybara.register_driver name do |app|
     options = Selenium::WebDriver::Chrome::Options.new(
       args: %W[headless disable-gpu window-size=#{width}x#{height} disable-extensions
-               enable-features=NetworkService,NetworkServiceInProcess])
+               enable-features=NetworkService,NetworkServiceInProcess]
+    )
 
     # iPhone 8 specs. 375px is the smallest width supported before scrolling begins.
     options.add_emulation(device_metrics: { width:, height:, pixelRatio: 3, touch: true })
@@ -45,7 +46,7 @@ Capybara.server = :puma, { Silent: true }
 # Capybara.javascript_driver = :selenium_chrome
 
 RSpec.configure do |config|
-  config.fixture_path = "#{Rails.root}/spec/fixtures"
+  config.fixture_path = Rails.root.join "spec/fixtures"
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!

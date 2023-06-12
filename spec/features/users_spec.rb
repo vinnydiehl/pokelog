@@ -100,7 +100,6 @@ RSpec.feature "users:", type: :feature do
               expect(page).to have_button "Register", disabled: true
             end
           end
-
         end
 
         describe "the username field" do

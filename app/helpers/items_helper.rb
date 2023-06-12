@@ -9,7 +9,7 @@ module ItemsHelper
     dict = { "weight" => "HP", "bracer" => "Atk", "belt" => "Def",
              "lens" => "Sp.A", "band" => "Sp.D", "anklet" => "Spe" }
 
-    if dict.has_key?(item.split("_")[1])
+    if dict.key?(item.split("_")[1])
       "+#{generation > 6 ? 8 : 4} #{dict[item.split('_')[1]]} EVs with every kill"
     elsif item == "macho_brace"
       "Doubles EV gains in all stats"

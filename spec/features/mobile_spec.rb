@@ -3,9 +3,7 @@
 require "rails_helper"
 
 class Capybara::Node::Element
-  def drag_by(right_by, down_by)
-    base.drag_by(right_by, down_by)
-  end
+  delegate :drag_by, to: :base
 end
 
 class Capybara::Selenium::Node

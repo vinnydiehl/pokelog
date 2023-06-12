@@ -73,7 +73,7 @@ RSpec.feature "species:", type: :feature do
         # Test case insensitivity
         "VENUSaur" => %w[Venusaur]
       }.each do |query, expected_results|
-        context %[with query "#{query}"], js: true do
+        context %(with query "#{query}"), js: true do
           before do
             fill_in "Search", with: query
           end

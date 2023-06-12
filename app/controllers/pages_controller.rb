@@ -3,8 +3,8 @@
 class PagesController < ApplicationController
   # GET /
   def index
-    if request.path == "/" && !@current_user.blank?
-      return redirect_to trainees_path
+    if request.path == "/" && @current_user.present?
+      redirect_to trainees_path
     end
   end
 

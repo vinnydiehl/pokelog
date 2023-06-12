@@ -142,7 +142,7 @@ RSpec.feature "trainees:", type: :feature do
         end
 
         it "cannot be exploited by calling the endpoint with another user's trainee" do
-          visit "/trainees/#{Trainee.where.not(user: @current_user).map { |t| t.id.to_s}.join ','}/delete"
+          visit "/trainees/#{Trainee.where.not(user: @current_user).map { |t| t.id.to_s }.join ','}/delete"
           sleep 0.5
 
           expect(User.last.trainees.size).to eq 5

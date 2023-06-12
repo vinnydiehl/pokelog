@@ -9,6 +9,9 @@ Style/MixinUsage:
   Exclude:
     - support/helper_includes.rb
 
+Style/SignalException:
+  Enabled: false
+
 Lint/AmbiguousBlockAssociation:
   Enabled: false
 

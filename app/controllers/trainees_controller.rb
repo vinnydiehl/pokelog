@@ -10,6 +10,7 @@ class TraineesController < ApplicationController
   # GET /trainees
   def index
     return redirect_to root_path, notice: NO_USER_NOTICE if @current_user.blank?
+
     @trainees = Trainee.where(user: @current_user).order(updated_at: :desc)
   end
 
@@ -19,7 +20,7 @@ class TraineesController < ApplicationController
     @party = Trainee.where(id: @ids)
     @other_trainees = Trainee.where(user: @current_user).where.not(id: @ids)
 
-    render "errors/not_found", status: 404 if @party.empty?
+    render "errors/not_found", status: :not_found if @party.empty?
 
     @nil_nature_option = ["Nature", ""]
     @nature_options = PokeLog::NATURES.keys.sort.map do |n|
@@ -105,8 +106,8 @@ class TraineesController < ApplicationController
             turbo_stream.update("artwork-#{dom_id}",
                                 partial: "trainees/artwork", locals: { trainee: @trainee }),
             turbo_stream.update(radar_id, partial: "shared/radar_chart",
-                                locals: { stats: @trainee.evs, goals: @trainee.goals,
-                                          id: radar_id }),
+                                          locals: { stats: @trainee.evs, goals: @trainee.goals,
+                                                    id: radar_id }),
             turbo_stream.update("mobile-sprite-#{dom_id}", html:
                                 @trainee.species ? @trainee.species.sprite : nil),
             turbo_stream.update(
@@ -131,12 +132,14 @@ class TraineesController < ApplicationController
       @trainee.destroy
 
       # Regex removes the targeted ID from comma-separated list. Redirect to trainees#index if only 1
-      redirect_path = !params["redirect_path"].include?(",") ? trainees_path :
+      redirect_path = params["redirect_path"].exclude?(",") ? trainees_path :
         params["redirect_path"].sub(/\b#{id}\b,|,\b#{id}\b(?=$|\?)/, "") + params["redirect_params"]
 
       respond_to do |format|
-        format.html { redirect_to redirect_path, status: :see_other,
-                                                 notice: "#{nickname} has been deleted." }
+        format.html do
+          redirect_to redirect_path, status: :see_other,
+                                     notice: "#{nickname} has been deleted."
+        end
       end
     else
       flash[:notice] = NOT_YOURS_NOTICE
@@ -154,7 +157,7 @@ class TraineesController < ApplicationController
 
       begin
         team = PokePaste.parse(params[:paste])
-      rescue
+      rescue StandardError
         flash[:notice] =
           "There was a problem parsing your PokéPaste. Double-check your formatting."
         return redirect_back fallback_location: root_path
@@ -172,7 +175,7 @@ class TraineesController < ApplicationController
 
         species = Species.all.find do |s|
           s.name.downcase == name.downcase &&
-            ((!form.present? && !s.form) || s.form.downcase.starts_with?(form.downcase[0..2]))
+            ((form.blank? && !s.form) || s.form.downcase.starts_with?(form.downcase[0..2]))
         end
 
         Trainee.new(
@@ -193,12 +196,10 @@ class TraineesController < ApplicationController
 
   # POST /trainees/paste/fetch
   def fetch
-    begin
-      paste = PokePaste.fetch(params[:url]).to_s
-      render plain: paste
-    rescue
-      head :not_found
-    end
+    paste = PokePaste.fetch(params[:url]).to_s
+    render plain: paste
+  rescue StandardError
+    head :not_found
   end
 
   private
@@ -216,6 +217,6 @@ class TraineesController < ApplicationController
 
   # Authentication for trainee modification
   def allowed_to_edit?(trainee)
-    !@current_user.blank? && @current_user == trainee.user
+    @current_user.present? && @current_user == trainee.user
   end
 end

@@ -45,6 +45,6 @@ end
 # (3..9).except(4) #=> [3, 5, 6, 7, 8, 9]
 class Range
   def except(value)
-    self.to_a.reject { |n| n == value }
+    to_a.reject { |n| n == value }
   end
 end

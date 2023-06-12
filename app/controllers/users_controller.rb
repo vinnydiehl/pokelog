@@ -10,7 +10,27 @@ class UsersController < ApplicationController
     # This is the user being displayed on the profile page, not necessarily
     # the logged in user.
     @display_user = User.find_by username: params[:username]
-    render "errors/not_found", status: 404 unless @display_user
+    render "errors/not_found", status: :not_found unless @display_user
+  end
+
+  # POST /register/submit
+  def create
+    params["username"].strip!
+    params["email"].strip!
+
+    @user = User.new(
+      username: params["username"],
+      email: params["email"],
+      google_id: @token.user_id
+    )
+
+    if @user.save
+      @found_user = @user
+      log_in
+    else
+      flash[:notice] = "Registration failed: #{@user.errors.full_messages.join ', '}"
+      redirect_post register_path(credential: params["credential"])
+    end
   end
 
   # PATCH /users/:username
@@ -42,31 +62,15 @@ class UsersController < ApplicationController
     end
   end
 
-  # POST /register/submit
-  def create
-    params["username"].strip!
-    params["email"].strip!
-
-    @user = User.new(
-      username: params["username"],
-      email: params["email"],
-      google_id: @token.user_id
-    )
-
-    if @user.save
-      @found_user = @user
-      log_in
-    else
-      flash[:notice] = "Registration failed: #{@user.errors.full_messages.join ', '}"
-      redirect_post register_path(credential: params["credential"])
-    end
-  end
-
   # GET /logout
   def logout
     cookies.delete :google_id
     redirect_to root_url, notice: "Logged out."
   end
+
+  # POST /register
+  # Explicitly defined for RuboCop since this has a before_action
+  def register; end
 
   private
 

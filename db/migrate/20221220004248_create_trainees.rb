@@ -13,7 +13,7 @@ class CreateTrainees < ActiveRecord::Migration[7.0]
       t.string :species_id, null: true
       t.string :nickname, null: true
       t.integer :level, null: true
-      t.boolean :pokerus, default: false
+      t.boolean :pokerus, default: false, null: false
       t.enum :nature, enum_type: "nature", null: true
       t.enum :item, enum_type: "item", null: true
       t.integer :hp_ev, default: 0
@@ -27,4 +27,3 @@ class CreateTrainees < ActiveRecord::Migration[7.0]
     end
   end
 end
-

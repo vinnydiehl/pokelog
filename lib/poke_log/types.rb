@@ -14,9 +14,7 @@ module PokeLog
     # @return [Numeric] the damage multiplier (0, 0.5, 1, 2, or 4)
     def self.multiplier(atk_type, def_types)
       # Create a table to store type matchups- for now they're set to 1x
-      type_matchups = Hash[types.map do |attacker|
-        [attacker, Hash[types.map { |defender| [defender, 1] }]]
-      end]
+      type_matchups = types.index_with(types.index_with 1)
 
       # Now to fill in all of the non-1 values on the table:
 

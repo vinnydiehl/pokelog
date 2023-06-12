@@ -5,7 +5,7 @@ class Species < ActiveYaml::Base
 
   # @return the JSON data to be passed into Materialize autocomplete
   def self.autocomplete_data
-    @@autocomplete_data ||= Species.all.map do |pkmn|
+    @autocomplete_data ||= Species.all.map do |pkmn|
       { pkmn.display_name => pkmn.sprite(format: :path) }
     end.reduce(&:merge).to_json
   end
@@ -35,19 +35,21 @@ class Species < ActiveYaml::Base
       class: "artwork"
   end
 
+  # @option :format [Symbol] `:path` to the image, or an HTML `:tag`
   # @return [String] HTML image tag for the sprite
-  def sprite(**args)
+  def sprite(format: :tag)
     path = "/images/sprites/#{self[:id]}.png"
-    return args[:format] == :path ? path :
+    format == :path ? path :
       ActionController::Base.helpers.image_tag(path, class: "sprite")
   end
 
   # See app/assets/stylesheets/types.scss
   #
+  # @option :size [Symbol] :small or :large
   # @return [String] HTML div tags for type badges
-  def type_badges(**args)
+  def type_badges(size: :small)
     types.map do |type|
-      "<div class='type#{args[:size] == :large ? ' large' : ''} #{type}'></div>"
+      "<div class='type#{size == :large ? ' large' : ''} #{type}'></div>"
     end.join.html_safe
   end
 
@@ -73,19 +75,21 @@ class Species < ActiveYaml::Base
   def self.find_by_display_name(name)
     form = nil
     if name[/\(/]
-      form = name[/(?<=\()[^\)]+/]
+      form = name[/(?<=\()[^)]+/]
       name = name.split("(").first.strip
     end
-    find { |s| s.name == name && (s.form == form || (form == nil && s.form == "Normal")) }
+    find { |s| s.name == name && (s.form == form || (form.nil? && s.form == "Normal")) }
   end
 
   # Search form logic for displaying species
   #
   # @param params [Hash] parameters from query string
   # @param generation [String] the generation cookie (can be nil)
-  # @param show_all_by_default [Boolean] whether or not to show
+  #
+  # @option :show_all [Boolean] whether or not to show by default
+  #
   # @return [Array<Species>] the species that satisfy the query and filters
-  def self.search(params, generation, show_all_by_default=false)
+  def self.search(params, generation, show_all: false)
     results = all
 
     if generation
@@ -94,7 +98,7 @@ class Species < ActiveYaml::Base
 
     # If there's no query or params, show either all or nothing depending on options
     if [(query = params[:q]), (filters = params[:filters] || [])].all?(&:blank?)
-      return show_all_by_default ? results : []
+      return show_all ? results : []
     end
 
     if filters.present?

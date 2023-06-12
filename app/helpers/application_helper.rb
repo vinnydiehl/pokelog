@@ -72,7 +72,7 @@ module ApplicationHelper
   # @return title formatted for the browser
   def build_title(title, path)
     "PokéLog#{
-      (title.blank? || %w[/ /home /index].include?(path)) ? '' : " | #{title}"
+      title.blank? || %w[/ /home /index].include?(path) ? '' : " | #{title}"
     }"
   end
 end

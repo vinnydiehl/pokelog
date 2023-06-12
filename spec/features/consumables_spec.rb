@@ -61,7 +61,7 @@ RSpec.feature "consumables:", type: :feature, js: true do
       end
 
       it "do not effect the other trainees" do
-        Trainee.all.select { |trn| trn != Trainee.first }.each do |trainee|
+        Trainee.all.reject { |trn| trn == Trainee.first }.each do |trainee|
           expect(trainee.hp_ev).to eq TEST_TRAINEES[trainee.species.display_name][:hp_ev]
         end
       end

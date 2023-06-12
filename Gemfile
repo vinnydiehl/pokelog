@@ -19,8 +19,8 @@ gem "puma", "~> 6.1"
 gem "importmap-rails"
 
 # JavaScript frameworks for single page app functions
-gem "turbo-rails", "~> 1.3"
 gem "stimulus-rails", "~> 1.2"
+gem "turbo-rails", "~> 1.3"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
@@ -47,9 +47,9 @@ group :development do
 end
 
 group :test do
+  gem "fuubar", "~> 2.0"
   gem "rspec", "~> 3.12"
   gem "rspec-rails", "~> 6.0"
-  gem "fuubar", "~> 2.0"
 
   gem "capybara", "~> 3.38"
   gem "capybara-selenium", "~> 0.0.6"
@@ -59,9 +59,9 @@ group :test do
   gem "rspec_junit_formatter", "~> 0.6", require: false
 
   gem "rubocop", "~> 1.50"
+  gem "rubocop-capybara", "~> 2.17"
   gem "rubocop-rails", "~> 2.19"
   gem "rubocop-rspec", "~> 2.19"
-  gem "rubocop-capybara", "~> 2.17"
 end
 
 gem "active_hash", "~> 3.1"
