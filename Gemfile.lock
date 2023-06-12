@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/vinnydiehl/active_hash.git
+  revision: f8644fffdbee2be626a56044084922aec9585db7
+  branch: fix-nil-error
+  specs:
+    active_hash (3.2.0)
+      activesupport (>= 5.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -46,8 +54,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_hash (3.2.0)
-      activesupport (>= 5.0.0)
     activejob (7.0.5)
       activesupport (= 7.0.5)
       globalid (>= 0.3.6)
@@ -329,7 +335,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  active_hash (~> 3.1)
+  active_hash!
   bootsnap (~> 1.16)
   capybara (~> 3.38)
   capybara-selenium (~> 0.0.6)

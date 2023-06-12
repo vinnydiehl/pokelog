@@ -64,7 +64,11 @@ group :test do
   gem "rubocop-rspec", "~> 2.19"
 end
 
-gem "active_hash", "~> 3.1"
+# TODO: This is a fork that fixes errors during testing. Eyes on this PR:
+# https://github.com/active-hash/active_hash/pull/282
+gem "active_hash", git: "https://github.com/vinnydiehl/active_hash.git",
+                   branch: "fix-nil-error"
+
 gem "email_validator", "~> 2.2"
 gem "google_sign_in", "~> 1.2"
 gem "pokepaste", "~> 0.1"
