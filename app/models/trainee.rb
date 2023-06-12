@@ -2,7 +2,6 @@
 
 class Trainee < ApplicationRecord
   belongs_to :user
-  has_many :kills, dependent: :destroy
 
   PokeLog::Stats.stats.each do |stat|
     validates :"#{stat}_ev", numericality: { in: 0..255 }

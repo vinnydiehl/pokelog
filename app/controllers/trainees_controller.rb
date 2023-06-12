@@ -212,7 +212,7 @@ class TraineesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def trainee_params
     params.require(:trainee).permit(:user_id, :team_id, :species_id, :level, :pokerus,
-                                    :start_stats, :trained_stats, :kills, :nature, :evs)
+                                    :start_stats, :trained_stats, :nature, :evs)
   end
 
   # Authentication for trainee modification
