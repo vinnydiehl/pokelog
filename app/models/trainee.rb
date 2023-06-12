@@ -2,6 +2,7 @@
 
 class Trainee < ApplicationRecord
   belongs_to :user
+  before_save :ensure_pokerus_false
 
   PokeLog::Stats.stats.each do |stat|
     validates :"#{stat}_ev", numericality: { in: 0..255 }
@@ -61,5 +62,13 @@ class Trainee < ApplicationRecord
       spd: spd_goal,
       spe: spe_goal
     })
+  end
+
+  private
+
+  # For whatever reason, in some environments this is getting initialized to `nil`.
+  # This started causing problems in CI out of nowhere.
+  def ensure_pokerus_false
+    self.pokerus ||= false
   end
 end
