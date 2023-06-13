@@ -10,8 +10,12 @@
     = f.label :q, "Search"
     = f.text_field :q, value: params[:q],
                        data: { action: "input->form-submission#searchSubmit" }
-  %a#filters-btn.btn.waves-effect.grey{onclick:"openModal('species-filters')"}
-    %i.material-icons settings
+  .search-bar-buttons
+    %a#generation-btn.btn.waves-effect.grey
+      %i.material-icons filter_#{cookies[:generation] || "none"}
+    %a#filters-btn.btn.waves-effect.grey{onclick:"openModal('species-filters')"}
+      %i.material-icons filter_alt
+
   #species-filters.modal
     .modal-content
       %h4 Filters

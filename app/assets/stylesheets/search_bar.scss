@@ -9,16 +9,23 @@
     flex: 1;
   }
 
-  #filters-btn {
-    width: 2.25rem;
-    height: 2.25rem;
-    i {
-      font-size: 1.5rem;
-    }
+  .search-bar-buttons {
+    display: inherit;
+    align-items: inherit;
+    gap: inherit;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    a {
+      width: 2.25rem;
+      height: 2.25rem;
+
+      i {
+        font-size: 1.5rem;
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 
