@@ -34,14 +34,6 @@
     .modal-content
       %h4 Filters
 
-      %h6.no-bottom-margin Generation:
-      - generation_options = [["None", nil]] + (3..9).map { |n| [n.to_s] * 2 }
-      -# Dummy form attribute keeps this from showing as a query parameter;
-      -# this feature uses cookies only.
-      = select_tag "generation", options_for_select(generation_options,
-          selected: generation_options.find { |o| o.last == cookies[:generation] }),
-        "data-action": "change->form-submission#generationSubmit", form: "dummy"
-
       %h6 EVs yielded:
       #evs-yielded-filters
         .checkboxes
