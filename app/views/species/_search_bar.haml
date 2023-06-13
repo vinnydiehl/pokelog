@@ -1,6 +1,9 @@
-= javascript_include_tag "nouislider.min.js"
 = javascript_include_tag "amount_yielded_slider"
+= javascript_include_tag "dropdown_init"
 = javascript_include_tag "filters"
+= javascript_include_tag "generation_dropdown"
+
+= javascript_include_tag "nouislider.min.js"
 
 = form_with url: request.path, method: :get, class: "species-search",
             data: { controller: "form-submission",
@@ -11,10 +14,19 @@
     = f.text_field :q, value: params[:q],
                        data: { action: "input->form-submission#searchSubmit" }
   .search-bar-buttons
-    %a#generation-btn.btn.waves-effect.grey
+    %a#generation-btn.btn.waves-effect.grey.dropdown-trigger{"data-target": "generation-dropdown"}
       %i.material-icons filter_#{cookies[:generation] || "none"}
     %a#filters-btn.btn.waves-effect.grey{onclick:"openModal('species-filters')"}
       %i.material-icons filter_alt
+
+  #generation-dropdown.dropdown-content
+    .generation-widget
+      .title Generation
+      %hr
+      .buttons
+        - (3..9).each do |gen|
+          %li{class: "gen#{gen}"}= gen
+        %li.gen-all All
 
   #species-filters.modal
     .modal-content
