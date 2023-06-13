@@ -2,7 +2,7 @@
 
 def set_generation(gen)
   find("#filters-btn").click
-  find("#species-filters .select-wrapper").click
+  find("#species-filters .select-wrapper").hover_and_click
   find("span", text: gen.to_s).hover_and_click
   sleep 0.5
 end
