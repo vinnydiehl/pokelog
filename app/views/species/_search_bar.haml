@@ -23,10 +23,12 @@
     .generation-widget
       .title Generation
       %hr
-      .buttons
+      .buttons{}
         - (3..9).each do |gen|
-          %li{class: "gen#{gen}"}= gen
-        %li.gen-all All
+          %li{class: "gen#{gen}", data: { controller: "generation-widget",
+                                          action: "click->generation-widget#submit" }}= gen
+        %li.gen-all{data: { controller: "generation-widget",
+                            action: "click->generation-widget#submit" }} All
 
   #species-filters.modal
     .modal-content
