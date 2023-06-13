@@ -36,7 +36,7 @@ jobs:
           paths:
             - vendor/bundle
       - run:
-          name: RuboCop warning check
+          name: RuboCop lint check
           command: bundle exec rubocop
       - run:
           name: Wait for database
