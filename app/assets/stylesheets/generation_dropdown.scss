@@ -1,0 +1,42 @@
+#generation-dropdown {
+  $button-size: 50px;
+  $width: 2;
+  $height: 4;
+
+  // Override Materialize size
+  width: fit-content;
+  height: fit-content;
+
+  .generation-widget {
+    .title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 25px;
+
+      font-size: 11px;
+      color: grey;
+      text-transform: uppercase;
+    }
+
+    hr {
+      color: #efefef;
+      margin: 0 3px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat($width, $button-size);
+      grid-template-rows: repeat($height, $button-size);
+
+      list-style-type: none;
+
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
