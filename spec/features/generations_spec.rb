@@ -16,6 +16,8 @@ RSpec.feature "generations:", type: :feature, js: true do
     # Basic funtionality tests to ensure that a feature isn't broken in any generation
     (3..9).each do |gen|
       context "generation #{gen}:" do
+        before { set_generation gen }
+
         it "kill buttons work" do
           fill_in "Search", with: "Shellder" # 1 Def
           find("#species_090").click
