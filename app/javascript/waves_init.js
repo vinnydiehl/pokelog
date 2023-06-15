@@ -1,3 +1,0 @@
-runOnLoad(() => {
-    Waves.displayEffect();
-});
