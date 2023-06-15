@@ -1,5 +1,11 @@
 version: 2.1
 
+parameters:
+  # Trigger parameter for manual pipelines
+  run:
+    type: string
+    default: ""
+
 orbs:
   heroku: circleci/heroku@2.0
   browser-tools: circleci/browser-tools@1.4.1
@@ -68,6 +74,16 @@ jobs:
           command: heroku run bin/rake db:migrate --app $HEROKU_APP_NAME
 
 workflows:
+  manual-test:
+    # Need to set the `run` parameter (to anything) in order to trigger the tests
+    when: << pipeline.parameters.run >>
+    jobs:
+      - test:
+          filters:
+            branches:
+              ignore:
+                - trunk
+                - production
   test-deploy:
     jobs:
       - test:
