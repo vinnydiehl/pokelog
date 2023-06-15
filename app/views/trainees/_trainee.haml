@@ -9,9 +9,9 @@
       .nickname-species.side-by-side
         .input-field.nickname
           = f.label :nickname, "Nickname"
-          = f.text_field :nickname, class: "counter", maxlength: 12, disabled: not_yours?(trainee),
-                         data: {length: 12, action: "blur->form-submission#submit"},
-                         onblur: "hideCounter()", value: trainee.nickname
+          = f.text_field :nickname, class: "counter", disabled: not_yours?(trainee), value: trainee.nickname,
+                                    maxlength: 12, data: {length: 12, controller: "character-counter",
+                                    action: "blur->form-submission#submit blur->character-counter#hide"}
         .input-field.species
           = f.label :species, "Species"
           = f.text_field :species, class: "autocomplete", disabled: not_yours?(trainee),
