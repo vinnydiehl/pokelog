@@ -1,4 +1,3 @@
-= javascript_include_tag "amount_yielded_slider"
 = javascript_include_tag "dropdown_init"
 = javascript_include_tag "generation_dropdown"
 
@@ -43,7 +42,7 @@
               %span= format_stat stat
 
       %h6 Amount yielded:
-      #amount-yielded-slider
+      #amount-yielded-slider{"data-controller": "amount-yielded-slider"}
       -# These checkboxes are essentially acting as hidden inputs because
       -# Materialize hides them in the absence of a label>span wrapper. This is
       -# convenient because they won't show in the URL query string when unchecked
