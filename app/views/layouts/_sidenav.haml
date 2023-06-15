@@ -1,11 +1,9 @@
-= javascript_include_tag "collapsible_init"
-
 %ul#sidenav.sidenav.sidenav-fixed{style: "transform: translateX(0px);", "data-controller": "sidenav"}
   %li.logo
     %a#logo-container.waves-effect{onclick: nav_link_js("/home")}
       = image_tag "logo.svg", height: 120, id: "front-page-logo"
   - if logged_in?
-    %ul.collapsible
+    %ul.collapsible{"data-controller": "collapsible"}
       %li#profile-widget
         %a.collapsible-header.waves-effect= @current_user.username
         .collapsible-body
