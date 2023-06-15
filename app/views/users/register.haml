@@ -1,6 +1,5 @@
 - provide :title, "New User"
 
-= javascript_include_tag "character_counter"
 = javascript_include_tag "form_button_enable"
 = javascript_include_tag "sidenav_init"
 
@@ -11,8 +10,9 @@
   .input-field
     = f.label :username, "Username"
     = f.text_field :username, class: "counter", minlength: 1, maxlength: 20,
-                              "data-length" => 20, onblur: "hideCounter()",
-                              oninput: "enableRegisterButton()"
+                              oninput: "enableRegisterButton()",
+                              data: {length: 12, controller: "character-counter",
+                                     action: "blur->character-counter#hide"}
   .input-field
     = f.label :email, "Email Address"
     = f.text_field :email, value: @token.email_address,
