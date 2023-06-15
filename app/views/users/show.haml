@@ -4,8 +4,6 @@
 - provide :title, (title = "#{name} Profile")
 - provide :mobile_title, (your_profile ? title : @display_user.username)
 
-= javascript_include_tag "form_button_enable"
-
 - if your_profile
   -# We know that we only want the user to be able to edit their own email,
   -# so this form will be for @current_user. Functionally it doesn't matter,
@@ -14,8 +12,9 @@
               html: { "data-turbo" => false } do |f|
     .input-field
       = f.label :email, "Email Address"
-      = f.text_field :email, oninput: "enableEditButton()",
-          value: @current_user.email, "data-original-value" => @current_user.email
+      = f.text_field :email, value: @current_user.email,
+                     data: { "original-value": @current_user.email, controller: "button-enable",
+                             action: "input->button-enable#validateEmail", target: "edit-btn" }
     %button#edit-btn.btn.waves-effect.waves-light{type: "submit", name: "commit", disabled: true}
       %i.material-icons.right edit
 
