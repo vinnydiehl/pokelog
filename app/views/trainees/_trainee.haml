@@ -25,7 +25,8 @@
               options_for_select([@nil_nature_option] + @nature_options,
                 disabled: @nil_nature_option,
                 selected: @nature_options.find { |o| o.last == trainee.nature } || @nil_nature_option),
-              {}, {data: {action: "change->form-submission#submit"}, disabled: not_yours?(trainee)}
+              {}, {data: {controller: "select", action: "change->form-submission#submit"},
+              disabled: not_yours?(trainee)}
           = f.label :nature, "Nature"
         .input-field
           = f.label :level, "Level"
