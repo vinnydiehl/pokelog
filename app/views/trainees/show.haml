@@ -4,7 +4,6 @@
 = javascript_include_tag "cookies"
 = javascript_include_tag "open_modal"
 = javascript_include_tag "slip"
-= javascript_include_tag "slip_init"
 = javascript_include_tag "trainee"
 = javascript_include_tag "update_evs"
 
@@ -46,7 +45,7 @@
   #kill-search
     = render "species/search_bar"
     .results
-      = turbo_frame_tag :results do
+      = turbo_frame_tag :results, "data-controller": "slip" do
         - @search_results.each do |species|
           - ev_string = species.ev_yield.values.join ","
           = render species, attrs: { class: "waves-effect waves-teal",
