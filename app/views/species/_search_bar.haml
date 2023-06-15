@@ -1,6 +1,5 @@
 = javascript_include_tag "amount_yielded_slider"
 = javascript_include_tag "dropdown_init"
-= javascript_include_tag "filters"
 = javascript_include_tag "generation_dropdown"
 
 = javascript_include_tag "nouislider.min.js"
@@ -30,7 +29,7 @@
         %li.gen-all{data: { controller: "generation-widget",
                             action: "click->generation-widget#submit" }} All
 
-  #species-filters.modal
+  #species-filters.modal{"data-controller": "filters"}
     .modal-content
       %h4 Filters
 
@@ -61,9 +60,9 @@
             %label
               = check_box_tag "filters[#{section}][]", type, filter_checked?(section, type),
                               id: "filters_#{section}_#{type}",
-                              "data-action": "input->form-submission#submit"
+                              "data-action": "input->form-submission#submit#{' click->filters#check2Max' if section == 'types'}"
               %span= type.capitalize
 
     .modal-footer
-      %a#clear-filters-btn.waves-effect.waves-teal.btn-flat{onclick: "clearAllFilters()"} Clear All
+      %a#clear-filters-btn.waves-effect.waves-teal.btn-flat{"data-action": "click->filters#clear"} Clear All
       %a#filters-close-btn.modal-close.waves-effect.waves-teal.btn-flat Close
