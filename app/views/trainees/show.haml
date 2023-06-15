@@ -2,7 +2,6 @@
   - provide size, title
 
 = javascript_include_tag "cookies"
-= javascript_include_tag "fixed_action_init"
 = javascript_include_tag "open_modal"
 = javascript_include_tag "select_init"
 = javascript_include_tag "sidenav_init"
@@ -19,7 +18,7 @@
       = render trainee
 
 -if @party.any? { |trainee| yours? trainee }
-  .fixed-action-btn
+  .fixed-action-btn{"data-controller": "floating-action"}
     %a#add-action-btn.btn-floating.btn-large.red
       %i.material-icons.large add
     %ul
