@@ -1,8 +1,7 @@
 = javascript_include_tag "collapsible_init"
-= javascript_include_tag "sidenav_init"
 = javascript_include_tag "waves_init"
 
-%ul#sidenav.sidenav.sidenav-fixed{style: "transform: translateX(0px);"}
+%ul#sidenav.sidenav.sidenav-fixed{style: "transform: translateX(0px);", "data-controller": "sidenav"}
   %li.logo
     %a#logo-container.waves-effect{onclick: nav_link_js("/home")}
       = image_tag "logo.svg", height: 120, id: "front-page-logo"
