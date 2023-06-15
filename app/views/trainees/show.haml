@@ -1,7 +1,6 @@
 - trainees_show_title(@party).each do |size, title|
   - provide size, title
 
-= javascript_include_tag "add_to_party"
 = javascript_include_tag "cookies"
 = javascript_include_tag "fixed_action_init"
 = javascript_include_tag "open_modal"
@@ -39,13 +38,14 @@
     .modal-footer
       %a#close-goal-alert.modal-close.waves-effect.waves-teal.btn-flat OK
 
-  #add-to-party-modal.modal
+  #add-to-party-modal.modal{"data-controller": "add-to-party"}
     .modal-content
       %h4 Add to party
       = render "list", trainees: @other_trainees
     .modal-footer
       %a#cancel-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Cancel
-      %a#confirm-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Add
+      %a#confirm-add-to-party.modal-close.waves-effect.waves-teal.btn-flat{"data-action": "click->add-to-party#confirm"}
+        Add
 
   #kill-search
     = render "species/search_bar"
