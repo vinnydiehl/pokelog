@@ -8,10 +8,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   confirm() {
     let selectedIds = Array.from(this.element.querySelectorAll("input[name='trainee_ids[]']:checked"))
-        .map(checkbox => checkbox.value);
+                           .map(checkbox => checkbox.value);
 
     if (selectedIds.length > 0)
-        Turbo.visit(location.pathname + "," + selectedIds.join(",") + location.search,
-                    {action: "replace"});
+      Turbo.visit(location.pathname + "," + selectedIds.join(",") + location.search,
+                  {action: "replace"});
   }
 }
