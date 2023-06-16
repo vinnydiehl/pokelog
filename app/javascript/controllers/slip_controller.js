@@ -38,10 +38,5 @@ export default class extends Controller {
         slipInstance = null;
       }
     });
-
-    slipContainer.addEventListener("slip:swipe", e => killButton(
-      ...e.target.getAttribute("data-ev-yield").split(",").map(Number),
-      true
-    ));
   }
 }

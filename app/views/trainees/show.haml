@@ -20,7 +20,7 @@
         = turbo_frame_tag :results, "data-controller": "slip" do
           - @search_results.each do |species|
             = render species, attrs: { class: "waves-effect waves-teal",
-                                       data: { action: "click->ev#killButton click->goals#check",
+                                       data: { action: "click->ev#killButton slip:swipe->ev#killButton click->goals#check",
                                                **species.ev_yield } }
 
     .fixed-action-btn{"data-controller": "floating-action"}
