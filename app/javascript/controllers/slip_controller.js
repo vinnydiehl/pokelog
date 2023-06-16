@@ -6,6 +6,7 @@
   **/
 
 import { Controller } from "@hotwired/stimulus"
+import * as slip from "slip"
 
 // Connects to data-controller="slip"
 export default class extends Controller {
