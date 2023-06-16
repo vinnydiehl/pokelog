@@ -20,3 +20,11 @@ function getCookie(name) {
 
     return value;
 }
+
+// Trainee UI behaves as 9th gen if none is selected. This doesn't affect search results.
+function getGeneration() {
+  const generationCookie = document.cookie.split("; ")
+    .find(row => row.startsWith("generation="))
+    ?.split("=")[1];
+  return parseInt(generationCookie) || 9;
+}

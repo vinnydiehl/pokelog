@@ -5,51 +5,51 @@
 = javascript_include_tag "open_modal"
 = javascript_include_tag "slip"
 = javascript_include_tag "trainee"
-= javascript_include_tag "update_evs"
 
-#trainees
-  -# We're listing this way so they appear in order specified by URL
-  - @ids.each do |id|
-    - if (trainee = @party.find_by id: id)
-      = render trainee
+#trainees-show{"data-controller": "ev goals"}
+  #trainees
+    -# We're listing this way so they appear in order specified by URL
+    - @ids.each do |id|
+      - if (trainee = @party.find_by id: id)
+        = render trainee
 
--if @party.any? { |trainee| yours? trainee }
-  .fixed-action-btn{"data-controller": "floating-action"}
-    %a#add-action-btn.btn-floating.btn-large.red
-      %i.material-icons.large add
-    %ul
-      %li
-        %a#add-to-party-btn.btn-floating.red{onclick: "openModal('add-to-party-modal')"}
-          %i.material-icons list
-      %li
-        -# This button's href is set on click by JavaScript
-        %a#new-trainee-btn.btn-floating.red
-          %i.material-icons add
+  -if @party.any? { |trainee| yours? trainee }
+    #kill-search
+      = render "species/search_bar"
+      .results
+        = turbo_frame_tag :results, "data-controller": "slip" do
+          - @search_results.each do |species|
+            = render species, attrs: { class: "waves-effect waves-teal",
+                                       data: { action: "click->ev#killButton click->goals#check",
+                                               **species.ev_yield } }
 
-  #goal-alert.modal
-    .modal-content
-      %h4#goal-alerts-title
-      #goal-table
-    .modal-footer
-      %a#close-goal-alert.modal-close.waves-effect.waves-teal.btn-flat OK
+    .fixed-action-btn{"data-controller": "floating-action"}
+      %a#add-action-btn.btn-floating.btn-large.red
+        %i.material-icons.large add
+      %ul
+        %li
+          %a#add-to-party-btn.btn-floating.red{onclick: "openModal('add-to-party-modal')"}
+            %i.material-icons list
+        %li
+          -# This button's href is set on click by JavaScript
+          %a#new-trainee-btn.btn-floating.red
+            %i.material-icons add
 
-  #add-to-party-modal.modal{"data-controller": "add-to-party"}
-    .modal-content
-      %h4 Add to party
-      = render "list", trainees: @other_trainees
-    .modal-footer
-      %a#cancel-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Cancel
-      %a#confirm-add-to-party.modal-close.waves-effect.waves-teal.btn-flat{"data-action": "click->add-to-party#confirm"}
-        Add
+    #goal-alert.modal
+      .modal-content
+        %h4#goal-alerts-title
+        #goal-table
+      .modal-footer
+        %a#close-goal-alert.modal-close.waves-effect.waves-teal.btn-flat OK
 
-  #kill-search
-    = render "species/search_bar"
-    .results
-      = turbo_frame_tag :results, "data-controller": "slip" do
-        - @search_results.each do |species|
-          - ev_string = species.ev_yield.values.join ","
-          = render species, attrs: { class: "waves-effect waves-teal",
-                   onclick: "killButton(#{ev_string})", "data-ev-yield": "#{ev_string}" }
+    #add-to-party-modal.modal{"data-controller": "add-to-party"}
+      .modal-content
+        %h4 Add to party
+        = render "list", trainees: @other_trainees
+      .modal-footer
+        %a#cancel-add-to-party.modal-close.waves-effect.waves-teal.btn-flat Cancel
+        %a#confirm-add-to-party.modal-close.waves-effect.waves-teal.btn-flat{"data-action": "click->add-to-party#confirm"}
+          Add
 
 = render "shared/ads"
 
