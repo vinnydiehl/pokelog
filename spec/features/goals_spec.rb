@@ -186,6 +186,24 @@ RSpec.feature "EV goals:", type: :feature, js: true do
         expect(text_color_of input).to eq colors.first
       end
     end
+
+    describe "the goals button" do
+      context "from a fresh page load" do
+        it "displays the goals" do
+          set_goal :spd, 50
+          set_ev :spd, 51
+          click_away
+
+          # Go to a different page and then back again
+          visit trainees_path
+          visit trainee_path(Trainee.first)
+
+          find("#show-goals-btn").click
+
+          expect(page).to have_selector ".over-goal", visible: :visible
+        end
+      end
+    end
   end
 
   context "with multiple trainees" do

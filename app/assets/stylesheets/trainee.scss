@@ -492,3 +492,10 @@ $small_radar_size: 250px;
 #kill-search {
   margin-top: 20px;
 }
+
+#show-goals-btn {
+  position: fixed;
+  right: 90px;
+  bottom: 30px;
+  z-index: 997;
+}

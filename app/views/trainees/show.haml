@@ -2,7 +2,6 @@
   - provide size, title
 
 = javascript_include_tag "cookies"
-= javascript_include_tag "open_modal"
 = javascript_include_tag "trainee"
 
 #trainees-show{"data-controller": "ev goals"}
@@ -22,12 +21,17 @@
                                        data: { action: "click->ev#killButton slip:swipe->ev#killButton click->goals#check",
                                                **species.ev_yield } }
 
+    %a#show-goals-btn.btn-floating.waves-effect.waves-light.red{data: { controller: "modal",
+                                                                        action: "click->modal#open",
+                                                                        target: "goal-alert" }}
+      %i.material-icons checklist
     .fixed-action-btn{"data-controller": "floating-action"}
       %a#add-action-btn.btn-floating.btn-large.red
-        %i.material-icons.large add
+        %i.material-icons.large group_add
       %ul
         %li
-          %a#add-to-party-btn.btn-floating.red{onclick: "openModal('add-to-party-modal')"}
+          %a#add-to-party-btn.btn-floating.red{data: { controller: "modal", action: "click->modal#open",
+                                                       target: "add-to-party-modal" }}
             %i.material-icons list
         %li
           -# This button's href is set on click by JavaScript
