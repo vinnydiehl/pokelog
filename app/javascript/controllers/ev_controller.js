@@ -9,7 +9,8 @@ import { getInputSum, itemStat } from "../util/ev"
 // Connects to data-controller="ev"
 export default class extends Controller {
   killButton() {
-    if (screen.width <= 509 && window.ontouchstart !== undefined)
+    // Only allow swipes on mobile
+    if (event.type == "click" && screen.width <= 509 && window.ontouchstart !== undefined)
       return;
 
     const data = event.currentTarget.dataset;
