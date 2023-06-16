@@ -1,6 +1,5 @@
 - provide :title, "Trainees"
 
-= javascript_include_tag "open_modal"
 = javascript_include_tag "pokepaste"
 = javascript_include_tag "trainees_index"
 
@@ -14,13 +13,17 @@
     %a#train-btn.waves-effect.waves-light.btn.red.disabled
       %i.material-icons.left fitness_center
       Train
-    %a#delete-btn.waves-effect.waves-light.btn.red.disabled{onclick: "openModal('delete-multi')"}
+    %a#delete-btn.waves-effect.waves-light.btn.red.disabled{data: { controller: "modal",
+                                                                    action: "click->modal#open",
+                                                                    target: "delete-multi" }}
       %i.material-icons.left delete
       Delete
 
   -# + button
   .add-buttons
-    %a#add-pokepaste-btn.btn-floating.waves-effect.waves-light.red{onclick: "openModal('add-pokepaste')"}
+    %a#add-pokepaste-btn.btn-floating.waves-effect.waves-light.red{data: { controller: "modal",
+                                                                           action: "click->modal#open",
+                                                                           target: "add-pokepaste" }}
       %i.material-icons content_paste
     = link_to new_trainee_path, id: "new-trainee", class: "btn-floating btn-large waves-effect waves-light red" do
       %i.material-icons add

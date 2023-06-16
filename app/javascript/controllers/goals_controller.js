@@ -9,7 +9,8 @@ import { itemStat } from "../util/ev"
 // Connects to data-controller="goals"
 export default class extends Controller {
   connect() {
-    // In most cases all alerts will be shown already, but this sets the colors
+    // In most cases all alerts will be shown already, but this sets
+    // the colors and builds the modal
     this.check();
   }
 
@@ -113,7 +114,8 @@ export default class extends Controller {
 
     const nAlerts = approaching.length + onGoal.length + over.length;
 
-    if (nAlerts > 0 && cookieCheck) {
+    // this.modalBuilt makes sure this is built on page load
+    if ((nAlerts > 0 && cookieCheck) || !this.modalBuilt) {
       // Title varies based on number/type of alerts
       document.getElementById("goal-alerts-title").innerHTML =
         nAlerts > 1 ? "You have alerts!" :
@@ -147,8 +149,12 @@ export default class extends Controller {
       });
 
       document.getElementById("goal-table").replaceChildren(table);
-
-      openModal("goal-alert");
     }
+
+    if (cookieCheck)
+      this.application.getControllerForElementAndIdentifier(
+        document.getElementById("show-goals-btn"),
+        "modal"
+      ).open();
   }
 }

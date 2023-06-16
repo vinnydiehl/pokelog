@@ -45,7 +45,8 @@
             = trainee.species.type_badges size: :large
       .corner-buttons
         - if yours?(trainee)
-          %a.delete-btn{id: "delete-#{dom_id trainee}", onclick: "openModal('delete-modal-#{dom_id trainee}')"}
+          %a.delete-btn{id: "delete-#{dom_id trainee}", data: { controller: "modal", action: "click->modal#open",
+                                                                target: "delete-modal-#{dom_id trainee}" }}
             %i.material-icons delete
         - if @party.size > 1
           %a{id: "close-#{dom_id trainee}", onclick: "closeTrainee(#{trainee.id})"}
