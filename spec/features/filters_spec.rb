@@ -97,7 +97,7 @@ RSpec.feature "filters:", type: :feature, js: true do
 
               within "#types_filters" do
                 %w[Normal Fighting Flying].each do |type|
-                  find("span", text: type).click
+                  find("span", text: type).hover_and_click
                 end
               end
 
