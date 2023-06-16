@@ -3,6 +3,7 @@
   **/
 
 import { Controller } from "@hotwired/stimulus"
+import * as noUi from "nouislider"
 
 // Connects to data-controller="filters"
 export default class extends Controller {
