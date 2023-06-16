@@ -4,6 +4,7 @@
   **/
 
 import { Controller } from "@hotwired/stimulus"
+import { getGeneration } from "../util/cookies"
 import { getInputSum, itemStat } from "../util/ev"
 
 // Connects to data-controller="ev"
