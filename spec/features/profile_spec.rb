@@ -10,7 +10,7 @@ RSpec.feature "users:", type: :feature do
       create_user
       log_in
 
-      find("#profile-widget").click
+      find("#profile-widget").hover_and_click
       sleep 0.5
       find("#sidenav a", text: "Profile").click
 
