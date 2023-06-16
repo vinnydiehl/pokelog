@@ -1,5 +1,5 @@
 = form_with model: trainee, id: dom_id(trainee), class: "trainee-info",
-            html: {autocomplete: "off"}, data: {controller: "form-submission"} do |f|
+            html: { autocomplete: "off" }, data: { controller: "form-submission" } do |f|
   = hidden_field_tag :trainees, @party.to_json
   -# This hidden div is to communicate the title w/ JavaScript (for writing goal alerts etc.)
   .trainee-title{id: "trainee-title-#{dom_id trainee}", hidden: true}= trainee.title
@@ -10,12 +10,12 @@
         .input-field.nickname
           = f.label :nickname, "Nickname"
           = f.text_field :nickname, class: "counter", disabled: not_yours?(trainee), value: trainee.nickname,
-                                    maxlength: 12, data: {length: 12, controller: "character-counter",
-                                    action: "blur->form-submission#submit blur->character-counter#hide"}
+                                    maxlength: 12, data: { length: 12, controller: "character-counter",
+                                    action: "blur->form-submission#submit blur->character-counter#hide" }
         .input-field.species
           = f.label :species, "Species"
           = f.text_field :species, class: "autocomplete", disabled: not_yours?(trainee),
-                         data: {action: "change->form-submission#submit"},
+                         data: { action: "change->form-submission#submit" },
               value: trainee.species.nil? ? nil : trainee.species.display_name
       .trainee-artwork{id: "artwork-#{dom_id trainee}"}
         = render "trainees/artwork", trainee: trainee
@@ -25,14 +25,14 @@
               options_for_select([@nil_nature_option] + @nature_options,
                 disabled: @nil_nature_option,
                 selected: @nature_options.find { |o| o.last == trainee.nature } || @nil_nature_option),
-              {}, {data: {controller: "select", action: "change->form-submission#submit"},
+              {}, {data: { controller: "select", action: "change->form-submission#submit" },
               disabled: not_yours?(trainee)}
           = f.label :nature, "Nature"
         .input-field
           = f.label :level, "Level"
           = f.text_field :level, class: "validate", type: "number", **maxlength(3),
                          min: 1, max: 100, value: trainee.level, disabled: not_yours?(trainee),
-                         data: {action: "change->form-submission#submit"}
+                         data: { action: "change->form-submission#submit" }
 
     -# Right section, with stat chart, Pokérus switch, types etc.
     .ev-info
@@ -59,16 +59,16 @@
           .ev-container{style: "border-color: #{trainee.evs.values.inject(:+) == 510 ? 'green' : 'black'}"}
             - [["ev-input",   "#{stat}_ev"],
                ["goal-input", "#{stat}_goal"]].each do |klass, attr_name|
-              = f.text_field attr_name.to_sym, **maxlength(3, "setEvInputColor()"),
+              = f.text_field attr_name.to_sym, **maxlength(3),
                   class: klass, type: "number", placeholder: 0, min: 0, disabled: not_yours?(trainee),
                   max: max_per_stat, value: ((v = trainee.send(attr_name)).zero? ? nil : v),
-                  onblur: "checkGoals()", data: {action: "input->form-submission#searchSubmit"}
+                  data: { action: "input->form-submission#searchSubmit input->ev#setBorderColor blur->goals#check" }
 
       - if cookies[:generation].blank? || @generation != 9
         .pokerus.switch{class: not_yours?(trainee) ? "disabled" : ""}
           %label
             = f.check_box :pokerus, value: trainee.pokerus, disabled: not_yours?(trainee),
-                                    data: {action: "input->form-submission#submit"}
+                                    data: { action: "input->form-submission#submit" }
             %span.lever
             Pokérus
 
@@ -79,17 +79,17 @@
         .held-items
           %label
             = f.radio_button :item, nil, value: trainee.item.nil?, disabled: not_yours?(trainee),
-                                         data: {action: "click->form-submission#submit"}
+                                         data: { action: "click->form-submission#submit" }
             %span.no-item
               %i.material-icons.no-item-icon do_not_disturb_alt
               None
           - @items_options.each do |item|
             %label
               = f.radio_button :item, item, value: trainee.item == item,
-                "data-action": "click->form-submission#submit", onclick: "checkGoals()",
+                data: { controller: "goals", action: "click->form-submission#submit click->goals#check" },
                 disabled: not_yours?(trainee) || (@generation < 4 && item =~ /power/) || ([1, 2, 7].include?(@generation) && item == "macho_brace")
-              %span.tooltipped{data: {controller: "tooltip", position: "top",
-                                      tooltip: item_tooltip(item, @generation)}}
+              %span.tooltipped{data: { controller: "tooltip", position: "top",
+                                       tooltip: item_tooltip(item, @generation) }}
                 = image_tag "/images/items/held/#{item}.png"
                 = item.titleize
         - if yours?(trainee)
@@ -106,7 +106,7 @@
                   - item = PokeLog::Stats.consumables_for(stat)[item_type.singularize.to_sym]
                   %a.waves-effect.waves-light.btn{
                     class: "#{item} #{(item_type == "feathers" && @generation < 5) ? 'disabled' : ''}",
-                    onclick: "useConsumable(this.closest('.trainee-info'), '#{item_type}', '#{stat}')"}
+                    data: { action: "click->ev#useConsumable click->goals#check", "item-type": item_type, stat: stat }}
                     .stat-label= format_stat stat
                     .item-sprite-and-name
                       = image_tag "/images/items/#{item_type}/#{item}.png"
@@ -120,7 +120,7 @@
       %h4 Confirm delete
       %p Are you sure? This will delete #{trainee.title} permanently.
     .modal-footer
-      = form_with model: trainee, method: :delete, data: {turbo: false} do |f|
+      = form_with model: trainee, method: :delete, data: { turbo: false } do |f|
         = hidden_field_tag "redirect_path", request.path
         -# Params are updated by JavaScript on form submit
         = hidden_field_tag "redirect_params"
