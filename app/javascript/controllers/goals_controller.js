@@ -3,8 +3,8 @@
   **/
 
 import { Controller } from "@hotwired/stimulus"
-import { setCookie, getCookie, deleteCookie, getGeneration } from "../util/cookies"
-import { itemStat } from "../util/ev"
+import { setCookie, getCookie, deleteCookie, getGeneration } from "util/cookies"
+import { itemStat } from "util/ev"
 
 // Connects to data-controller="goals"
 export default class extends Controller {
