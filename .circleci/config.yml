@@ -61,7 +61,7 @@ jobs:
           path: ~/test_reports
       - store_artifacts:
           path: ~/test_reports
-    parallelism: 4
+    parallelism: 6
 
   deploy:
     executor: heroku/default
