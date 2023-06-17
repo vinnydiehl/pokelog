@@ -130,13 +130,10 @@ export default class extends Controller {
       }
     });
 
-    // Grab the final values from the inputs and use them
-    // to update the radar chart
-    if (getInputSum(traineeInfo, ".ev-input") <= 510) {
-      drawRadarChart("radar-chart-trainee_" + id,
-        ...[...inputs].map(input => parseInt(input.value) || 0),
-        ...[...traineeInfo.querySelectorAll(".goal-input")].map(input => parseInt(input.value) || 0));
-    }
+    this.application.getControllerForElementAndIdentifier(
+      traineeInfo.querySelector(".ev-info"),
+      "radar-chart"
+    ).load();
 
     // Poke an input to trigger setBorderColor()
     inputs[0].dispatchEvent(new Event("input"));
