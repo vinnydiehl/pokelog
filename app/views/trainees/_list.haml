@@ -4,7 +4,8 @@
       %tr{id: "list-#{dom_id trainee}"}
         %td.check
           %label
-            = check_box_tag "trainee_ids[]", trainee.id
+            = check_box_tag "trainee_ids[]", trainee.id, false,
+                            "data-action": "change->trainees-index#setButtonState"
             %span.trainee-checkbox{id: "check-#{dom_id trainee}"}
         %td.sprite
           - if trainee.species
