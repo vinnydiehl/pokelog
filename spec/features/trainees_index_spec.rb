@@ -102,6 +102,7 @@ RSpec.feature "trainees:", type: :feature do
             before do
               all(".trainee-checkbox").each(&:click)
               find("#delete-btn").click
+              sleep 0.5
             end
 
             describe "the confirm button" do
@@ -112,6 +113,7 @@ RSpec.feature "trainees:", type: :feature do
               context "when you check the confirmation checkbox" do
                 before do
                   find("#delete-multi label span").click
+                  sleep 0.5
                 end
 
                 context "and then click the confirm (Delete) button" do
@@ -133,6 +135,8 @@ RSpec.feature "trainees:", type: :feature do
                 context "and then uncheck it again" do
                   it "re-disables the confirm button" do
                     find("#delete-multi label span").click
+                    sleep 0.5
+
                     expect(page).to have_selector "#confirm-delete.disabled"
                   end
                 end
