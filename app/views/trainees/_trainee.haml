@@ -35,7 +35,7 @@
                          data: { action: "change->form-submission#submit" }
 
     -# Right section, with stat chart, Pokérus switch, types etc.
-    .ev-info
+    .ev-info{"data-controller": "radar-chart"}
       .sprite-and-types
         %div{id: "mobile-sprite-#{dom_id trainee}"}
           - if trainee.species
@@ -52,7 +52,7 @@
           %a{id: "close-#{dom_id trainee}", onclick: "closeTrainee(#{trainee.id})"}
             %i.material-icons close
       #stats-chart
-        = render "shared/radar_chart", stats: trainee.evs, goals: trainee.goals, id: "radar-chart-#{dom_id trainee}"
+        = render "shared/radar_chart", id: "radar-chart-#{dom_id trainee}"
       - PokeLog::Stats.stats.each do |stat|
         .point{class: stat, "data-format-stat": format_stat(stat)}
           - attr_name, goal_attr_name = "#{stat}_ev", "#{stat}_goal"
@@ -63,7 +63,7 @@
               = f.text_field attr_name.to_sym, **maxlength(3),
                   class: klass, type: "number", placeholder: 0, min: 0, disabled: not_yours?(trainee),
                   max: max_per_stat, value: ((v = trainee.send(attr_name)).zero? ? nil : v),
-                  data: { action: "input->form-submission#searchSubmit input->ev#setBorderColor blur->goals#check" }
+                  data: { action: "input->radar-chart#load input->form-submission#searchSubmit input->ev#setBorderColor blur->goals#check" }
 
       - if cookies[:generation].blank? || @generation != 9
         .pokerus.switch{class: not_yours?(trainee) ? "disabled" : ""}
