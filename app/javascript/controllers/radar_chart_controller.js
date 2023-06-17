@@ -1,5 +1,5 @@
 /**
-  * Loads/updates the stat charts on trainees#show.
+  * Loads/updates the stat charts on `trainees#show`.
   **/
 
 import { Controller } from "@hotwired/stimulus"

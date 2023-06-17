@@ -1,5 +1,5 @@
 = form_with model: trainee, id: dom_id(trainee), class: "trainee-info",
-            html: { autocomplete: "off" }, data: { controller: "form-submission" } do |f|
+            html: { autocomplete: "off" }, data: { controller: "form-submission", id: trainee.id } do |f|
   = hidden_field_tag :trainees, @party.to_json
   -# This hidden div is to communicate the title w/ JavaScript (for writing goal alerts etc.)
   .trainee-title{id: "trainee-title-#{dom_id trainee}", hidden: true}= trainee.title
@@ -49,7 +49,7 @@
                                                                 target: "delete-modal-#{dom_id trainee}" }}
             %i.material-icons delete
         - if @party.size > 1
-          %a{id: "close-#{dom_id trainee}", onclick: "closeTrainee(#{trainee.id})"}
+          %a{id: "close-#{dom_id trainee}", "data-action": "click->trainee#close"}
             %i.material-icons close
       #stats-chart
         = render "shared/radar_chart", id: "radar-chart-#{dom_id trainee}"
@@ -121,7 +121,8 @@
       %h4 Confirm delete
       %p Are you sure? This will delete #{trainee.title} permanently.
     .modal-footer
-      = form_with model: trainee, method: :delete, data: { turbo: false } do |f|
+      = form_with model: trainee, method: :delete,
+                  data: { turbo: false, action: "submit->trainee#setDeleteRedirect" } do |f|
         = hidden_field_tag "redirect_path", request.path
         -# Params are updated by JavaScript on form submit
         = hidden_field_tag "redirect_params"
