@@ -2,9 +2,8 @@
   - provide size, title
 
 = javascript_include_tag "cookies"
-= javascript_include_tag "trainee"
 
-#trainees-show{"data-controller": "ev goals"}
+#trainees-show{"data-controller": "trainee ev goals"}
   #trainees
     -# We're listing this way so they appear in order specified by URL
     - @ids.each do |id|
@@ -35,7 +34,7 @@
             %i.material-icons list
         %li
           -# This button's href is set on click by JavaScript
-          %a#new-trainee-btn.btn-floating.red
+          %a#new-trainee-btn.btn-floating.red{"data-action": "click->trainee#addNew"}
             %i.material-icons add
 
     #goal-alert.modal
