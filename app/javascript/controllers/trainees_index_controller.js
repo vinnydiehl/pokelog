@@ -1,3 +1,8 @@
+/**
+  * Controller for `trainees#index` frontend functions such as the multi-train
+  * and delete buttons.
+  **/
+
 import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="trainees-index"

@@ -1,3 +1,7 @@
+/**
+  * PokéPaste functionality on `trainees#index`.
+  **/
+
 import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="pokepaste"

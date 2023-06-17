@@ -1,3 +1,7 @@
+/**
+  * Controller for the generation widget by the species search bar.
+  **/
+
 import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="generation-widget"
