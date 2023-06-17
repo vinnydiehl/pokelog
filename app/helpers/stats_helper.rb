@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StatsHelper
   def format_stat(stat)
     {

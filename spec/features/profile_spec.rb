@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 TEST_CHANGED_EMAIL = "t2@test.com"
@@ -8,7 +10,7 @@ RSpec.feature "users:", type: :feature do
       create_user
       log_in
 
-      find("#profile-widget").click
+      find("#profile-widget").hover_and_click
       sleep 0.5
       find("#sidenav a", text: "Profile").click
 
@@ -17,7 +19,7 @@ RSpec.feature "users:", type: :feature do
   end
 
   describe "/users/:username" do
-    before :each do
+    before do
       create_user
 
       TEST_TRAINEES.each do |_, attrs|
@@ -36,7 +38,7 @@ RSpec.feature "users:", type: :feature do
 
     context "if the user exists" do
       context "while logged out" do
-        before :each do
+        before do
           visit "/users/#{TEST_USERNAME}"
         end
 
@@ -53,7 +55,8 @@ RSpec.feature "users:", type: :feature do
         it "displays artwork linking to the user's trainees" do
           User.first.trainees.each do |trainee|
             if trainee.species
-              expect(page).to have_xpath("//a[contains(@href,'#{trainee_path trainee}')]//img[contains(@src,'artwork/#{trainee.species.id}.png')]")
+              expect(page).to have_xpath("//a[contains(@href,'#{trainee_path trainee}')]" \
+                                         "//img[contains(@src,'artwork/#{trainee.species.id}.png')]")
             end
           end
         end
@@ -64,7 +67,7 @@ RSpec.feature "users:", type: :feature do
       end
 
       context "while logged in" do
-        before :each do
+        before do
           log_in
 
           visit user_path User.first
@@ -78,12 +81,12 @@ RSpec.feature "users:", type: :feature do
           context "when the email is changed", js: true do
             # Running this before the invalid change- that way it changes
             # to a valid input, and then back.
-            before :each do
+            before do
               fill_in "user_email", with: TEST_CHANGED_EMAIL
             end
 
             context "to a valid input and pressed" do
-              before :each do
+              before do
                 find("#edit-btn").click
                 sleep 0.5
               end

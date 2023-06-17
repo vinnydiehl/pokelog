@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 module PokeLog
   class Stats < Hash
     def initialize(hash=nil)
-      hash ||= {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0}
+      super
+
+      hash ||= { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 }
 
       Stats.verify(hash)
 
@@ -10,16 +14,18 @@ module PokeLog
       end
     end
 
-    def +(addend)
-      return self if addend.nil?
-      Stats.verify addend, false
-      self.merge(addend) { |_, old, new| old + new }
+    def +(other)
+      return self if other.nil?
+
+      Stats.verify other, strict: false
+      merge(other) { |_, old, new| old + new }
     end
 
-    def -(subtrahend)
-      return self if subtrahend.nil?
-      Stats.verify subtrahend, false
-      self.merge(subtrahend) { |_, old, new| old - new }
+    def -(other)
+      return self if other.nil?
+
+      Stats.verify other, strict: false
+      merge(other) { |_, old, new| old - new }
     end
 
     def hp
@@ -85,10 +91,9 @@ module PokeLog
       }[stat.to_s.sub(/_ev/, "").to_sym]
     end
 
-    def self.verify(hash, strict=true)
+    def self.verify(hash, strict: true)
       if (strict && hash.keys.sort != Stats.stats.sort) ||
          !hash.keys.all? { |s| Stats.stats.include? s }
-        p hash.keys
         raise ArgumentError.new, "invalid stats keys"
       end
 
@@ -97,7 +102,6 @@ module PokeLog
       end
 
       unless hash.values.all? { |n| n.is_a? Integer }
-        p hash.values
         raise ArgumentError.new, "invalid stats values"
       end
     end

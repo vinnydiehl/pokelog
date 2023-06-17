@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 class Trainee < ApplicationRecord
   belongs_to :user
-  has_many :kills
-  attr_accessor :species
+  before_save :ensure_pokerus_false
 
   PokeLog::Stats.stats.each do |stat|
-    validates :"#{stat}_ev", numericality: {in: 0..255}
+    validates :"#{stat}_ev", numericality: { in: 0..255 }
   end
-  validates :level, numericality: {in: 1..100}, allow_nil: true
+  validates :level, numericality: { in: 1..100 }, allow_nil: true
 
   def set_attributes(data)
-    if (species = Species.find_by_display_name data["species"])
+    if (species = Species.find_by_display_name(data["species"]))
       self.species_id = species.id
     elsif data["species"].blank?
       self.species_id = nil
@@ -38,7 +39,7 @@ class Trainee < ApplicationRecord
   end
 
   def species
-    Species.find_by_id species_id
+    Species.find_by id: species_id
   end
 
   def evs
@@ -61,5 +62,13 @@ class Trainee < ApplicationRecord
       spd: spd_goal,
       spe: spe_goal
     })
+  end
+
+  private
+
+  # For whatever reason, in some environments this is getting initialized to `nil`.
+  # This started causing problems in CI out of nowhere.
+  def ensure_pokerus_false
+    self.pokerus ||= false
   end
 end

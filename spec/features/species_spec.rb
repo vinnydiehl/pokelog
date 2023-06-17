@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RESULTS_DIV = ".results"
@@ -9,9 +11,9 @@ RESULTS_DIV = ".results"
 # @return true if all Pokémon checked are present, false otherwise
 def check_every_50(except: nil)
   (table = find RESULTS_DIV).has_content?(Species.all.first.name) &&
-  Species.all.each_slice(50).map(&:last).all? do |pkmn|
-    (except && except.include?(pkmn.name)) || table.has_content?(pkmn.name)
-  end
+    Species.all.each_slice(50).map(&:last).all? do |pkmn|
+      except&.include?(pkmn.name) || table.has_content?(pkmn.name)
+    end
 end
 
 def exec_check_every_50
@@ -22,7 +24,7 @@ end
 
 RSpec.feature "species:", type: :feature do
   describe "yields table" do
-    before :each do
+    before do
       visit species_path
     end
 
@@ -46,18 +48,18 @@ RSpec.feature "species:", type: :feature do
         context "with manually entered GET query" do
           query = "ven"
 
-          before :each do
+          before do
             visit species_path(q: query)
           end
 
-          it "should be pre-filled" do
+          it "is pre-filled" do
             expect(page).to have_field "Search", with: query
           end
         end
       end
 
       context "after query has been erased", js: true do
-        before :each do
+        before do
           fill_in "Search", with: "ven"
           fill_in "Search", with: ""
         end
@@ -66,13 +68,13 @@ RSpec.feature "species:", type: :feature do
       end
 
       {
-        "bee": %w[Beedrill Combee Ribombee Orbeetle],
-        "ven": %w[Venusaur Venonat Venomoth Venipede Trevenant],
+        "bee" => %w[Beedrill Combee Ribombee Orbeetle],
+        "ven" => %w[Venusaur Venonat Venomoth Venipede Trevenant],
         # Test case insensitivity
-        "VENUSaur": %w[Venusaur]
+        "VENUSaur" => %w[Venusaur]
       }.each do |query, expected_results|
-        context %[with query "#{query}"], js: true do
-          before :each do
+        context %(with query "#{query}"), js: true do
+          before do
             fill_in "Search", with: query
           end
 

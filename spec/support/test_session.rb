@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 TEST_USERNAME = "testname"
 TEST_EMAIL = "t@test.com"
 ENDPOINT = "/login/submit"

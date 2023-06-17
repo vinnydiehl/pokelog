@@ -1,23 +1,20 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
-module CapybaraExtension
-  def drag_by(right_by, down_by)
-    base.drag_by(right_by, down_by)
-  end
+class Capybara::Node::Element
+  delegate :drag_by, to: :base
 end
 
-module CapybaraSeleniumExtension
+class Capybara::Selenium::Node
   def drag_by(right_by, down_by)
     driver.browser.action.drag_and_drop_by(native, right_by, down_by).perform
   end
 end
 
-::Capybara::Selenium::Node.send :include, CapybaraSeleniumExtension
-::Capybara::Node::Element.send :include, CapybaraExtension
-
 def click_nav_link(text)
   find("#sidenav-expand").click
-  find("#sidenav div", text: text).click
+  find("#sidenav div", text:).click
 end
 
 RSpec.feature "mobile UI:", type: :feature, driver: :chrome_mobile do
@@ -26,7 +23,7 @@ RSpec.feature "mobile UI:", type: :feature, driver: :chrome_mobile do
   end
 
   describe "the sidenav" do
-    before :each do
+    before do
       create_user
       log_in
     end
@@ -37,7 +34,7 @@ RSpec.feature "mobile UI:", type: :feature, driver: :chrome_mobile do
     end
 
     context "when you click a nav link, then go back" do
-      before :each do
+      before do
         click_nav_link "About Us"
         page.go_back
         sleep 0.5
@@ -57,13 +54,13 @@ RSpec.feature "mobile UI:", type: :feature, driver: :chrome_mobile do
   end
 
   describe "trainees#show" do
-    before :each do
+    before do
       launch_new_blank_trainee
       fill_in "Search", with: "Caterpie" # 1 HP
     end
 
     context "when you click a kill button" do
-      before :each do
+      before do
         find("#species_010").click
       end
 

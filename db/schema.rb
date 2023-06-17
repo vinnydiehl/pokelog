@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_27_065525) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_12_092811) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
@@ -19,14 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_27_065525) do
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "item", ["macho_brace", "power_weight", "power_bracer", "power_belt", "power_lens", "power_band", "power_anklet"]
   create_enum "nature", ["hardy", "lonely", "brave", "adamant", "naughty", "bold", "docile", "relaxed", "impish", "lax", "timid", "hasty", "serious", "jolly", "naive", "modest", "mild", "quiet", "bashful", "rash", "calm", "gentle", "sassy", "careful", "quirky"]
-
-  create_table "kills", id: false, force: :cascade do |t|
-    t.bigint "trainees_id"
-    t.string "species_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["trainees_id"], name: "index_kills_on_trainees_id"
-  end
 
   create_table "trainees", force: :cascade do |t|
     t.bigint "user_id"
@@ -59,6 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_27_065525) do
     t.string "google_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["google_id"], name: "index_users_on_google_id", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

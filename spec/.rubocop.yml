@@ -1,0 +1,49 @@
+inherit_from: ../.rubocop.yml
+
+RSpec/Focus:
+  Severity: warning
+
+Style/MixinUsage:
+  Exclude:
+    - support/helper_includes.rb
+
+Style/SignalException:
+  Enabled: false
+
+# Lots of spacing for alignment in the tests
+Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+################################################################################
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/NoExpectationExample:
+  Enabled: false
+
+RSpec/SortMetadata:
+  Enabled: false
+
+################################################################################
+
+Capybara/SpecificFinders:
+  Enabled: false

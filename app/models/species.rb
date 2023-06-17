@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Species < ActiveYaml::Base
   set_root_path Rails.root.join("data")
 
   # @return the JSON data to be passed into Materialize autocomplete
   def self.autocomplete_data
-    @@autocomplete_data ||= Species.all.map do |pkmn|
-      {pkmn.display_name => pkmn.sprite(format: :path)}
+    @autocomplete_data ||= Species.all.map do |pkmn|
+      { pkmn.display_name => pkmn.sprite(format: :path) }
     end.reduce(&:merge).to_json
   end
 
@@ -24,7 +26,7 @@ class Species < ActiveYaml::Base
   #
   # @return [String] display name for the species
   def display_name
-    "#{self[:name]}#{[nil, "Normal"].include?(self[:form]) ? "" : " (#{self[:form]})"}"
+    "#{self[:name]}#{[nil, 'Normal'].include?(self[:form]) ? '' : " (#{self[:form]})"}"
   end
 
   # @return [String] HTML image tag for the artwork
@@ -33,19 +35,21 @@ class Species < ActiveYaml::Base
       class: "artwork"
   end
 
+  # @option :format [Symbol] `:path` to the image, or an HTML `:tag`
   # @return [String] HTML image tag for the sprite
-  def sprite(**args)
+  def sprite(format: :tag)
     path = "/images/sprites/#{self[:id]}.png"
-    return args[:format] == :path ? path :
+    format == :path ? path :
       ActionController::Base.helpers.image_tag(path, class: "sprite")
   end
 
   # See app/assets/stylesheets/types.scss
   #
+  # @option :size [Symbol] :small or :large
   # @return [String] HTML div tags for type badges
-  def type_badges(**args)
+  def type_badges(size: :small)
     types.map do |type|
-      "<div class='type#{args[:size] == :large ? ' large' : ''} #{type}'></div>"
+      "<div class='type#{size == :large ? ' large' : ''} #{type}'></div>"
     end.join.html_safe
   end
 
@@ -71,19 +75,21 @@ class Species < ActiveYaml::Base
   def self.find_by_display_name(name)
     form = nil
     if name[/\(/]
-      form = name[/(?<=\()[^\)]+/]
+      form = name[/(?<=\()[^)]+/]
       name = name.split("(").first.strip
     end
-    find { |s| s.name == name && (s.form == form || (form == nil && s.form == "Normal")) }
+    find { |s| s.name == name && (s.form == form || (form.nil? && s.form == "Normal")) }
   end
 
   # Search form logic for displaying species
   #
   # @param params [Hash] parameters from query string
   # @param generation [String] the generation cookie (can be nil)
-  # @param show_all_by_default [Boolean] whether or not to show
+  #
+  # @option :show_all [Boolean] whether or not to show by default
+  #
   # @return [Array<Species>] the species that satisfy the query and filters
-  def self.search(params, generation, show_all_by_default=false)
+  def self.search(params, generation, show_all: false)
     results = all
 
     if generation
@@ -92,7 +98,7 @@ class Species < ActiveYaml::Base
 
     # If there's no query or params, show either all or nothing depending on options
     if [(query = params[:q]), (filters = params[:filters] || [])].all?(&:blank?)
-      return show_all_by_default ? results : []
+      return show_all ? results : []
     end
 
     if filters.present?
@@ -104,7 +110,7 @@ class Species < ActiveYaml::Base
 
       # EVs yielded
       if filters[:yielded]
-        filters[:yielded].map! &:to_sym
+        filters[:yielded].map!(&:to_sym)
         results.select! do |pkmn|
           pkmn.yields.keys.any? { |stat| filters[:yielded].include? stat }
         end
@@ -112,7 +118,7 @@ class Species < ActiveYaml::Base
 
       # Types
       if filters[:types]
-        filters[:types].map! &:to_sym
+        filters[:types].map!(&:to_sym)
         results.select! do |pkmn|
           filters[:types].all? { |type| pkmn.types.include? type }
         end
@@ -120,7 +126,7 @@ class Species < ActiveYaml::Base
 
       # Weak to
       if filters[:weak_to]
-        filters[:weak_to].map! &:to_sym
+        filters[:weak_to].map!(&:to_sym)
         results.select! do |pkmn|
           filters[:weak_to].any? { |type| PokeLog::Types.multiplier(type, pkmn.types) > 1 }
         end

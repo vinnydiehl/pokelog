@@ -21,12 +21,6 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
 
     = javascript_importmap_tags
-    = javascript_include_tag "run_on_load"
-
-    -# We need to include this application-wide so the charts load properly
-    -# as you navigate with Turbo frames
-    = javascript_include_tag "anychart_radar.min.js"
-    = javascript_include_tag "radar_chart"
 
   %body
     %header
@@ -43,3 +37,5 @@
 
     // Material UI JS
     %script{src: "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"}
+    :javascript
+      Waves.displayEffect();

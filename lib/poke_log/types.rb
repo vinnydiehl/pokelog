@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PokeLog
   class Types
     def self.types
@@ -12,9 +14,7 @@ module PokeLog
     # @return [Numeric] the damage multiplier (0, 0.5, 1, 2, or 4)
     def self.multiplier(atk_type, def_types)
       # Create a table to store type matchups- for now they're set to 1x
-      type_matchups = Hash[types.map do |attacker|
-        [attacker, Hash[types.map { |defender| [defender, 1] }]]
-      end]
+      type_matchups = types.index_with(types.index_with 1)
 
       # Now to fill in all of the non-1 values on the table:
 
@@ -64,7 +64,7 @@ module PokeLog
         *%i[bug grass].map { |d| [:ground, d] },
         *%i[fighting ground steel].map { |d| [:rock, d] },
         *%i[fighting flying poison ghost steel fire fairy].map { |d| [:bug, d] },
-        [:ghost, :dark],
+        %i[ghost dark],
         *%i[steel fire water electric].map { |d| [:steel, d] },
         *%i[rock fire water dragon].map { |d| [:fire, d] },
         *%i[water grass dragon].map { |d| [:water, d] },
@@ -72,7 +72,7 @@ module PokeLog
         *%i[grass electric dragon].map { |d| [:electric, d] },
         *%i[steel psychic].map { |d| [:psychic, d] },
         *%i[steel fire water ice].map { |d| [:ice, d] },
-        [:dragon, :steel],
+        %i[dragon steel],
         *%i[fighting dark fairy].map { |d| [:dark, d] },
         *%i[poison steel fire].map { |d| [:fairy, d] }
       ].each do |attacker, defender|

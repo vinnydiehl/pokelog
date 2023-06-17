@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.feature "consumables:", type: :feature, js: true do
   context "with a blank trainee" do
-    before :each do
+    before do
       launch_new_blank_trainee
       open_consumables_menu
     end
@@ -23,7 +25,7 @@ RSpec.feature "consumables:", type: :feature, js: true do
       describe "a vitamin button" do
         it "adds 1 EV" do
           # Set everything except HP to 100
-          STATS[1..-1].each do |stat|
+          STATS[1..].each do |stat|
             fill_in "trainee_#{stat}", with: 100
           end
           wait_for STATS.last, 100
@@ -40,7 +42,7 @@ RSpec.feature "consumables:", type: :feature, js: true do
 
   context "with multiple trainees in the party" do
     describe "the consumables buttons" do
-      before :each do
+      before do
         launch_multi_trainee
 
         attrs = TEST_TRAINEES.first.last
@@ -50,7 +52,7 @@ RSpec.feature "consumables:", type: :feature, js: true do
 
         within "#trainee_#{Trainee.first.id}" do
           [".expand", ".hp_up"].each { |klass| find(klass).click }
-          wait_for :hp_ev, @expected_value, attrs: attrs
+          wait_for :hp_ev, @expected_value, attrs:
         end
       end
 
@@ -59,7 +61,7 @@ RSpec.feature "consumables:", type: :feature, js: true do
       end
 
       it "do not effect the other trainees" do
-        Trainee.all.select { |trn| trn != Trainee.first }.each do |trainee|
+        Trainee.all.reject { |trn| trn == Trainee.first }.each do |trainee|
           expect(trainee.hp_ev).to eq TEST_TRAINEES[trainee.species.display_name][:hp_ev]
         end
       end

@@ -1,7 +1,3 @@
-= javascript_include_tag "nouislider.min.js"
-= javascript_include_tag "amount_yielded_slider"
-= javascript_include_tag "filters"
-
 = form_with url: request.path, method: :get, class: "species-search",
             data: { controller: "form-submission",
                     turbo_frame: "results",
@@ -10,19 +6,27 @@
     = f.label :q, "Search"
     = f.text_field :q, value: params[:q],
                        data: { action: "input->form-submission#searchSubmit" }
-  %a#filters-btn.btn.waves-effect.grey{onclick:"openModal('species-filters')"}
-    %i.material-icons settings
-  #species-filters.modal
+  .search-bar-buttons
+    %a#generation-btn.btn.waves-effect.grey.dropdown-trigger{data: { controller: "dropdown",
+                                                                     target: "generation-dropdown",
+                                                                     alignment: "right" }}
+      %i.material-icons filter_#{cookies[:generation] || "none"}
+    %a#filters-btn.btn.waves-effect.grey{data: { controller: "modal", action: "click->modal#open",
+                                                 target: "species-filters" }}
+      %i.material-icons filter_alt
+
+  #generation-dropdown.dropdown-content
+    .generation-widget
+      .title Generation
+      %hr
+      .buttons{"data-controller": "generation-widget"}
+        - (3..9).each do |gen|
+          %li{class: "gen#{gen}", "data-action": "click->generation-widget#submit"}= gen
+        %li.gen-all{"data-action": "click->generation-widget#submit"} All
+
+  #species-filters.modal{"data-controller": "filters"}
     .modal-content
       %h4 Filters
-
-      %h6.no-bottom-margin Generation:
-      - generation_options = [["None", nil]] + (3..9).map { |n| [n.to_s] * 2 }
-      -# Dummy form attribute keeps this from showing as a query parameter;
-      -# this feature uses cookies only.
-      = select_tag "generation", options_for_select(generation_options,
-          selected: generation_options.find { |o| o.last == cookies[:generation] }),
-        "data-action": "change->form-submission#generationSubmit", form: "dummy"
 
       %h6 EVs yielded:
       #evs-yielded-filters
@@ -34,7 +38,7 @@
               %span= format_stat stat
 
       %h6 Amount yielded:
-      #amount-yielded-slider
+      #amount-yielded-slider{"data-controller": "amount-yielded-slider"}
       -# These checkboxes are essentially acting as hidden inputs because
       -# Materialize hides them in the absence of a label>span wrapper. This is
       -# convenient because they won't show in the URL query string when unchecked
@@ -51,9 +55,9 @@
             %label
               = check_box_tag "filters[#{section}][]", type, filter_checked?(section, type),
                               id: "filters_#{section}_#{type}",
-                              "data-action": "input->form-submission#submit"
+                              "data-action": "input->form-submission#submit#{' click->filters#check2Max' if section == 'types'}"
               %span= type.capitalize
 
     .modal-footer
-      %a#clear-filters-btn.waves-effect.waves-teal.btn-flat{onclick: "clearAllFilters()"} Clear All
+      %a#clear-filters-btn.waves-effect.waves-teal.btn-flat{"data-action": "click->filters#clear"} Clear All
       %a#filters-close-btn.modal-close.waves-effect.waves-teal.btn-flat Close

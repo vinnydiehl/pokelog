@@ -1,25 +1,25 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.feature "trainees#show:", type: :feature do
   context "with multiple trainees in the party", js: true do
-    before :each do
+    before do
       launch_multi_trainee
     end
 
     TEST_TRAINEES.each do |display_name, attrs|
       test_trainee_ui display_name, attrs
-    end
 
-    TEST_TRAINEES.each do |_, attrs|
       context "if you clear all inputs for #{attrs[:nickname]}" do
-        before :each do
+        before do
           @id = find_id attrs
         end
 
         STATS.each do |stat|
           it "sets #{stat} to 0 on the server" do
             within "#trainee_#{@id}" do
-              set_ev stat, 0, attrs: attrs
+              set_ev(stat, 0, attrs:)
 
               expect(find_trainee(attrs).send stat).to eq 0
             end
@@ -41,7 +41,7 @@ RSpec.feature "trainees#show:", type: :feature do
           within "#trainee_#{@id}" do
             expected_status = !find_trainee(attrs).pokerus
             find(".pokerus label").click
-            wait_for :pokerus, expected_status, attrs: attrs
+            wait_for(:pokerus, expected_status, attrs:)
 
             expect(find_trainee(attrs).pokerus).to eq expected_status
           end
@@ -51,7 +51,7 @@ RSpec.feature "trainees#show:", type: :feature do
           it "updates the #{item.titleize}" do
             within "#trainee_#{@id}" do
               find("span", text: item.titleize).click
-              wait_for :item, item, attrs: attrs
+              wait_for(:item, item, attrs:)
 
               expect(find_trainee(attrs).item).to eq item
             end
@@ -63,7 +63,7 @@ RSpec.feature "trainees#show:", type: :feature do
             # In case there's no item, choose one and then go back
             find("span", text: ITEMS.first.titleize).click
             find("span", text: "None").click
-            wait_for :item, nil, attrs: attrs
+            wait_for(:item, nil, attrs:)
 
             expect(find_trainee(attrs).item).to be_nil
           end
@@ -72,10 +72,10 @@ RSpec.feature "trainees#show:", type: :feature do
     end
 
     TEST_KILL_BUTTONS.each do |id, data|
-      context "when using the #{(name = data[:name])} kill button" do
+      context "when using the #{name = data[:name]} kill button" do
         TEST_TRAINEES.each do |_, attrs|
           describe "the #{attrs[:nickname]} UI" do
-            before :each do
+            before do
               @trainee = find_trainee attrs
 
               # Calculate expected values based off Pokérus/held item
@@ -88,7 +88,7 @@ RSpec.feature "trainees#show:", type: :feature do
               find("##{id}").click
               # Use a stat that we know we're changing to wait for DB
               wait_stat = data.keys.first
-              wait_for :"#{wait_stat}_ev", @expected[wait_stat], attrs: attrs
+              wait_for :"#{wait_stat}_ev", @expected[wait_stat], attrs:
             end
 
             it "sets the EVs on the server" do
@@ -113,8 +113,8 @@ RSpec.feature "trainees#show:", type: :feature do
     TEST_TRAINEES.each do |_, attrs|
       describe "the close button for #{attrs[:nickname]}" do
         ["Bulbasaur", ""].each do |query|
-          context "with#{query.blank? ? "out" : ""} a query" do
-            before :each do
+          context "with#{query.blank? ? 'out' : ''} a query" do
+            before do
               if query.present?
                 fill_in "Search", with: query
                 sleep 0.5
@@ -143,8 +143,8 @@ RSpec.feature "trainees#show:", type: :feature do
 
       describe "the delete button for #{attrs[:nickname]}" do
         ["Bulbasaur", ""].each do |query|
-          context "with#{query.blank? ? "out" : ""} a query" do
-            before :each do
+          context "with#{query.blank? ? 'out' : ''} a query" do
+            before do
               if query.present?
                 fill_in "Search", with: query
                 sleep 0.5
@@ -176,8 +176,8 @@ RSpec.feature "trainees#show:", type: :feature do
 
     describe "the new trainee button" do
       ["Bulbasaur", ""].each do |query|
-        context "with#{query.blank? ? "out" : ""} a query" do
-          before :each do
+        context "with#{query.blank? ? 'out' : ''} a query" do
+          before do
             if query.present?
               fill_in "Search", with: query
               sleep 0.5
@@ -194,7 +194,7 @@ RSpec.feature "trainees#show:", type: :feature do
           end
 
           it "adds the new trainee to the end of the page" do
-            expect(current_path).to include "#{@original_path},#{Trainee.last.id}"
+            expect(page).to have_current_path(/#{Regexp.escape @original_path},#{Trainee.last.id}/)
           end
 
           if query.present?
@@ -208,10 +208,10 @@ RSpec.feature "trainees#show:", type: :feature do
 
     describe "the add to party menu" do
       ["Bulbasaur", ""].each do |query|
-        context "with#{query.blank? ? "out" : ""} a query" do
-          other_trainees = TEST_TRAINEES.to_a[1..-1].to_h
+        context "with#{query.blank? ? 'out' : ''} a query" do
+          other_trainees = TEST_TRAINEES.to_a[1..].to_h
 
-          before :each do
+          before do
             # Start with 1 trainee
             visit trainee_path(Trainee.first)
             @original_path = current_path
@@ -227,7 +227,7 @@ RSpec.feature "trainees#show:", type: :feature do
 
           other_trainees.each do |_, attrs|
             context "when you select #{attrs[:nickname]}" do
-              before :each do
+              before do
                 @id = find_id attrs
                 find("#check-trainee_#{@id}").hover_and_click
                 find("#confirm-add-to-party").click
@@ -246,7 +246,7 @@ RSpec.feature "trainees#show:", type: :feature do
           end
 
           context "when you select all trainees" do
-            before :each do
+            before do
               other_trainees.each do |_, attrs|
                 find("#check-trainee_#{find_id attrs}").hover_and_click
               end

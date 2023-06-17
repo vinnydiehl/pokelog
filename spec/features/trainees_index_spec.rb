@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.feature "trainees:", type: :feature do
@@ -12,7 +14,7 @@ RSpec.feature "trainees:", type: :feature do
     end
 
     context "while logged in" do
-      before :each do
+      before do
         create_user
         log_in
 
@@ -26,7 +28,7 @@ RSpec.feature "trainees:", type: :feature do
       end
 
       context "with existing trainees" do
-        before :each do
+        before do
           @current_user = User.first
 
           # Create a second test user, and 5 trainee entries for each user
@@ -38,7 +40,7 @@ RSpec.feature "trainees:", type: :feature do
           @other_user.save!
 
           User.all.each do |user|
-            5.times { Trainee.new(user: user).save! }
+            5.times { Trainee.new(user:).save! }
           end
 
           visit trainees_path
@@ -64,7 +66,7 @@ RSpec.feature "trainees:", type: :feature do
             end
 
             context "when you check off a trainee" do
-              before :each do
+              before do
                 first(".trainee-checkbox").click
               end
 
@@ -84,8 +86,8 @@ RSpec.feature "trainees:", type: :feature do
 
         describe "the Train button", js: true do
           context "when you check off all trainees and press it" do
-            before :each do
-              all(".trainee-checkbox").each &:click
+            before do
+              all(".trainee-checkbox").each(&:click)
               find("#train-btn").click
             end
 
@@ -97,9 +99,10 @@ RSpec.feature "trainees:", type: :feature do
 
         describe "the Delete button", js: true do
           context "when you check off all trainees and press it" do
-            before :each do
-              all(".trainee-checkbox").each &:click
+            before do
+              all(".trainee-checkbox").each(&:click)
               find("#delete-btn").click
+              sleep 0.5
             end
 
             describe "the confirm button" do
@@ -108,12 +111,13 @@ RSpec.feature "trainees:", type: :feature do
               end
 
               context "when you check the confirmation checkbox" do
-                before :each do
+                before do
                   find("#delete-multi label span").click
+                  sleep 0.5
                 end
 
                 context "and then click the confirm (Delete) button" do
-                  before :each do
+                  before do
                     find("#confirm-delete").click
                     sleep 0.5
                   end
@@ -131,6 +135,8 @@ RSpec.feature "trainees:", type: :feature do
                 context "and then uncheck it again" do
                   it "re-disables the confirm button" do
                     find("#delete-multi label span").click
+                    sleep 0.5
+
                     expect(page).to have_selector "#confirm-delete.disabled"
                   end
                 end
@@ -140,7 +146,7 @@ RSpec.feature "trainees:", type: :feature do
         end
 
         it "cannot be exploited by calling the endpoint with another user's trainee" do
-          visit "/trainees/#{Trainee.where.not(user: @current_user).map { |t| t.id.to_s}.join ','}/delete"
+          visit "/trainees/#{Trainee.where.not(user: @current_user).map { |t| t.id.to_s }.join ','}/delete"
           sleep 0.5
 
           expect(User.last.trainees.size).to eq 5
@@ -148,7 +154,7 @@ RSpec.feature "trainees:", type: :feature do
       end
 
       describe "the + button" do
-        before :each do
+        before do
           find("#new-trainee").click
         end
 

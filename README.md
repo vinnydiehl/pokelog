@@ -1,6 +1,6 @@
 # PokéLog ![CodeQL](https://www.github.com/vinnydiehl/pokelog/workflows/CodeQL/badge.svg) [![CircleCI](https://circleci.com/gh/vinnydiehl/pokelog/tree/trunk.svg?style=shield)](https://app.circleci.com/pipelines/github/vinnydiehl/pokelog/?branch=trunk)
 
-http://www.pokelog.net/
+https://www.pokelog.net/
 
 EV tracker for hardcore Pokémon enthusaists.
 

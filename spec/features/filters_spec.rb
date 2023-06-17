@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 QUERY = "b"
@@ -7,13 +9,14 @@ QUERY = "b"
 def data_entry_sample
   results = find_all(".data-entry")
   return results if results.length <= 5
+
   step = results.length / 5
   (0...5).map { |i| results[i * step] }
 end
 
 # Spec to see that the query string is being applied
 def results_should_contain_query
-  it "should display only results containing the query" do
+  it "displays only results containing the query" do
     data_entry_sample.each do |data_entry|
       expect(data_entry.find(".name").text.downcase).to include QUERY
     end
@@ -34,45 +37,45 @@ end
 
 # Get types of a .data-entry as symbols
 def get_types(data_entry)
-  data_entry.find('.types').all('.type').map do |elem|
+  data_entry.find(".types").all(".type").map do |elem|
     elem[:class].gsub(/\s*type\s*/, "").to_sym
   end
 end
 
 RSpec.feature "filters:", type: :feature, js: true do
   describe "/trainees/:ids" do
-    before :each do
+    before do
       launch_new_blank_trainee
     end
 
     context "when visiting via a URL" do
-      before :each do
+      before do
         visit trainee_path(Trainee.first) +
           "?q=&filters[yielded][]=hp&filters[min]=2&filters[types][]=normal&filters[weak_to][]=fighting"
         find("#filters-btn").click
       end
 
       it "has the EVs yielded filter selected" do
-        expect(page).to have_checked_field "filters_yielded_hp", visible: false
+        expect(page).to have_checked_field "filters_yielded_hp", visible: :hidden
       end
 
       it "has the Amount yielded input set" do
-        expect(page).to have_checked_field "filters_min", visible: false
+        expect(page).to have_checked_field "filters_min", visible: :hidden
       end
 
       it "has the Types filter selected" do
-        expect(page).to have_checked_field "filters_types_normal", visible: false
+        expect(page).to have_checked_field "filters_types_normal", visible: :hidden
       end
 
       it "has the Weak to filter selected" do
-        expect(page).to have_checked_field "filters_weak_to_fighting", visible: false
+        expect(page).to have_checked_field "filters_weak_to_fighting", visible: :hidden
       end
     end
 
     [["out", false], ["", true]].each do |out, using_query|
       context "with#{out} a query" do
         if using_query
-          before :each do
+          before do
             fill_in "Search", with: QUERY
           end
 
@@ -89,12 +92,12 @@ RSpec.feature "filters:", type: :feature, js: true do
           end
 
           context "if you try to check more than 2 types filters" do
-            before :each do
+            before do
               find("#filters-btn").click
 
               within "#types_filters" do
                 %w[Normal Fighting Flying].each do |type|
-                  find("span", text: type).click
+                  find("span", text: type).hover_and_click
                 end
               end
 
@@ -117,9 +120,9 @@ RSpec.feature "filters:", type: :feature, js: true do
         describe "amount yielded slider" do
           [1..1, 1..2, 2..3, 3..3].each do |range|
             context "when set #{range}" do
-              before :each do
+              before do
                 visit trainee_path(Trainee.first) +
-                  "?q=#{using_query ? QUERY : ""}&filters[min]=#{range.min}&filters[max]=#{range.max}"
+                  "?q=#{using_query ? QUERY : ''}&filters[min]=#{range.min}&filters[max]=#{range.max}"
               end
 
               results_should_contain_query if using_query
@@ -127,7 +130,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               it "only displays the species if either yield is in-range" do
                 data_entry_sample.each do |data_entry|
                   # Get yields of the data entry as integers
-                  yields = data_entry.find('.yields').all('.stat').map do |elem|
+                  yields = data_entry.find(".yields").all(".stat").map do |elem|
                     elem.text.slice(/\d/).to_i
                   end
 
@@ -139,13 +142,13 @@ RSpec.feature "filters:", type: :feature, js: true do
         end
 
         describe "the filters menu" do
-          before :each do
+          before do
             find("#filters-btn").click
           end
 
           describe "the Clear All button" do
-            before :each do
-              within("#species-filters") { find_all("span").each &:click }
+            before do
+              within("#species-filters") { find_all("span").each(&:click) }
               sleep 0.5
               find("#clear-filters-btn").click
               sleep 0.5
@@ -156,7 +159,7 @@ RSpec.feature "filters:", type: :feature, js: true do
 
             it "clears all inputs" do
               expect(page).to have_current_path trainee_path(Trainee.first) +
-                "?q=#{using_query ? QUERY : ""}"
+                "?q=#{using_query ? QUERY : ''}"
             end
           end
 
@@ -164,14 +167,14 @@ RSpec.feature "filters:", type: :feature, js: true do
 
           PokeLog::Stats.stats.each_with_index do |stat, i|
             context "when you check the #{format_stat stat} filter" do
-              before :each do
+              before do
                 check_filter format_stat(stat)
               end
 
               it "sets the query string" do
                 # Indicates the form was successfully submitted by Stimulus
                 expect(page).to have_current_path trainee_path(Trainee.first) +
-                  "?q=#{using_query ? QUERY : ""}&filters[yielded][]=#{stat}"
+                  "?q=#{using_query ? QUERY : ''}&filters[yielded][]=#{stat}"
               end
 
               describe "the results" do
@@ -194,10 +197,10 @@ RSpec.feature "filters:", type: :feature, js: true do
           end
 
           context "when you select multiple EVs yielded filters" do
-            before :each do
+            before do
               @test_filters = %w[HP Atk Def]
 
-              check_filter *@test_filters
+              check_filter(*@test_filters)
             end
 
             it "displays species that yield any of the selected EVs" do
@@ -213,7 +216,7 @@ RSpec.feature "filters:", type: :feature, js: true do
 
           PokeLog::Types.types.each_with_index do |type, i|
             context "when you check the type #{type.capitalize} filter" do
-              before :each do
+              before do
                 within "#types_filters" do
                   check_filter type.capitalize
                 end
@@ -222,7 +225,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               it "sets the query string" do
                 # Indicates the form was successfully submitted by Stimulus
                 expect(page).to have_current_path trainee_path(Trainee.first) +
-                  "?q=#{using_query ? QUERY : ""}&filters[types][]=#{type}"
+                  "?q=#{using_query ? QUERY : ''}&filters[types][]=#{type}"
               end
 
               describe "the results" do
@@ -245,11 +248,11 @@ RSpec.feature "filters:", type: :feature, js: true do
           end
 
           context "when you select 2 types filters" do
-            before :each do
+            before do
               @test_types = %w[Rock Ground]
 
               within "#types_filters" do
-                check_filter *@test_types
+                check_filter(*@test_types)
               end
             end
 
@@ -266,7 +269,7 @@ RSpec.feature "filters:", type: :feature, js: true do
 
           PokeLog::Types.types.each_with_index do |type, i|
             context "when you check the weak to #{type.capitalize} filter" do
-              before :each do
+              before do
                 within "#weak_to_filters" do
                   check_filter type.capitalize
                 end
@@ -275,7 +278,7 @@ RSpec.feature "filters:", type: :feature, js: true do
               it "sets the query string" do
                 # Indicates the form was successfully submitted by Stimulus
                 expect(page).to have_current_path trainee_path(Trainee.first) +
-                  "?q=#{using_query ? QUERY : ""}&filters[weak_to][]=#{type}"
+                  "?q=#{using_query ? QUERY : ''}&filters[weak_to][]=#{type}"
               end
 
               describe "the results" do
@@ -300,11 +303,11 @@ RSpec.feature "filters:", type: :feature, js: true do
           end
 
           context "when you select multiple weak_to filters" do
-            before :each do
+            before do
               @test_types = %w[Fighting Ground Dragon]
 
               within "#weak_to_filters" do
-                check_filter *@test_types
+                check_filter(*@test_types)
               end
             end
 

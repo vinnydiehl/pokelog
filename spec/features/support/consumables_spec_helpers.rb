@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def open_consumables_menu
   find(".collapsible-header .expand").click
   sleep 0.5
@@ -11,7 +13,7 @@ def test_consumables(**cases)
       STATS.each do |stat|
         item = PokeLog::Stats.consumables_for(stat)[item_type.to_s.singularize.to_sym]
 
-        describe "#{item.to_s.humanize.downcase}" do
+        describe item.to_s.humanize.downcase.to_s do
           test_cases.each do |start_value, expected_value|
             context "with #{start_value} #{format_stat stat}" do
               difference = expected_value - start_value
@@ -25,7 +27,7 @@ def test_consumables(**cases)
                 expect(Trainee.first.send stat).to eq expected_value
               end
             end
-           end
+          end
         end
       end
     end

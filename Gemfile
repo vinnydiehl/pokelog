@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -17,8 +19,8 @@ gem "puma", "~> 6.1"
 gem "importmap-rails"
 
 # JavaScript frameworks for single page app functions
-gem "turbo-rails", "~> 1.3"
 gem "stimulus-rails", "~> 1.2"
+gem "turbo-rails", "~> 1.3"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
@@ -45,18 +47,28 @@ group :development do
 end
 
 group :test do
+  gem "fuubar", "~> 2.0"
   gem "rspec", "~> 3.12"
   gem "rspec-rails", "~> 6.0"
-  gem "fuubar", "~> 2.0"
 
   gem "capybara", "~> 3.38"
   gem "capybara-selenium", "~> 0.0.6"
   gem "selenium-webdriver", "~> 4.8"
 
+  # For CircleCI
   gem "rspec_junit_formatter", "~> 0.6", require: false
+
+  gem "rubocop", "~> 1.50"
+  gem "rubocop-capybara", "~> 2.17"
+  gem "rubocop-rails", "~> 2.19"
+  gem "rubocop-rspec", "~> 2.19"
 end
 
-gem "active_hash", "~> 3.1"
+# TODO: This is a fork that fixes errors during testing. Eyes on this PR:
+# https://github.com/active-hash/active_hash/pull/282
+gem "active_hash", git: "https://github.com/vinnydiehl/active_hash.git",
+                   branch: "fix-nil-error"
+
 gem "email_validator", "~> 2.2"
 gem "google_sign_in", "~> 1.2"
 gem "pokepaste", "~> 0.1"

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 def set_generation(gen)
-  find("#filters-btn").click
-  find("#species-filters .select-wrapper").click
-  find("span", text: gen.to_s).hover_and_click
+  find("#generation-btn").click
+  find(".generation-widget .gen#{gen}").hover_and_click
   sleep 0.5
 end
 
@@ -43,6 +44,6 @@ end
 # (3..9).except(4) #=> [3, 5, 6, 7, 8, 9]
 class Range
   def except(value)
-    self.to_a.reject { |n| n == value }
+    to_a.reject { |n| n == value }
   end
 end

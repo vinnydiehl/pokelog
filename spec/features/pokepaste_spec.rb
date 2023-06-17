@@ -1,33 +1,35 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 TEST_PASTE = <<~EOS.strip
-Test Mime (Mr. Mime-Galar) @ Assault Vest
-Ability: Ice Body
-Tera Type: Ice
-EVs: 248 HP / 252 SpA / 8 Spe
-Careful Nature
-IVs: 0 Atk
-- Dark Pulse
-- Acid Spray
-- Fairy Wind
-- Earth Power
+  Test Mime (Mr. Mime-Galar) @ Assault Vest
+  Ability: Ice Body
+  Tera Type: Ice
+  EVs: 248 HP / 252 SpA / 8 Spe
+  Careful Nature
+  IVs: 0 Atk
+  - Dark Pulse
+  - Acid Spray
+  - Fairy Wind
+  - Earth Power
 
-Azumarill
-Ability: Thick Fat
-Level: 75
-Tera Type: Water
-- Aqua Jet
-- Encore
-- Body Slam
-- Grass Knot
+  Azumarill
+  Ability: Thick Fat
+  Level: 75
+  Tera Type: Water
+  - Aqua Jet
+  - Encore
+  - Body Slam
+  - Grass Knot
 
-Baxcalibur
-Ability: Thermal Exchange
-Tera Type: Dragon
-EVs: 1 HP / 2 Atk / 3 Def / 4 SpA / 5 SpD / 6 Spe
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Blizzard
-- Brick Break
+  Baxcalibur
+  Ability: Thermal Exchange
+  Tera Type: Dragon
+  EVs: 1 HP / 2 Atk / 3 Def / 4 SpA / 5 SpD / 6 Spe
+  IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+  - Blizzard
+  - Brick Break
 EOS
 
 TEST_PASTE_URL = "https://pokepast.es/e3cf76c6eca678f6"
@@ -85,10 +87,10 @@ TEST_PASTE_ATTRS = {
     spd_goal: 5,
     spe_goal: 6
   }
-}
+}.freeze
 
 RSpec.feature "PokéPaste support:", type: :feature, js: true do
-  before :each do
+  before do
     create_user
     log_in
     visit trainees_path
@@ -97,9 +99,9 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
   end
 
   context "when entering a URL" do
-    {URL: TEST_PASTE_URL, ID: TEST_PASTE_ID}.each do |name, data|
+    { URL: TEST_PASTE_URL, ID: TEST_PASTE_ID }.each do |name, data|
       context "if it is a valid PokéPaste #{name}" do
-        before :each do
+        before do
           find("#url").set data
           sleep 1
         end
@@ -114,7 +116,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
 
         if name == :URL
           context "and then you make it invalid" do
-            before :each do
+            before do
               find("#url").set "invalid data"
               sleep 1
             end
@@ -128,7 +130,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
     end
 
     context "if it is an invalid URL/ID" do
-      before :each do
+      before do
         find("#url").set "invalid"
         sleep 1
       end
@@ -144,7 +146,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
   end
 
   context "when entering a valid paste" do
-    before :each do
+    before do
       find("#paste").set TEST_PASTE
     end
 
@@ -153,7 +155,7 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
     end
 
     context "when you click the add button" do
-      before :each do
+      before do
         find("#confirm-pokepaste").click
         sleep 0.5
       end
@@ -179,12 +181,12 @@ RSpec.feature "PokéPaste support:", type: :feature, js: true do
       end
 
       it "takes you to the page for the new trainees" do
-        expect(page).to have_current_path "/trainees/#{Trainee.all.map { |trn| trn.id }.join ','}"
+        expect(page).to have_current_path "/trainees/#{Trainee.all.map(&:id).join ','}"
       end
     end
 
     context "if you remove the paste" do
-      before :each do
+      before do
         find("#paste").set ""
       end
 

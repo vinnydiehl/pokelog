@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails/all"
@@ -7,7 +9,7 @@ Bundler.require(*Rails.groups)
 
 module PokeLog
   # For dynamic uptime info
-  BOOTED_AT = Time.now
+  BOOTED_AT = Time.current
 
   NATURES = YAML.load_file("data/natures.yml")
   ITEMS = YAML.load_file("data/items.yml")
@@ -15,7 +17,7 @@ module PokeLog
   class Application < Rails::Application
     config.load_defaults 7.0
     config.eager_load_paths += [Rails.root.join("lib")]
-    config.exceptions_app = self.routes
+    config.exceptions_app = routes
     config.time_zone = "Eastern Time (US & Canada)"
 
     # Don't generate specs

@@ -1,0 +1,108 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
+
+AllCops:
+  NewCops: enable
+
+# False positives- not actually getters/setters
+Naming/AccessorMethodName:
+  Exclude:
+    - app/models/trainee.rb
+    - spec/features/support/generations_spec_helpers.rb
+
+Layout/ArgumentAlignment:
+  Enabled: false
+
+Layout/DotPosition:
+  Enabled: false
+
+Layout/ExtraSpacing:
+  Enabled: false
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/HashAlignment:
+  Exclude:
+    - spec/features/consumables_spec.rb
+
+Layout/LineEndStringConcatenationIndentation:
+  Exclude:
+    - app/helpers/application_helper.rb
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: false
+
+Metrics:
+  Enabled: false
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+
+Naming/MethodParameterName:
+  Enabled: false
+
+# Allow #has_x? method names
+Naming/PredicateName:
+  ForbiddenPrefixes: ["is_"]
+
+Naming/VariableNumber:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FormatString:
+  Enabled: false
+
+# I like the idea but this is too strict
+Style/GuardClause:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/MultilineTernaryOperator:
+  Enabled: false
+
+Style/NestedParenthesizedCalls:
+  Enabled: false
+
+Style/NestedTernaryOperator:
+  Enabled: false
+
+Style/Next:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/StringConcatenation:
+  Exclude:
+    - spec/features/filters_spec.rb
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+################################################################################
+
+Rails/DynamicFindBy:
+  Exclude:
+    - app/models/trainee.rb
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false

@@ -1,6 +1,6 @@
 # Contributing to PokéLog
 
-Thank you for considering contributing to PokéLog! We are always looking 
+Thank you for considering contributing to PokéLog! We are always looking
 for new contributors to help us improve the project. Please give this
 document a read before you get started, it will help you get dependencies set
 up, and we can talk about best practices.
@@ -52,7 +52,7 @@ client ID in the
 7. Add another JavaScript Origin URI for `http://localhost:3000`.
 8. Under "Authorized redirect URIs", add `http://localhost:3000/login/submit`.
 9. Click the button labeled “Create.” You’ll be presented with a client ID and client
-   secret. 
+   secret.
 10. Add these lines to your `~/.bashrc`, pasting in the values that the API Console
     gives you:
 
@@ -105,6 +105,8 @@ website](https://pokeapi.co/) for more information on this amazing service.
 
 ### Code Style
 
+**Make sure your code passes RuboCop or your PR will fail CI!**
+
 Readability and consistency above all else. The
 [Ruby Style Guide](https://rubystyle.guide/) is a good start, but liberties may
 be taken so long as the code makes sense. Try to keep lines under 80
@@ -141,7 +143,7 @@ When starting a new branch, create a new branch off of `trunk` with a name that
 describes the feature you're working on, prepended with `feature/` or `bugfix/`,
 like `feature/really-cool-thing`.
 
-Make your changes on this branch, committing them as you go. Once you're 
+Make your changes on this branch, committing them as you go. Once you're
 finished, open a pull request to merge your feature branch into `trunk`.
 
 Here's an example of how you might add a new feature to PokéLog:

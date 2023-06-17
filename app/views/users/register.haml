@@ -1,22 +1,19 @@
 - provide :title, "New User"
 
-= javascript_include_tag "character_counter"
-= javascript_include_tag "form_button_enable"
-= javascript_include_tag "sidenav_init"
-
 %p Pick a username to continue! You can change your email address if you would like, we don't store any personal information from your Google account.
 
-= form_with model: @user, url: "/register/submit", data: {turbo: false} do |f|
+= form_with model: @user, url: "/register/submit", data: { turbo: false, controller: "button-enable",
+                          "length-input": "username", "email-input": "email", target: "register-btn" } do |f|
   = f.hidden_field :credential, value: params["credential"]
   .input-field
     = f.label :username, "Username"
     = f.text_field :username, class: "counter", minlength: 1, maxlength: 20,
-                              "data-length" => 20, onblur: "hideCounter()",
-                              oninput: "enableRegisterButton()"
+                   data: { length: 20, controller: "character-counter",
+                           action: "input->button-enable#validateAll blur->character-counter#hide" }
   .input-field
     = f.label :email, "Email Address"
     = f.text_field :email, value: @token.email_address,
-                           oninput: "enableRegisterButton()"
+                           data: { action: "input->button-enable#validateAll" }
   %button#register-btn.btn.waves-effect.waves-light{type: "submit", name: "commit", disabled: true}
     Register
     %i.material-icons.right send

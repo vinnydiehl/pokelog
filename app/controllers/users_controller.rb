@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   # Using Google API token verification
   skip_before_action :verify_authenticity_token, only: %i[login register]
@@ -8,36 +10,7 @@ class UsersController < ApplicationController
     # This is the user being displayed on the profile page, not necessarily
     # the logged in user.
     @display_user = User.find_by username: params[:username]
-    render "errors/not_found", status: 404 unless @display_user
-  end
-
-  # PATCH /users/:username
-  def update
-    @user = User.find_by username: params[:username]
-
-    if @current_user != @user
-      return redirect_to user_path(@user), notice: "Authentication failed."
-    end
-
-    @user.email = params[:user][:email]
-
-    notice = @user.save ? "Email updated." : "There was a problem updating your email."
-    redirect_to user_path(@user), notice: notice
-  end
-
-  # DELETE /users/:username
-  def destroy
-    # TODO. Issue #16
-  end
-
-  # POST /login/submit
-  def login
-    if @found_user.blank?
-      # Take user to registration page to fill in their username
-      redirect_post register_path(credential: params["credential"])
-    else
-      log_in
-    end
+    render "errors/not_found", status: :not_found unless @display_user
   end
 
   # POST /register/submit
@@ -60,11 +33,44 @@ class UsersController < ApplicationController
     end
   end
 
+  # PATCH /users/:username
+  def update
+    @user = User.find_by username: params[:username]
+
+    if @current_user != @user
+      return redirect_to user_path(@user), notice: "Authentication failed."
+    end
+
+    @user.email = params[:user][:email]
+
+    notice = @user.save ? "Email updated." : "There was a problem updating your email."
+    redirect_to user_path(@user), notice:
+  end
+
+  # DELETE /users/:username
+  def destroy
+    # TODO. Issue #16
+  end
+
+  # POST /login/submit
+  def login
+    if @found_user.blank?
+      # Take user to registration page to fill in their username
+      redirect_post register_path(credential: params["credential"])
+    else
+      log_in
+    end
+  end
+
   # GET /logout
   def logout
     cookies.delete :google_id
     redirect_to root_url, notice: "Logged out."
   end
+
+  # POST /register
+  # Explicitly defined for RuboCop since this has a before_action
+  def register; end
 
   private
 
@@ -80,7 +86,7 @@ class UsersController < ApplicationController
       return redirect_to root_url, notice: "Authentication failed."
     end
 
-    @found_user = User.find_by_google_id @token.user_id
+    @found_user = User.find_by google_id: @token.user_id
   end
 
   # Log in the user from @token (must be loaded from params w/ parse_token)
