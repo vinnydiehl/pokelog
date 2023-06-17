@@ -10,6 +10,10 @@ Brief summary of the changes in each version. For more details, see the
  * Moved the generation selector to a widget next to the filters button.
  * Added a button to view the goal alerts.
 
+### [0.2.1](https://github.com/vinnydiehl/pokelog/tree/0.2.1) - 17 June 2023
+
+ * Hotfix: asset pipeline was broken, everything was on fire.
+
 ## [0.1.1](https://github.com/vinnydiehl/pokelog/tree/0.1.1) - 14 March 2023
 
  * Mainly a test for the newly configured [CI deployment
