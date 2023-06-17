@@ -55,8 +55,4 @@
 
 = render "shared/ads"
 
-:javascript
-  runOnLoad(() => {
-    M.Autocomplete.init(document.querySelectorAll(".autocomplete"),
-                        { data: #{Species.autocomplete_data} });
-  });
+= hidden_field_tag "autocomplete-data", Species.autocomplete_data

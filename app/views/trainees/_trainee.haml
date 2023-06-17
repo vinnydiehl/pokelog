@@ -15,8 +15,8 @@
         .input-field.species
           = f.label :species, "Species"
           = f.text_field :species, class: "autocomplete", disabled: not_yours?(trainee),
-                         data: { action: "change->form-submission#submit" },
-              value: trainee.species.nil? ? nil : trainee.species.display_name
+                         value: trainee.species.nil? ? nil : trainee.species.display_name,
+                         data: { controller: "autocomplete", action: "change->form-submission#submit" }
       .trainee-artwork{id: "artwork-#{dom_id trainee}"}
         = render "trainees/artwork", trainee: trainee
       .side-by-side
