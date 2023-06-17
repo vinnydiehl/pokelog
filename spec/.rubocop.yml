@@ -1,7 +1,5 @@
 inherit_from: ../.rubocop.yml
 
-# This will possibly be removed when all cops are passing;
-# for now I'd like these to be easy to see.
 RSpec/Focus:
   Severity: warning
 
@@ -10,6 +8,10 @@ Style/MixinUsage:
     - support/helper_includes.rb
 
 Style/SignalException:
+  Enabled: false
+
+# Lots of spacing for alignment in the tests
+Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false
 
 Lint/AmbiguousBlockAssociation:
