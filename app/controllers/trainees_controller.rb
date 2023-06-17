@@ -95,7 +95,6 @@ class TraineesController < ApplicationController
         @trainee.save!
 
         titles = helpers.trainees_show_title(JSON.parse params[:trainees])
-        radar_id = "radar-chart-#{helpers.dom_id @trainee}"
         dom_id = helpers.dom_id @trainee
 
         format.turbo_stream do
