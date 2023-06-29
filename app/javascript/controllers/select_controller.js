@@ -11,6 +11,8 @@ export default class extends Controller {
   // recursively connects new select tags in an infinite loop. Perhaps, when hiding the
   // one which is actually there, it for some reason deletes and generates a new, hidden one?
   initialize() {
-    M.FormSelect.init(this.element);
+    // Hack to prevent these from getting double loaded on restoration visits
+    if (!document.querySelector(".select-wrapper input"))
+      M.FormSelect.init(this.element);
   }
 }

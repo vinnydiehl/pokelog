@@ -3,6 +3,11 @@
 Brief summary of the changes in each version. For more details, see the
 [commit history](https://github.com/vinnydiehl/pokelog/commits/trunk).
 
+## [0.2.2](https://github.com/vinnydiehl/pokelog/tree/0.2.2) - 29 June 2023
+
+ * Fix regression of bug where multiple selects will spawn during restoration
+   visits.
+
 ## [0.2](https://github.com/vinnydiehl/pokelog/tree/0.2) - 17 June 2023
 
  * Full rewrite of the client-side; performance improvements and bugfixes,
